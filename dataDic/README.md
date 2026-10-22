@@ -48,9 +48,6 @@ dataDic\
 - **Open [03-output/index.html](./03-output/index.html)** to see the latest
   completed workflow output without importing CSVs manually.
 
-The previous `input`, `skills`, `output` and `output_ai` folders have been moved
-into this numbered layout. The supplied JSON and CSV contents are unchanged.
-
 ## The two skills
 
 | Skill | Input | Work performed | Output |
@@ -81,7 +78,10 @@ Skill 2: AI fills missing Ultracs descriptions only
 New enriched three-CSV bundle
         |
         v
-Refresh 03-output\index.html to display the newly completed bundle
+Validate preservation, scores, mirrors and the real three-file import
+        |
+        v
+FINAL: embed the validated bundle in 03-output\index.html
 ```
 
 ### 1. Generate the baseline dictionary
@@ -91,7 +91,7 @@ library; no package installation, credentials, or model API key is required.
 Run the following PowerShell commands from this `dataDic` folder.
 
 If the existing [baseline output](./03-output/01-baseline/) is sufficient, skip regeneration.
-To build a fresh copy without replacing saved files, choose a new destination:
+To build a fresh copy without replacing the baseline CSVs, choose a new destination:
 
 ```powershell
 python -B .\02-skills\ultracs-data-dictionary-v3\generate.py --output .\03-output\01-baseline-next
@@ -104,8 +104,14 @@ checks succeed.
 
 Running the same command **without `--output` replaces the files in
 `03-output\01-baseline`**. Successful generation also refreshes the main
-`03-output\index.html`. Do not run it against an enriched bundle: it projects
-the original JSON and does not retain later AI descriptions.
+`03-output\index.html`, **including when a new stage folder is chosen**. This
+temporarily makes the baseline the main viewer; it does not change an earlier
+enriched CSV bundle. To check generation without publishing a new main viewer,
+use an output folder outside `03-output`.
+
+Do not run the generator against an enriched bundle: it projects the original
+JSON and does not retain later AI descriptions. Publish the validated enriched
+bundle in the final step below to make it the main viewer again.
 
 ### 2. Fill missing Ultracs descriptions with AI
 
@@ -119,7 +125,7 @@ Fill only missing Ultracs source descriptions, each in one or two sentences.
 Score evidence supporting only those new descriptions and explain the arithmetic.
 Write all three matching CSVs to a new 03-output\02-ai-enriched-next folder.
 Leave lineage relationship scores unchanged and validate the HTML bundle import.
-Build that folder's HTML and refresh 03-output\index.html with the new result.
+As the final publishing step, embed all three validated CSVs in 03-output\index.html.
 ```
 
 Use a destination that does not already exist, or explicitly approve replacing
@@ -145,52 +151,80 @@ converter does not generate AI prose.
 - Scores, evidence, calculation and detailed rationale are separate from the
   description text.
 
-### 3. View the enriched bundle
+### 3. Validate the complete bundle before publication
 
-Open **[03-output/index.html](./03-output/index.html)** in a modern browser.
-It already embeds the last output published by a completed workflow. After AI
-enrichment, it shows that enriched bundle rather than the older baseline.
+Check row counts/order, scoped identities, endpoint references, JSON cells,
+canonical field mirrors, the one-or-two-sentence limit, assessment arithmetic
+and evidence. Compare the new bundle with its input: existing descriptions and
+their metadata, raw source records, lineage relationships and the Asset Registry
+must be preserved. See the
+[AI CSV output contract](./02-skills/ai-description-enrichment/references/csv-output-contract.md)
+for the complete checks.
 
-1. Select **Field Catalog**, then filter **Source system** to **Ultracs**.
-2. Use **Description origin** to distinguish AI-generated entries from
-   unchanged supplied descriptions.
-3. Click a field to inspect its description, evidence and assessment.
+Then exercise the real HTML importer:
 
-The HTML is an embedded snapshot, not a live connection to adjacent CSV files.
-Each successful generation or standard HTML build for a direct subfolder of
-`03-output` replaces the main viewer with that completed snapshot. **Latest
-means the most recently completed publication**, not the highest folder number
-or a guessed file-modification time. A failed build leaves the previous main
-viewer intact. Refresh an already-open browser page after publication.
+1. Open the existing [main viewer](./03-output/index.html) in a modern browser.
+2. Choose **Open 3 CSV bundle** and select all three CSVs from the exact result
+   folder together. Do not mix baseline and enriched files.
+3. Select **Field Catalog**, then filter **Source system** to **Ultracs**.
+4. Use **Description origin** to inspect an **AI generated** draft and an
+   unchanged supplied description. Open their details to check provenance,
+   evidence and the new draft's assessment.
+5. Check the Dictionary and Asset Registry views and a filtered CSV export.
+   Resolve any import or preservation errors before publishing.
 
-Changing CSVs by hand does not refresh the HTML automatically. After an explicitly
-validated change, rebuild from the desired bundle:
+A browser import previews that bundle in the current page only. It does **not**
+save the imported CSVs into the HTML file. A single-CSV import loads Dictionary
+only and is not a complete-bundle validation.
+
+The Python HTML builder checks CSV shape, but does not perform all cross-file
+semantic or enrichment-preservation checks. Building HTML alone is not proof that
+the bundle passed validation.
+
+### 4. Final step: embed the validated bundle in HTML
+
+After validation succeeds, run the builder with the **actual final result
+folder**, not the baseline generator:
 
 ```powershell
 python -B .\02-skills\ultracs-data-dictionary-v3\build_viewer.py --output-dir .\03-output\02-ai-enriched
 ```
 
-This creates or replaces only the main `03-output\index.html` without changing
-any CSV or regenerating the source JSON. It does not leave another HTML copy
-inside the stage folder.
-Substitute a versioned output folder if needed. Builds outside `03-output` do
-not change the main viewer; an explicit `--destination` creates a preview without
-publishing it as latest.
+Substitute the versioned folder if the new result is, for example,
+`02-ai-enriched-next`. This embeds all three matching CSV texts and the viewer
+assets into **[03-output/index.html](./03-output/index.html)**. It creates or
+replaces only that main HTML, without changing any CSV, regenerating the source
+JSON, or leaving another HTML copy inside the stage folder.
 
-**Open 3 CSV bundle** is still available for inspecting another snapshot
-manually. Select all three CSVs from one folder together. A single-CSV import
-loads Dictionary only and does not populate the matching registry views.
+Open or refresh the main HTML and confirm that all three views load the final
+bundle **without importing any CSVs manually**. The saved snapshot is fully
+offline and needs no server or adjacent files. The currently saved main HTML
+embeds the [AI-enriched bundle](./03-output/02-ai-enriched/).
+
+**Latest means the most recently completed publication**, not the highest folder
+number or a guessed file-modification time. Successful generation or a standard
+HTML build for any direct subfolder of `03-output` replaces the main viewer.
+A failed build leaves the previous main viewer intact. An explicit
+`--destination` creates a preview without publishing it as latest; builds outside
+`03-output` also leave the main viewer unchanged.
+
+Changing CSVs by hand or importing another bundle in the browser never refreshes
+the saved HTML automatically. Repeat validation and this final build after any
+intentional CSV changes.
 
 ## What each CSV contains
 
-| File | Row meaning |
-| --- | --- |
-| `asset_registry.csv` | One represented asset or scoped source context. This file is unchanged by the default AI enrichment. |
-| `field_catalog.csv` | One scoped field/reference: Ultracs source, extract slot, RAW JSON key or Snowflake column. New AI description scores are stored here. |
-| `data_dictionary.csv` | One source mapping and one exact Snowflake target, with target-specific processing and synchronized source-description information. |
+| File | Row meaning | Baseline columns | AI-enriched columns |
+| --- | --- | --- | --- |
+| `asset_registry.csv` | One represented asset or scoped source context. This file is unchanged by the default AI enrichment. | 25 | 25 |
+| `field_catalog.csv` | One scoped field/reference: Ultracs source, extract slot, RAW JSON key or Snowflake column. New AI description scores are stored here. | 47 | 52 |
+| `data_dictionary.csv` | One source mapping and one exact Snowflake target, with target-specific processing and synchronized source-description information. | 106 | 111 |
 
 Keep the three files together. Their graph/snapshot IDs, canonical field
 objects, source-description mirrors and references must agree.
+The enriched Field Catalog and Dictionary each append five description
+assessment columns. These schema counts describe the supplied bundles; future
+inputs may retain additional columns.
 
 ## Description confidence: where and how
 
