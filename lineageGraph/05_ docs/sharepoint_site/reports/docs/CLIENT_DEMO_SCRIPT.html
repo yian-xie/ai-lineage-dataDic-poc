@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Client Demo Script: Account Data Lineage · Lineage POC</title><style>
+:root{color-scheme:light;--ink:#193238;--green:#24794f;--deep:#183e33;--bg:#eef4f1;--panel:#fff;--line:#d6e1de;--muted:#62777b;--teal:#218b83;--blue:#397b9d;--purple:#7963a1;--amber:#c4893d;--coral:#d87968}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Segoe UI",sans-serif}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 24px;background:var(--deep);color:#fff}.top a{color:#fff;text-decoration:none;font-weight:750}.top small{color:#d9e9df}.shell{max-width:1240px;margin:0 auto;padding:24px}.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:0 0 18px}.intro{border-left:5px solid var(--green)}h1,h2,h3{line-height:1.25}h1{font-size:26px;margin:0 0 8px}h2{margin-top:28px;border-bottom:1px solid var(--line);padding-bottom:7px}h3{margin-top:22px}a{color:#176b58}a:hover{color:#0d4f40}table{display:block;width:100%;overflow:auto;border-collapse:collapse}th,td{padding:8px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e7f0e9}code{background:#edf3ef;padding:1px 4px;border-radius:3px}pre{overflow:auto;padding:14px;background:#183e33;color:#eef7f0;border-radius:6px}pre code{background:transparent;color:inherit;padding:0}blockquote{margin:12px 0;padding:10px 15px;border-left:4px solid var(--teal);background:#f4f8f6}img,svg{max-width:100%;height:auto}.meta{font-size:12px;color:var(--muted)}.repo-ref{border-bottom:1px dotted var(--amber);cursor:help}.repo-ref-path{color:var(--muted);font-size:11px;overflow-wrap:anywhere}.toc{padding:12px 16px;background:#f6f9f7;border:1px solid var(--line);border-radius:6px}.report-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;padding:0;list-style:none}.report-list a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;text-decoration:none}.report-list a:hover{background:#eaf3eb}.footer{padding:20px 0;color:var(--muted);font-size:12px}@media(max-width:680px){.top{padding:14px}.shell{padding:14px}.panel{padding:14px}h1{font-size:22px}}
+</style></head>
+<body><header class="top"><a href="../../index.html">Data Lineage POC Reports</a><small>Static report bundle · no live systems queried</small></header><main class="shell"><article class="panel"><p class="meta">Source: <code>docs/CLIENT_DEMO_SCRIPT.md</code></p><h1>Client Demo Script: Account Data Lineage</h1><h1 id="client-demo-script-account-data-lineage">Client Demo Script: Account Data Lineage</h1>
+<p><strong>Length:</strong> 7–9 minutes, plus questions<br>
+<strong>Audience:</strong> Business and technical stakeholders<br>
+<strong>Suggested screen order:</strong> Project Findings → Detailed graph → Schema overview fan-out and Detail toggle → focused column → Data Dictionary → Enterprise graph</p>
+<h2 id="opening-30-seconds">Opening (30 seconds)</h2>
+<p><strong>Show:</strong> Findings page.</p>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>Today I'll show how this proof of concept traces account data from the legacy Ultracs environment toward Snowflake. We'll start with the account journey, then follow one field, and finish with selected downstream Enterprise consumers.</p>
+<p>One important boundary: this is lineage inferred from checked-in code and configuration. It is not a live production trace, and it does not run or inspect production jobs.</p>
+</blockquote>
+<h2 id="set-the-scale-45-seconds">Set the scale (45 seconds)</h2>
+<p><strong>Show:</strong> The graph counts on the findings page.</p>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>The full repository graph contains 2,005 nodes and 3,033 relationships. A node is a distinct typed item in the graph: for example, a program, file, HVR channel, workflow task, or Snowflake relation. These counts are not counts of columns or source files.</p>
+<p>For this walkthrough, we’ve narrowed that larger graph to the account slice: 39 nodes and 65 relationships. That smaller view makes one business journey easier to inspect.</p>
+</blockquote>
+<p><strong>Technical note:</strong> The full graph is assembled from parser evidence across BASIC, HVR, Airflow, dbt, and schemachange files. Multiple graph items can come from one file; repeated IDs are deduplicated. Edges carry the relationship type and evidence metadata.</p>
+<h2 id="1-source-and-extract-1-minute">1. Source and extract (1 minute)</h2>
+<p><strong>Show:</strong> Main column-lineage page in Detailed mode. Locate <code>ACCOUNT</code>, <code>TRAN</code>, <code>KWDW_ACC</code>, and <code>DWACC</code>.</p>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>The journey begins with account and transaction records in Ultracs. The legacy <code>KWDW_ACC</code> program reads those records and creates the <code>DWACC</code> extract. In business terms, this is where the account data is selected and prepared for downstream delivery.</p>
+<p>The graph lets us move between the source records, the program, and the output file, then inspect which repository evidence supports those links.</p>
+</blockquote>
+<p><strong>Technical note:</strong> Describe the relationship labels as the parser recorded them. For example, <code>READS_FROM</code> is stored from the program to its input-file node; do not treat every displayed arrow as a literal source-to-consumer data-flow direction.</p>
+<h2 id="2-delivery-routes-and-the-known-gap-15-minutes">2. Delivery routes and the known gap (1.5 minutes)</h2>
+<p><strong>Show:</strong> The HVR and account-ingestion portions of the Detailed graph.</p>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>From <code>DWACC</code>, the repository evidence shows two configured routes. One is a direct HVR route to the <code>LOADACCOUNTS_INGEST</code> landing relation. The other carries files through S3 and the account Airflow ingestion path into the account RAW table, where dbt models continue the journey.</p>
+<p>The distinction matters: we can show both routes, but the checked-in evidence does not establish that the direct HVR landing relation feeds the account-v1 RAW table. We’ve kept that as an explicit open question rather than drawing a connection we can’t substantiate.</p>
+</blockquote>
+<p><strong>Technical note:</strong> The S3/Airflow path is supported by the configured file copy/load steps and dbt source/model declarations. The filename-pattern match between the extract and HVR capture is inferred. The direct landing-to-RAW bridge remains unproven.</p>
+<h2 id="3-show-the-schema-overview-15-minutes">3. Show the Schema Overview (1.5 minutes)</h2>
+<p><strong>Show:</strong> Select outer <strong>Schema overview</strong> and expand the groups. Point out the five node shapes, entity-type colors, directional arrows, and the separate disconnected direct-route warning.</p>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>This view is a compact, selected critical path, not every node in the repository graph. Expanded nodes open the existing inspector. The visible path is presentation-only; it does not add relationships to the canonical graph JSON. The direct HVR landing is kept separate because no checked-in evidence connects it to the account RAW path.</p>
+</blockquote>
+<p><strong>Then show:</strong> The nested <strong>Detail view</strong>, which restores the older schema force graph and its inspector. Return to <strong>Schema view</strong> before continuing.</p>
+<h2 id="4-follow-one-field-15-minutes">4. Follow one field (1.5 minutes)</h2>
+<p><strong>Show:</strong> Account Number column graph.</p>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>Now we can narrow from table-level movement to one business field: the account number. The mapping follows <code>KiwiAcc</code> in the <code>DWACC</code> layout to <code>KIWIBANKACCOUNTNUMBER</code> in Snowflake, with type <code>VARCHAR(100)</code>.</p>
+<p>This is useful when someone asks, "Where does this field come from, and what evidence supports the mapping?" The view gives us a specific path to review instead of asking the audience to infer a column from a table-level graph.</p>
+</blockquote>
+<p><strong>Technical note:</strong> The field mapping is supported through the S3/Airflow/dbt route. The displayed confidence score is a fixed evidence-strength heuristic, not a statistical probability or a guarantee that production ran as configured.</p>
+<h2 id="5-data-dictionary-and-enterprise-consumers-2-minutes">5. Data Dictionary and Enterprise consumers (2 minutes)</h2>
+<p><strong>Show:</strong> Select <strong>Data Dictionary</strong>, then the Enterprise graph.</p>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>The V3 dictionary viewer includes CSV and bundle import, filters, custom conditions, sorting, row details, and filtered export. Its embedded snapshot contains 179 mapping rows, 95 source mappings, 369 relationships, 7 assets, and 464 fields. The Enterprise graph is selected downstream context, not a complete product catalog.</p>
+</blockquote>
+<h2 id="6-downstream-enterprise-consumers-1-minute">6. Downstream Enterprise consumers (1 minute)</h2>
+<p><strong>Show:</strong> Enterprise graph.</p>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>The final view extends selected account outputs into downstream Enterprise models. It shows how account data is consumed by a focused set of products, including integrated account and curated dimension/fact models.</p>
+<p>This is a targeted extension, not a complete Enterprise catalog. The links shown are at table/model level; they do not claim column-level lineage or fill in orchestration that is not present in the repository evidence.</p>
+</blockquote>
+<p><strong>Technical note:</strong> The Enterprise extension reports 238 nodes and 495 relationships, reusing the account graph’s 39 nodes. It covers four selected Enterprise products; 30 of the 34 product directories are outside this account-focused view.</p>
+<h2 id="close-45-seconds">Close (45 seconds)</h2>
+<p><strong>Say:</strong></p>
+<blockquote>
+<p>The value of this view is that it makes the supported path visible and separates confirmed evidence from assumptions and gaps. It gives business teams a way to discuss impact and ownership, and gives engineering teams concrete artifacts and unresolved joins to validate.</p>
+<p>The next useful validations are whether the direct HVR landing feeds account RAW, whether Account Index ID is formally defined as the combination of Account and Prod, and what source should provide runtime lineage.</p>
+</blockquote>
+<h2 id="likely-questions">Likely questions</h2>
+<p><strong>"Does this prove what happened in production?"</strong><br>
+No. It describes what checked-in source and configuration declare. A runtime/catalog integration would be needed to verify actual executions and deployed state.</p>
+<p><strong>"Why are some links inferred?"</strong><br>
+Some links are supported indirectly, such as by a filename-pattern match or a candidate composite key. The graph labels those separately so they can be validated instead of presented as confirmed.</p>
+<p><strong>"Does this cover every column?"</strong><br>
+The account DWACC inventory covers all 95 ordered HVR fields and their BASIC output expressions. It includes 112 internal and 67 public DBT projections; 59 fields reach a public model. The two Account Index ID components remain inferred, and public targets are listed only where the public SQL selects them.</p>
+<p><strong>"What should we validate next?"</strong><br>
+Confirm the direct HVR-to-RAW relationship, confirm the Account Index ID definition with its owner, and identify the authoritative source for runtime lineage.</p>
+<h2 id="presenter-reminders">Presenter reminders</h2>
+<ul>
+<li>Use “the repository configuration shows” or “the evidence supports,” not “production does.”</li>
+<li>Keep the direct HVR and S3/Airflow routes distinct unless new evidence connects them.</li>
+<li>Explain confidence as an evidence label/heuristic, never as a probability.</li>
+<li>If asked about a missing link, show it as a validation question; do not fill it in verbally.</li>
+<li>The direct HVR branch is intentionally omitted from the simplified fan-out; use Detailed mode for the complete graph evidence.</li>
+</ul></article><footer class="footer">Generated from repository Markdown. Graph pages are separate static artifacts. Repository-source references outside this bundle are shown as paths.</footer></main></body></html>

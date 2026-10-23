@@ -1,0 +1,128 @@
+[
+  {
+    "business_field": "Account_Index_ID",
+    "field_id": "ultracs:SAVINGS_ACCOUNT:DWACC:2",
+    "ultracs_position": 2,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWACC",
+    "param_column": "Prod",
+    "hvr_parameter": {
+      "name": "Prod",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL",
+    "snowflake_column": "BANKINGPRODUCTCODE",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACC.param",
+    "notes": "Candidate composite key part 2 of 2: Prod at DWACC position 2 represents PID. Confirm the consumer key definition.",
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACCOUNT @ID",
+      "source_references": [],
+      "description": "PID/product component parsed from the account identifier; candidate part of Account_Index_ID.",
+      "transformation": "PID = ID[LEN(CIS)+1,9].",
+      "basic_expression": "PID",
+      "basic_comment": "",
+      "basic_source_line": 200,
+      "extract_file": "DWACC",
+      "position": 2,
+      "param_column": "Prod"
+    },
+    "cdp": {
+      "model": "accounts_v1__ultracs_accounts_detail",
+      "model_description": "The Ultracs accounts data, Detailed Columns Excluding Balances.",
+      "description": "BANKINGPRODUCTCODE sourced from Prod",
+      "data_type": "VARCHAR(30)",
+      "classification": "STANDARD",
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_accounts_detail/accounts_v1__ultracs_accounts_detail.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL",
+      "column": "BANKINGPRODUCTCODE",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_accounts_detail_v2",
+        "model_id": "dbt:model:accounts_v1__ultracs_accounts_detail_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL_V2",
+        "column": "BANKINGPRODUCTCODE",
+        "source_expression": "DATA:Prod::STRING AS BANKINGPRODUCTCODE,",
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_accounts_detail_v2/accounts_v1__ultracs_accounts_detail_v2.yml",
+        "source_line": 185,
+        "model_description": "The Ultracs accounts data, Detailed Columns Excluding Balances.",
+        "description": "BANKINGPRODUCTCODE sourced from Prod",
+        "data_type": "VARCHAR(30)",
+        "classification": "STANDARD"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_accounts_detail",
+        "model_id": "dbt:model:accounts_v1__ultracs_accounts_detail",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL",
+        "column": "BANKINGPRODUCTCODE",
+        "source_model": "accounts_v1__ultracs_accounts_detail_v2",
+        "source_column": "BANKINGPRODUCTCODE",
+        "projection_expression": "BANKINGPRODUCTCODE",
+        "projection_line": 3,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_accounts_detail/accounts_v1__ultracs_accounts_detail.yml",
+        "model_description": "The Ultracs accounts data, Detailed Columns Excluding Balances.",
+        "description": "BANKINGPRODUCTCODE sourced from Prod",
+        "data_type": "VARCHAR(30)",
+        "classification": "STANDARD"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_accounts_eod_balances_v2",
+        "model_id": "dbt:model:accounts_v1__ultracs_accounts_eod_balances_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_EOD_BALANCES_V2",
+        "column": "BANKINGPRODUCTCODE",
+        "source_expression": "DATA:Prod::STRING AS BANKINGPRODUCTCODE,",
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_accounts_eod_balances_v2/accounts_v1__ultracs_accounts_eod_balances_v2.yml",
+        "source_line": 4,
+        "model_description": "The Ultracs accounts data, unpack all the variant columns",
+        "description": "BANKINGPRODUCTCODE sourced from Prod",
+        "data_type": "VARCHAR(30)",
+        "classification": "STANDARD"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_accounts_eod_balances",
+        "model_id": "dbt:model:accounts_v1__ultracs_accounts_eod_balances",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_EOD_BALANCES",
+        "column": "BANKINGPRODUCTCODE",
+        "source_model": "accounts_v1__ultracs_accounts_eod_balances_v2",
+        "source_column": "BANKINGPRODUCTCODE",
+        "projection_expression": "BANKINGPRODUCTCODE",
+        "projection_line": 3,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_accounts_eod_balances/accounts_v1__ultracs_accounts_eod_balances.yml",
+        "model_description": "The Ultracs accounts data, unpack all the variant columns",
+        "description": "BANKINGPRODUCTCODE sourced from Prod",
+        "data_type": "VARCHAR(30)",
+        "classification": "STANDARD"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_acc1",
+        "ult_s3_acc2"
+      ],
+      "s3_paths": [
+        "s3:path:HVR:ultracs:dwacc",
+        "s3:path:DATALAKE:ultracs:dwacc"
+      ],
+      "airflow_dag": "accounts_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwacc",
+        "copy_s3_files_to_snowflake_task_for_dwacc"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNTS_V1__ACCOUNTS",
+      "dbt_input": "DATA:Prod"
+    }
+  }
+]

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1480" role="img" aria-labelledby="title description">
+  <title id="title">Data Lineage Graph Schema</title>
+  <desc id="description">Schema overview of the generated lineage graph payload, node types, directed relationships, architectural layers, provenance, and modeling guardrails.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#316b62"/>
+    </marker>
+    <style>
+      text{font-family:Aptos,"Segoe UI",sans-serif;fill:#173a36}
+      .eyebrow{font-size:13px;font-weight:750;letter-spacing:1.2px;fill:#26796d}
+      .title{font-size:38px;font-weight:760}
+      .subtitle{font-size:16px;fill:#526b67}
+      .section-title{font-size:18px;font-weight:750}
+      .panel-title{font-size:14px;font-weight:800;letter-spacing:.4px;fill:#246b60}
+      .type{font-size:13px;font-weight:750}
+      .note{font-size:12px;fill:#5c706c}
+      .tiny{font-size:11px;fill:#536964}
+      .code{font-family:Consolas,"Courier New",monospace;font-size:12px;font-weight:700;fill:#1b5149}
+      .edge-name{font-family:Consolas,"Courier New",monospace;font-size:11.5px;font-weight:700;fill:#205f55}
+      .card{fill:#fff;stroke:#d5e3dd;stroke-width:1.4;rx:12}
+      .node{fill:#f5faf7;stroke:#d4e4dc;stroke-width:1;rx:7}
+      .panel{fill:#fff;stroke:#d5e3dd;stroke-width:1.3;rx:10}
+      .edge-line{stroke:#316b62;stroke-width:1.6;marker-end:url(#arrow)}
+      .divider{stroke:#dce7e2;stroke-width:1}
+      .pill{fill:#e8f3ee;stroke:#d1e5dc;stroke-width:1;rx:10}
+      .warn{fill:#fff7e8;stroke:#ead6a8;stroke-width:1;rx:8}
+    </style>
+  </defs>
+  <rect width="1800" height="1480" fill="#f2f7f4"/>
+  <path d="M0 126 H1800" stroke="#d8e4de"/>
+  <text class="eyebrow" x="64" y="48">DATA LINEAGE · CANONICAL GRAPH MODEL</text>
+  <text class="title" x="64" y="91">The Graphs We Generate</text>
+  <text class="subtitle" x="64" y="115">Evidence-backed nodes and directed relationships across source ingestion, movement, orchestration, dbt, and Snowflake.</text>
+
+  <rect class="card" x="64" y="150" width="1672" height="208"/>
+  <text class="section-title" x="88" y="184">JSON payload shape</text>
+  <text class="code" x="1465" y="182">GraphPayload</text>
+  <rect class="node" x="88" y="202" width="790" height="118"/>
+  <text class="panel-title" x="110" y="229">nodes[]</text>
+  <text class="code" x="110" y="258">{ id, type, properties }</text>
+  <text class="note" x="110" y="284">properties carry entity-specific fields such as name, layer, kind, and source_path.</text>
+  <text class="note" x="110" y="304">Each node type below describes a distinct graph entity.</text>
+  <rect class="node" x="922" y="202" width="790" height="118"/>
+  <text class="panel-title" x="944" y="229">edges[]</text>
+  <text class="code" x="944" y="258">{ source, target, type, properties }</text>
+  <text class="note" x="944" y="284">properties retain source_path, confidence when relevant, and supporting evidence.</text>
+  <text class="note" x="944" y="304">Direction is meaningful; an edge exists only when supported by code or configuration.</text>
+
+  <text class="section-title" x="64" y="405">Entity types</text>
+  <text class="note" x="208" y="405">Layer and kind are node properties, not entity types.</text>
+  <rect class="panel" x="64" y="426" width="316" height="286"/>
+  <text class="panel-title" x="84" y="456">SOURCE AND EXTRACT</text>
+  <rect class="node" x="82" y="474" width="280" height="49"/><text class="type" x="98" y="496">PROGRAM</text><text class="tiny" x="98" y="513">Ultracs BASIC program</text>
+  <rect class="node" x="82" y="532" width="280" height="49"/><text class="type" x="98" y="554">MV_FILE</text><text class="tiny" x="98" y="571">MultiValue source file</text>
+  <rect class="node" x="82" y="590" width="280" height="49"/><text class="type" x="98" y="612">EXTRACT_FILE</text><text class="tiny" x="98" y="629">Emitted pipe-delimited extract</text>
+  <text class="tiny" x="84" y="678">Includes extensionless BASIC source names.</text>
+
+  <rect class="panel" x="412" y="426" width="316" height="286"/>
+  <text class="panel-title" x="432" y="456">MOVEMENT</text>
+  <rect class="node" x="430" y="474" width="280" height="49"/><text class="type" x="446" y="496">HVR_CHANNEL</text><text class="tiny" x="446" y="513">Configured replication channel</text>
+  <rect class="node" x="430" y="532" width="280" height="49"/><text class="type" x="446" y="554">HVR_LOCATION</text><text class="tiny" x="446" y="571">Named source or target location</text>
+  <rect class="node" x="430" y="590" width="280" height="49"/><text class="type" x="446" y="612">S3_PATH</text><text class="tiny" x="446" y="629">Bucket/prefix at a route point</text>
+  <text class="tiny" x="432" y="678">HVR and Datalake paths stay distinct.</text>
+
+  <rect class="panel" x="760" y="426" width="316" height="286"/>
+  <text class="panel-title" x="780" y="456">PRODUCT AND AIRFLOW</text>
+  <rect class="node" x="778" y="474" width="280" height="49"/><text class="type" x="794" y="496">CDP_PRODUCT</text><text class="tiny" x="794" y="513">Product/project directory</text>
+  <rect class="node" x="778" y="532" width="280" height="49"/><text class="type" x="794" y="554">AIRFLOW_DAG</text><text class="tiny" x="794" y="571">DAG definition</text>
+  <rect class="node" x="778" y="590" width="280" height="49"/><text class="type" x="794" y="612">AIRFLOW_TASK</text><text class="tiny" x="794" y="629">Task/operator in a DAG</text>
+  <text class="tiny" x="780" y="678">Task ordering is separate from dbt refs.</text>
+
+  <rect class="panel" x="1108" y="426" width="288" height="286"/>
+  <text class="panel-title" x="1128" y="456">DECLARATIONS AND DBT</text>
+  <rect class="node" x="1126" y="486" width="252" height="64"/><text class="type" x="1142" y="510">DBT_SOURCE</text><text class="tiny" x="1142" y="531">Declared source, not physical object</text>
+  <rect class="node" x="1126" y="566" width="252" height="64"/><text class="type" x="1142" y="590">DBT_MODEL</text><text class="tiny" x="1142" y="611">SQL model and configuration</text>
+  <text class="tiny" x="1128" y="678">Models and physical relations stay separate.</text>
+
+  <rect class="panel" x="1428" y="426" width="308" height="286"/>
+  <text class="panel-title" x="1448" y="456">PHYSICAL AND CHANGE</text>
+  <rect class="node" x="1446" y="474" width="272" height="49"/><text class="type" x="1462" y="496">SNOWFLAKE_RELATION</text><text class="tiny" x="1462" y="513">Canonical physical TABLE or VIEW</text>
+  <rect class="node" x="1446" y="532" width="272" height="49"/><text class="type" x="1462" y="554">SCHEMACHANGE_MIGRATION</text><text class="tiny" x="1462" y="571">Versioned migration script</text>
+  <rect class="node" x="1446" y="590" width="272" height="49"/><text class="type" x="1462" y="612">SNOWFLAKE_TABLE</text><text class="tiny" x="1462" y="629">Compatibility type; canonicalize</text>
+  <text class="tiny" x="1448" y="678">Do not duplicate the physical object.</text>
+
+  <rect class="pill" x="64" y="730" width="1672" height="74"/>
+  <text class="panel-title" x="86" y="759">ARCHITECTURAL LAYER (METADATA)</text>
+  <text class="type" x="370" y="759">source</text><text class="tiny" x="370" y="781">MultiValue files</text>
+  <text class="type" x="610" y="759">extract</text><text class="tiny" x="610" y="781">BASIC programs / extracts</text>
+  <text class="type" x="890" y="759">landing</text><text class="tiny" x="890" y="781">S3 and raw relations</text>
+  <text class="type" x="1160" y="759">internal</text><text class="tiny" x="1160" y="781">dbt internal models/relations</text>
+  <text class="type" x="1460" y="759">public</text><text class="tiny" x="1460" y="781">dbt public models/relations</text>
+
+  <text class="section-title" x="64" y="850">Directed relationship types</text>
+  <text class="note" x="340" y="850">Notation: SOURCE -- RELATIONSHIP --> TARGET. Labels shown are schema types, not claims that every route exists.</text>
+
+  <rect class="panel" x="64" y="875" width="536" height="196"/>
+  <text class="panel-title" x="86" y="905">ULTRACS BASIC</text>
+  <text class="code" x="88" y="936">PROGRAM</text><line class="edge-line" x1="171" y1="932" x2="218" y2="932"/><text class="edge-name" x="226" y="936">READS_FROM</text><text class="code" x="340" y="936">MV_FILE</text>
+  <text class="code" x="88" y="966">PROGRAM</text><line class="edge-line" x1="171" y1="962" x2="218" y2="962"/><text class="edge-name" x="226" y="966">WRITES_TO</text><text class="code" x="340" y="966">EXTRACT_FILE</text>
+  <text class="code" x="88" y="996">PROGRAM</text><line class="edge-line" x1="171" y1="992" x2="218" y2="992"/><text class="edge-name" x="226" y="996">CALLS</text><text class="code" x="340" y="996">PROGRAM</text>
+  <text class="tiny" x="88" y="1041">READS_FROM is directed from the program to its input.</text>
+
+  <rect class="panel" x="632" y="875" width="536" height="196"/>
+  <text class="panel-title" x="654" y="905">HVR AND DATA MOVEMENT</text>
+  <text class="code" x="656" y="936">EXTRACT_FILE</text><line class="edge-line" x1="774" y1="932" x2="813" y2="932"/><text class="edge-name" x="822" y="936">CARRIED_BY</text><text class="code" x="940" y="936">HVR_CHANNEL</text>
+  <text class="code" x="656" y="966">HVR_CHANNEL</text><line class="edge-line" x1="774" y1="962" x2="813" y2="962"/><text class="edge-name" x="822" y="966">CAPTURES_FROM / INTEGRATES_TO -&gt; HVR_LOCATION</text>
+  <text class="code" x="656" y="996">HVR_CHANNEL</text><line class="edge-line" x1="774" y1="992" x2="813" y2="992"/><text class="edge-name" x="822" y="996">COPIES_TO</text><text class="code" x="940" y="996">S3_PATH</text>
+  <text class="code" x="656" y="1026">HVR_CHANNEL</text><line class="edge-line" x1="774" y1="1022" x2="813" y2="1022"/><text class="edge-name" x="822" y="1026">LANDS_IN</text><text class="code" x="940" y="1026">SNOWFLAKE_RELATION</text>
+  <text class="tiny" x="656" y="1053">Locations have SOURCE/TARGET roles; direct landing needs evidence.</text>
+
+  <rect class="panel" x="1200" y="875" width="536" height="326"/>
+  <text class="panel-title" x="1222" y="905">AIRFLOW ORCHESTRATION AND LOADS</text>
+  <text class="edge-name" x="1224" y="936">CONTAINS</text><text class="tiny" x="1305" y="936">CDP_PRODUCT -&gt; DAG / DBT_MODEL / MIGRATION</text>
+  <text class="edge-name" x="1224" y="966">CONTAINS_TASK</text><text class="tiny" x="1345" y="966">AIRFLOW_DAG -&gt; AIRFLOW_TASK</text>
+  <text class="edge-name" x="1224" y="996">PRECEDES</text><text class="tiny" x="1305" y="996">AIRFLOW_TASK -&gt; AIRFLOW_TASK</text>
+  <text class="edge-name" x="1224" y="1026">COPIES_FROM / COPIES_TO</text><text class="tiny" x="1420" y="1026">AIRFLOW_TASK -&gt; S3_PATH</text>
+  <text class="edge-name" x="1224" y="1056">LOADS_FROM</text><text class="tiny" x="1325" y="1056">AIRFLOW_TASK -&gt; S3_PATH</text>
+  <text class="edge-name" x="1224" y="1086">LOADS_TO</text><text class="tiny" x="1305" y="1086">AIRFLOW_TASK -&gt; SNOWFLAKE_RELATION</text>
+  <text class="edge-name" x="1224" y="1116">EXECUTES_DBT</text><text class="tiny" x="1345" y="1116">AIRFLOW_TASK -&gt; DBT_MODEL</text>
+  <text class="tiny" x="1224" y="1170">Task-level selection/scope is recorded when known.</text>
+
+  <rect class="panel" x="64" y="1095" width="536" height="196"/>
+  <text class="panel-title" x="86" y="1125">DBT DEPENDENCIES AND MATERIALIZATION</text>
+  <text class="edge-name" x="88" y="1158">DEPENDS_ON</text><text class="tiny" x="190" y="1158">DBT_MODEL -&gt; DBT_SOURCE / DBT_MODEL</text>
+  <text class="edge-name" x="88" y="1188">RESOLVES_TO</text><text class="tiny" x="190" y="1188">DBT_SOURCE -&gt; SNOWFLAKE_RELATION</text>
+  <text class="edge-name" x="88" y="1218">MATERIALIZES_AS</text><text class="tiny" x="225" y="1218">DBT_MODEL -&gt; SNOWFLAKE_RELATION</text>
+  <text class="tiny" x="88" y="1265">A DBT_SOURCE declaration is not the physical relation.</text>
+
+  <rect class="panel" x="632" y="1095" width="536" height="196"/>
+  <text class="panel-title" x="654" y="1125">SCHEMACHANGE</text>
+  <text class="code" x="656" y="1160">SCHEMACHANGE_MIGRATION</text><line class="edge-line" x1="865" y1="1156" x2="909" y2="1156"/><text class="edge-name" x="918" y="1160">MIGRATES</text>
+  <text class="code" x="656" y="1190">SNOWFLAKE_RELATION</text>
+  <text class="tiny" x="656" y="1232">Edge properties retain operation details (CREATE, ALTER, etc.).</text>
+  <text class="tiny" x="656" y="1258">Relations may be TABLEs or VIEWs; other creators exist too.</text>
+
+  <rect class="warn" x="1200" y="1225" width="536" height="128"/>
+  <text class="panel-title" x="1222" y="1255">EVIDENCE GUARDRAILS</text>
+  <text class="tiny" x="1222" y="1282">Keep HVR S3 and Datalake S3 as separate nodes; join only with evidence.</text>
+  <text class="tiny" x="1222" y="1306">Do not infer a physical target from a location name or a filename alone.</text>
+  <text class="tiny" x="1222" y="1330">Record source_path on nodes and edges; label inferences with confidence.</text>
+
+  <path d="M64 1380 H1736" class="divider"/>
+  <text class="note" x="64" y="1412">Architectural layers: source, extract, landing, internal, public. Physical relation kind: TABLE or VIEW.</text>
+  <text class="note" x="64" y="1440">Canonical source: src/lineage/data_lineage_schema.md · Schema reference, not a repository-specific lineage result.</text>
+</svg>

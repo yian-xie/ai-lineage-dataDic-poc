@@ -1,0 +1,100 @@
+[
+  {
+    "business_field": "Account_ID",
+    "field_id": "ultracs:SAVINGS_ACCOUNT:DWACC:7",
+    "ultracs_position": 7,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWACC",
+    "param_column": "KiwiAcc",
+    "hvr_parameter": {
+      "name": "KiwiAcc",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL",
+    "snowflake_column": "KIWIBANKACCOUNTNUMBER",
+    "confidence": "confirmed",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACC.param",
+    "notes": "KWDW_ACC writes REC<4,8> to DWACC position 7; DWACC.param names it KiwiAcc; dbt reads DATA:KiwiAcc.",
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "TRAN<4,8>",
+      "source_references": [
+        "REC<4,8>"
+      ],
+      "description": "Kiwibank account ID, as identified by the KWDW_ACC BASIC comment.",
+      "transformation": "Direct output from REC<4,8>.",
+      "basic_expression": "REC<4,8>",
+      "basic_comment": "",
+      "basic_source_line": 203,
+      "extract_file": "DWACC",
+      "position": 7,
+      "param_column": "KiwiAcc"
+    },
+    "cdp": {
+      "model": "accounts_v1__ultracs_accounts_detail",
+      "model_description": "The Ultracs accounts data, Detailed Columns Excluding Balances.",
+      "description": "The Bank Account Number from the Accounts record in Ultracs",
+      "data_type": "VARCHAR(100)",
+      "classification": "SENSITIVE",
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_accounts_detail/accounts_v1__ultracs_accounts_detail.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL",
+      "column": "KIWIBANKACCOUNTNUMBER",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_accounts_detail_v2",
+        "model_id": "dbt:model:accounts_v1__ultracs_accounts_detail_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL_V2",
+        "column": "KIWIBANKACCOUNTNUMBER",
+        "source_expression": "DATA:KiwiAcc::STRING AS KIWIBANKACCOUNTNUMBER,",
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_accounts_detail_v2/accounts_v1__ultracs_accounts_detail_v2.yml",
+        "source_line": 187,
+        "model_description": "The Ultracs accounts data, Detailed Columns Excluding Balances.",
+        "description": "The Bank Account Number from the Accounts record in Ultracs",
+        "data_type": "VARCHAR(100)",
+        "classification": "SENSITIVE"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_accounts_detail",
+        "model_id": "dbt:model:accounts_v1__ultracs_accounts_detail",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL",
+        "column": "KIWIBANKACCOUNTNUMBER",
+        "source_model": "accounts_v1__ultracs_accounts_detail_v2",
+        "source_column": "KIWIBANKACCOUNTNUMBER",
+        "projection_expression": "KIWIBANKACCOUNTNUMBER",
+        "projection_line": 10,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_accounts_detail/accounts_v1__ultracs_accounts_detail.yml",
+        "model_description": "The Ultracs accounts data, Detailed Columns Excluding Balances.",
+        "description": "The Bank Account Number from the Accounts record in Ultracs",
+        "data_type": "VARCHAR(100)",
+        "classification": "SENSITIVE"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_acc1",
+        "ult_s3_acc2"
+      ],
+      "s3_paths": [
+        "s3:path:HVR:ultracs:dwacc",
+        "s3:path:DATALAKE:ultracs:dwacc"
+      ],
+      "airflow_dag": "accounts_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwacc",
+        "copy_s3_files_to_snowflake_task_for_dwacc"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNTS_V1__ACCOUNTS",
+      "dbt_input": "DATA:KiwiAcc"
+    }
+  }
+]

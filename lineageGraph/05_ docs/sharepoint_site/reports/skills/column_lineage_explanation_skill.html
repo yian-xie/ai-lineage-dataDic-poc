@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Column Lineage Explanation Skill · Lineage POC</title><style>
+:root{color-scheme:light;--ink:#193238;--green:#24794f;--deep:#183e33;--bg:#eef4f1;--panel:#fff;--line:#d6e1de;--muted:#62777b;--teal:#218b83;--blue:#397b9d;--purple:#7963a1;--amber:#c4893d;--coral:#d87968}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Segoe UI",sans-serif}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 24px;background:var(--deep);color:#fff}.top a{color:#fff;text-decoration:none;font-weight:750}.top small{color:#d9e9df}.shell{max-width:1240px;margin:0 auto;padding:24px}.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:0 0 18px}.intro{border-left:5px solid var(--green)}h1,h2,h3{line-height:1.25}h1{font-size:26px;margin:0 0 8px}h2{margin-top:28px;border-bottom:1px solid var(--line);padding-bottom:7px}h3{margin-top:22px}a{color:#176b58}a:hover{color:#0d4f40}table{display:block;width:100%;overflow:auto;border-collapse:collapse}th,td{padding:8px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e7f0e9}code{background:#edf3ef;padding:1px 4px;border-radius:3px}pre{overflow:auto;padding:14px;background:#183e33;color:#eef7f0;border-radius:6px}pre code{background:transparent;color:inherit;padding:0}blockquote{margin:12px 0;padding:10px 15px;border-left:4px solid var(--teal);background:#f4f8f6}img,svg{max-width:100%;height:auto}.meta{font-size:12px;color:var(--muted)}.repo-ref{border-bottom:1px dotted var(--amber);cursor:help}.repo-ref-path{color:var(--muted);font-size:11px;overflow-wrap:anywhere}.toc{padding:12px 16px;background:#f6f9f7;border:1px solid var(--line);border-radius:6px}.report-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;padding:0;list-style:none}.report-list a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;text-decoration:none}.report-list a:hover{background:#eaf3eb}.footer{padding:20px 0;color:var(--muted);font-size:12px}@media(max-width:680px){.top{padding:14px}.shell{padding:14px}.panel{padding:14px}h1{font-size:22px}}
+</style></head>
+<body><header class="top"><a href="../../index.html">Data Lineage POC Reports</a><small>Static report bundle · no live systems queried</small></header><main class="shell"><article class="panel"><p class="meta">Source: <code>skills/column_lineage_explanation_skill.md</code></p><h1>Column Lineage Explanation Skill</h1><h1 id="column-lineage-explanation-skill">Column Lineage Explanation Skill</h1>
+<h2 id="goal">Goal</h2>
+<p>Create a readable, evidence-backed explanation of one requested column's end-to-end lineage across the repositories, and make the same explanation visible in its focused HTML graph. Default to one selected field; only process multiple fields when explicitly asked. This skill is for both the GitHub Copilot agent and the future Data Dictionary Builder agent.</p>
+<h2 id="inputs-required">Inputs Required</h2>
+<ul>
+<li>The focused column record from <code>output/column_lineage.json</code> (or a one-column file such as <code>output/account_number_lineage.json</code>).</li>
+<li><code>output/account_table_lineage.json</code> for structural and route context.</li>
+<li><code>output/hvr_param_metadata.json</code> for exact HVR <code>.param</code> names and positions.</li>
+<li>The relevant Ultracs BASIC, HVR configuration, Airflow, and dbt source/model files cited by the graph.</li>
+<li><code>src/lineage/data_lineage_schema.md</code> as the authoritative graph contract.</li>
+<li>The focused HTML generator/output for the field being explained.</li>
+</ul>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Select a mapped record with <code>python data-lineage-poc/generate_account_number_lineage.py --column SELECTOR</code>. Selectors can be <code>.param</code> name, Snowflake column, <code>field_id</code>, or business-field name. The default is <code>KiwiAcc</code>; <code>Account_Index_ID</code> resolves to both inferred component records.</li>
+<li>Identify the selected field and its exact <code>.param</code> column/position from the column-lineage record and metadata file.</li>
+<li>Verify the source position and output/extract evidence in the actual BASIC program. Preserve the repository filename exactly; do not append <code>.b</code> to extensionless programs.</li>
+<li>Trace each configured HVR branch independently. Verify channel capture patterns, source/target locations, conversion or S3 path evidence, and relation targets. Mark pattern-based associations inferred.</li>
+<li>For an S3 route, continue through the Airflow copy/load task and its RAW relation, then follow dbt <code>source()</code> and <code>ref()</code> declarations to physical internal/public relations.</li>
+<li>For a direct HVR route, report only the configured target relation. Do not join it to a separate S3/Airflow route or claim a field-level Snowflake column if HVR only lands a row payload.</li>
+<li>Write a concise Markdown explanation listing each hop, relationship, confidence, evidence path, and any unresolved boundary.</li>
+<li>Add the same summary to the focused HTML as a visible end-to-end flow section. Keep the interactive graph and node inspector available below it.</li>
+<li>For every displayed node and relationship, show a concise description and an origin tag. Cite repository text with its <code>source_path</code>; tag generic fallback prose <code>Generated</code> and do not treat it as evidence or a dictionary definition.</li>
+</ol>
+<h2 id="required-outputs">Required Outputs</h2>
+<ul>
+<li><code>output/&lt;field&gt;_lineage_explanation.md</code></li>
+<li>Update/regenerate <code>output/&lt;field&gt;_lineage.html</code> with an end-to-end flow section, unless the requester explicitly asks for a separate companion HTML.</li>
+</ul>
+<p>The selector only operates on existing evidence-backed records in <code>column_lineage.json</code>; unmapped parameter names require more source/model evidence before a lineage output can be claimed.</p>
+<h2 id="rules">Rules</h2>
+<ul>
+<li>Cite repository files for every asserted mapping or route.</li>
+<li>Distinguish HVR <code>.param</code> column names from actual physical Snowflake columns. A named parameter alone does not prove that a corresponding physical Snowflake column exists.</li>
+<li>Show confidence on every nontrivial mapping/hop. Use <code>inferred</code> where the relation is based on a filename-pattern match or a proposed composite key, and explain why.</li>
+<li>Preserve the HTML confidence percentage and its original category. The percentage is a heuristic evidence-strength score, not probability.</li>
+<li>Keep Enterprise downstream context at table level unless Enterprise SQL/YAML establishes column-level lineage. Do not copy table descriptions onto columns.</li>
+<li>Keep direct HVR and HVR S3/Airflow branches separate unless repository/runtime evidence connects them.</li>
+<li>Preserve the column JSON payload and table graph as separate outputs; do not mutate them merely to add narrative.</li>
+<li>Explain limits where edges point against data-flow direction or where model dependencies do not provide a physical-relation bridge.</li>
+</ul></article><footer class="footer">Generated from repository Markdown. Graph pages are separate static artifacts. Repository-source references outside this bundle are shown as paths.</footer></main></body></html>

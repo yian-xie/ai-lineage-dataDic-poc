@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Lineage POC Runbook · Lineage POC</title><style>
+:root{color-scheme:light;--ink:#193238;--green:#24794f;--deep:#183e33;--bg:#eef4f1;--panel:#fff;--line:#d6e1de;--muted:#62777b;--teal:#218b83;--blue:#397b9d;--purple:#7963a1;--amber:#c4893d;--coral:#d87968}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Segoe UI",sans-serif}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 24px;background:var(--deep);color:#fff}.top a{color:#fff;text-decoration:none;font-weight:750}.top small{color:#d9e9df}.shell{max-width:1240px;margin:0 auto;padding:24px}.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:0 0 18px}.intro{border-left:5px solid var(--green)}h1,h2,h3{line-height:1.25}h1{font-size:26px;margin:0 0 8px}h2{margin-top:28px;border-bottom:1px solid var(--line);padding-bottom:7px}h3{margin-top:22px}a{color:#176b58}a:hover{color:#0d4f40}table{display:block;width:100%;overflow:auto;border-collapse:collapse}th,td{padding:8px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e7f0e9}code{background:#edf3ef;padding:1px 4px;border-radius:3px}pre{overflow:auto;padding:14px;background:#183e33;color:#eef7f0;border-radius:6px}pre code{background:transparent;color:inherit;padding:0}blockquote{margin:12px 0;padding:10px 15px;border-left:4px solid var(--teal);background:#f4f8f6}img,svg{max-width:100%;height:auto}.meta{font-size:12px;color:var(--muted)}.repo-ref{border-bottom:1px dotted var(--amber);cursor:help}.repo-ref-path{color:var(--muted);font-size:11px;overflow-wrap:anywhere}.toc{padding:12px 16px;background:#f6f9f7;border:1px solid var(--line);border-radius:6px}.report-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;padding:0;list-style:none}.report-list a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;text-decoration:none}.report-list a:hover{background:#eaf3eb}.footer{padding:20px 0;color:var(--muted);font-size:12px}@media(max-width:680px){.top{padding:14px}.shell{padding:14px}.panel{padding:14px}h1{font-size:22px}}
+</style></head>
+<body><header class="top"><a href="../../index.html">Data Lineage POC Reports</a><small>Static report bundle · no live systems queried</small></header><main class="shell"><article class="panel"><p class="meta">Source: <code>docs/RUNBOOK.md</code></p><h1>Lineage POC Runbook</h1><h1 id="lineage-poc-runbook">Lineage POC Runbook</h1>
+<p>This runbook documents both the low-cost one-column fast path and the full rebuild of lineage artifacts from sibling source repositories. For a normal request naming one column, use the fast path; run the full build only when required inputs are missing, source repositories changed, or the user asks for regeneration. All commands run from the workspace root (<code>Github-repo-poc</code>).</p>
+<h2 id="scope-and-prerequisites">Scope and prerequisites</h2>
+<p>The workspace must contain these sibling directories at the same level:</p>
+<pre><code class="language-text">kb-ultracs-datawarehouse/
+kb-cdp-hvr/
+kb-cdp-tenant-account/
+kb-cdp-tenant-enterprise/
+data-lineage-poc/
+</code></pre>
+<p>Use Python 3.10 or newer. The parsers read checked-in source/configuration files only; they do not connect to HVR, Airflow, Snowflake, Neo4j, or Neptune, and they do not execute DAGs, dbt models, or migrations.</p>
+<p>From the workspace root, install the POC dependencies:</p>
+<pre><code class="language-powershell">python --version
+python -m pip install -r data-lineage-poc/requirements.txt
+</code></pre>
+<p><code>PyYAML</code> is used for dbt YAML. The remaining runtime parsers use Python's standard library. The HTML generator uses vis.js from a CDN; that is not required to produce or validate the JSON files.</p>
+<h2 id="account-domain-scope">Account-domain scope</h2>
+<p>The account slice is a logical domain scope across account-related Ultracs output files, not a synonym for the <code>DWACC</code> extract or the <code>KWDW_ACC</code> program. Determine scope from the BASIC writer, HVR capture/configuration, account-product ingestion/source declarations, and dbt projections. The extract inventory and HVR map are discovery aids; a file is not an end-to-end column mapping until the field expression and every downstream hop are evidenced.</p>
+<p>Current repository-static coverage and candidates:</p>
+<table>
+<thead>
+<tr>
+<th>Output family</th>
+<th>Ultracs writer evidence</th>
+<th>Downstream evidence</th>
+<th>Column-lineage status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DWACC</code></td>
+<td><code>KWDW_ACC</code> writes the account extract; <code>DWACC.param</code> has 95 ordered fields.</td>
+<td>HVR direct and S3 routes; accounts-v1 Airflow/RAW and dbt internal/public models.</td>
+<td>Current primary field inventory: 95 source fields; 112 internal and 67 public target projections. Fifty-nine source fields reach a public model.</td>
+</tr>
+<tr>
+<td><code>DWREL</code></td>
+<td><code>KWDW_ACC</code> writes relationship records; <code>DWREL.param</code> has 15 ordered fields.</td>
+<td>HVR direct and S3 routes; account-relationship-v1 Airflow/RAW and dbt models.</td>
+<td>Separate 15-field inventory exists. Pairing BASIC <code>LINE2</code> fields to parameter positions is ordinal and every mapping is inferred; do not present it as confirmed.</td>
+</tr>
+<tr>
+<td><code>DWDBUST</code></td>
+<td><code>KWDW_ACC</code> and automated variants write 19 ordered fields.</td>
+<td>HVR direct/S3; accounts-v1 Airflow maps <code>dwdbust</code> to <code>ACCOUNTS_V1__ACCOUNT_OFFSET</code>; dbt has v2/v3 internal models and a public projection from v3.</td>
+<td>Generated 19-field inventory; all 19 parameter names match dbt keys, and all 19 reach a public target.</td>
+</tr>
+<tr>
+<td><code>DWTDS</code></td>
+<td><code>KWDW_TDS</code> writes 42 ordered fields.</td>
+<td>HVR S3; accounts-v1 Airflow maps <code>dwtds</code> to <code>ACCOUNTS_V1__TERM_DEPOSITS_RAW</code>; dbt has internal and public models.</td>
+<td>Generated 42-field inventory; 40 have exact internal/public mappings. <code>Prod</code> at position 15 is not equated with dbt <code>Product</code> at position 2; <code>col40</code> has no dbt projection.</td>
+</tr>
+<tr>
+<td><code>DWACFEE</code></td>
+<td><code>KWDW_ACC2</code> writes 19 ordered account-fee fields.</td>
+<td>HVR direct/S3; ult-account-fees-v1 Airflow and dbt reference the account-fee raw source.</td>
+<td>Generated 19-field inventory; all 19 match an internal dbt key. No public dbt target was found.</td>
+</tr>
+<tr>
+<td><code>DWSWEEP</code></td>
+<td><code>KWDW_SWEEP</code> writes 7 ordered fields.</td>
+<td>HVR direct/S3; ult-account-payment-v1 Airflow and dbt reference the sweeps raw source.</td>
+<td>Generated 7-field inventory; all 7 match an internal dbt key. No public dbt target was found.</td>
+</tr>
+<tr>
+<td><code>ACCREC_*</code></td>
+<td><code>KWDW_ACCREC</code> writes 5 ordered fields.</td>
+<td>HVR direct/S3 and dbt source/model exist; the accounts-v1 DAG comments that this feed moved to Landing Tenancy.</td>
+<td>Generated 5-field candidate inventory; all 5 match internal dbt keys, but the Landing Tenancy-to-RAW handoff is unverified.</td>
+</tr>
+<tr>
+<td><code>DWNOMACC</code></td>
+<td><code>KWDW_NOMACC</code> writes 10 ordered fields.</td>
+<td>HVR direct/S3 and dbt source/model exist; the accounts-v1 DAG comments that this feed moved to Landing Tenancy.</td>
+<td>Generated 10-field candidate inventory; 9 have exact dbt keys. <code>.param</code> <code>RefDate</code> is not equated with dbt <code>ReferenceDate</code>; handoff is unverified.</td>
+</tr>
+<tr>
+<td><code>DWUNCLD</code></td>
+<td><code>KWDW_ACC</code> writes 10 ordered fields.</td>
+<td>HVR direct/S3 and dbt source/model exist; the accounts-v1 DAG comments that this feed moved to Landing Tenancy.</td>
+<td>Generated 10-field candidate inventory; all 10 match internal dbt keys, but the Landing Tenancy-to-RAW handoff is unverified.</td>
+</tr>
+<tr>
+<td><code>DWSAVBR</code></td>
+<td><code>KWDW_ACC</code>/<code>KWDW_BRS</code> write the savings-branch feed.</td>
+<td>HVR direct capture targets <code>brlsavingaccounts_v1_ingest</code>; no downstream dbt column path was found in the account-product files reviewed.</td>
+<td>Landing evidence only; no end-to-end column inventory.</td>
+</tr>
+<tr>
+<td><code>ACCBAL</code>, <code>ACCREL</code>, <code>DWREP</code></td>
+<td>BASIC output writers are present.</td>
+<td>No matching HVR capture pattern or account-product dbt continuation was found in the checked-in configs searched.</td>
+<td>Source outputs only; downstream route remains unverified.</td>
+</tr>
+</tbody>
+</table>
+<p>The seven new candidate inventories are generated with:</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_account_output_column_lineage.py
+</code></pre>
+<p>This writes one JSON inventory per feed (<code>dwdbust</code>, <code>dwtds</code>, <code>dwacfee</code>, <code>dwsweep</code>, <code>accrec</code>, <code>dwnomacc</code>, and <code>dwuncld</code>) plus <code>account_column_inventory_summary.json</code>. The generated records align BASIC output positions to <code>.param</code> positions only when the field counts match; that positional association remains <code>inferred</code>. A dbt target is attached only for an exact, case-sensitive <code>DATA:&lt;parameter&gt;</code> key and a parsed SQL projection. Public targets require an explicit public SQL projection. Do not equate similar names or fill missing target fields by meaning.</p>
+<p>Across the nine currently scoped, parameterized account outputs (<code>DWACC</code>, <code>DWREL</code>, and these seven feeds), the inventory contains <strong>222 feed-field positions</strong> and <strong>207 distinct <code>.param</code> labels</strong> (case-insensitive). <strong>215</strong> positions reach at least one internal dbt target and <strong>129</strong> reach a public dbt target; there are <strong>409 dbt target projections</strong> because fields can reach several models. These are feed-position counts, not unique account concepts. Other account-adjacent outputs without a reviewed ordered <code>.param</code> inventory are outside this count.</p>
+<p>The complete BASIC output inventory and filename-to-HVR matching report are generated with:</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_extract_file_inventory.py
+python data-lineage-poc/generate_extract_to_hvr_map.py
+</code></pre>
+<p>These reports are static snapshots, not evidence of runtime execution. A missing capture match is limited to the checked-in configurations scanned and does not prove no external route exists.</p>
+<h2 id="historical-prompts">Historical prompts</h2>
+<p>These are the exact user requests in the session that scoped the POC and the two requested graph outputs. The full-graph runner was subsequently implemented as code to apply the parser/schema instructions; there was not a separate one-shot prompt that directly generated <code>table_lineage.json</code>.</p>
+<p><strong>POC and parser foundation</strong></p>
+<blockquote>
+<p>My ask is to build a Data Lineage POC from Ultracs basic format an legacy system which is this file to upto Snowflake repo tables i have got access to all the requred repos as well and i will give you piece by piece you can create a basic filtstructure and the claude.md file which contains step by step execution to create a graph payload and eventually show it wither as a JSON payload, a neo4j graph or on AWS neptune</p>
+<p>So should we pasue the devlopment for a bit and make the parsers first can you make them put it in the suitable folder and then we proceed forword</p>
+</blockquote>
+<p><strong>Parser/schema alignment</strong></p>
+<blockquote>
+<p>Read @src/lineage/data_lineage_schema.md fix all five parsers to align with their output with the authoratative schema. Do not change any parsing logic - only fix emitted node types, relationship types and property name. Apply these fixs: basic.py - rename BASIC_PROGRAM to PROGRAM , BASIC_FILE to MV_FILE, OPENS to READS_FROM. hvr.py channel parser - add COPIES_TO edges to S3_PATH nodes and LANDS_IN edges to SNOWFAKE RELATION nodes to config evidence supports them , add HVR_LOCATION nodes for named sources and target locations hvr.py param parser - do not change it, instead rediorect it output to output/hvr_param_metadata.json as auxillary metadata oonly, not par of the linegae graph. airflow.py - rename SNOWFLAKE_TABLE to SNOWFLAKE_RELATION, add canonical relation identity property, add missing S3 path copy edges and dbt invocation edges using EXECUTES_DBT. dbt.py - rename READS_FROM on source dependencies to DEPENDS_ON, add RESOLVES_TO edges from DBT_SOURCE to SNOWFAKE RELATION , add MATERIALIZES_AS edges from DBT_MODEL to SNOWFLAKE_RELATION. schemachange.py - rename CREATES to ALTERS to MIGRATES and retain operation types asd edge metadata, rename relation_kind propert to kind. adter all these fixes re-run parser against its validated file and confirm every emmitted node type and relation type exists in schema. output a final status table</p>
+</blockquote>
+<p>The graph runner was then added to execute the schema-aligned adapters in a repeatable order. Its command, file discovery rules, and outputs are documented below.</p>
+<p><strong>ACCOUNT thin slice</strong></p>
+<blockquote>
+<p>From the attached file can you figure out this lineage from the provided as this is the thin slice defination ask for any other clarities you need we are trying to get the ACCOUNT extract and create a account_table_lineage.json and search for any related columns as well</p>
+</blockquote>
+<p><strong>Column lineage</strong></p>
+<blockquote>
+<p>Run the column_lineage_skill from skills/column_lineage_skill.md. Use hvr_param_metadata.json as the primary input. Produce output/column_lineage.json and output/column_lineage.html</p>
+</blockquote>
+<h2 id="fast-path-one-requested-column">Fast path: one requested column</h2>
+<p>Use this when the generated DWACC artifacts exist and no source changes were reported. The user needs to provide only a DWACC selector (for example <code>KiwiAcc</code>, <code>KIWIBANKACCOUNTNUMBER</code>, <code>Account_ID</code>, or <code>Balance</code>). The agent uses <code>CLAUDE.md</code>, this runbook, and the column/data-dictionary skills already in the workspace; do not attach or paste the complete 95-record inventory into the prompt. This focused generator currently selects from the DWACC inventory only. For DWREL, use its separate inventory/query path. Other account outputs are not supported by this single-column generator until a dedicated mapping inventory is built.</p>
+<p>Required prebuilt inputs, read by the focused generator:</p>
+<ul>
+<li><code>data-lineage-poc/output/column_lineage.json</code> — all 95 DWACC field records; the script filters this file in Python.</li>
+<li><code>data-lineage-poc/output/account_table_lineage.json</code> — base account graph and <code>related_columns</code>.</li>
+<li><code>data-lineage-poc/output/account_enterprise_lineage.json</code> — downstream table-level context.</li>
+</ul>
+<p>If the agent cannot access the workspace, attach those three JSON files plus <code>skills/column_lineage_skill.md</code> and <code>skills/dataDic/skill/data_dictionary_skill.md</code> when a dictionary is requested. Attach only the selected record's cited BASIC/dbt source files if source-level verification is needed; do not attach the full sibling repositories.</p>
+<p>Command:</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_account_number_lineage.py --column SELECTOR
+</code></pre>
+<p>The script writes only the selected field's JSON, HTML, and explanation. <code>Account_Index_ID</code> intentionally returns both inferred components. The agent should inspect these focused outputs, verify only the cited source files needed for the selected mapping, and report confidence, target stage(s), evidence paths, and open questions. Do not run the five parser stages or print the full inventory for this path. If a prerequisite is missing or the selector is not mapped, report that rather than inventing a mapping. If the user reports source changes or requests a fresh graph, use the full build below.</p>
+<p>For a data-dictionary request, also follow <code>skills/dataDic/skill/data_dictionary_skill.md</code>. The focused JSON/HTML provide the selected column data; open only its cited BASIC and dbt YAML/SQL files as needed. Keep unsupported dictionary fields as <code>Not documented</code>.</p>
+<p><strong>Reusable prompt:</strong></p>
+<pre><code class="language-text">Column: &lt;one .param name, Snowflake column, field_id, or business-field name&gt;
+Use data-lineage-poc/skills/column_lineage_skill.md and, if a dictionary is requested, data-lineage-poc/skills/dataDic/skill/data_dictionary_skill.md. Use the existing output/column_lineage.json inventory and output/account_table_lineage.json as the base; do not load or return the full inventory. Run generate_account_number_lineage.py --column &lt;selector&gt;, inspect only the focused JSON/explanation and cited source files, and report the verified hops, confidence, evidence paths, target stage(s), and open questions. Do not regenerate parser graphs unless inputs are missing, source changes were reported, or I explicitly ask for a rebuild. Do not infer missing mappings or metadata.
+</code></pre>
+<h2 id="full-build-order">Full build order</h2>
+<p>Run the generators in dependency order. The full table graph is the account-slice input. Generate <code>.param</code> metadata before the account slice so any safety flags found in <code>DWACC.param</code> are included in the slice, and before column lineage so ordered field positions are available.</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_extract_file_inventory.py
+python data-lineage-poc/generate_extract_to_hvr_map.py
+python data-lineage-poc/export_hvr_param_metadata.py
+python data-lineage-poc/generate_full_parser_lineage.py
+python data-lineage-poc/generate_account_table_lineage.py
+python data-lineage-poc/generate_account_enterprise_lineage.py
+python data-lineage-poc/generate_account_lineage_html.py
+python data-lineage-poc/generate_account_enterprise_html.py
+python data-lineage-poc/generate_table_lineage_html.py
+python data-lineage-poc/generate_column_lineage.py
+python data-lineage-poc/generate_account_number_lineage.py --column KiwiAcc
+python data-lineage-poc/generate_dwrel_column_lineage.py
+python data-lineage-poc/generate_account_output_column_lineage.py
+python -m pytest data-lineage-poc/tests -q
+</code></pre>
+<p>The focused command in this full-build sequence is a smoke test only. The usual one-column workflow is the fast path above, not a full regeneration. Replace <code>KiwiAcc</code> with the requested selector only when testing a clean build. Run multiple selectors only when explicitly asked for a batch, and give each output a distinct <code>--output-prefix</code> so generated files are not overwritten. <code>Account_Index_ID</code> is the exception: it intentionally returns both inferred component mappings (<code>Account</code> and <code>Prod</code>).</p>
+<p>The column command creates <code>output/column_lineage.html</code> and its required companion <code>output/column_lineage_dictionary.html</code>. Keep both HTML files together: Data Dictionary mode loads the V3 viewer from the companion file. The generator checks that the embedded three-file snapshot matches the current column input. The requested JSON deliverables are:</p>
+<ul>
+<li><code>data-lineage-poc/output/account_table_lineage.json</code></li>
+<li><code>data-lineage-poc/output/account_enterprise_lineage.json</code></li>
+<li><code>data-lineage-poc/output/column_lineage.json</code></li>
+<li>Focused single-column files such as <code>data-lineage-poc/output/account_number_lineage.json</code>, <code>account_number_lineage.html</code>, and <code>account_number_lineage_explanation.md</code>.</li>
+<li><code>data-lineage-poc/output/extract_file_inventory.md</code> and <code>extract_to_hvr_map.md</code> — discovered BASIC outputs and static HVR capture matches; these are not column mappings.</li>
+<li>DWREL (account relationships, separate from the DWACC inventory): <code>data-lineage-poc/output/dwrel_column_lineage.json</code> (15 <code>.param</code> columns paired with the <code>KWDW_ACC</code> <code>LINE2</code> fields by order, so every record is <code>inferred</code>) and <code>dwrel_table_lineage.json</code> (extract, HVR S3 route, <code>account-relationship-v1</code> Airflow/dbt slice plus a gap register). Query with <code>query_graph.py --columns output/dwrel_column_lineage.json --column RelType</code>. There is no DWREL HTML or focused-explanation generator yet.</li>
+<li>Seven additional account-feed column inventories: <code>dwdbust_column_lineage.json</code>, <code>dwtds_column_lineage.json</code>, <code>dwacfee_column_lineage.json</code>, <code>dwsweep_column_lineage.json</code>, <code>accrec_column_lineage.json</code>, <code>dwnomacc_column_lineage.json</code>, and <code>dwuncld_column_lineage.json</code>, plus <code>account_column_inventory_summary.json</code>. These are static candidates; positional BASIC-to-<code>.param</code> joins are inferred and three Landing Tenancy handoffs remain unverified.</li>
+</ul>
+<p>The DWACC table builder is one account-domain sub-slice, not the account scope as a whole. The full table graph and generated extract/HVR inventories discover other account-related outputs. The seven candidate inventories preserve field positions and mapped dbt targets; positional BASIC-to-<code>.param</code> joins are inferred. <code>ACCREC_*</code>, <code>DWNOMACC</code>, and <code>DWUNCLD</code> still require their Landing Tenancy handoffs to be verified. Keep output families with only an Ultracs writer or HVR landing as partial paths.</p>
+<p>The <code>output/</code> directory is generated data. Do not edit these JSON files by hand; rerun their generators after source or mapping changes.</p>
+<h3 id="publish-current-outputs">Publish Current Outputs</h3>
+<p><code>data-lineage-poc/output/</code> is the canonical generated artifact directory. Do not copy files into a second <code>docs/output/</code> or top-level <code>build files/</code> mirror. After a successful generation and test run, rebuild the linked static site:</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_report_site.py
+</code></pre>
+<p>The generator mirrors current graph/viewer assets into <code>docs/sharepoint_site/</code> and renders source Markdown reports there. Upload that generated folder for publishing; do not hand-edit its copied outputs.</p>
+<h2 id="static-html-report-bundle">Static HTML report bundle</h2>
+<p>To render the current Markdown reports and mirror the graph viewers, snapshots, skills, and schema references into a linked static site, run:</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_report_site.py
+</code></pre>
+<p>Output: <code>data-lineage-poc/docs/sharepoint_site/index.html</code>. Upload the entire <code>sharepoint_site/</code> directory while preserving its folder structure; the graph page and <code>column_lineage_dictionary.html</code> companion must stay together. See <a href="SHAREPOINT_PUBLISHING.html">SHAREPOINT_PUBLISHING.md</a> for HTML execution, CDN, permission, and SharePoint hosting caveats. This step does not refresh graph data; run the relevant graph/report generators first.</p>
+<h2 id="step-1-full-repository-graph">Step 1: Full repository graph</h2>
+<p>Command:</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_full_parser_lineage.py
+</code></pre>
+<p>Before this command, run <code>python data-lineage-poc/export_hvr_param_metadata.py</code> (documented in Step 3). The full-parser runner also builds the account slice and uses that metadata to validate all 95 mapped parameter positions.</p>
+<p>The runner invokes the adapters in this order: BASIC, HVR channel JSON, the accounts-v1 Airflow DAG, the accounts-v1 dbt project, then schemachange SQL. It merges canonical nodes and edges, preserves source provenance, and rejects dangling endpoints.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Files read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BASIC</td>
+<td>Recursively scans <code>kb-ultracs-datawarehouse/</code> for files with no extension or suffix <code>.b</code>, <code>.old</code>, <code>.ext</code>, <code>.restrict</code>, or <code>.unrestrict</code>; ignores <code>.git</code> and excludes candidates with no recognized parser evidence. BASIC programs are mostly extensionless.</td>
+</tr>
+<tr>
+<td>HVR</td>
+<td>Recursively scans <code>kb-cdp-hvr/**/*.json</code>, excluding paths containing a <code>templates</code> directory. The brace-formatted <code>kb-cdp-hvr/hvr-python/channel_generation/templates/channel_template.json</code> is a template, not an export. <code>.param</code> files are not parsed into the table graph.</td>
+</tr>
+<tr>
+<td>Airflow</td>
+<td><code>kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py</code>.</td>
+</tr>
+<tr>
+<td>dbt</td>
+<td>Recursively reads <code>*.sql</code>, <code>*.yml</code>, and <code>*.yaml</code> below <code>kb-cdp-tenant-account/products/accounts-v1/dbt/models/</code>; extracts source declarations, <code>source()</code>/<code>ref()</code> dependencies, and configured materialization.</td>
+</tr>
+<tr>
+<td>Schemachange</td>
+<td>Immediate files in <code>kb-cdp-tenant-account/products/accounts-v1/schemachange/scripts/</code> with <code>.sql</code> suffix, including the legacy spaced <code>. sql</code> suffix accepted by the runner.</td>
+</tr>
+</tbody>
+</table>
+<p>The adapters doing this work are in <code>data-lineage-poc/src/lineage/parsers/</code>: <code>basic.py</code>, <code>hvr.py</code>, <code>airflow.py</code>, <code>dbt.py</code>, and <code>schemachange.py</code>. Shared graph records and provenance helpers are in <code>models.py</code> and <code>parsers/common.py</code>; the runner is <code>generate_full_parser_lineage.py</code>.</p>
+<p>Output: <code>data-lineage-poc/output/table_lineage.json</code>, the upstream input to the focused account slice. The latest regenerated snapshot has 2,005 nodes and 3,033 edges. Counts can change with repository revisions. The run reported 149 BASIC files with parser evidence (155 candidates), 383 valid HVR exports (one template excluded), one Airflow DAG, 47 dbt SQL/YAML files, and 42 migration scripts.</p>
+<h2 id="step-2-dwacc-account-master-table-level-sub-slice">Step 2: DWACC account-master table-level sub-slice</h2>
+<p>Command:</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_account_table_lineage.py
+</code></pre>
+<p>Direct inputs: <code>data-lineage-poc/output/table_lineage.json</code> from Step 1 and <code>data-lineage-poc/output/hvr_param_metadata.json</code> from Step 3. The account builder reuses the validated mapping records from <code>generate_column_lineage.py</code> and adds the three gap-register entries defined in <code>generate_account_table_lineage.py</code>.</p>
+<p>This builder specifically selects <code>KWDW_ACC</code>, its <code>ACCOUNT</code>/<code>TRAN</code> sources and <code>DWACC</code> extract, both configured HVR routes, the DWACC Airflow copy/load path to RAW, and the dbt model dependency closure from the RAW account source. It retains model-level and migration relationships and attaches all 95 ordered DWACC fields, including <code>KIWIBANKACCOUNTNUMBER</code> and the six <code>MissingColumn</code> slots, to the DWACC extract. Every field includes its BASIC output expression and all matching internal/public dbt projections; technical fields keep their parameter names rather than receiving invented business labels. It does not claim to contain every account-related output; use the account-domain scope matrix above and separate output inventories for DWREL and other feeds.</p>
+<p>Evidence used to define the slice and mappings includes:</p>
+<ul>
+<li><code>kb-ultracs-datawarehouse/KWDW_ACC</code> for BASIC reads, output fields, and transformations.</li>
+<li><code>kb-cdp-hvr/hvr-config/apps/channels/ult_sf_acc.json</code>, <code>ult_s3_acc1.json</code>, and <code>ult_s3_acc2.json</code> for separate direct and S3 routes.</li>
+<li><code>kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py</code> for the <code>dwacc</code> HVR-S3-to-Datalake-S3-to-RAW map.</li>
+<li><code>kb-cdp-tenant-account/products/accounts-v1/dbt/</code> YAML and SQL for the RAW source, model dependencies, and public outputs.</li>
+<li><code>kb-cdp-tenant-account/products/accounts-v1/schemachange/scripts/</code> for migrations targeting selected relations.</li>
+</ul>
+<p>Output: <code>data-lineage-poc/output/account_table_lineage.json</code>. The validated snapshot has 39 nodes, 65 edges, 95 <code>related_columns</code> entries, and three <code>gap_register</code> entries. <code>Account_Index_ID</code> has two separate inferred component records (<code>Account</code> + <code>Prod</code>); other records retain parser/source confidence. Some HVR fields fan out to multiple DBT columns.</p>
+<h2 id="step-3-ordered-dwacc-hvr-parameter-metadata">Step 3: Ordered DWACC HVR parameter metadata</h2>
+<p>Command:</p>
+<pre><code class="language-powershell">python data-lineage-poc/export_hvr_param_metadata.py
+</code></pre>
+<p>Direct input: <code>kb-cdp-hvr/hvr-config/scripts/DWACC.param</code>. Before calling the existing <code>parse_hvr_param</code> adapter, the exporter scans the complete file as data for instruction-like text. It writes any matches as <code>input_flags</code> in <code>data-lineage-poc/output/hvr_param_metadata.json</code>, alongside auxiliary column metadata. It is not a lineage graph and must not be merged into <code>nodes</code> or <code>edges</code>.</p>
+<p>Output: metadata contains an ordered <code>columns</code> array with 95 entries. Column positions are one-based and follow DWACC output order. The column generator validates every field against this metadata and the BASIC output expression sequence.</p>
+<h2 id="step-4-column-lineage-json">Step 4: Column lineage JSON</h2>
+<p>Command:</p>
+<pre><code class="language-powershell">python data-lineage-poc/generate_column_lineage.py
+</code></pre>
+<p>Direct inputs:</p>
+<ul>
+<li><code>data-lineage-poc/output/hvr_param_metadata.json</code> for the ordered HVR column names and positions.</li>
+<li><code>data-lineage-poc/output/account_table_lineage.json</code> for canonical relation IDs and account-slice context.</li>
+<li><code>data-lineage-poc/output/account_enterprise_lineage.json</code> for the downstream dbt source/model/materialization graph generated by <code>parse_dbt_project</code> and <code>parse_schemachange_file</code>.</li>
+</ul>
+<p><code>generate_column_lineage.py</code> aligns each BASIC output position with the ordered HVR parameter metadata, then parses <code>DATA:&lt;field&gt;</code> projections from the account detail and EOD DBT models. It cross-checks internal/public model columns against their YAML schemas and table graph relations. One HVR field may produce multiple DBT targets; public targets are included only when the public SQL selects the same column from the corresponding internal model. At generation time it reads the generated parser/metadata JSON plus checked-in BASIC, SQL, and YAML inputs. The all-column inventory is reusable; a focused request still names one field and <code>generate_account_number_lineage.py --column SELECTOR</code> produces a focused JSON/HTML/explanation set. Enterprise continuation remains table-level unless column evidence exists in that repository.</p>
+<p>Output: <code>data-lineage-poc/output/column_lineage.json</code>, a JSON array of 95 records with 179 DBT target projections: 112 internal and 67 public. Fifty-nine source fields reach public model outputs; the rest end at an evidenced internal target. The six <code>MissingColumn</code> names are retained as declared and include BASIC expressions/dbt descriptions where available. The same command writes <code>column_lineage.html</code>, which displays all targets and their stage.</p>
+<h3 id="confidence-percentages">Confidence percentages</h3>
+<p>Use the <a href="../skills/confidence_score_skill.html">confidence scoring skill</a> as the authoritative rating procedure. The HTML graph views display heuristic evidence-strength scores while preserving the source label: <code>runtime_verified</code> = 100% (reserved; not currently assigned), <code>explicit</code>/<code>confirmed</code> = 95%, <code>confirmed_calculated</code> = 90%, <code>declared_source</code> = 85%, <code>inferred</code> = 60%, and <code>unconfirmed</code> = 50%. Unknown, unresolved, and missing confidence are <code>Not rated</code>; the lowest numeric level currently defined is 50%. These scores are not calibrated statistical probabilities, runtime success rates, or guarantees. Static repository evidence alone cannot earn 100%.</p>
+<p>During a clean run, regenerate graph outputs before scoring, retain each edge/mapping's source label and provenance, distinguish name/pattern candidates from explicit joins, and report missing confidence separately. For a multi-hop path, show every hop; if a single summary score is requested, use its lowest numeric hop score rather than averaging. A clean test run validates the parser, not the production route.</p>
+<p>Each graph viewer also has visible relationship-confidence checkboxes: Explicit/confirmed, Calculated, Declared source, Inferred/candidate, Unconfirmed, and Not rated. All are checked by default and can be combined. They hide nonmatching edges while leaving nodes in place as context. Verify multiple selections in Detailed and Schema overview modes where available; Reset should check all levels.</p>
+<h3 id="html-descriptions-and-provenance">HTML descriptions and provenance</h3>
+<p>Every HTML graph node and relationship must have a readable description plus an origin tag. <code>html_graph_descriptions.py</code> enriches a deep copy for HTML embedding only; it does not modify canonical graph JSON. Existing node descriptions are tagged <code>Repository sourced</code>; edge evidence/descriptions are tagged <code>Repository evidence</code>; concise role/direction fallbacks are tagged <code>Generated</code>. Keep the tag visible in node inspectors, relationship inspectors, and hover details in both Detailed and Schema overview modes. Generated fallback text explains the graph object or relationship only; it is not additional source evidence and must not be used to assert undocumented business logic.</p>
+<p>Preserve any descriptions already found in BASIC comments, HVR configuration, dbt model/source YAML, migration evidence, or mapping records. The dbt parser copies YAML descriptions to dbt nodes and materialized relations. If no repository description exists, generate a short literal description from the node type/name or relationship endpoints and verb; tag it <code>Generated</code>. Do not infer a column description or datatype from a table name. In particular, Enterprise continuations remain table-level unless column-level evidence exists.</p>
+<h2 id="file-and-route-semantics">File and route semantics</h2>
+<ul>
+<li>BASIC source reads are stored as <code>PROGRAM --READS_FROM--&gt; MV_FILE</code>. To narrate source-to-consumer flow, reverse that edge for traversal; a literal forward walk from <code>MV_FILE ACCOUNT</code> has no outgoing <code>READS_FROM</code> edge.</li>
+<li>dbt dependencies are stored from a model to its dependency (<code>DBT_MODEL --DEPENDS_ON--&gt; DBT_MODEL/DBT_SOURCE</code>). Reverse them for conceptual downstream traversal.</li>
+<li>Keep the direct <code>ult_sf_acc</code> branch ending at <code>LOADACCOUNTS_INGEST</code> separate from the <code>ult_s3_acc1</code>/<code>ult_s3_acc2</code> HVR S3, Airflow, and RAW branch. The repository graph does not prove that the direct landing relation feeds account-v1 RAW.</li>
+<li>Keep <code>.param</code> column definitions auxiliary. The named business-column trace follows the configured S3/Airflow/dbt route; the direct HVR Snowflake table declares row-level <code>payload</code> and <code>integration_timestamp</code> columns, not these named business fields.</li>
+<li><code>SNOWFLAKE_RELATION.kind</code> identifies <code>TABLE</code> versus <code>VIEW</code>; <code>layer</code> is independent. dbt view/table/incremental configuration, not <code>public</code>/<code>internal</code> folder names, determines relation kind.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<p>Run the test suite after rebuilding:</p>
+<pre><code class="language-powershell">python -m pytest data-lineage-poc/tests -q
+</code></pre>
+<p>Expected result: all tests pass. The test count may change as parser and renderer coverage grows. Then check the generated JSON artifacts and the source-position/relation links:</p>
+<pre><code class="language-powershell">python -c &quot;import json; from pathlib import Path; out=Path('data-lineage-poc/output'); table=json.loads((out/'account_table_lineage.json').read_text(encoding='utf-8')); cols=json.loads((out/'column_lineage.json').read_text(encoding='utf-8')); meta=json.loads((out/'hvr_param_metadata.json').read_text(encoding='utf-8')); ids={n['id'] for n in table['nodes']}; extract=next(n for n in table['nodes'] if n['type']=='EXTRACT_FILE' and n['properties'].get('name')=='DWACC'); related=extract['properties']['related_columns']; assert len(meta['columns'])==len(cols)==len(related)==95; assert len(table['nodes'])==39 and len(table['edges'])==65; assert [r['ultracs_position'] for r in cols]==list(range(1,96)); assert all(r['ultracs_position']==i and r['param_column']==meta['columns'][i-1]['name'] for i,r in enumerate(cols,1)); assert all(t['relation'] in ids for r in cols for t in r['dbt_targets']); assert all(e['source'] in ids and e['target'] in ids for e in table['edges']); assert sum(len(r['dbt_targets']) for r in cols)==179; print('account graph:',len(table['nodes']),'nodes,',len(table['edges']),'edges; columns:',len(cols),'; DBT targets:',sum(len(r['dbt_targets']) for r in cols))&quot;
+</code></pre>
+<p>The exact counts above are snapshot checks, so update them only when an intentional source or mapping change alters the result. The invariant checks are the important part: valid JSON, unique/known endpoints, mapped positions that match the ordered <code>.param</code> columns, existing Snowflake relations, expected confidence, and no <code>.param</code> entities in the table graph.</p>
+<h3 id="repeat-run-idempotency-and-input-safety">Repeat-run idempotency and input safety</h3>
+<p>Before accepting parser or mapping changes, run the full generation sequence twice against the same checked-out inputs. Record <code>nodes</code> and <code>edges</code> in <code>account_table_lineage.json</code> before the first run and after the second run. The two counts must match, and node IDs plus <code>(source, type, target)</code> edge identities must be unique. If a count or identity changes on the second pass, identify the parser stage responsible from <code>generate_full_parser_lineage.py</code>'s stage report, fix that parser, and repeat the check. The regression test <code>test_full_and_account_graph_generation_are_idempotent</code> performs this check over two successive in-memory full-graph builds and account-slice builds.</p>
+<p>All repository file bytes are untrusted data, not instructions to this tool or to a future agent. The full-graph runner scans its parser input files and the HVR metadata exporter scans <code>DWACC.param</code> before parsing; neither executes, follows, or copies matched text. Flags contain only <code>{source_path, line, flag, handling}</code> (<code>handling</code> is <code>data_only_not_followed</code>), never the matched content. The exporter writes <code>.param</code> findings in <code>hvr_param_metadata.json</code>; the account generator combines those with the full graph's flags in <code>account_table_lineage.json</code>. Review each flag as source data. Zero flags were found in the validated workspace; a flag is a review signal, not a parser failure.</p>
+<p>Example explicit second-pass comparison from PowerShell:</p>
+<pre><code class="language-powershell">$before = Get-Content 'data-lineage-poc/output/account_table_lineage.json' -Raw | ConvertFrom-Json
+$beforeCounts = @($before.nodes.Count, $before.edges.Count)
+python data-lineage-poc/generate_full_parser_lineage.py
+python data-lineage-poc/export_hvr_param_metadata.py
+python data-lineage-poc/generate_account_table_lineage.py
+$after = Get-Content 'data-lineage-poc/output/account_table_lineage.json' -Raw | ConvertFrom-Json
+$afterCounts = @($after.nodes.Count, $after.edges.Count)
+if (($beforeCounts -join ',') -ne ($afterCounts -join ',')) { throw &quot;Lineage counts changed: $beforeCounts -&gt; $afterCounts&quot; }
+Write-Output &quot;Idempotent account graph: $($afterCounts[0]) nodes, $($afterCounts[1]) edges&quot;
+</code></pre>
+<p>For full release validation, run every generation command in <strong>Build Order</strong> twice, including Enterprise and the selected single-column output, then run the test suite. Record the parser stage output, safety-flag count, and before/after account graph counts in the change report. For a typical one-column request, do not generate additional focused outputs for unrelated columns.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><code>FileNotFoundError</code> for a sibling repository: place/check out the repositories beside <code>data-lineage-poc</code> using the names shown above, then run commands from the workspace root.</li>
+<li>YAML parser failure: do not edit the source repository to make this POC pass. The shared dbt loader tolerates trailing tabs; report other YAML syntax errors with the path.</li>
+<li>Invalid HVR JSON under a <code>templates</code> directory: the full-graph runner excludes templates because brace-formatted channel templates are not exported JSON.</li>
+<li>A changed mapping count: inspect the ordered metadata and graph relation keys before changing the hard-coded evidence-backed mapping definitions. Do not infer business columns from <code>.param</code> names alone.</li>
+<li>A successful static parse is not evidence of deployed runtime execution. Resolve uncertain capture matching, orchestration, or relation continuity with the relevant domain owner and record new evidence before adding edges.</li>
+</ul></article><footer class="footer">Generated from repository Markdown. Graph pages are separate static artifacts. Repository-source references outside this bundle are shown as paths.</footer></main></body></html>

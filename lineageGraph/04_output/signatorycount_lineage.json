@@ -1,0 +1,82 @@
+[
+  {
+    "business_field": "Signatory_Count",
+    "field_id": "ultracs:SAVINGS_ACCOUNT:DWACC:62",
+    "ultracs_position": 62,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWACC",
+    "param_column": "NumOfSignaturesReq",
+    "hvr_parameter": {
+      "name": "NumOfSignaturesReq",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL_V2",
+    "snowflake_column": "MINIMUMNUMBEROFAUTHORISER",
+    "confidence": "confirmed",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACC.param",
+    "notes": "KWDW_ACC writes NS to DWACC position 62; DWACC.param names it NumOfSignaturesReq; dbt reads DATA:NumOfSignaturesReq.",
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "TRAN<4,4>",
+      "source_references": [],
+      "description": "Number of signatures required for transactions on the account.",
+      "transformation": "If REC<4,4> is zero, output 1; otherwise output REC<4,4>.",
+      "basic_expression": "NS",
+      "basic_comment": "",
+      "basic_source_line": 327,
+      "extract_file": "DWACC",
+      "position": 62,
+      "param_column": "NumOfSignaturesReq"
+    },
+    "cdp": {
+      "model": "accounts_v1__ultracs_accounts_detail_v2",
+      "model_description": "The Ultracs accounts data, Detailed Columns Excluding Balances.",
+      "description": "MINIMUMNUMBEROFAUTHORISER sourced from NumOfSignaturesReq",
+      "data_type": "NUMBER",
+      "classification": "STANDARD",
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_accounts_detail_v2/accounts_v1__ultracs_accounts_detail_v2.yml",
+      "table": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL_V2",
+      "column": "MINIMUMNUMBEROFAUTHORISER",
+      "stage": "internal"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_accounts_detail_v2",
+        "model_id": "dbt:model:accounts_v1__ultracs_accounts_detail_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL_V2",
+        "column": "MINIMUMNUMBEROFAUTHORISER",
+        "source_expression": "DATA:NumOfSignaturesReq::NUMBER AS MINIMUMNUMBEROFAUTHORISER,",
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_accounts_detail_v2/accounts_v1__ultracs_accounts_detail_v2.yml",
+        "source_line": 245,
+        "model_description": "The Ultracs accounts data, Detailed Columns Excluding Balances.",
+        "description": "MINIMUMNUMBEROFAUTHORISER sourced from NumOfSignaturesReq",
+        "data_type": "NUMBER",
+        "classification": "STANDARD"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_acc1",
+        "ult_s3_acc2"
+      ],
+      "s3_paths": [
+        "s3:path:HVR:ultracs:dwacc",
+        "s3:path:DATALAKE:ultracs:dwacc"
+      ],
+      "airflow_dag": "accounts_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwacc",
+        "copy_s3_files_to_snowflake_task_for_dwacc"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNTS_V1__ACCOUNTS",
+      "dbt_input": "DATA:NumOfSignaturesReq"
+    }
+  }
+]
