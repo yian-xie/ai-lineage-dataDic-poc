@@ -1,0 +1,781 @@
+{
+  "nodes": [
+    {
+      "id": "basic:file:CLIENT",
+      "type": "MV_FILE",
+      "properties": {
+        "source_path": "kb-ultracs-datawarehouse/DATAMASK",
+        "confidence": "explicit",
+        "name": "CLIENT",
+        "source_file": "kb-ultracs-datawarehouse/DATAMASK",
+        "source_paths": [
+          "kb-ultracs-datawarehouse/DATAMASK",
+          "kb-ultracs-datawarehouse/KWCC_B2KCUST",
+          "kb-ultracs-datawarehouse/KWCC_CUST",
+          "kb-ultracs-datawarehouse/KWDW_ACC",
+          "kb-ultracs-datawarehouse/KWDW_ACC_ORIG",
+          "kb-ultracs-datawarehouse/KWDW_ACCX",
+          "kb-ultracs-datawarehouse/KWDW_AML2",
+          "kb-ultracs-datawarehouse/KWDW_CLACT",
+          "kb-ultracs-datawarehouse/KWDW_CLIENT",
+          "kb-ultracs-datawarehouse/KWDW_CLIENTCLASS",
+          "kb-ultracs-datawarehouse/KWDW_CLIENTX",
+          "kb-ultracs-datawarehouse/KWDW_FEE",
+          "kb-ultracs-datawarehouse/KWDW_INS",
+          "kb-ultracs-datawarehouse/KWDW_IVRFULL",
+          "kb-ultracs-datawarehouse/KWDW_LOANS",
+          "kb-ultracs-datawarehouse/KWDW_PART3",
+          "kb-ultracs-datawarehouse/KWDW_PART3_AUTO",
+          "kb-ultracs-datawarehouse/KWDW_RBI2"
+        ],
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "CLIENT is a Ultracs source file represented in the repository lineage graph.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "id": "extract:kb-ultracs-datawarehouse/KWDW_FEE:basic:extract:DWFEE605.TXT",
+      "type": "EXTRACT_FILE",
+      "properties": {
+        "source_path": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "confidence": "explicit",
+        "name": "DWFEE605.TXT",
+        "output_path": "KBDOSOUTPUT/DWFEE605.TXT",
+        "format": "pipe-delimited",
+        "output_handle": "DWOUT",
+        "source_file": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "source_paths": [
+          "kb-ultracs-datawarehouse/KWDW_FEE"
+        ],
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "DWFEE605.TXT is a Extract file represented in the repository lineage graph.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "id": "hvr:channel:ult_sf_fee60",
+      "type": "HVR_CHANNEL",
+      "properties": {
+        "source_path": "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json",
+        "confidence": "explicit",
+        "name": "ult_sf_fee60",
+        "description": "Direct load of Ultracs DWFEE605.TXT File to Snowflake table feeexemption_v1_ingest",
+        "hvr_version": "6.2.5/4",
+        "capture_patterns": [
+          "DWFEE605.TXT"
+        ],
+        "capture_pattern": "DWFEE605.TXT",
+        "source_file": "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json",
+        "source_paths": [
+          "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json"
+        ],
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "Direct load of Ultracs DWFEE605.TXT File to Snowflake table feeexemption_v1_ingest",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "program:kb-ultracs-datawarehouse/KWDW_FEE:basic:program:KWDW_FEE",
+      "type": "PROGRAM",
+      "properties": {
+        "source_path": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "confidence": "explicit",
+        "name": "KWDW_FEE",
+        "operations": [
+          "OPEN CLIENT TO CLIENT",
+          "OPEN KBDOSOUTPUT TO KBDOSOUTPUT",
+          "WRITE LINE ON KBDOSOUTPUT,'DWFEE605.TXT'",
+          "OPENSEQ 'KBDOSOUTPUT','DWFEE605.TXT' TO DWOUT ELSE STOP",
+          "WRITESEQ LINE ON DWOUT ELSE STOP",
+          "SELECT CLIENT",
+          "T605: READNEXT ID ELSE",
+          "READ LOGREC FROM KBDOSOUTPUT,'DWLOG.TXT' ELSE LOGREC=''",
+          "WRITE LOGREC ON KBDOSOUTPUT,'DWLOG.TXT'",
+          "READ CREC FROM CLIENT,ID ELSE STOP",
+          "WRITESEQ ID:LINE ON DWOUT ELSE STOP"
+        ],
+        "assignments": [
+          "SEP=\"|\"",
+          "LINE=\"AccessNo|ExemptAll|ExemptFlat|Exempt85|ExemptATM|ExemptPOS\"",
+          "LINE=LINE:\"|IVRCallFees|SMSBankingFees\"",
+          "LINE=LINE:SEP:\"Operator\":SEP:\"Branch\":SEP:\"TIME\":SEP:\"DATE\"",
+          "SEP=\"|\"",
+          "CNT=0",
+          "LINE=SEP:CREC<83>:SEP:CREC<84>:SEP:CREC<85>:SEP:CREC<86>:SEP:CREC<87>",
+          "LINE=LINE:SEP:CREC<112>:SEP:CREC<113>",
+          "LINE=LINE:SEP:CREC<88>:SEP:CREC<89>:SEP:OCONV(CREC<90>,\"MTS\"):SEP:OCONV(CREC<91>,'D4')",
+          "CNT=CNT+1"
+        ],
+        "source_file": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "source_paths": [
+          "kb-ultracs-datawarehouse/KWDW_FEE"
+        ],
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "KWDW_FEE is a BASIC program represented in the repository lineage graph.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "id": "snowflake:relation:FEEEXEMPTION_V1_INGEST",
+      "type": "SNOWFLAKE_RELATION",
+      "properties": {
+        "source_path": "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json",
+        "confidence": "explicit",
+        "name": "feeexemption_v1_ingest",
+        "canonical_relation_id": "snowflake:relation:FEEEXEMPTION_V1_INGEST",
+        "kind": "TABLE",
+        "layer": "landing",
+        "creation_mechanism": "HVR",
+        "source_file": "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json",
+        "source_paths": [
+          "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json"
+        ],
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "feeexemption_v1_ingest is a Snowflake relation represented in the repository lineage graph (layer: landing; object kind: TABLE).",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "id": "cdp:product:landing:ultracs-v1",
+      "type": "CDP_PRODUCT",
+      "properties": {
+        "name": "ultracs-v1",
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/dbt_project.yml",
+        "source_file": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/dbt_project.yml",
+        "source_paths": [
+          "kb-cdp-tenant-landing/products/ultracs-v1/dbt/dbt_project.yml"
+        ],
+        "confidence": "explicit",
+        "html_description": "ultracs-v1 is a CDP product represented in the repository lineage graph.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "id": "dbt:model:landing:ultracs-v1:feeexemption",
+      "type": "DBT_MODEL",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/public/feeexemption/feeexemption.sql",
+        "confidence": "explicit",
+        "name": "feeexemption",
+        "description": "This view shows details of raw table feeexemption_ingest History",
+        "materialized": "view",
+        "schema": "ULTRACS_PUBLIC",
+        "database": null,
+        "layer": "public",
+        "project": "ultracs-v1",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "This view shows details of raw table feeexemption_ingest History",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "dbt:model:landing:ultracs-v1:feeexemption_delta",
+      "type": "DBT_MODEL",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_delta/feeexemption_delta.sql",
+        "confidence": "explicit",
+        "name": "feeexemption_delta",
+        "description": "This view shows details of raw table feeexemption_delta_ingest",
+        "materialized": "incremental",
+        "schema": "ULTRACS_INTERNAL",
+        "database": null,
+        "layer": "internal",
+        "project": "ultracs-v1",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "This view shows details of raw table feeexemption_delta_ingest",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "dbt:model:landing:ultracs-v1:feeexemption_history",
+      "type": "DBT_MODEL",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_history/feeexemption_history.sql",
+        "confidence": "explicit",
+        "name": "feeexemption_history",
+        "description": "ULTRACS is the database that holds ULTRACS information. This table contains information about ULTRACS feeexemption_history.",
+        "materialized": "incremental",
+        "schema": "ULTRACS_INTERNAL",
+        "database": null,
+        "layer": "internal",
+        "project": "ultracs-v1",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "ULTRACS is the database that holds ULTRACS information. This table contains information about ULTRACS feeexemption_history.",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "dbt:model:landing:ultracs-v1:feeexemption_raw",
+      "type": "DBT_MODEL",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_raw/feeexemption_raw.sql",
+        "confidence": "explicit",
+        "name": "feeexemption_raw",
+        "description": "This view shows details of raw table feeexemption_ingest",
+        "materialized": "view",
+        "schema": "ultracs_internal",
+        "database": null,
+        "layer": "internal",
+        "project": "ultracs-v1",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "This view shows details of raw table feeexemption_ingest",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "dbt:source:landing:ultracs-v1:ultracs_landing.feeexemption_v1_ingest",
+      "type": "DBT_SOURCE",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/source.yml",
+        "confidence": "explicit",
+        "name": "feeexemption_v1_ingest",
+        "source_name": "ultracs_landing",
+        "relation": "{{ TARGET.DATABASE }}.ULTRACS_RAW.FEEEXEMPTION_V1_INGEST",
+        "description": "The HVR database for ultracs Source Data.",
+        "schema": "ULTRACS_RAW",
+        "database": "{{ target.database }}",
+        "project": "ultracs-v1",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "The HVR database for ultracs Source Data.",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_DELTA",
+      "type": "SNOWFLAKE_RELATION",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_delta/feeexemption_delta.sql",
+        "confidence": "explicit",
+        "name": "ULTRACS_INTERNAL.FEEEXEMPTION_DELTA",
+        "canonical_relation_id": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_DELTA",
+        "kind": "TABLE",
+        "layer": "internal",
+        "creation_mechanism": "DBT",
+        "description": "This view shows details of raw table feeexemption_delta_ingest",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "This view shows details of raw table feeexemption_delta_ingest",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_HISTORY",
+      "type": "SNOWFLAKE_RELATION",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_history/feeexemption_history.sql",
+        "confidence": "explicit",
+        "name": "ULTRACS_INTERNAL.FEEEXEMPTION_HISTORY",
+        "canonical_relation_id": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_HISTORY",
+        "kind": "TABLE",
+        "layer": "internal",
+        "creation_mechanism": "DBT",
+        "description": "ULTRACS is the database that holds ULTRACS information. This table contains information about ULTRACS feeexemption_history.",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "ULTRACS is the database that holds ULTRACS information. This table contains information about ULTRACS feeexemption_history.",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_RAW",
+      "type": "SNOWFLAKE_RELATION",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_raw/feeexemption_raw.sql",
+        "confidence": "explicit",
+        "name": "ULTRACS_INTERNAL.FEEEXEMPTION_RAW",
+        "canonical_relation_id": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_RAW",
+        "kind": "VIEW",
+        "layer": "internal",
+        "creation_mechanism": "DBT",
+        "description": "This view shows details of raw table feeexemption_ingest",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "This view shows details of raw table feeexemption_ingest",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "snowflake:relation:ULTRACS_PUBLIC.FEEEXEMPTION",
+      "type": "SNOWFLAKE_RELATION",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/public/feeexemption/feeexemption.sql",
+        "confidence": "explicit",
+        "name": "ULTRACS_PUBLIC.FEEEXEMPTION",
+        "canonical_relation_id": "snowflake:relation:ULTRACS_PUBLIC.FEEEXEMPTION",
+        "kind": "VIEW",
+        "layer": "public",
+        "creation_mechanism": "DBT",
+        "description": "This view shows details of raw table feeexemption_ingest History",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "This view shows details of raw table feeexemption_ingest History",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "snowflake:relation:{{ TARGET.DATABASE }}.ULTRACS_RAW.FEEEXEMPTION_V1_INGEST",
+      "type": "SNOWFLAKE_RELATION",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/source.yml",
+        "confidence": "inferred",
+        "name": "{{ TARGET.DATABASE }}.ULTRACS_RAW.FEEEXEMPTION_V1_INGEST",
+        "canonical_relation_id": "snowflake:relation:{{ TARGET.DATABASE }}.ULTRACS_RAW.FEEEXEMPTION_V1_INGEST",
+        "kind": "TABLE",
+        "layer": "landing",
+        "creation_mechanism": null,
+        "description": "The HVR database for ultracs Source Data.",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "The HVR database for ultracs Source Data.",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "dbt:source:ultracs_landing.feeexemption",
+      "type": "DBT_SOURCE",
+      "properties": {
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/account_raw_source.yml",
+        "confidence": "explicit",
+        "name": "feeexemption",
+        "source_name": "ultracs_landing",
+        "relation": "{{ ENV_VAR('SNOWFLAKE_PIPELINE_DOMAIN_DATABASE') | REPLACE('ACCOUNT', 'LANDING') }}.ULTRACS_PUBLIC.FEEEXEMPTION",
+        "description": "The RAW public views from Account tenancy",
+        "schema": "ULTRACS_PUBLIC",
+        "database": "{{ env_var('SNOWFLAKE_PIPELINE_DOMAIN_DATABASE') | replace('ACCOUNT', 'LANDING') }}",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "The RAW public views from Account tenancy",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "snowflake:relation:{{ ENV_VAR('SNOWFLAKE_PIPELINE_DOMAIN_DATABASE') | REPLACE('ACCOUNT', 'LANDING') }}.ULTRACS_PUBLIC.FEEEXEMPTION",
+      "type": "SNOWFLAKE_RELATION",
+      "properties": {
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/account_raw_source.yml",
+        "confidence": "explicit",
+        "name": "{{ ENV_VAR('SNOWFLAKE_PIPELINE_DOMAIN_DATABASE') | REPLACE('ACCOUNT', 'LANDING') }}.ULTRACS_PUBLIC.FEEEXEMPTION",
+        "canonical_relation_id": "snowflake:relation:{{ ENV_VAR('SNOWFLAKE_PIPELINE_DOMAIN_DATABASE') | REPLACE('ACCOUNT', 'LANDING') }}.ULTRACS_PUBLIC.FEEEXEMPTION",
+        "kind": "VIEW",
+        "layer": "landing",
+        "creation_mechanism": null,
+        "description": "The RAW public views from Account tenancy",
+        "html_description": "The RAW public views from Account tenancy",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "dbt:model:feeexemption",
+      "type": "DBT_MODEL",
+      "properties": {
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/feeexemption/feeexemption.sql",
+        "confidence": "explicit",
+        "name": "feeexemption",
+        "description": "This view shows details of raw table feeexemption_ingest History",
+        "materialized": "view",
+        "schema": "PUBLIC",
+        "database": null,
+        "layer": "public",
+        "test_column": {
+          "name": "ACCESSNO",
+          "scope": "single-column trial"
+        },
+        "html_description": "This view shows details of raw table feeexemption_ingest History",
+        "html_description_origin": "Repository sourced"
+      }
+    },
+    {
+      "id": "snowflake:relation:PUBLIC.FEEEXEMPTION",
+      "type": "SNOWFLAKE_RELATION",
+      "properties": {
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/feeexemption/feeexemption.sql",
+        "confidence": "explicit",
+        "name": "PUBLIC.FEEEXEMPTION",
+        "canonical_relation_id": "snowflake:relation:PUBLIC.FEEEXEMPTION",
+        "kind": "VIEW",
+        "layer": "public",
+        "creation_mechanism": "DBT",
+        "description": "This view shows details of raw table feeexemption_ingest History",
+        "html_description": "This view shows details of raw table feeexemption_ingest History",
+        "html_description_origin": "Repository sourced"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "extract:kb-ultracs-datawarehouse/KWDW_FEE:basic:extract:DWFEE605.TXT",
+      "target": "hvr:channel:ult_sf_fee60",
+      "type": "CARRIED_BY",
+      "properties": {
+        "confidence": "inferred",
+        "match_status": "INFERRED",
+        "capture_pattern": "DWFEE605.TXT",
+        "matched_filename_example": "DWFEE605.TXT",
+        "evidence": "BASIC output path KBDOSOUTPUT/DWFEE605.TXT matches the HVR Capture.Pattern.",
+        "source_path": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "source_paths": [
+          "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json",
+          "kb-ultracs-datawarehouse/KWDW_FEE"
+        ],
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "KWDW_FEE emits the CLIENT record ID as the leading AccessNo field; HVR carries the row payload."
+        },
+        "html_description": "BASIC output path KBDOSOUTPUT/DWFEE605.TXT matches the HVR Capture.Pattern.",
+        "html_description_origin": "Repository evidence"
+      }
+    },
+    {
+      "source": "hvr:channel:ult_sf_fee60",
+      "target": "snowflake:relation:FEEEXEMPTION_V1_INGEST",
+      "type": "LANDS_IN",
+      "properties": {
+        "source_path": "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json",
+        "confidence": "explicit",
+        "source_file": "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json",
+        "source_paths": [
+          "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_fee60.json"
+        ],
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "KWDW_FEE emits the CLIENT record ID as the leading AccessNo field; HVR carries the row payload."
+        },
+        "html_description": "ult_sf_fee60 lands data in feeexemption_v1_ingest.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "program:kb-ultracs-datawarehouse/KWDW_FEE:basic:program:KWDW_FEE",
+      "target": "basic:file:CLIENT",
+      "type": "READS_FROM",
+      "properties": {
+        "source_path": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "confidence": "explicit",
+        "source_file": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "source_paths": [
+          "kb-ultracs-datawarehouse/KWDW_FEE"
+        ],
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "KWDW_FEE emits the CLIENT record ID as the leading AccessNo field; HVR carries the row payload."
+        },
+        "html_description": "KWDW_FEE reads source data from CLIENT.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "program:kb-ultracs-datawarehouse/KWDW_FEE:basic:program:KWDW_FEE",
+      "target": "extract:kb-ultracs-datawarehouse/KWDW_FEE:basic:extract:DWFEE605.TXT",
+      "type": "WRITES_TO",
+      "properties": {
+        "source_path": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "confidence": "explicit",
+        "source_file": "kb-ultracs-datawarehouse/KWDW_FEE",
+        "source_paths": [
+          "kb-ultracs-datawarehouse/KWDW_FEE"
+        ],
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "KWDW_FEE emits the CLIENT record ID as the leading AccessNo field; HVR carries the row payload."
+        },
+        "html_description": "KWDW_FEE writes output to DWFEE605.TXT.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "cdp:product:landing:ultracs-v1",
+      "target": "dbt:model:landing:ultracs-v1:feeexemption",
+      "type": "CONTAINS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/dbt_project.yml",
+        "confidence": "explicit",
+        "html_description": "ultracs-v1 contains or owns feeexemption.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "cdp:product:landing:ultracs-v1",
+      "target": "dbt:model:landing:ultracs-v1:feeexemption_delta",
+      "type": "CONTAINS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/dbt_project.yml",
+        "confidence": "explicit",
+        "html_description": "ultracs-v1 contains or owns feeexemption_delta.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "cdp:product:landing:ultracs-v1",
+      "target": "dbt:model:landing:ultracs-v1:feeexemption_history",
+      "type": "CONTAINS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/dbt_project.yml",
+        "confidence": "explicit",
+        "html_description": "ultracs-v1 contains or owns feeexemption_history.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "cdp:product:landing:ultracs-v1",
+      "target": "dbt:model:landing:ultracs-v1:feeexemption_raw",
+      "type": "CONTAINS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/dbt_project.yml",
+        "confidence": "explicit",
+        "html_description": "ultracs-v1 contains or owns feeexemption_raw.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:landing:ultracs-v1:feeexemption",
+      "target": "dbt:model:landing:ultracs-v1:feeexemption_history",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/public/feeexemption/feeexemption.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption depends on feeexemption_history.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:landing:ultracs-v1:feeexemption",
+      "target": "snowflake:relation:ULTRACS_PUBLIC.FEEEXEMPTION",
+      "type": "MATERIALIZES_AS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/public/feeexemption/feeexemption.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption materializes as ULTRACS_PUBLIC.FEEEXEMPTION.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:landing:ultracs-v1:feeexemption_delta",
+      "target": "dbt:model:landing:ultracs-v1:feeexemption_raw",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_delta/feeexemption_delta.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption_delta depends on feeexemption_raw.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:landing:ultracs-v1:feeexemption_delta",
+      "target": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_DELTA",
+      "type": "MATERIALIZES_AS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_delta/feeexemption_delta.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption_delta materializes as ULTRACS_INTERNAL.FEEEXEMPTION_DELTA.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:landing:ultracs-v1:feeexemption_history",
+      "target": "dbt:model:landing:ultracs-v1:feeexemption_delta",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_history/feeexemption_history.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption_history depends on feeexemption_delta.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:landing:ultracs-v1:feeexemption_history",
+      "target": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_HISTORY",
+      "type": "MATERIALIZES_AS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_history/feeexemption_history.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption_history materializes as ULTRACS_INTERNAL.FEEEXEMPTION_HISTORY.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:landing:ultracs-v1:feeexemption_raw",
+      "target": "dbt:source:landing:ultracs-v1:ultracs_landing.feeexemption_v1_ingest",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_raw/feeexemption_raw.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption_raw depends on feeexemption_v1_ingest.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:landing:ultracs-v1:feeexemption_raw",
+      "target": "snowflake:relation:ULTRACS_INTERNAL.FEEEXEMPTION_RAW",
+      "type": "MATERIALIZES_AS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_raw/feeexemption_raw.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption_raw materializes as ULTRACS_INTERNAL.FEEEXEMPTION_RAW.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:source:landing:ultracs-v1:ultracs_landing.feeexemption_v1_ingest",
+      "target": "snowflake:relation:{{ TARGET.DATABASE }}.ULTRACS_RAW.FEEEXEMPTION_V1_INGEST",
+      "type": "RESOLVES_TO",
+      "properties": {
+        "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/source.yml",
+        "confidence": "inferred",
+        "html_description": "feeexemption_v1_ingest resolves to physical relation {{ TARGET.DATABASE }}.ULTRACS_RAW.FEEEXEMPTION_V1_INGEST. This relationship is inferred rather than explicitly declared.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:source:ultracs_landing.feeexemption",
+      "target": "snowflake:relation:{{ ENV_VAR('SNOWFLAKE_PIPELINE_DOMAIN_DATABASE') | REPLACE('ACCOUNT', 'LANDING') }}.ULTRACS_PUBLIC.FEEEXEMPTION",
+      "type": "RESOLVES_TO",
+      "properties": {
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/account_raw_source.yml",
+        "confidence": "explicit",
+        "html_description": "feeexemption resolves to physical relation {{ ENV_VAR('SNOWFLAKE_PIPELINE_DOMAIN_DATABASE') | REPLACE('ACCOUNT', 'LANDING') }}.ULTRACS_PUBLIC.FEEEXEMPTION.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:feeexemption",
+      "target": "snowflake:relation:PUBLIC.FEEEXEMPTION",
+      "type": "MATERIALIZES_AS",
+      "properties": {
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/feeexemption/feeexemption.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption materializes as PUBLIC.FEEEXEMPTION.",
+        "html_description_origin": "Generated"
+      }
+    },
+    {
+      "source": "dbt:model:feeexemption",
+      "target": "dbt:source:ultracs_landing.feeexemption",
+      "type": "DEPENDS_ON",
+      "properties": {
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/feeexemption/feeexemption.sql",
+        "confidence": "explicit",
+        "column_evidence": {
+          "column": "ACCESSNO",
+          "evidence": "The selected dbt SQL and YAML retain ACCESSNO through this model stage."
+        },
+        "html_description": "feeexemption depends on feeexemption.",
+        "html_description_origin": "Generated"
+      }
+    }
+  ],
+  "test_column": {
+    "name": "ACCESSNO",
+    "business_label": "Account number (fee-exemption view)",
+    "source_locator": "CLIENT @ID",
+    "basic_output": "DWFEE605.TXT; header column AccessNo",
+    "payload_position": 1,
+    "landing_type": "NUMBER(38, 0)",
+    "classification": "SENSITIVE",
+    "landing_raw_sql": "CAST(NULLIF(SPLIT_PART(PAYLOAD, '|', 1), '') AS NUMBER(38, 0)) AS ACCESSNO",
+    "landing_public_relation": "ULTRACS_PUBLIC.FEEEXEMPTION",
+    "account_public_model": "feeexemption",
+    "source_path": "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/internal/feeexemption_raw/feeexemption_raw.sql",
+    "confidence": "explicit",
+    "notes": "KWDW_FEE reads CLIENT by ID, writes ID before the delimited record under an AccessNo header, and the landing raw model parses payload part 1 into ACCESSNO. This field is ACCESSNO in the selected feeexemption path; it is not asserted as the DWACC/KiwiAcc mapping."
+  },
+  "candidate_links": [
+    {
+      "from": "snowflake:relation:FEEEXEMPTION_V1_INGEST",
+      "to": "snowflake:relation:{{ TARGET.DATABASE }}.ULTRACS_RAW.FEEEXEMPTION_V1_INGEST",
+      "confidence": "inferred",
+      "reason": "HVR base table name matches the dbt source table name, but HVR database/schema identity is not present in the channel export."
+    },
+    {
+      "from": "snowflake:relation:ULTRACS_PUBLIC.FEEEXEMPTION",
+      "to": "snowflake:relation:{{ ENV_VAR('SNOWFLAKE_PIPELINE_DOMAIN_DATABASE') | REPLACE('ACCOUNT', 'LANDING') }}.ULTRACS_PUBLIC.FEEEXEMPTION",
+      "confidence": "inferred",
+      "reason": "Both declare ULTRACS_PUBLIC.FEEEXEMPTION, but the landing target database and account source database are different unresolved templates."
+    }
+  ],
+  "repository_scope": {
+    "kb-ultracs-datawarehouse": "KWDW_FEE reads CLIENT by ID and emits DWFEE605.TXT with an AccessNo header.",
+    "kb-cdp-hvr": "ult_sf_fee60 captures DWFEE605.TXT and lands a row payload in FEEEXEMPTION_V1_INGEST.",
+    "kb-cdp-tenant-landing": "Only ultracs-v1 was parsed; ACCESSNO is payload field 1 and is retained through raw/delta/history/public dbt models.",
+    "kb-cdp-tenant-account": "The feeexemption dbt model declares ultracs_landing.feeexemption as a source and outputs ACCESSNO.",
+    "kb-cdp-tenant-enterprise": "The selected Enterprise graph was checked and contains no ACCESSNO/feeexemption continuation."
+  },
+  "enterprise_matches": []
+}

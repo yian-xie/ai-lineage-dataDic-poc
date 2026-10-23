@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>JSON Payload Skill · Lineage POC</title><style>
+:root{color-scheme:light;--ink:#193238;--green:#24794f;--deep:#183e33;--bg:#eef4f1;--panel:#fff;--line:#d6e1de;--muted:#62777b;--teal:#218b83;--blue:#397b9d;--purple:#7963a1;--amber:#c4893d;--coral:#d87968}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Segoe UI",sans-serif}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 24px;background:var(--deep);color:#fff}.top a{color:#fff;text-decoration:none;font-weight:750}.top small{color:#d9e9df}.shell{max-width:1240px;margin:0 auto;padding:24px}.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:0 0 18px}.intro{border-left:5px solid var(--green)}h1,h2,h3{line-height:1.25}h1{font-size:26px;margin:0 0 8px}h2{margin-top:28px;border-bottom:1px solid var(--line);padding-bottom:7px}h3{margin-top:22px}a{color:#176b58}a:hover{color:#0d4f40}table{display:block;width:100%;overflow:auto;border-collapse:collapse}th,td{padding:8px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e7f0e9}code{background:#edf3ef;padding:1px 4px;border-radius:3px}pre{overflow:auto;padding:14px;background:#183e33;color:#eef7f0;border-radius:6px}pre code{background:transparent;color:inherit;padding:0}blockquote{margin:12px 0;padding:10px 15px;border-left:4px solid var(--teal);background:#f4f8f6}img,svg{max-width:100%;height:auto}.meta{font-size:12px;color:var(--muted)}.repo-ref{border-bottom:1px dotted var(--amber);cursor:help}.repo-ref-path{color:var(--muted);font-size:11px;overflow-wrap:anywhere}.toc{padding:12px 16px;background:#f6f9f7;border:1px solid var(--line);border-radius:6px}.report-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;padding:0;list-style:none}.report-list a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;text-decoration:none}.report-list a:hover{background:#eaf3eb}.footer{padding:20px 0;color:var(--muted);font-size:12px}@media(max-width:680px){.top{padding:14px}.shell{padding:14px}.panel{padding:14px}h1{font-size:22px}}
+</style></head>
+<body><header class="top"><a href="../../index.html">Data Lineage POC Reports</a><small>Static report bundle · no live systems queried</small></header><main class="shell"><article class="panel"><p class="meta">Source: <code>skills/json_payload_skill.md</code></p><h1>JSON Payload Skill</h1><h1 id="json-payload-skill">JSON Payload Skill</h1>
+<h2 id="goal">Goal</h2>
+<p>Produce <code>output/column_lineage.json</code> as a JSON array. Each array item represents one field mapping and must follow this structure:</p>
+<pre><code class="language-json">[
+  {
+    &quot;field_id&quot;: &quot;ultracs:SAVINGS_ACCOUNT:DWACC:54&quot;,
+    &quot;ultracs_position&quot;: 54,
+    &quot;ultracs_program&quot;: &quot;kb-ultracs-datawarehouse/KWDW_ACC&quot;,
+    &quot;extract_file&quot;: &quot;DWACC&quot;,
+    &quot;param_column&quot;: &quot;OpenDate&quot;,
+    &quot;snowflake_table&quot;: &quot;snowflake:relation:RAW.ACCOUNTS_V1__ACCOUNTS&quot;,
+    &quot;snowflake_column&quot;: &quot;ACCOUNTOPENDATE&quot;,
+    &quot;confidence&quot;: &quot;confirmed&quot;,
+    &quot;source_path&quot;: &quot;kb-cdp-hvr/hvr-config/scripts/DWACC.param&quot;,
+    &quot;notes&quot;: &quot;Include supporting evidence or caveats.&quot;
+  }
+]
+</code></pre>
+<h2 id="field-requirements">Field Requirements</h2>
+<ul>
+<li><code>field_id</code>: stable identifier following <code>ultracs:SAVINGS_ACCOUNT:DWACC:[position]</code>.</li>
+<li><code>ultracs_position</code>: integer source/extract position.</li>
+<li><code>ultracs_program</code>: actual repository-relative program filename/path. Most Ultracs programs are extensionless; do not append <code>.b</code>.</li>
+<li><code>extract_file</code>: extract name, without a fabricated extension.</li>
+<li><code>param_column</code>: exact column name from the <code>.param</code> metadata.</li>
+<li><code>snowflake_table</code>: canonical <code>SNOWFLAKE_RELATION</code> node key from table lineage.</li>
+<li><code>snowflake_column</code>: exact physical column name, and only assert existence when supported by the <code>.param</code> declaration as required by the column-lineage skill.</li>
+<li><code>confidence</code>: <code>confirmed</code> or <code>inferred</code>, selected using the evidence requirements in <a href="confidence_score_skill.html">confidence_score_skill.md</a>. Store the raw label and put its heuristic display percentage in this field or add a percentage property to this payload.</li>
+<li><code>source_path</code>: repository-relative path to the file that defines the mapping.</li>
+<li><code>notes</code>: caveats, evidence, transformations, or composite-key explanation.</li>
+<li><code>ultracs.description</code> and <code>cdp.description</code>: repository-backed source/target column text when available; do not fabricate these descriptions from the column name.</li>
+</ul>
+<h2 id="rules">Rules</h2>
+<ul>
+<li>Output valid JSON only: no comments, trailing commas, or Markdown fences.</li>
+<li>For a new table/process graph payload, start from <a href="../../examples/lineage_graph_payload_template.json">lineage_graph_payload_template.json</a> and replace every placeholder with repository-backed values. Use only entity and relationship types from the <a href="../src/lineage/data_lineage_schema.html">authoritative graph schema</a>; keep <code>source_path</code> and confidence evidence on nodes/edges. The template is a graph-object skeleton, not a column mapping payload.</li>
+<li>Keep column-level mappings as a separate JSON array using the record structure above; do not change them into a <code>{nodes, edges}</code> graph object. Apply <a href="confidence_score_skill.html">confidence_score_skill.md</a> to the raw <code>confidence</code> label.</li>
+<li>Keep this payload separate from <code>account_table_lineage.json</code> and <code>table_lineage.json</code>.</li>
+<li>Keep HTML-only <code>html_description</code> and <code>html_description_origin</code> fields out of canonical graph JSON and this mapping inventory. The HTML helper enriches a deep copy for display only.</li>
+<li>Apply the <a href="confidence_score_skill.html">confidence scoring skill</a> when evaluating evidence. Its <code>runtime_verified</code> 100% level is reserved for independently verified runtime/catalog evidence and must not be assigned from static repository files or a clean parser/test run.</li>
+<li>Use <code>null</code> only when the consumer explicitly permits an unknown value; otherwise omit unsupported mappings rather than guessing.</li>
+<li><code>Account_Index_ID</code> is inferred as <code>Account</code> + <code>Prod</code> at positions 1 and 2 and must state this in <code>notes</code>.</li>
+</ul></article><footer class="footer">Generated from repository Markdown. Graph pages are separate static artifacts. Repository-source references outside this bundle are shown as paths.</footer></main></body></html>

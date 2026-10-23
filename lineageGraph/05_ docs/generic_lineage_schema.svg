@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Generic Data Lineage Graph Schema</title>
+  <desc id="description">A conceptual graph of seven entity types and their relationship directions. It is a reusable reference, not a repository-specific lineage result.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#526b70"/>
+    </marker>
+    <filter id="soft-shadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#24434a" flood-opacity=".09"/>
+    </filter>
+    <style>
+      text{font-family:Aptos,"Segoe UI",sans-serif;fill:#183238}
+      .eyebrow{font-size:13px;font-weight:750;letter-spacing:1.2px;fill:#167e83}
+      .title{font-size:34px;font-weight:760}
+      .subtitle{font-size:15px;fill:#536a6e}
+      .node{fill:#fff;stroke:#d4e1dd;stroke-width:1.5;rx:13;filter:url(#soft-shadow)}
+      .node-top{fill:#e8f2ee;rx:13}
+      .node-type{font-size:12px;font-weight:800;letter-spacing:.9px;fill:#176b52}
+      .node-name{font-size:20px;font-weight:750}
+      .node-note{font-size:12px;fill:#63777a}
+      .edge{fill:none;stroke:#526b70;stroke-width:2.1;marker-end:url(#arrow)}
+      .edge-label-bg{fill:#f5f8f6;stroke:#dbe5e1;stroke-width:1;rx:7}
+      .edge-label{font-size:11px;font-weight:800;letter-spacing:.45px;fill:#176b52}
+      .footer{font-size:12px;fill:#536a6e}
+      .tag{fill:#e7f1ec;rx:11}
+      .tag-text{font-size:10px;font-weight:800;letter-spacing:.7px;fill:#176b52}
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f4f7f5"/>
+  <path d="M0 122 H1600" stroke="#d8e2df"/>
+  <text class="eyebrow" x="72" y="48">REFERENCE MODEL · DATA LINEAGE</text>
+  <text class="title" x="72" y="91">Generic Graph Structure</text>
+  <text class="subtitle" x="1120" y="52">7 conceptual entity types</text>
+  <rect class="tag" x="1351" y="29" width="177" height="30"/>
+  <text class="tag-text" x="1370" y="49">ILLUSTRATIVE ONLY</text>
+
+  <!-- Relationships: arrows point from the subject to the related object. -->
+  <path class="edge" d="M280 268 C312 268 320 268 350 268"/>
+  <rect class="edge-label-bg" x="282" y="234" width="92" height="25"/>
+  <text class="edge-label" x="294" y="251">COMPOSED_OF</text>
+
+  <path class="edge" d="M560 268 C592 268 600 268 630 268"/>
+  <rect class="edge-label-bg" x="565" y="234" width="91" height="25"/>
+  <text class="edge-label" x="576" y="251">OWNS_ENTITY</text>
+
+  <path class="edge" d="M840 245 C884 222 914 208 952 197"/>
+  <rect class="edge-label-bg" x="835" y="176" width="98" height="25"/>
+  <text class="edge-label" x="846" y="193">HAS_ATTRIBUTE</text>
+
+  <path class="edge" d="M1292 204 C1250 204 1206 204 1160 204"/>
+  <rect class="edge-label-bg" x="1170" y="171" width="91" height="25"/>
+  <text class="edge-label" x="1181" y="188">DERIVED_FROM</text>
+
+  <path class="edge" d="M1080 474 C1035 410 950 344 840 296"/>
+  <rect class="edge-label-bg" x="924" y="365" width="91" height="25"/>
+  <text class="edge-label" x="935" y="382">READS_FROM</text>
+
+  <path class="edge" d="M1080 504 C1008 420 924 354 826 310"/>
+  <rect class="edge-label-bg" x="837" y="409" width="88" height="25"/>
+  <text class="edge-label" x="849" y="426">WRITES_TO</text>
+
+  <path class="edge" d="M1090 474 C1085 376 1060 300 1032 258"/>
+  <rect class="edge-label-bg" x="1046" y="319" width="83" height="25"/>
+  <text class="edge-label" x="1058" y="336">USES_ATTR</text>
+
+  <path class="edge" d="M1200 474 C1230 365 1264 300 1292 258"/>
+  <rect class="edge-label-bg" x="1229" y="324" width="108" height="25"/>
+  <text class="edge-label" x="1241" y="341">PRODUCES_ATTR</text>
+
+  <path class="edge" d="M864 528 C930 528 1000 528 1072 528"/>
+  <rect class="edge-label-bg" x="924" y="490" width="75" height="25"/>
+  <text class="edge-label" x="936" y="507">HAS_STEP</text>
+
+  <path class="edge" d="M560 608 C595 590 625 570 656 548"/>
+  <rect class="edge-label-bg" x="570" y="558" width="142" height="25"/>
+  <text class="edge-label" x="582" y="575">CONTAINS_PROCESS</text>
+
+  <path class="edge" d="M560 634 C720 684 923 647 1072 557"/>
+  <rect class="edge-label-bg" x="789" y="639" width="164" height="25"/>
+  <text class="edge-label" x="801" y="656">CONTAINS_SUBPROCESS</text>
+
+  <!-- Seven entity types; two Attribute instances make derivation direction explicit. -->
+  <g>
+    <rect class="node" x="72" y="220" width="208" height="108"/>
+    <rect class="node-top" x="72" y="220" width="208" height="10"/>
+    <text class="node-type" x="94" y="256">ENTITY TYPE 01</text>
+    <text class="node-name" x="94" y="286">System</text>
+    <text class="node-note" x="94" y="309">Boundary / source platform</text>
+  </g>
+  <g>
+    <rect class="node" x="352" y="220" width="208" height="108"/>
+    <rect class="node-top" x="352" y="220" width="208" height="10"/>
+    <text class="node-type" x="374" y="256">ENTITY TYPE 02</text>
+    <text class="node-name" x="374" y="286">Dataset</text>
+    <text class="node-note" x="374" y="309">Logical collection of data</text>
+  </g>
+  <g>
+    <rect class="node" x="632" y="220" width="208" height="108"/>
+    <rect class="node-top" x="632" y="220" width="208" height="10"/>
+    <text class="node-type" x="654" y="256">ENTITY TYPE 03</text>
+    <text class="node-name" x="654" y="286">Entity</text>
+    <text class="node-note" x="654" y="309">Business object / record</text>
+  </g>
+  <g>
+    <rect class="node" x="952" y="150" width="208" height="108"/>
+    <rect class="node-top" x="952" y="150" width="208" height="10"/>
+    <text class="node-type" x="974" y="186">ENTITY TYPE 04</text>
+    <text class="node-name" x="974" y="216">Attribute</text>
+    <text class="node-note" x="974" y="239">Source / upstream field</text>
+  </g>
+  <g>
+    <rect class="node" x="1292" y="150" width="208" height="108"/>
+    <rect class="node-top" x="1292" y="150" width="208" height="10"/>
+    <text class="node-type" x="1314" y="186">ENTITY TYPE 04</text>
+    <text class="node-name" x="1314" y="216">Attribute</text>
+    <text class="node-note" x="1314" y="239">Derived / downstream field</text>
+  </g>
+  <g>
+    <rect class="node" x="352" y="574" width="208" height="108"/>
+    <rect class="node-top" x="352" y="574" width="208" height="10"/>
+    <text class="node-type" x="374" y="610">ENTITY TYPE 05</text>
+    <text class="node-name" x="374" y="640">Repository</text>
+    <text class="node-note" x="374" y="663">Code / configuration owner</text>
+  </g>
+  <g>
+    <rect class="node" x="656" y="474" width="208" height="108"/>
+    <rect class="node-top" x="656" y="474" width="208" height="10"/>
+    <text class="node-type" x="678" y="510">ENTITY TYPE 06</text>
+    <text class="node-name" x="678" y="540">Process</text>
+    <text class="node-note" x="678" y="563">Workflow / scheduled job</text>
+  </g>
+  <g>
+    <rect class="node" x="1072" y="474" width="208" height="108"/>
+    <rect class="node-top" x="1072" y="474" width="208" height="10"/>
+    <text class="node-type" x="1094" y="510">ENTITY TYPE 07</text>
+    <text class="node-name" x="1094" y="540">Sub-process</text>
+    <text class="node-note" x="1094" y="563">Step within a process</text>
+  </g>
+
+  <rect x="72" y="760" width="1456" height="1" fill="#d8e2df"/>
+  <text class="footer" x="72" y="795">Arrow direction states the relationship from source node to target node. Two Attribute instances illustrate DERIVED_FROM.</text>
+  <text class="footer" x="72" y="820">Generic conceptual reference only; map these concepts to repository evidence before using them as a production lineage schema.</text>
+</svg>

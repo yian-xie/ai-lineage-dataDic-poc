@@ -1,0 +1,84 @@
+{
+  "nodes": [
+    {
+      "id": "program:<repository-relative-program-key>",
+      "type": "PROGRAM",
+      "properties": {
+        "name": "<program-name>",
+        "source_path": "<repository-relative-source-path>",
+        "source_file": "<repository-relative-source-path>",
+        "confidence": "explicit"
+      }
+    },
+    {
+      "id": "mv_file:<source-file-key>",
+      "type": "MV_FILE",
+      "properties": {
+        "name": "<source-file-name>",
+        "source_path": "<repository-relative-source-path>",
+        "source_file": "<repository-relative-source-path>",
+        "confidence": "explicit"
+      }
+    },
+    {
+      "id": "extract:<repository-relative-program-key>:<extract-name>",
+      "type": "EXTRACT_FILE",
+      "properties": {
+        "name": "<extract-name>",
+        "path": "<repository-relative-output-path>",
+        "format": "<evidenced-format>",
+        "source_path": "<repository-relative-source-path>",
+        "source_file": "<repository-relative-source-path>",
+        "confidence": "explicit"
+      }
+    },
+    {
+      "id": "hvr:channel:<channel-name>",
+      "type": "HVR_CHANNEL",
+      "properties": {
+        "name": "<channel-name>",
+        "capture_pattern": "<configured-pattern>",
+        "source_path": "<repository-relative-channel-config>",
+        "source_file": "<repository-relative-channel-config>",
+        "confidence": "explicit"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "program:<repository-relative-program-key>",
+      "target": "mv_file:<source-file-key>",
+      "type": "READS_FROM",
+      "properties": {
+        "source_path": "<repository-relative-program-path>",
+        "confidence": "explicit",
+        "evidence": "<source statement or parser evidence>"
+      }
+    },
+    {
+      "source": "program:<repository-relative-program-key>",
+      "target": "extract:<repository-relative-program-key>:<extract-name>",
+      "type": "WRITES_TO",
+      "properties": {
+        "source_path": "<repository-relative-program-path>",
+        "confidence": "explicit",
+        "evidence": "<output statement or parser evidence>"
+      }
+    },
+    {
+      "source": "extract:<repository-relative-program-key>:<extract-name>",
+      "target": "hvr:channel:<channel-name>",
+      "type": "CARRIED_BY",
+      "properties": {
+        "source_path": "<repository-relative-channel-config>",
+        "confidence": "inferred",
+        "capture_pattern": "<configured-pattern>",
+        "matched_filename_example": "<representative-matched-filename>",
+        "evidence": "<why the filename/pattern association is inferred>"
+      }
+    }
+  ],
+  "input_flags": [],
+  "gap_register": [],
+  "extension_notes": []
+}

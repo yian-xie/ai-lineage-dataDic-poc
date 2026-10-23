@@ -1,0 +1,222 @@
+#!/usr/bin/env python3
+"""Create a focused interactive HTML view for one DWREL column from the DWREL lineage JSON."""
+
+import argparse
+import html
+import json
+import re
+from pathlib import Path
+from typing import Any, Dict, List
+
+from generate_column_lineage import CONFIDENCE_PERCENTAGES, confidence_percent
+from html_graph_descriptions import describe_graph
+
+ROOT = Path(__file__).resolve().parent
+OUTPUT_DIR = ROOT / "output"
+COLUMN_INPUT = OUTPUT_DIR / "dwrel_column_lineage.json"
+GRAPH_INPUT = OUTPUT_DIR / "dwrel_table_lineage.json"
+
+HTML_TEMPLATE = r'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__ Column Lineage</title>
+<style>
+:root{color-scheme:light;--ink:#193238;--muted:#62777b;--line:#d6e1de;--paper:#eef4f1;--panel:#fff;--green:#24794f}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{font-family:"Aptos","Segoe UI",sans-serif;color:var(--ink);background:var(--paper);display:grid;grid-template-rows:auto auto minmax(0,1fr);overflow:hidden}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.mark{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:var(--green);color:#fff;font-weight:800;font-size:12px}h1{font-size:17px;margin:0}.subtitle{display:block;font-size:10px;color:var(--muted);margin-top:4px;font-weight:500}
+input[type=search]{height:34px;width:min(300px,30vw);border:1px solid #b8c9c4;border-radius:7px;padding:0 10px;font:inherit;font-size:12px}
+button{border:1px solid #b8c9c4;border-radius:7px;background:#fff;color:var(--ink);font:inherit;font-size:11px;font-weight:650;padding:7px 9px;cursor:pointer}#stats{margin-left:auto;color:var(--muted);font-size:11px}
+.lineage-explanation{padding:10px 16px;background:#f7fbf8;border-bottom:1px solid var(--line);overflow:auto;max-height:46vh}
+.flow-heading{display:flex;align-items:center;gap:9px;margin-bottom:8px}.flow-kicker{font-size:9px;letter-spacing:.1em;font-weight:850;color:#557071}.flow-confidence{font-size:9px;font-weight:800;color:#725628;background:#f6ecd9;border-radius:10px;padding:3px 7px}
+.flow-chain{display:flex;align-items:stretch;gap:6px;min-width:1150px}.flow-step{display:flex;flex:1;min-width:120px;flex-direction:column;justify-content:center;gap:4px;padding:8px 10px;border:1px solid #d9e5df;border-radius:7px;background:#fff}.flow-step span{font-size:8px;letter-spacing:.07em;font-weight:850;color:#648076}.flow-step strong{font-size:11px;line-height:1.25;overflow-wrap:anywhere}.flow-step small{font-size:9px;line-height:1.3;color:var(--muted)}.flow-arrow{align-self:center;color:#6b8b7d;font-weight:800}.flow-arrow.inferred{color:#bd7a2a}
+details{margin-top:7px;font-size:10px;color:#59696a}summary{cursor:pointer;font-weight:750;color:#725628}table.hops{border-collapse:collapse;margin:6px 0;font-size:10px;width:100%;max-width:1200px}table.hops th,table.hops td{border:1px solid #dbe6e1;padding:4px 7px;text-align:left;vertical-align:top}table.hops th{background:#eef5f1}
+.notes{max-width:1200px;line-height:1.45}.notes li{margin:3px 0}
+main{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:11px;padding:11px;min-height:0}.graph-panel,.inspector{min-height:0;background:#fff;border:1px solid var(--line);border-radius:9px}.graph-panel{position:relative;overflow:hidden}#network{width:100%;height:100%}.inspector{display:flex;flex-direction:column;overflow:hidden}.panel-head{padding:13px 14px;border-bottom:1px solid var(--line)}.panel-head h2{font-size:13px;margin:0}.panel-head p{font-size:10px;line-height:1.45;color:var(--muted);margin:5px 0 0}#details{padding:12px 14px;overflow:auto;font-size:11px}
+.empty{padding:10px;background:#f3f8f5;border-radius:7px;color:#496466;line-height:1.5}.section{font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:#587072;margin:13px 0 6px}.kv{display:grid;grid-template-columns:100px 1fr;gap:7px;padding:6px 0;border-top:1px solid #edf2f0;line-height:1.4}.key{color:var(--muted)}.value{overflow-wrap:anywhere;white-space:pre-wrap}.origin{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:9px;background:#e8f3eb;color:#286546;font-size:9px;font-weight:700}
+.legend{position:absolute;top:10px;left:10px;z-index:2;display:flex;flex-wrap:wrap;gap:5px;max-width:75%;pointer-events:none}.legend span{background:#ffffffec;border:1px solid var(--line);padding:4px 7px;border-radius:12px;font-size:9px;color:#50676b}.swatch{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+@media(max-width:850px){main{grid-template-columns:minmax(0,1fr) 300px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="mark">DW</div><h1>__TITLE__ lineage<span class="subtitle">__SUBTITLE__</span></h1>
+  <input id="search" type="search" placeholder="Search node, relation, evidence…" aria-label="Search lineage graph">
+  <button id="fit" type="button">Fit</button><button id="reset" type="button">Reset</button><span id="stats"></span>
+</header>
+__FLOW__
+<main>
+  <section class="graph-panel" aria-label="Interactive DWREL lineage network"><div id="network"></div><div id="legend" class="legend"></div></section>
+  <aside class="inspector"><div class="panel-head"><h2 id="panelTitle">Inspector</h2><p id="panelSubtitle">Select a node or an edge to inspect its description, confidence and evidence. READS_FROM and DEPENDS_ON are stored against data flow.</p></div><div id="details"></div></aside>
+</main>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script id="graph-data" type="application/json">__GRAPH_DATA__</script>
+<script id="column-data" type="application/json">__COLUMN_DATA__</script>
+<script>
+const graph=JSON.parse(document.getElementById('graph-data').textContent),records=JSON.parse(document.getElementById('column-data').textContent);
+const percentages=__PERCENTAGES__;
+const colors={MV_FILE:'#d87968',PROGRAM:'#c4893d',EXTRACT_FILE:'#c4893d',HVR_CHANNEL:'#7963a1',HVR_LOCATION:'#738286',S3_PATH:'#738286',DBT_SOURCE:'#218b83',DBT_MODEL:'#218b83',SNOWFLAKE_RELATION:'#397b9d',CDP_PRODUCT:'#54836b',AIRFLOW_DAG:'#54836b',AIRFLOW_TASK:'#6d9a7e'};
+const reversedForFlow=new Set(['READS_FROM','DEPENDS_ON']);
+const extract=graph.nodes.find(node=>node.type==='EXTRACT_FILE');
+const rawNodes=new Map(graph.nodes.map(node=>[node.id,node]));
+const targetRelations=new Set(records.flatMap(record=>record.dbt_targets.map(target=>target.relation)));
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function confidenceLabel(value){const key=String(value||'').toLowerCase();return key&&percentages[key]!==undefined?key.replaceAll('_',' ')+' · '+percentages[key]+'% evidence':'Not rated'}
+function nodeName(node){const p=node.properties||{};return p.name||p.task_id||p.path||node.id.split(':').pop()}
+const nodes=graph.nodes.map(node=>({id:node.id,label:node.type.replaceAll('_',' ')+'\n'+nodeName(node),title:node.id,shape:'dot',size:targetRelations.has(node.id)||node.type==='EXTRACT_FILE'?24:16,borderWidth:targetRelations.has(node.id)?4:1,color:{background:colors[node.type]||'#738286',border:targetRelations.has(node.id)?'#183238':colors[node.type]||'#738286'},font:{size:12,color:'#183238',strokeWidth:3,strokeColor:'#ffffff'}}));
+const edges=graph.edges.map(edge=>{const confidence=edge.properties?.confidence||'unspecified';return {id:'table:'+edge.source+'|'+edge.type+'|'+edge.target,from:edge.source,to:edge.target,arrows:'to',dashes:confidence==='inferred',title:edge.type+' · '+confidenceLabel(confidence),color:{color:confidence==='inferred'?'#a87943':'#879b98'},width:1.4,edgeType:edge.type,confidence,properties:edge.properties||{},kind:'graph'}});
+for(const record of records)for(const target of record.dbt_targets)edges.push({id:'column:'+record.field_id+':'+target.relation,from:extract.id,to:target.relation,arrows:'to',dashes:record.confidence==='inferred',width:2.6,color:{color:record.confidence==='inferred'?'#c58a37':'#18764f'},title:record.param_column+' → '+target.column+' · '+confidenceLabel(record.confidence),edgeType:'COLUMN_MAPPING',confidence:record.confidence,properties:{...record,dbt_target:target,html_description:record.notes,html_description_origin:'Repository evidence'},kind:'column'});
+const dataNodes=new vis.DataSet(nodes),dataEdges=new vis.DataSet(edges);
+const network=new vis.Network(document.getElementById('network'),{nodes:dataNodes,edges:dataEdges},{interaction:{hover:true,tooltipDelay:150},physics:{solver:'forceAtlas2Based',forceAtlas2Based:{gravitationalConstant:-70,centralGravity:.008,springLength:135,springConstant:.07,damping:.48,avoidOverlap:.9},stabilization:{iterations:160,fit:true}},edges:{smooth:{type:'dynamic',roundness:.25}}});
+const details=document.getElementById('details'),stats=document.getElementById('stats');
+function row(key,value){return '<div class="kv"><span class="key">'+esc(key)+'</span><span class="value">'+esc(typeof value==='string'?value:JSON.stringify(value))+'</span></div>'}
+function section(title){return '<div class="section">'+esc(title)+'</div>'}
+function nodePanel(id){
+  const node=rawNodes.get(id);if(!node)return;const p=node.properties||{};
+  let html=section(node.type)+'<div style="font-weight:750;font-size:14px;overflow-wrap:anywhere">'+esc(nodeName(node))+'</div><div style="color:#667b7b;font:10px Consolas,monospace;overflow-wrap:anywhere;margin:5px 0 10px">'+esc(node.id)+'</div>'+section('Description')+esc(p.html_description||'Description unavailable.')+'<span class="origin">'+esc(p.html_description_origin||'Generated')+'</span>'+section('Properties');
+  for(const [key,value] of Object.entries(p)){if(key==='html_description'||key==='html_description_origin')continue;html+=row(key==='confidence'?'evidence confidence':key,key==='confidence'?confidenceLabel(value):value)}
+  const connected=edges.filter(edge=>edge.from===id||edge.to===id);html+=section('Relationships · '+connected.length);
+  for(const edge of connected){const forward=edge.from===id,peer=rawNodes.get(forward?edge.to:edge.from);html+=row(edge.edgeType+' · '+(forward?'out':'in')+' · '+confidenceLabel(edge.confidence),(forward?'→ ':'← ')+nodeName(peer||{id:forward?edge.to:edge.from})+(reversedForFlow.has(edge.edgeType)?' (stored against data flow)':''))}
+  details.innerHTML=html;document.getElementById('panelTitle').textContent='Node Inspector';
+}
+function edgePanel(id){
+  const edge=edges.find(item=>item.id===id);if(!edge)return;
+  let html=section(edge.edgeType)+'<div>'+esc(edge.properties.html_description||edge.properties.description||'Description unavailable.')+'<span class="origin">'+esc(edge.properties.html_description_origin||'Generated')+'</span></div>'+row('From',edge.from)+row('To',edge.to)+row('Evidence confidence',confidenceLabel(edge.confidence));
+  if(reversedForFlow.has(edge.edgeType))html+=row('Direction','Stored against data flow; reverse it to narrate source-to-consumer flow.');
+  for(const [key,value] of Object.entries(edge.properties)){if(['confidence','html_description','html_description_origin'].includes(key))continue;if(['ultracs','cdp','hvr_parameter','dbt_target','dbt_targets','ingestion_route'].includes(key)&&value&&typeof value==='object'){html+=section(key);for(const [k,v] of Object.entries(value))if(v!==null&&v!=='')html+=row(k,v)}else html+=row(key,value)}
+  details.innerHTML=html;document.getElementById('panelTitle').textContent=edge.kind==='column'?'Column Mapping':'Relationship Inspector';
+}
+network.on('click',params=>{if(params.nodes.length)nodePanel(params.nodes[0]);else if(params.edges.length)edgePanel(params.edges[0])});
+function applySearch(){const query=document.getElementById('search').value.trim().toLowerCase();const visible=new Set(nodes.filter(node=>!query||(node.id+' '+node.label+' '+JSON.stringify(rawNodes.get(node.id).properties)).toLowerCase().includes(query)).map(node=>node.id));dataNodes.update(nodes.map(node=>({id:node.id,hidden:!visible.has(node.id)})));dataEdges.update(edges.map(edge=>({id:edge.id,hidden:!(visible.has(edge.from)&&visible.has(edge.to))})));stats.textContent=visible.size+' / '+nodes.length+' nodes · '+edges.filter(edge=>visible.has(edge.from)&&visible.has(edge.to)).length+' / '+edges.length+' edges'}
+document.getElementById('search').addEventListener('input',applySearch);
+document.getElementById('fit').addEventListener('click',()=>network.fit({animation:{duration:250}}));
+document.getElementById('reset').addEventListener('click',()=>{document.getElementById('search').value='';applySearch();network.fit({animation:{duration:250}})});
+for(const [type,color] of Object.entries(colors)){const item=document.createElement('span');item.innerHTML='<i class="swatch" style="background:'+color+'"></i>'+type.replaceAll('_',' ');document.getElementById('legend').append(item)}
+details.innerHTML='<div class="empty">Select a node or edge to inspect evidence. The thick amber dashed edges are the inferred column mapping from the DWREL extract to each dbt target relation; they come from the separate column JSON, not the graph edges.</div>';
+applySearch();
+</script>
+</body>
+</html>
+'''
+
+
+def normalize(value: str) -> str:
+  return re.sub(r"[^a-z0-9]+", "", value.casefold())
+
+
+def choose_records(records: List[Dict[str, Any]], selector: str) -> List[Dict[str, Any]]:
+  key = normalize(selector)
+  matches = []
+  for record in records:
+    candidates = {normalize(record["param_column"]), normalize(record["field_id"])}
+    candidates.update(normalize(target["column"]) for target in record["dbt_targets"])
+    if key in candidates:
+      matches.append(record)
+  return matches
+
+
+def _label(value: str | None) -> str:
+  percent = confidence_percent(value)
+  return f"{str(value or 'unspecified').replace('_', ' ')} · {percent}% evidence" if percent is not None else "Not rated"
+
+
+def _short(relation: str) -> str:
+  return relation.split(":")[-1]
+
+
+def flow_section(records: List[Dict[str, Any]]) -> str:
+  record = records[0]
+  ultracs, route = record["ultracs"], record["ingestion_route"]
+  internal = [t for t in record["dbt_targets"] if t["stage"] == "internal"]
+  public = [t for t in record["dbt_targets"] if t["stage"] == "public"]
+
+  def targets(items: List[Dict[str, Any]]) -> str:
+    return "<br>".join(html.escape(f"{_short(item['relation'])} · {item['column']}") for item in items) or "No dbt projection found"
+
+  files = ", ".join(sorted({item["file"] for item in ultracs.get("source_files", [])})) or "BASIC variables"
+  steps = [
+    ("01 · ULTRACS SOURCE", html.escape(ultracs.get("source_locator") or ultracs["basic_expression"]), f"KWDW_ACC line {ultracs['basic_source_line']} · reads {html.escape(files)}", False),
+    ("02 · EXTRACT", html.escape(f"DWREL · position {record['ultracs_position']}"), "Pipe-delimited DWREL record, one row per related customer", False),
+    ("03 · HVR PARAM", html.escape(record["param_column"]), "DWREL.param column name", False),
+    ("04 · HVR S3 ROUTE", html.escape(" → ".join(route["hvr_channels"])), "Text → Parquet → HVR S3 · capture match inferred", True),
+    ("05 · RELATIONSHIP RAW", html.escape(_short(route["raw_relation"])), "Airflow: HVR S3 → Datalake S3 → RAW", False),
+    ("06 · INTERNAL DBT", targets(internal), "dbt unpacks DATA:" + html.escape(route["dbt_input"].split(":", 1)[1]), False),
+    ("07 · PUBLIC DBT", targets(public), "Public projection of the internal column", False),
+  ]
+  chain = ""
+  for index, (title, strong, small, inferred_arrow) in enumerate(steps):
+    if index:
+      chain += f'<span class="flow-arrow{" inferred" if inferred_arrow else ""}">{"⇢" if inferred_arrow else "→"}</span>\n'
+    chain += f'<article class="flow-step"><span>{title}</span><strong>{strong}</strong><small>{small}</small></article>\n'
+
+  hops = [
+    ("BASIC field order → DWREL position", f"kb-ultracs-datawarehouse/KWDW_ACC line {ultracs['basic_source_line']}", record["confidence"]),
+    ("`.param` column", record["source_path"], record["confidence"]),
+    ("DWREL extract → HVR channel (capture pattern)", "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_rel1.json", "inferred"),
+    ("Airflow HVR S3 → Datalake S3 → RAW", "kb-cdp-tenant-account/products/account-relationship-v1/airflow/account_relationship_v1/src/dags/account_relationship_v1_ingestion_v1.py", "explicit"),
+  ]
+  for target in record["dbt_targets"]:
+    line = target.get("source_line") or target.get("projection_line")
+    hops.append((f"{target['stage']} dbt · {_short(target['relation'])}.{target['column']}", f"{target['source_path']}" + (f" line {line}" if line else ""), "explicit"))
+  rows = "".join(
+    f"<tr><td>{html.escape(name)}</td><td>{html.escape(path)}</td><td>{html.escape(_label(level))}</td></tr>" for name, path, level in hops
+  )
+  branch = route["separate_direct_branch"]
+  notes = [record["notes"]]
+  if record["dbt_key_case_differences"]:
+    notes.append("The dbt key spelling differs in case from the .param name; confirm the RAW key.")
+  if not record["dbt_targets"]:
+    notes.append("No account-relationship-v1 dbt model reads this column, so it has no Snowflake target.")
+  notes.append(
+    f"The direct {', '.join(branch['hvr_channels'])} branch lands in {', '.join(_short(item) for item in branch['landing_relations'])}; "
+    f"its capture pattern {', '.join(branch['capture_patterns'])} does not match the DWREL{{HEAD}} output name, so it is not associated with this extract or joined to the RAW route."
+  )
+  notes.append("Percentages are heuristic evidence-strength scores, not probabilities. Evidence is static repository configuration and source, not live HVR, Airflow or Snowflake state.")
+  notes_html = "".join(f"<li>{html.escape(note)}</li>" for note in notes)
+  title = html.escape(", ".join(sorted({r["param_column"] for r in records})))
+  return f'''<section class="lineage-explanation" aria-label="{title} end-to-end lineage">
+<div class="flow-heading"><span class="flow-kicker">FIELD PATH · {title}</span><span class="flow-confidence">{html.escape(_label(record["confidence"]).upper())}</span></div>
+<div class="flow-chain">
+{chain}</div>
+<details open><summary>Hop evidence and confidence</summary><table class="hops"><thead><tr><th>Hop</th><th>Source path</th><th>Confidence</th></tr></thead><tbody>{rows}</tbody></table></details>
+<details><summary>Caveats and open questions</summary><ul class="notes">{notes_html}</ul></details>
+</section>'''
+
+
+def main() -> None:
+  parser = argparse.ArgumentParser(description="Generate a focused HTML view for one DWREL column.")
+  parser.add_argument("--column", required=True, help="Case-insensitive .param name, Snowflake column or field_id.")
+  parser.add_argument("--output-prefix", help="Output filename prefix without extension (default: dwrel_<param>).")
+  args = parser.parse_args()
+
+  records = json.loads(COLUMN_INPUT.read_text(encoding="utf-8"))
+  matches = choose_records(records, args.column)
+  if not matches:
+    available = sorted({record["param_column"] for record in records} | {t["column"] for record in records for t in record["dbt_targets"]})
+    raise ValueError(f"No DWREL column matches {args.column!r}. Available selectors: {', '.join(available)}")
+  graph = describe_graph(json.loads(GRAPH_INPUT.read_text(encoding="utf-8")))
+  prefix = args.output_prefix or "dwrel_" + normalize(matches[0]["param_column"])
+  title = f"{', '.join(record['param_column'] for record in matches)} (DWREL)"
+  columns = ", ".join(sorted({t["column"] for record in matches for t in record["dbt_targets"]})) or "no dbt projection"
+  subtitle = f"DWREL position {', '.join(str(record['ultracs_position']) for record in matches)} → {columns}"
+
+  def embed(value: Any) -> str:
+    return json.dumps(value, separators=(",", ":"), ensure_ascii=True).replace("<", "\\u003c")
+
+  text = (
+    HTML_TEMPLATE.replace("__TITLE__", html.escape(title))
+    .replace("__SUBTITLE__", html.escape(subtitle))
+    .replace("__FLOW__", flow_section(matches))
+    .replace("__GRAPH_DATA__", embed(graph))
+    .replace("__COLUMN_DATA__", embed(matches))
+    .replace("__PERCENTAGES__", embed(CONFIDENCE_PERCENTAGES))
+  )
+  output = OUTPUT_DIR / f"{prefix}_lineage.html"
+  output.write_text(text, encoding="utf-8")
+  print(f"Generated {output.relative_to(ROOT)}: {len(matches)} record(s), {len(graph['nodes'])} nodes, {len(graph['edges'])} edges")
+
+
+if __name__ == "__main__":
+  main()

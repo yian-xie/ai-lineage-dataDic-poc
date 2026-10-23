@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1160" role="img" aria-labelledby="title description">
+  <title id="title">Business View of the Data Lineage Graph</title>
+  <desc id="description">A simplified business presentation view with nine merged node types and straight-segment connectors. Asterisked links summarize existing multi-edge paths and are not emitted as new graph relationships.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3e4542"/>
+    </marker>
+    <style>
+      text{font-family:Aptos,"Segoe UI",sans-serif;fill:#202724}
+      .eyebrow{font-size:14px;font-weight:800;fill:#27834f}
+      .title{font-size:40px;font-weight:760}
+      .subtitle{font-size:16px;fill:#59645f}
+      .node{fill:#2d8b55;stroke:#267a4b;stroke-width:2}
+      .node-text{font-size:13px;font-weight:750;fill:#fff;text-anchor:middle}
+      .edge{fill:none;stroke:#3e4542;stroke-width:2.4;marker-end:url(#arrow)}
+      .edge-loop{fill:none;stroke:#3e4542;stroke-width:2;marker-end:url(#arrow)}
+      .label-bg{fill:#fff;fill-opacity:.97;rx:5}
+      .edge-label{font-size:11px;font-weight:800;fill:#27834f;text-anchor:middle}
+      .section{font-size:17px;font-weight:760}
+      .note{font-size:13px;fill:#4f5e57}
+      .fine{font-size:11px;fill:#59645f}
+      .panel{fill:#fff;stroke:#d8e2dc;stroke-width:1.3;rx:12}
+      .rule{stroke:#d6dfd9;stroke-width:1}
+      .tag{fill:#edf6ef;stroke:#d8e9dc;stroke-width:1;rx:12}
+    </style>
+  </defs>
+  <rect width="1800" height="1160" fill="#f7faf8"/>
+  <text class="eyebrow" x="56" y="48">DATA LINEAGE · BUSINESS PRESENTATION VIEW</text>
+  <text class="title" x="56" y="98">How Data Moves</text>
+  <text class="subtitle" x="58" y="128">A simplified view of the graph. Green circles are presentation node types; arrows show flow or dependency direction.</text>
+  <rect class="tag" x="1534" y="48" width="210" height="38"/>
+  <text class="eyebrow" x="1639" y="72" text-anchor="middle">9 PRESENTATION NODES</text>
+
+  <rect class="panel" x="48" y="158" width="1704" height="770"/>
+
+  <!-- Directed relationships. Asterisked links summarize canonical multi-edge paths. -->
+  <path class="edge-loop" d="M145 314 L145 270 L215 270 L215 314"/>
+  <rect class="label-bg" x="151" y="239" width="60" height="21"/><text class="edge-label" x="181" y="254">CALLS</text>
+  <path class="edge" d="M180 418 V542"/>
+  <rect class="label-bg" x="101" y="465" width="158" height="22"/><text class="edge-label" x="180" y="480">READS_FROM</text>
+  <path class="edge" d="M238 360 H400"/>
+  <rect class="label-bg" x="276" y="328" width="88" height="22"/><text class="edge-label" x="320" y="343">EXTRACTED_TO*</text>
+
+  <path class="edge" d="M540 360 H712"/>
+  <rect class="label-bg" x="580" y="328" width="92" height="22"/><text class="edge-label" x="626" y="343">COPIES_TO</text>
+  <path class="edge" d="M470 430 L470 820 L1590 820 L1590 680"/>
+  <rect class="label-bg" x="1005" y="804" width="92" height="22"/><text class="edge-label" x="1051" y="819">LANDS_IN</text>
+
+  <path class="edge" d="M847 619 L1017 413"/>
+  <rect class="label-bg" x="892" y="504" width="96" height="22"/><text class="edge-label" x="940" y="519">CONTAINS*</text>
+  <path class="edge" d="M862 638 L1291 394"/>
+  <rect class="label-bg" x="1080" y="486" width="92" height="22"/><text class="edge-label" x="1126" y="501">CONTAINS</text>
+  <path class="edge" d="M871 660 H1168"/>
+  <rect class="label-bg" x="985" y="628" width="92" height="22"/><text class="edge-label" x="1031" y="643">CONTAINS</text>
+
+  <path class="edge-loop" d="M1025 304 L1025 270 L1095 270 L1095 304"/>
+  <rect class="label-bg" x="1022" y="241" width="82" height="21"/><text class="edge-label" x="1063" y="256">PRECEDES</text>
+  <path class="edge" d="M999 329 L819 332"/>
+  <rect class="label-bg" x="910" y="294" width="105" height="22"/><text class="edge-label" x="962" y="309">COPIES_FROM</text>
+  <path class="edge" d="M992 360 H828"/>
+  <rect class="label-bg" x="903" y="344" width="92" height="22"/><text class="edge-label" x="949" y="359">COPIES_TO</text>
+  <path class="edge" d="M999 391 L819 388"/>
+  <rect class="label-bg" x="908" y="417" width="100" height="22"/><text class="edge-label" x="958" y="432">LOADS_FROM</text>
+  <path class="edge" d="M1128 360 H1282"/>
+  <rect class="label-bg" x="1155" y="328" width="102" height="22"/><text class="edge-label" x="1206" y="343">EXECUTES_DBT</text>
+  <path class="edge" d="M1090 420 L1530 575"/>
+  <rect class="label-bg" x="1270" y="486" width="78" height="22"/><text class="edge-label" x="1309" y="501">LOADS_TO</text>
+
+  <path class="edge-loop" d="M1314 304 L1314 270 L1386 270 L1386 304"/>
+  <rect class="label-bg" x="1322" y="241" width="92" height="21"/><text class="edge-label" x="1368" y="256">DEPENDS_ON</text>
+  <path class="edge" d="M1389 415 L1542 560"/>
+  <rect class="label-bg" x="1417" y="464" width="96" height="22"/><text class="edge-label" x="1465" y="479">RESOLVES_TO</text>
+  <path class="edge" d="M1407 337 L1530 320 L1640 557"/>
+  <rect class="label-bg" x="1450" y="307" width="136" height="22"/><text class="edge-label" x="1518" y="322">MATERIALIZES_AS</text>
+  <path class="edge" d="M1311 658 L1521 622"/>
+  <rect class="label-bg" x="1381" y="627" width="78" height="22"/><text class="edge-label" x="1420" y="642">MIGRATES</text>
+
+  <!-- Nine presentation nodes; merged meanings are summarized below. -->
+  <g><circle class="node" cx="180" cy="360" r="58"/><text class="node-text" x="180" y="364">PROGRAM</text></g>
+  <g><circle class="node" cx="180" cy="600" r="58"/><text class="node-text" x="180" y="604">MV_FILE</text></g>
+  <g><circle class="node" cx="470" cy="360" r="70"/><text class="node-text" x="470" y="364">HVR_CHANNEL</text></g>
+  <g><circle class="node" cx="770" cy="360" r="58"/><text class="node-text" x="770" y="364">S3_PATH</text></g>
+  <g><circle class="node" cx="1060" cy="360" r="68"/><text class="node-text" x="1060" y="354"><tspan x="1060">AIRFLOW</tspan><tspan x="1060" dy="17">_TASK</tspan></text></g>
+  <g><circle class="node" cx="1350" cy="360" r="68"/><text class="node-text" x="1350" y="354"><tspan x="1350">DBT</tspan><tspan x="1350" dy="17">_MODEL</tspan></text></g>
+  <g><circle class="node" cx="805" cy="670" r="66"/><text class="node-text" x="805" y="674">CDP_PRODUCT</text></g>
+  <g><circle class="node" cx="1240" cy="670" r="72"/><text class="node-text" x="1240" y="658"><tspan x="1240">SCHEMACHANGE</tspan><tspan x="1240" dy="17">_MIGRATION</tspan></text></g>
+  <g><circle class="node" cx="1590" cy="610" r="70"/><text class="node-text" x="1590" y="598"><tspan x="1590">SNOWFLAKE</tspan><tspan x="1590" dy="17">_RELATION</tspan></text></g>
+
+  <path class="rule" d="M72 870 H1728"/>
+  <text class="section" x="78" y="904">What is combined</text>
+  <text class="note" x="260" y="900">HVR_CHANNEL includes source/target locations · AIRFLOW_TASK includes its DAG · DBT_MODEL includes declared sources · physical Snowflake relation is canonical.</text>
+
+  <rect class="tag" x="48" y="950" width="1704" height="154"/>
+  <text class="section" x="76" y="987">Presentation shortcuts*</text>
+  <text class="note" x="76" y="1020">EXTRACTED_TO* summarizes PROGRAM → EXTRACT_FILE → HVR_CHANNEL (WRITES_TO, then CARRIED_BY).</text>
+  <text class="note" x="76" y="1046">CONTAINS* to AIRFLOW_TASK summarizes CDP_PRODUCT → AIRFLOW_DAG → AIRFLOW_TASK (CONTAINS, then CONTAINS_TASK).</text>
+  <text class="fine" x="76" y="1080">These shortcuts are for presentation only; they are not new graph edges. Source lineage remains unchanged. Direct HVR landing is shown separately from HVR-to-S3 copying.</text>
+</svg>

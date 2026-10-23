@@ -1,0 +1,114 @@
+{
+  "nodes": [
+    {
+      "id": "ULTRACS",
+      "label": "system",
+      "properties": {
+        "name": "Ultracs Legacy",
+        "domain": "core-banking"
+      }
+    },
+    {
+      "id": "KWDW_ACC",
+      "label": "file",
+      "properties": {
+        "path": "kb-ultracs-datawarehouse/KWDW_ACC",
+        "format": "legacy-variable-record"
+      }
+    },
+    {
+      "id": "dw_acc_daily_account_summary",
+      "label": "extract",
+      "properties": {
+        "name": "Daily Account Summary Extract",
+        "file_name": "KWDW_ACC"
+      }
+    },
+    {
+      "id": "raw_ultracs_account_summary",
+      "label": "table",
+      "properties": {
+        "name": "raw_ultracs_account_summary",
+        "layer": "raw",
+        "warehouse": "snowflake"
+      }
+    },
+    {
+      "id": "stg_account_daily",
+      "label": "table",
+      "properties": {
+        "name": "stg_account_daily",
+        "layer": "stage",
+        "warehouse": "snowflake"
+      }
+    },
+    {
+      "id": "dim_account",
+      "label": "table",
+      "properties": {
+        "name": "dim_account",
+        "layer": "dimensional",
+        "warehouse": "snowflake"
+      }
+    },
+    {
+      "id": "fact_account_balance",
+      "label": "table",
+      "properties": {
+        "name": "fact_account_balance",
+        "layer": "fact",
+        "warehouse": "snowflake"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "ULTRACS",
+      "target": "KWDW_ACC",
+      "type": "contains_file",
+      "properties": {
+        "owner": "Kiwibank"
+      }
+    },
+    {
+      "source": "KWDW_ACC",
+      "target": "dw_acc_daily_account_summary",
+      "type": "generated_by",
+      "properties": {
+        "job": "KWDW_ACC"
+      }
+    },
+    {
+      "source": "dw_acc_daily_account_summary",
+      "target": "raw_ultracs_account_summary",
+      "type": "loaded_to",
+      "properties": {
+        "method": "daily-batch"
+      }
+    },
+    {
+      "source": "raw_ultracs_account_summary",
+      "target": "stg_account_daily",
+      "type": "transformed_to",
+      "properties": {
+        "rule_set": "account_snapshot"
+      }
+    },
+    {
+      "source": "stg_account_daily",
+      "target": "dim_account",
+      "type": "curated_as",
+      "properties": {
+        "scope": "account-dimension"
+      }
+    },
+    {
+      "source": "stg_account_daily",
+      "target": "fact_account_balance",
+      "type": "aggregated_into",
+      "properties": {
+        "scope": "daily-balance"
+      }
+    }
+  ]
+}

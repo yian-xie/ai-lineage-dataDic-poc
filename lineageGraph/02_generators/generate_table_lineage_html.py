@@ -1,0 +1,255 @@
+#!/usr/bin/env python3
+"""Create a self-contained interactive HTML viewer for table_lineage.json."""
+
+import json
+from collections import defaultdict
+from pathlib import Path
+
+from html_graph_descriptions import describe_graph
+
+ROOT = Path(__file__).resolve().parent
+INPUT = ROOT / "output" / "table_lineage.json"
+OUTPUT = ROOT / "output" / "table_lineage.html"
+
+HTML = r'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ultracs Table-Level Lineage</title>
+<style>
+:root{color-scheme:light;--ink:#192a32;--muted:#62727a;--line:#d6dfe1;--paper:#f4f7f6;--panel:#fff;--teal:#156b69;--gold:#b27a27}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:"Segoe UI",Tahoma,sans-serif;color:var(--ink);background:var(--paper)}
+body{display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+header{display:flex;align-items:center;gap:18px;padding:12px 18px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+h1{font-size:18px;margin:0 8px 0 0;white-space:nowrap}
+.search{width:min(340px,35vw);height:36px;padding:0 11px;border:1px solid #b8c6c9;border-radius:4px;font-size:14px}
+.filters{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.filters label{font-size:12px;color:#35474e;white-space:nowrap}
+.filters input{accent-color:var(--teal);vertical-align:-2px}
+button{border:1px solid #9cacb0;border-radius:4px;background:#fff;padding:8px 11px;color:var(--ink);cursor:pointer}
+button:hover{background:#edf4f3}
+#summary{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap}
+main{position:relative;min-height:0}
+canvas{display:block;width:100%;height:100%;cursor:grab;touch-action:none}
+canvas.dragging{cursor:grabbing}
+#tooltip{position:absolute;display:none;max-width:min(440px,70vw);padding:10px 12px;background:#172a31;color:white;border-radius:4px;font-size:12px;line-height:1.45;white-space:pre-wrap;pointer-events:none;box-shadow:0 4px 20px #10242a40;z-index:2}
+footer{display:flex;gap:20px;align-items:center;padding:8px 16px;background:#fff;border-top:1px solid var(--line);font-size:11px;color:var(--muted);overflow:auto;white-space:nowrap}
+.legend{display:inline-flex;align-items:center;gap:6px}.swatch{width:9px;height:9px;border-radius:50%;display:inline-block}
+.confidence-note{font-size:10px;color:var(--muted)}
+.confidence-filter{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0;padding:4px 7px;border:1px solid var(--line);border-radius:4px}.confidence-filter legend{padding:0 4px;color:#50656a;font-size:9px;font-weight:750}.confidence-filter label{display:flex;align-items:center;gap:3px;font-size:9px;white-space:nowrap}.confidence-filter input{accent-color:var(--teal);margin:0}
+.hint{margin-left:auto}
+@media(max-width:760px){header{gap:9px;padding:10px}.search{width:100%;order:3}.filters{gap:8px}#summary{margin-left:0}.hint{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ultracs table lineage</h1>
+  <input id="search" class="search" type="search" placeholder="Find program, file, table…" aria-label="Search lineage graph">
+  <div id="filters" class="filters" aria-label="Filter node types"></div>
+  <fieldset id="confidenceFilter" class="confidence-filter" aria-label="Filter relationships by confidence">
+    <legend>Relationship confidence</legend>
+    <label><input type="checkbox" data-confidence value="explicit" checked>Explicit / confirmed · 95%</label>
+    <label><input type="checkbox" data-confidence value="calculated" checked>Calculated · 90%</label>
+    <label><input type="checkbox" data-confidence value="declared_source" checked>Declared source · 85%</label>
+    <label><input type="checkbox" data-confidence value="inferred" checked>Inferred / candidate · 60%</label>
+    <label><input type="checkbox" data-confidence value="unconfirmed" checked>Unconfirmed · 50%</label>
+    <label><input type="checkbox" data-confidence value="not_rated" checked>Not rated</label>
+  </fieldset>
+  <button id="reset" type="button" title="Reset zoom and pan">Reset view</button>
+  <span id="summary"></span>
+</header>
+<main>
+  <canvas id="graph" aria-label="Interactive data lineage graph"></canvas>
+  <div id="tooltip" role="status"></div>
+</main>
+<footer id="legend"><span>Edges:</span><span class="confidence-note">Evidence confidence % is heuristic, not probability</span></footer>
+<script id="lineage-data" type="application/json">__GRAPH_DATA__</script>
+<script>
+const graph=JSON.parse(document.getElementById('lineage-data').textContent);
+function confidencePercent(value){return ({explicit:95,confirmed:95,confirmed_calculated:90,declared_source:85,inferred:60,unconfirmed:50})[String(value||'').toLowerCase()]??null}
+function confidenceLabel(value){const score=confidencePercent(value);return score===null?String(value||'unspecified')+' (not rated)':String(value||'unspecified')+' ('+score+'%)'}
+function confidenceBucket(value){const label=String(value||'').toLowerCase();if(['explicit','confirmed'].includes(label))return 'explicit';if(label==='confirmed_calculated')return 'calculated';if(label==='declared_source')return 'declared_source';if(['inferred','candidate_composite_key'].includes(label))return 'inferred';if(label==='unconfirmed')return 'unconfirmed';return 'not_rated'}
+let activeConfidenceBuckets=new Set(['explicit','calculated','declared_source','inferred','unconfirmed','not_rated']);
+function confidenceAllowed(value){return activeConfidenceBuckets.has(confidenceBucket(value))}
+function updateConfidenceBuckets(){activeConfidenceBuckets=new Set([...document.querySelectorAll('#confidenceFilter [data-confidence]:checked')].map(input=>input.value))}
+const typeOrder=['MV_FILE','PROGRAM','EXTRACT_FILE','SNOWFLAKE_TABLE'];
+const typeColors={MV_FILE:'#37818b',PROGRAM:'#315d75',EXTRACT_FILE:'#c08432',SNOWFLAKE_TABLE:'#39815c'};
+const edgeColors={'READS_FROM':'#4c8091','WRITES-TO':'#c08432','CALLS':'#697780','CARRIED_BY':'#986f9c','LANDS-IN':'#39815c'};
+const canvas=document.getElementById('graph'),ctx=canvas.getContext('2d');
+const tooltip=document.getElementById('tooltip'),search=document.getElementById('search'),summary=document.getElementById('summary');
+const filters=document.getElementById('filters');
+const enabled=new Set(typeOrder);
+const nodesByType=Object.fromEntries(typeOrder.map(type=>[type,graph.nodes.filter(node=>node.type===type)]));
+const positions=new Map();
+const laneX={MV_FILE:100,PROGRAM:650,EXTRACT_FILE:1200,SNOWFLAKE_TABLE:1750};
+const laneColumns={MV_FILE:5,PROGRAM:4,EXTRACT_FILE:5,SNOWFLAKE_TABLE:4};
+const colGap=83,rowGap=32,laneTop=100;
+let worldWidth=2250,worldHeight=900;
+for(const type of typeOrder){
+  const list=nodesByType[type],cols=laneColumns[type];
+  list.forEach((node,index)=>{
+    const col=index%cols,row=Math.floor(index/cols);
+    positions.set(node.id,{x:laneX[type]+col*colGap,y:laneTop+row*rowGap});
+  });
+  worldHeight=Math.max(worldHeight,laneTop+Math.ceil(list.length/cols)*rowGap+100);
+}
+const initialPositions=new Map([...positions].map(([id,point])=>[id,{x:point.x,y:point.y}]));
+let scale=1,offsetX=0,offsetY=0,dpr=1,hovered=null,drag=null,searchMatches=new Set(),visibleNodes=[];
+function resize(){
+  const rect=canvas.getBoundingClientRect();dpr=window.devicePixelRatio||1;
+  canvas.width=Math.max(1,Math.round(rect.width*dpr));canvas.height=Math.max(1,Math.round(rect.height*dpr));
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  if(!scale){fitView();return}draw();
+}
+function fitView(){
+  const rect=canvas.getBoundingClientRect(),pad=40;
+  scale=Math.min((rect.width-pad*2)/worldWidth,(rect.height-pad*2)/worldHeight);
+  offsetX=(rect.width-worldWidth*scale)/2;offsetY=(rect.height-worldHeight*scale)/2;draw();
+}
+function resetLayout(){
+  for(const [id,point] of initialPositions)positions.set(id,{x:point.x,y:point.y});
+  document.querySelectorAll('#confidenceFilter [data-confidence]').forEach(input=>input.checked=true);updateConfidenceBuckets();
+  fitView();
+}
+function displayName(node){
+  const p=node.properties;
+  if(node.type==='PROGRAM')return p.name||node.id;
+  if(node.type==='MV_FILE')return p.name||node.id;
+  if(node.type==='SNOWFLAKE_TABLE')return p.table_name||node.id;
+  return p.path||p.name||node.id;
+}
+function haystack(node){return (node.id+' '+JSON.stringify(node.properties)).toLowerCase()}
+function applySearch(){
+  const query=search.value.trim().toLowerCase();searchMatches.clear();
+  if(query)for(const node of graph.nodes)if(haystack(node).includes(query))searchMatches.add(node.id);
+  draw();
+}
+function visibleSet(){
+  const active=graph.nodes.filter(node=>enabled.has(node.type));
+  if(!search.value.trim())return new Set(active.map(node=>node.id));
+  const set=new Set(searchMatches);
+  for(const edge of graph.edges){if(searchMatches.has(edge.source))set.add(edge.target);if(searchMatches.has(edge.target))set.add(edge.source)}
+  return new Set(active.filter(node=>set.has(node.id)).map(node=>node.id));
+}
+function draw(){
+  const rect=canvas.getBoundingClientRect();ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,rect.width,rect.height);
+  ctx.fillStyle='#f4f7f6';ctx.fillRect(0,0,rect.width,rect.height);
+  const allowed=visibleSet();visibleNodes=graph.nodes.filter(node=>allowed.has(node.id));
+  const map=new Map(graph.nodes.map(node=>[node.id,node]));
+  ctx.save();ctx.translate(offsetX,offsetY);ctx.scale(scale,scale);
+  // Lane headings make node classes readable even when the overview is zoomed out.
+  for(const type of typeOrder){
+    if(!enabled.has(type))continue;
+    ctx.fillStyle=typeColors[type];ctx.font='bold 16px Segoe UI, sans-serif';
+    ctx.fillText(type.replaceAll('_',' '),laneX[type],42);
+    ctx.fillStyle='#829096';ctx.font='12px Segoe UI, sans-serif';ctx.fillText(String(nodesByType[type].length)+' nodes',laneX[type],61);
+  }
+  let visibleEdgeCount=0;
+  for(const edge of graph.edges){
+    if(!confidenceAllowed(edge.properties?.confidence))continue;
+    if(!allowed.has(edge.source)||!allowed.has(edge.target))continue;
+    visibleEdgeCount++;
+    const a=positions.get(edge.source),b=positions.get(edge.target);if(!a||!b)continue;
+    const edgeTouchesMatch=searchMatches.has(edge.source)||searchMatches.has(edge.target);
+    const alpha=search.value.trim()&&!edgeTouchesMatch?0.10:0.25;
+    ctx.globalAlpha=alpha;ctx.strokeStyle=edgeColors[edge.type]||'#879398';ctx.lineWidth=(edge.type==='CALLS'?1.0:1.25)/Math.max(.45,scale);
+    ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+  }
+  ctx.globalAlpha=1;
+  const radius=Math.max(3.1,Math.min(8,6.2/Math.sqrt(Math.max(.35,scale))));
+  for(const node of visibleNodes){
+    const p=positions.get(node.id);if(!p)continue;
+    const selected=node.id===hovered,matched=searchMatches.has(node.id);
+    ctx.beginPath();ctx.arc(p.x,p.y,selected?radius+2:radius,0,Math.PI*2);
+    ctx.fillStyle=typeColors[node.type]||'#65747a';ctx.fill();
+    if(selected||matched){ctx.strokeStyle=selected?'#10252d':'#d28b2e';ctx.lineWidth=2/scale;ctx.stroke()}
+    if(scale>.62||selected||matched){
+      ctx.font=`${selected?'bold ':''}${Math.max(9,Math.min(13,11/scale))}px Segoe UI, sans-serif`;
+      ctx.fillStyle='#233840';ctx.fillText(displayName(node).slice(0,44),p.x+radius+4,p.y+4);
+    }
+  }
+  ctx.restore();
+  summary.textContent=`${visibleNodes.length.toLocaleString()} / ${graph.nodes.length.toLocaleString()} nodes · ${visibleEdgeCount.toLocaleString()} / ${graph.edges.length.toLocaleString()} edges`;
+}
+function worldPoint(event){const r=canvas.getBoundingClientRect();return{x:(event.clientX-r.left-offsetX)/scale,y:(event.clientY-r.top-offsetY)/scale}}
+function nodeAt(point){let best=null,bestDistance=15/scale;for(const node of visibleNodes){const p=positions.get(node.id);if(!p)continue;const d=Math.hypot(p.x-point.x,p.y-point.y);if(d<bestDistance){best=node;bestDistance=d}}return best}
+function edgeAt(point){let best=null,bestDistance=11/scale;const active=new Set(visibleNodes.map(node=>node.id));for(const edge of graph.edges){if(!confidenceAllowed(edge.properties?.confidence)||!active.has(edge.source)||!active.has(edge.target))continue;const a=positions.get(edge.source),b=positions.get(edge.target);if(!a||!b)continue;const dx=b.x-a.x,dy=b.y-a.y,length=dx*dx+dy*dy||1,t=Math.max(0,Math.min(1,((point.x-a.x)*dx+(point.y-a.y)*dy)/length)),distance=Math.hypot(point.x-(a.x+t*dx),point.y-(a.y+t*dy));if(distance<bestDistance){best=edge;bestDistance=distance}}return best}
+function showTooltip(node,event){
+  if(!node){tooltip.style.display='none';return}
+  const props=Object.entries(node.properties||{}).filter(([key])=>!key.startsWith('html_description')).map(([key,value])=>`${key==='confidence'?'evidence confidence':key}: ${key==='confidence'?confidenceLabel(value):typeof value==='string'?value:JSON.stringify(value)}`).join('\n');
+  const description=`Description (${node.properties?.html_description_origin||'Generated'}): ${node.properties?.html_description||'Description unavailable.'}`;
+  tooltip.textContent=`${node.type}\n${node.id}\n${description}\nEvidence confidence: ${confidenceLabel(node.properties?.confidence)}${props?'\n'+props:''}`;tooltip.style.display='block';
+  const mainRect=canvas.parentElement.getBoundingClientRect();tooltip.style.left=Math.min(event.clientX-mainRect.left+14,mainRect.width-450)+'px';tooltip.style.top=Math.min(event.clientY-mainRect.top+14,mainRect.height-180)+'px';
+}
+function showEdgeTooltip(edge,event){
+  if(!edge){tooltip.style.display='none';return}
+  const props=Object.entries(edge.properties||{}).filter(([key])=>!key.startsWith('html_description')).map(([key,value])=>`${key==='confidence'?'evidence confidence':key}: ${key==='confidence'?confidenceLabel(value):typeof value==='string'?value:JSON.stringify(value)}`).join('\n');
+  const description=`Description (${edge.properties?.html_description_origin||'Generated'}): ${edge.properties?.html_description||'Description unavailable.'}`;
+  tooltip.textContent=`${edge.type}\n${edge.source} -> ${edge.target}\n${description}\nEvidence confidence: ${confidenceLabel(edge.properties?.confidence)}${props?'\n'+props:''}`;tooltip.style.display='block';
+  const mainRect=canvas.parentElement.getBoundingClientRect();tooltip.style.left=Math.min(event.clientX-mainRect.left+14,mainRect.width-450)+'px';tooltip.style.top=Math.min(event.clientY-mainRect.top+14,mainRect.height-180)+'px';
+}
+canvas.addEventListener('pointerdown',event=>{
+  canvas.setPointerCapture(event.pointerId);
+  const node=nodeAt(worldPoint(event));
+  if(node){
+    const point=positions.get(node.id);
+    drag={mode:'node',nodeId:node.id,x:event.clientX,y:event.clientY,nodeX:point.x,nodeY:point.y,moved:false};
+    hovered=node.id;
+  }else{
+    drag={mode:'pan',x:event.clientX,y:event.clientY,ox:offsetX,oy:offsetY,moved:false};
+  }
+  canvas.classList.add('dragging');
+});
+canvas.addEventListener('pointermove',event=>{
+  if(drag){
+    const dx=event.clientX-drag.x,dy=event.clientY-drag.y;
+    if(Math.abs(dx)+Math.abs(dy)>2)drag.moved=true;
+    if(drag.mode==='node')positions.set(drag.nodeId,{x:drag.nodeX+dx/scale,y:drag.nodeY+dy/scale});
+    else{offsetX=drag.ox+dx;offsetY=drag.oy+dy}
+    draw();
+    if(drag.mode==='node')showTooltip(graph.nodes.find(node=>node.id===drag.nodeId),event);
+    return;
+  }
+  const location=worldPoint(event),node=nodeAt(location),edge=node?null:edgeAt(location);hovered=node?.id||null;if(node)showTooltip(node,event);else showEdgeTooltip(edge,event);draw();
+});
+canvas.addEventListener('pointerup',event=>{
+  drag=null;canvas.classList.remove('dragging');canvas.releasePointerCapture(event.pointerId);
+  const location=worldPoint(event),node=nodeAt(location),edge=node?null:edgeAt(location);hovered=node?.id||null;if(node)showTooltip(node,event);else showEdgeTooltip(edge,event);draw();
+});
+canvas.addEventListener('pointercancel',event=>{drag=null;canvas.classList.remove('dragging');if(canvas.hasPointerCapture(event.pointerId))canvas.releasePointerCapture(event.pointerId)});
+canvas.addEventListener('pointerleave',()=>{if(!drag){hovered=null;tooltip.style.display='none';draw()}});
+canvas.addEventListener('wheel',event=>{
+  event.preventDefault();const rect=canvas.getBoundingClientRect(),px=event.clientX-rect.left,py=event.clientY-rect.top;
+  const beforeX=(px-offsetX)/scale,beforeY=(py-offsetY)/scale;
+  scale=Math.max(.12,Math.min(4,scale*(event.deltaY<0?1.12:.89)));
+  offsetX=px-beforeX*scale;offsetY=py-beforeY*scale;draw();
+},{passive:false});
+search.addEventListener('input',applySearch);
+document.getElementById('confidenceFilter').addEventListener('change',()=>{updateConfidenceBuckets();draw()});
+document.getElementById('reset').addEventListener('click',resetLayout);
+for(const type of typeOrder){
+  const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=true;
+  input.addEventListener('change',()=>{if(input.checked)enabled.add(type);else enabled.delete(type);draw()});
+  label.append(input,document.createTextNode(' '+type.replaceAll('_',' ')));filters.append(label);
+}
+const legend=document.getElementById('legend');
+for(const type of typeOrder){const item=document.createElement('span');item.className='legend';item.innerHTML=`<i class="swatch" style="background:${typeColors[type]}"></i>${type.replaceAll('_',' ')}`;legend.append(item)}
+for(const [type,color] of Object.entries(edgeColors)){const item=document.createElement('span');item.className='legend';item.innerHTML=`<i class="swatch" style="background:${color}"></i>${type}`;legend.append(item)}
+window.addEventListener('resize',resize);resize();fitView();
+</script>
+</body>
+</html>
+'''
+
+
+def main() -> None:
+    graph = describe_graph(json.loads(INPUT.read_text(encoding="utf-8")))
+    embedded = json.dumps(graph, separators=(",", ":"), ensure_ascii=True).replace("<", "\\u003c")
+    OUTPUT.write_text(HTML.replace("__GRAPH_DATA__", embedded), encoding="utf-8")
+    print(f"Generated {OUTPUT} ({len(graph['nodes'])} nodes, {len(graph['edges'])} edges)")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Account Slice: End-to-End Column Report · Lineage POC</title><style>
+:root{color-scheme:light;--ink:#193238;--green:#24794f;--deep:#183e33;--bg:#eef4f1;--panel:#fff;--line:#d6e1de;--muted:#62777b;--teal:#218b83;--blue:#397b9d;--purple:#7963a1;--amber:#c4893d;--coral:#d87968}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Segoe UI",sans-serif}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 24px;background:var(--deep);color:#fff}.top a{color:#fff;text-decoration:none;font-weight:750}.top small{color:#d9e9df}.shell{max-width:1240px;margin:0 auto;padding:24px}.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:0 0 18px}.intro{border-left:5px solid var(--green)}h1,h2,h3{line-height:1.25}h1{font-size:26px;margin:0 0 8px}h2{margin-top:28px;border-bottom:1px solid var(--line);padding-bottom:7px}h3{margin-top:22px}a{color:#176b58}a:hover{color:#0d4f40}table{display:block;width:100%;overflow:auto;border-collapse:collapse}th,td{padding:8px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e7f0e9}code{background:#edf3ef;padding:1px 4px;border-radius:3px}pre{overflow:auto;padding:14px;background:#183e33;color:#eef7f0;border-radius:6px}pre code{background:transparent;color:inherit;padding:0}blockquote{margin:12px 0;padding:10px 15px;border-left:4px solid var(--teal);background:#f4f8f6}img,svg{max-width:100%;height:auto}.meta{font-size:12px;color:var(--muted)}.repo-ref{border-bottom:1px dotted var(--amber);cursor:help}.repo-ref-path{color:var(--muted);font-size:11px;overflow-wrap:anywhere}.toc{padding:12px 16px;background:#f6f9f7;border:1px solid var(--line);border-radius:6px}.report-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;padding:0;list-style:none}.report-list a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;text-decoration:none}.report-list a:hover{background:#eaf3eb}.footer{padding:20px 0;color:var(--muted);font-size:12px}@media(max-width:680px){.top{padding:14px}.shell{padding:14px}.panel{padding:14px}h1{font-size:22px}}
+</style></head>
+<body><header class="top"><a href="../../index.html">Data Lineage POC Reports</a><small>Static report bundle · no live systems queried</small></header><main class="shell"><article class="panel"><p class="meta">Source: <code>docs/ACCOUNT_COLUMN_END_TO_END_REPORT.md</code></p><h1>Account Slice: End-to-End Column Report</h1><h1 id="account-slice-end-to-end-column-report">Account Slice: End-to-End Column Report</h1>
+<p>Source: <code>data-lineage-poc/output/column_lineage.json</code> (95 records). Scope: <code>KWDW_ACC</code> -&gt; <code>DWACC</code> extract -&gt; HVR <code>ult_s3_acc1</code>/<code>ult_s3_acc2</code> -&gt; S3/Datalake -&gt; Airflow <code>accounts_v1_ingestion_v1</code> -&gt; <code>RAW.ACCOUNTS_V1__ACCOUNTS</code> -&gt; accounts-v1 dbt internal and public models.</p>
+<p>All figures are counted from the JSON and come from checked-in repository files (static evidence, not runtime verification).</p>
+<h2 id="headline-numbers">Headline Numbers</h2>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mapping records (one per <code>DWACC.param</code> position)</td>
+<td style="text-align: right;"><strong>95</strong></td>
+</tr>
+<tr>
+<td>Unique <code>.param</code> column names</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>Unique business-field labels</td>
+<td style="text-align: right;">94 (<code>Account_Index_ID</code> is a two-record composite)</td>
+</tr>
+<tr>
+<td>Ultracs positions covered (1-95, no gaps or duplicates)</td>
+<td style="text-align: right;">95 of 95</td>
+</tr>
+<tr>
+<td>Records with a complete ingestion route (HVR, S3, DAG, RAW, <code>DATA:</code> key)</td>
+<td style="text-align: right;">95 of 95</td>
+</tr>
+<tr>
+<td>Records reaching at least one internal dbt column</td>
+<td style="text-align: right;">95 of 95</td>
+</tr>
+<tr>
+<td>Records reaching a public dbt column (full end-to-end)</td>
+<td style="text-align: right;"><strong>59</strong></td>
+</tr>
+<tr>
+<td>Records ending at the internal layer only</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr>
+<td>dbt target columns (relation + column)</td>
+<td style="text-align: right;"><strong>179</strong> (112 internal, 67 public)</td>
+</tr>
+<tr>
+<td>Distinct Snowflake column names across targets</td>
+<td style="text-align: right;">101</td>
+</tr>
+</tbody>
+</table>
+<h2 id="column-count-by-stage">Column Count by Stage</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Object</th>
+<th style="text-align: right;">Columns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Ultracs extract</td>
+<td><code>KWDW_ACC</code> -&gt; <code>DWACC</code></td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>2. HVR parameter</td>
+<td><code>DWACC.param</code></td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>3. S3 / Datalake</td>
+<td><code>hvr/ultracs/dwacc</code> (Parquet, named columns)</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>4. Snowflake RAW</td>
+<td><code>RAW.ACCOUNTS_V1__ACCOUNTS</code>, read as <code>DATA:&lt;param name&gt;</code> keys</td>
+<td style="text-align: right;">95 payload keys</td>
+</tr>
+<tr>
+<td>5a. dbt internal</td>
+<td><code>INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL_V2</code></td>
+<td style="text-align: right;">83</td>
+</tr>
+<tr>
+<td>5b. dbt internal</td>
+<td><code>INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_EOD_BALANCES_V2</code></td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr>
+<td>6a. dbt public</td>
+<td><code>PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL</code></td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr>
+<td>6b. dbt public</td>
+<td><code>PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_EOD_BALANCES</code></td>
+<td style="text-align: right;">29</td>
+</tr>
+</tbody>
+</table>
+<p>The RAW count is payload keys, not physical columns: the dbt SQL reads <code>DATA:&lt;name&gt;</code> from a variant column and no physical RAW column per field is evidenced. Internal columns total 112 and public columns total 67 because some fields feed several columns or both tables.</p>
+<h2 id="where-each-field-lands">Where Each Field Lands</h2>
+<table>
+<thead>
+<tr>
+<th>Landing pattern</th>
+<th style="text-align: right;">Fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internal DETAIL_V2 only</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr>
+<td>Internal DETAIL_V2 -&gt; public DETAIL</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr>
+<td>Internal EOD_V2 -&gt; public EOD</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td>Internal DETAIL_V2 + EOD_V2 -&gt; public EOD</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>Internal DETAIL_V2 + EOD_V2 -&gt; public DETAIL + public EOD</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>95</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Five fields produce more than one differently named Snowflake column: <code>ProdGrp</code> (<code>PRODGRP</code>, <code>BANKINGPRODUCTTYPE</code>), <code>EodDate</code> (<code>EODDATE</code>, <code>SNAPSHOTDATE</code>, <code>VERSIONSTARTDATE</code>), <code>AccInt</code> (<code>ACCINT</code>, <code>ACCRUEDCREDITINTERESTAMOUNT</code>), <code>DebAccInt</code> (<code>DEBACCINT</code>, <code>ACCRUEDDEBITINTERESTAMOUNT</code>), <code>LastTranDate</code> (<code>LASTTRANDATE</code>, <code>LASTMODIFIEDDATE</code>). 51 records keep the <code>.param</code> name (case-insensitive) in their primary Snowflake column; 44 are renamed.</p>
+<h2 id="confidence">Confidence</h2>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th style="text-align: right;">Records</th>
+<th style="text-align: right;">Display score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>explicit</code></td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">95%</td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">95%</td>
+</tr>
+<tr>
+<td><code>confirmed_calculated</code> (<code>Balance</code>)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">90%</td>
+</tr>
+<tr>
+<td><code>inferred</code> (<code>Account</code>, <code>Prod</code> of <code>Account_Index_ID</code>)</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">60%</td>
+</tr>
+</tbody>
+</table>
+<p>Scores are heuristic evidence strength, not probabilities (see <code>skills/confidence_score_skill.md</code>).</p>
+<h2 id="primary-table-and-classification">Primary Table and Classification</h2>
+<table>
+<thead>
+<tr>
+<th>Primary Snowflake table</th>
+<th style="text-align: right;">Records</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL</code></td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr>
+<td><code>PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_EOD_BALANCES</code></td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr>
+<td><code>INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL_V2</code></td>
+<td style="text-align: right;">36</td>
+</tr>
+</tbody>
+</table>
+<p>Classification from dbt YAML: 90 <code>STANDARD</code>, 5 <code>SENSITIVE</code> (<code>ACCESSNUMBER</code>, <code>KIWIBANKACCOUNTNUMBER</code>, <code>ACCOUNTNAMESPECIAL</code>, <code>ACCOUNTNAME</code>, <code>ALTERNATEACCOUNTNAME</code>). Of the 95 <code>.param</code> entries, 94 have cleanup disabled; <code>AccountNameSuffix</code> has cleanup enabled (removes <code>"</code>). No column is obfuscated in HVR.</p>
+<h2 id="data-quality-observations">Data Quality Observations</h2>
+<p>These come from the JSON content and need owner confirmation; none were changed.</p>
+<ol>
+<li><strong>Definition coverage gaps.</strong> 23 records have no <code>source_locator</code> (the BASIC output is a bare variable such as <code>PGRP</code>, <code>STATUS</code>, <code>RCLNO</code>); only 8 have an Ultracs-side description; 69 of 95 dbt descriptions follow the template "X sourced from Y".</li>
+<li><strong>Missing datatypes.</strong> 9 internal DETAIL_V2 targets have no <code>data_type</code> (<code>DEPOSITACCOUNTID</code>, <code>LASTMODIFIEDDATE</code>, <code>LASTTRANDATE</code>, <code>LVR</code>, <code>PARR</code>, <code>ARREARSDAYCOUNT</code>, <code>ARREARSPAYMENTCOUNT</code>, <code>LASTTRANID</code>, <code>OPENNINGBOOKEDBALANCEAMOUNT</code>).</li>
+<li><strong>Datatype differences between layers.</strong> 21 internal targets differ from the record's primary type, for example internal <code>NUMBER(38,2)</code> versus public <code>FLOAT</code> for balance/interest fields, and <code>CLOSEREASONCODE</code> as <code>STRING</code> internally versus <code>NUMBER</code>. <code>ARREARSDAYCOUNT</code> and <code>ARREARSPAYMENTCOUNT</code> are <code>VARCHAR</code> internally versus <code>NUMBER</code> publicly.</li>
+<li><strong>Possible ArrearsDays / ArrearsNumPmts swap.</strong> BASIC writes <code>ARRNUMPMTS</code> at position 58 (<code>ArrearsDays</code> -&gt; <code>ARREARSDAYCOUNT</code>) and <code>ARRDAYS</code> at position 59 (<code>ArrearsNumPmts</code> -&gt; <code>ARREARSPAYMENTCOUNT</code>). Confirm whether the names or the variables are reversed.</li>
+<li><strong>Placeholder names.</strong> <code>MissingColumn1</code> to <code>MissingColumn6</code> (positions 81-86) are <code>.param</code> placeholders; their dbt descriptions describe fee-redirect fields, extent count and a resequencing field. Business names need an owner.</li>
+<li><strong>Duplicate source expressions.</strong> <code>Account_Name</code> (position 51) and <code>AccountNameSpecial</code> (position 26) both read <code>AREC&lt;28,2&gt;</code>; <code>MissingColumn1</code>/<code>3</code> and <code>2</code>/<code>4</code> both output <code>RCLNO</code> and <code>RPROD</code> from different <code>REC&lt;3,2,x&gt;</code> attributes.</li>
+</ol>
+<h2 id="documentation-impact">Documentation Impact</h2>
+<p>This file holds 95 mappings. <code>CLAUDE.md</code>, <code>docs/PROJECT_FINDINGS.*</code>, <code>docs/RUNBOOK.md</code> and <code>skills/column_lineage_skill.md</code> still state that the inventory has 8 records (or 7) and that 87 <code>.param</code> columns are intentionally unmapped. Those statements no longer match this file; update them (and the validation checks that assert the count) before the next clean run.</p>
+<h2 id="not-covered">Not Covered</h2>
+<ul>
+<li>Only the account tenant and <code>DWACC</code> are in this inventory; the Enterprise extension is table-level and has no column counts here.</li>
+<li>The direct <code>ult_sf_acc</code> -&gt; <code>LOADACCOUNTS_INGEST</code> route lands only <code>payload</code> and <code>integration_timestamp</code>, so it contributes no named columns (gap GAP-02).</li>
+<li>Counts describe checked-in code and configuration, not objects confirmed in a live Snowflake catalog.</li>
+</ul></article><footer class="footer">Generated from repository Markdown. Graph pages are separate static artifacts. Repository-source references outside this bundle are shown as paths.</footer></main></body></html>

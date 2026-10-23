@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Generated Graph Query Skill · Lineage POC</title><style>
+:root{color-scheme:light;--ink:#193238;--green:#24794f;--deep:#183e33;--bg:#eef4f1;--panel:#fff;--line:#d6e1de;--muted:#62777b;--teal:#218b83;--blue:#397b9d;--purple:#7963a1;--amber:#c4893d;--coral:#d87968}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Segoe UI",sans-serif}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 24px;background:var(--deep);color:#fff}.top a{color:#fff;text-decoration:none;font-weight:750}.top small{color:#d9e9df}.shell{max-width:1240px;margin:0 auto;padding:24px}.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:0 0 18px}.intro{border-left:5px solid var(--green)}h1,h2,h3{line-height:1.25}h1{font-size:26px;margin:0 0 8px}h2{margin-top:28px;border-bottom:1px solid var(--line);padding-bottom:7px}h3{margin-top:22px}a{color:#176b58}a:hover{color:#0d4f40}table{display:block;width:100%;overflow:auto;border-collapse:collapse}th,td{padding:8px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e7f0e9}code{background:#edf3ef;padding:1px 4px;border-radius:3px}pre{overflow:auto;padding:14px;background:#183e33;color:#eef7f0;border-radius:6px}pre code{background:transparent;color:inherit;padding:0}blockquote{margin:12px 0;padding:10px 15px;border-left:4px solid var(--teal);background:#f4f8f6}img,svg{max-width:100%;height:auto}.meta{font-size:12px;color:var(--muted)}.repo-ref{border-bottom:1px dotted var(--amber);cursor:help}.repo-ref-path{color:var(--muted);font-size:11px;overflow-wrap:anywhere}.toc{padding:12px 16px;background:#f6f9f7;border:1px solid var(--line);border-radius:6px}.report-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;padding:0;list-style:none}.report-list a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff;text-decoration:none}.report-list a:hover{background:#eaf3eb}.footer{padding:20px 0;color:var(--muted);font-size:12px}@media(max-width:680px){.top{padding:14px}.shell{padding:14px}.panel{padding:14px}h1{font-size:22px}}
+</style></head>
+<body><header class="top"><a href="../../index.html">Data Lineage POC Reports</a><small>Static report bundle · no live systems queried</small></header><main class="shell"><article class="panel"><p class="meta">Source: <code>skills/graph_query_skill.md</code></p><h1>Generated Graph Query Skill</h1><h1 id="generated-graph-query-skill">Generated Graph Query Skill</h1>
+<h2 id="goal">Goal</h2>
+<p>Use the repository's generated lineage JSON through <code>query_graph.py</code> to find nodes, inspect relationships, trace semantic lineage, find shortest downstream paths, and look up column mappings. The tool emits JSON so results can be reused or inspected without changing the source graph.</p>
+<h2 id="inputs">Inputs</h2>
+<ul>
+<li>Default graph: <code>data-lineage-poc/output/account_table_lineage.json</code>.</li>
+<li>Other graph payloads: pass <code>--graph data-lineage-poc/output/table_lineage.json</code> or another generated graph JSON path.</li>
+<li>Default column mapping records: <code>data-lineage-poc/output/column_lineage.json</code>; override with <code>--columns PATH</code>.</li>
+<li>Run commands from the workspace root with Python 3.10 or later. The query tool uses only the Python standard library.</li>
+</ul>
+<h2 id="commands">Commands</h2>
+<pre><code class="language-powershell"># Search node IDs, types, properties, edge types and evidence
+python data-lineage-poc/query_graph.py --search &quot;ACCOUNT&quot;
+
+# Inspect one node and its incident edges
+python data-lineage-poc/query_graph.py --node &quot;basic:file:ACCOUNT&quot;
+
+# Trace semantic data flow, with edge confidence and direction notes on every hop
+python data-lineage-poc/query_graph.py --trace &quot;basic:file:ACCOUNT&quot; --direction downstream --depth 6
+python data-lineage-poc/query_graph.py --trace &quot;snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL&quot; --direction upstream --depth 6
+
+# Find the shortest semantic downstream path between exact node IDs
+python data-lineage-poc/query_graph.py --path &quot;airflow:task:accounts_v1_ingestion_v1:copy_s3_files_to_snowflake_task_for_dwacc&quot; &quot;snowflake:relation:RAW.ACCOUNTS_V1__ACCOUNTS&quot;
+
+# Look up column records by HVR parameter, Snowflake column, field ID or business-field label
+python data-lineage-poc/query_graph.py --column &quot;AltAccountName&quot;
+python data-lineage-poc/query_graph.py --column &quot;Alternative Account Name&quot;
+
+# Use a different graph or limit a broad search result
+python data-lineage-poc/query_graph.py --graph data-lineage-poc/output/table_lineage.json --search &quot;accounts_v1&quot; --limit 25
+</code></pre>
+<p>Choose exactly one query action: <code>--search</code>, <code>--node</code>, <code>--trace</code>, <code>--path</code>, or <code>--column</code>. Results are JSON on stdout; input and validation errors are JSON on stderr with a nonzero exit status.</p>
+<h2 id="named-query-functions">Named Query Functions</h2>
+<p>For Python callers, run from <code>data-lineage-poc/</code> and import the named helpers:</p>
+<pre><code class="language-python">from query_tools.tools import get_alias_chain, get_consumers, get_field_lineage
+
+field_path = get_field_lineage(&quot;Account&quot;)
+extract_consumers = get_consumers(&quot;DWACC&quot;)
+aliases = get_alias_chain(&quot;Account&quot;)
+</code></pre>
+<p>These return dictionaries with <code>nodes</code>, <code>edges</code>, <code>confidence</code>, and per-path details. <code>get_field_lineage</code> also returns matching column mapping records separately from graph paths; when a dbt target has no explicit graph bridge, it reports that gap instead of inventing an edge.</p>
+<h2 id="interpretation-rules">Interpretation Rules</h2>
+<ul>
+<li><code>--trace</code> and <code>--path</code> use semantic data-flow direction. <code>READS_FROM</code> and <code>DEPENDS_ON</code> are reversed relative to their stored edge direction; each hop reports <code>traversal</code> as <code>stored</code> or <code>reversed</code>.</li>
+<li><code>--node</code> preserves stored edge direction and also reports the semantic flow direction for each incident edge.</li>
+<li>A node with <code>properties.is_boundary_node=true</code> terminates traversal. A missing boundary flag is not a boundary.</li>
+<li>A path query returns the shortest directed semantic path, not every possible route. Run separate traces when a source has multiple branches.</li>
+<li>Keep direct HVR-to-Snowflake and S3/Airflow routes separate unless an explicit graph edge connects them. Do not invent bridges across missing evidence.</li>
+<li>Report each hop's confidence. Missing confidence is <code>unspecified</code>; <code>inferred</code> is not confirmed and its recorded edge properties should be included in the explanation.</li>
+<li>Graph traversal finds table-level relationships. For source-to-target column evidence, run <code>--column</code> and report each target projection independently; do not claim a graph edge proves column-level lineage.</li>
+<li>The tool reads generated snapshots only. It does not query live HVR, Airflow, dbt, or Snowflake state.</li>
+</ul>
+<h2 id="error-handling">Error Handling</h2>
+<ul>
+<li>If an exact node ID is unknown, run <code>--search</code> to discover the generated IDs; do not guess an ID from a label.</li>
+<li>If a query returns no path, report that no path is represented in this graph rather than inferring a connection.</li>
+<li>If a column selector returns multiple records, retain all matching target records and their distinct evidence.</li>
+<li>If input JSON is malformed or lacks the graph schema, stop and report the validation error; do not silently repair the graph.</li>
+</ul></article><footer class="footer">Generated from repository Markdown. Graph pages are separate static artifacts. Repository-source references outside this bundle are shown as paths.</footer></main></body></html>
