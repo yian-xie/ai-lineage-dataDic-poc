@@ -1,0 +1,83 @@
+{
+  "scope": "Nine selected account-related Ultracs output families with HVR parameter definitions: DWACC, DWREL, and the seven generated candidate inventories.",
+  "scope_note": "Counts are feed-field positions, not unique business concepts. Other account-adjacent outputs without a reviewed ordered HVR .param inventory are not counted. Three candidate feeds retain an unverified Landing Tenancy handoff.",
+  "field_positions_across_scoped_feeds": 222,
+  "distinct_parameter_labels_case_insensitive": 207,
+  "feed_fields_with_internal_dbt_target": 215,
+  "feed_fields_with_public_dbt_target": 129,
+  "dbt_target_projections_across_scoped_feeds": 409,
+  "feeds": {
+    "DWACC": {
+      "field_positions": 95,
+      "fields_with_internal_target": 95,
+      "fields_with_public_target": 59,
+      "dbt_target_projections": 179,
+      "source": "existing_generated_inventory",
+      "route_status": "repository_static_route_found"
+    },
+    "DWREL": {
+      "field_positions": 15,
+      "fields_with_internal_target": 11,
+      "fields_with_public_target": 11,
+      "dbt_target_projections": 42,
+      "source": "existing_generated_inventory",
+      "route_status": "ordinal_mapping_inferred"
+    },
+    "DWDBUST": {
+      "field_positions": 19,
+      "fields_with_internal_target": 19,
+      "fields_with_public_target": 19,
+      "dbt_target_projections": 57,
+      "source": "generated_candidate_inventory",
+      "route_status": "repository_static_route_found"
+    },
+    "DWTDS": {
+      "field_positions": 42,
+      "fields_with_internal_target": 40,
+      "fields_with_public_target": 40,
+      "dbt_target_projections": 80,
+      "source": "generated_candidate_inventory",
+      "route_status": "repository_static_route_found"
+    },
+    "DWACFEE": {
+      "field_positions": 19,
+      "fields_with_internal_target": 19,
+      "fields_with_public_target": 0,
+      "dbt_target_projections": 19,
+      "source": "generated_candidate_inventory",
+      "route_status": "repository_static_route_found"
+    },
+    "DWSWEEP": {
+      "field_positions": 7,
+      "fields_with_internal_target": 7,
+      "fields_with_public_target": 0,
+      "dbt_target_projections": 7,
+      "source": "generated_candidate_inventory",
+      "route_status": "repository_static_route_found"
+    },
+    "ACCREC_": {
+      "field_positions": 5,
+      "fields_with_internal_target": 5,
+      "fields_with_public_target": 0,
+      "dbt_target_projections": 5,
+      "source": "generated_candidate_inventory",
+      "route_status": "landing_handoff_unverified"
+    },
+    "DWNOMACC": {
+      "field_positions": 10,
+      "fields_with_internal_target": 9,
+      "fields_with_public_target": 0,
+      "dbt_target_projections": 10,
+      "source": "generated_candidate_inventory",
+      "route_status": "landing_handoff_unverified"
+    },
+    "DWUNCLD": {
+      "field_positions": 10,
+      "fields_with_internal_target": 10,
+      "fields_with_public_target": 0,
+      "dbt_target_projections": 10,
+      "source": "generated_candidate_inventory",
+      "route_status": "landing_handoff_unverified"
+    }
+  }
+}

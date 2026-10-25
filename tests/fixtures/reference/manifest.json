@@ -1,0 +1,117 @@
+{
+  "origin": "Provided pre-refactor snapshots; not a fresh source rebuild or new AI generation",
+  "application_commit_before_refactor": "25d238a76676fb3d23f43f8e42b0dbec9a57b071",
+  "source_repository_commits": null,
+  "input": {
+    "path": "inputs/column_lineage.json",
+    "sha256": "934c4ae6f3f5f830578a7f0ac5fb2f50e7be328d3859f027d64372d551135ef1",
+    "bytes": 394218
+  },
+  "artifacts": {
+    "lineage/account_column_inventory_summary.json": {
+      "original_path": "lineageGraph/04_output/account_column_inventory_summary.json",
+      "sha256": "519aae6719bdf20041a4bdffaa65b51622f7c46163ac7b160cb6201237dd0270",
+      "bytes": 3170
+    },
+    "lineage/account_enterprise_lineage.json": {
+      "original_path": "lineageGraph/04_output/account_enterprise_lineage.json",
+      "sha256": "87ea3198a3fbc3dcbe260232b3f5de275ba7c0f869b9409606abe5ada0d46045",
+      "bytes": 886102
+    },
+    "lineage/account_table_lineage.json": {
+      "original_path": "lineageGraph/04_output/account_table_lineage.json",
+      "sha256": "a3c59f422cbdf6905ddf072b049517805296592aa24f2f75e4fc8e5a2d6d3c41",
+      "bytes": 378785
+    },
+    "lineage/accrec_column_lineage.json": {
+      "original_path": "lineageGraph/04_output/accrec_column_lineage.json",
+      "sha256": "f3b42ef712407ec661b874c920b98147be21ca78b1d726123e90f4af3a9ccaf3",
+      "bytes": 21088
+    },
+    "lineage/column_lineage.json": {
+      "original_path": "lineageGraph/04_output/column_lineage.json",
+      "sha256": "934c4ae6f3f5f830578a7f0ac5fb2f50e7be328d3859f027d64372d551135ef1",
+      "bytes": 394218
+    },
+    "lineage/dwacfee_column_lineage.json": {
+      "original_path": "lineageGraph/04_output/dwacfee_column_lineage.json",
+      "sha256": "59598e4c022ad50a0670bb4734024f1e263e4d7702fed2cf243f8e7a0a228c26",
+      "bytes": 85226
+    },
+    "lineage/dwdbust_column_lineage.json": {
+      "original_path": "lineageGraph/04_output/dwdbust_column_lineage.json",
+      "sha256": "577b7a52735d4143432217e28be3511a8560e1296ff6d131edcb791eb3e2439f",
+      "bytes": 132637
+    },
+    "lineage/dwnomacc_column_lineage.json": {
+      "original_path": "lineageGraph/04_output/dwnomacc_column_lineage.json",
+      "sha256": "a7a867f365e6843960ec348eca5c299de4b39ed4080887f2b9a7228dd1cfe3c5",
+      "bytes": 43256
+    },
+    "lineage/dwrel_column_lineage.json": {
+      "original_path": "lineageGraph/04_output/dwrel_column_lineage.json",
+      "sha256": "4543716c12bcea64bbfda1b493e3d943f05b974cfc8b0014ab8fd4fef34883a3",
+      "bytes": 94764
+    },
+    "lineage/dwrel_table_lineage.json": {
+      "original_path": "lineageGraph/04_output/dwrel_table_lineage.json",
+      "sha256": "807b7c2a28eb19dd5defcba2e7f30c7f5562abd1245ca5f46e7d2790ab9e196a",
+      "bytes": 97572
+    },
+    "lineage/dwsweep_column_lineage.json": {
+      "original_path": "lineageGraph/04_output/dwsweep_column_lineage.json",
+      "sha256": "285170268b0756fa8d26da4bc24ae7a9bd4ce3eba0f2fe9bc5aaa6b04b844bac",
+      "bytes": 29745
+    },
+    "lineage/dwtds_column_lineage.json": {
+      "original_path": "lineageGraph/04_output/dwtds_column_lineage.json",
+      "sha256": "3fa1419bdd74a4ae498ca518d9516d4364e824079ac3230b09395dcf311ad4bc",
+      "bytes": 210375
+    },
+    "lineage/dwuncld_column_lineage.json": {
+      "original_path": "lineageGraph/04_output/dwuncld_column_lineage.json",
+      "sha256": "90a7d0b856b712a631131d7adb1b94730ef755bc9b40791f2d54f66fcb15947b",
+      "bytes": 44930
+    },
+    "lineage/hvr_param_metadata.json": {
+      "original_path": "lineageGraph/04_output/hvr_param_metadata.json",
+      "sha256": "5280429f95f9573ba4442cc0f49d192fddfce470ca964ea746c58674454cad3c",
+      "bytes": 17141
+    },
+    "lineage/table_lineage.json": {
+      "original_path": "lineageGraph/04_output/table_lineage.json",
+      "sha256": "02e0c2866ead3c77b198954248550854c738410263dbdec84819459e7f17b821",
+      "bytes": 3648262
+    },
+    "dictionary/baseline/asset_registry.csv": {
+      "original_path": "dataDic/03-output/01-baseline/asset_registry.csv",
+      "sha256": "ed347fd3dddc42cb60ff2f17ed3e661bfdd28b2c1bbcf73f0af6baff513b86a5",
+      "bytes": 40521
+    },
+    "dictionary/baseline/data_dictionary.csv": {
+      "original_path": "dataDic/03-output/01-baseline/data_dictionary.csv",
+      "sha256": "e2cd225ffb7c0d8ab7e0effafff65966b5a6da5407f112536f984a6b59476d43",
+      "bytes": 10534057
+    },
+    "dictionary/baseline/field_catalog.csv": {
+      "original_path": "dataDic/03-output/01-baseline/field_catalog.csv",
+      "sha256": "0ea8f0de60d824a7c97f68cece5ed2c96227d4b6ea580b34f327a6905200226e",
+      "bytes": 3708333
+    },
+    "dictionary/ai-enriched/asset_registry.csv": {
+      "original_path": "dataDic/03-output/02-ai-enriched/asset_registry.csv",
+      "sha256": "ed347fd3dddc42cb60ff2f17ed3e661bfdd28b2c1bbcf73f0af6baff513b86a5",
+      "bytes": 40521
+    },
+    "dictionary/ai-enriched/data_dictionary.csv": {
+      "original_path": "dataDic/03-output/02-ai-enriched/data_dictionary.csv",
+      "sha256": "c13a9fd66d6f633a5c7f0a5770a398bedd4744598ba96e1acb504d98a1460d99",
+      "bytes": 14449683
+    },
+    "dictionary/ai-enriched/field_catalog.csv": {
+      "original_path": "dataDic/03-output/02-ai-enriched/field_catalog.csv",
+      "sha256": "7e294fe3c24da377d962a42699a0879400ff7f2e8d31bbf9cc572cf6e3afbf4e",
+      "bytes": 5189042
+    }
+  }
+}

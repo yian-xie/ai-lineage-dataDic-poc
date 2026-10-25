@@ -1,0 +1,16 @@
+{
+  "changes": [{
+    "add_channel": {
+      "channel": "fixture_s3",
+      "description": "Static fixture — no live service",
+      "loc_groups": {
+        "SOURCE": {"members": ["fs_ultracs"]},
+        "TARGET": {"members": ["s3_hvrf"]}
+      },
+      "actions": [
+        {"type": "Capture", "params": {"Pattern": "DWACC[0-9][0-9][A-Z].TXT"}},
+        {"type": "Integrate", "params": {"RenameExpression": "/hvr/ultracs/dwacc/{filename}"}}
+      ]
+    }
+  }]
+}

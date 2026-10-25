@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACCESSNO Landing Lineage Test</title>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style>
+:root{{--ink:#1e302e;--muted:#596b68;--line:#d5dfdc;--paper:#fbfcfa;--wash:#edf3f0;--teal:#176b62;--amber:#a96816;--red:#a74742}}
+*{{box-sizing:border-box}}body{{margin:0;background:var(--wash);color:var(--ink);font:14px/1.5 "Segoe UI",Tahoma,sans-serif}}
+header,main,footer{{max-width:1280px;margin:auto}}header{{padding:26px 28px 18px;background:var(--paper);border-top:5px solid var(--teal)}}h1{{font:700 30px/1.2 Georgia,"Times New Roman",serif;margin:0 0 8px}}h2{{font:700 19px Georgia,"Times New Roman",serif;margin:0 0 9px}}p{{margin:6px 0;color:var(--muted)}}
+.eyebrow{{font-size:11px;color:var(--teal);font-weight:800;text-transform:uppercase}}.field{{margin-top:13px;padding:11px 13px;background:#e7f1ec;border-left:4px solid var(--teal)}}.field strong{{color:var(--ink)}}main{{padding:20px 28px 34px}}.layout{{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:14px}}#network{{height:570px;background:var(--paper);border:1px solid var(--line)}}aside{{padding:15px;background:var(--paper);border:1px solid var(--line);overflow-wrap:anywhere}}aside h2{{margin-top:0}}#details{{white-space:pre-wrap;color:var(--muted);font-size:12px}}
+.boundary{{margin-top:14px;padding:13px 15px;background:#fff8ec;border-left:4px solid var(--amber)}}.boundary p,.boundary li{{font-size:12px;color:#5d513e}}.boundary ul{{padding-left:20px;margin:8px 0 0}}.status{{font-size:11px;font-weight:800;color:var(--red);text-transform:uppercase}}footer{{padding:0 28px 24px;color:var(--muted);font-size:11px}}
+@media(max-width:800px){{header,main{{padding-left:14px;padding-right:14px}}.layout{{grid-template-columns:1fr}}#network{{height:62vh;min-height:420px}}}}
+@media print{{body{{background:#fff}}.layout{{grid-template-columns:1fr}}#network{{height:500px}}aside{{display:none}}}}
+</style></head><body>
+<header><div class="eyebrow">Isolated one-column trial · ultracs-v1 only</div><h1>Account number: ACCESSNO</h1>
+<p>Example field through BASIC, HVR, tenant landing, and account tenant. The selected Enterprise extension was checked for continuation.</p>
+<div class="field"><strong>Field evidence:</strong> __SUMMARY__</div></header>
+<main><div class="layout"><div id="network" aria-label="ACCESSNO lineage graph"></div><aside><h2>Selected object</h2><div id="details">Select a graph node or relationship to inspect its evidence and provenance.</div></aside></div>
+<section class="boundary"><div class="status">Candidate joins · not graph edges</div><p>The diagram keeps these relation identities disconnected until database/schema identity is confirmed.</p><ul>__CANDIDATES__</ul><p>Enterprise check: no selected Enterprise node or relationship references this field or feeexemption model.</p></section>
+<section class="boundary"><h2>Gap check</h2><pre>__EXPLANATION__</pre></section></main>
+<footer>Static repository evidence only. No HVR, Airflow, Snowflake, or dbt runtime was queried. ACCESSNO is the single selected column for this test.</footer>
+<script type="application/json" id="graph-data">__GRAPH_JSON__</script>
+<script>
+const payload=JSON.parse(document.getElementById('graph-data').textContent);
+const nodes=payload.nodes.map(n=>({id:n.id,label:n.properties.name||n.properties.table_name||n.id,shape:'box',margin:10,color:{background:({PROGRAM:'#d28a32',MV_FILE:'#39818b',EXTRACT_FILE:'#d28a32',HVR_CHANNEL:'#8d6aa4',SNOWFLAKE_RELATION:'#4b7794',DBT_SOURCE:'#338477',DBT_MODEL:'#338477',CDP_PRODUCT:'#627f71'})[n.type]||'#81908c',border:'#455c57'},font:{face:'Segoe UI',size:12,color:'#183238'},title:n.properties.html_description+'
+['+n.properties.html_description_origin+']'}));
+const edges=payload.edges.map((e,i)=>({id:String(i),from:e.source,to:e.target,label:'',arrows:'to',dashes:e.properties.confidence==='inferred',color:{color:e.properties.confidence==='inferred'?'#b27a2a':'#859692'},title:e.type+' · '+(e.properties.confidence||'unspecified')+'
+'+e.properties.html_description+'
+['+e.properties.html_description_origin+']'}));
+const network=new vis.Network(document.getElementById('network'),{nodes:new vis.DataSet(nodes),edges:new vis.DataSet(edges)},{interaction:{hover:true,navigationButtons:true,keyboard:true},physics:{stabilization:{iterations:180},barnesHut:{gravitationalConstant:-7000,springLength:170,springConstant:.035}},edges:{smooth:{type:'dynamic'},font:{size:10,align:'middle'}},nodes:{font:{multi:true}}});
+const details=document.getElementById('details');
+network.on('selectNode',event=>{const node=payload.nodes.find(n=>n.id===event.nodes[0]);details.textContent=JSON.stringify({id:node.id,type:node.type,properties:node.properties},null,2);});
+network.on('selectEdge',event=>{const edge=payload.edges[Number(event.edges[0])];details.textContent=JSON.stringify({source:edge.source,type:edge.type,target:edge.target,properties:edge.properties},null,2);});
+network.on('deselectNode',()=>{details.textContent='Select a graph node or relationship to inspect its evidence and provenance.';});
+network.once('stabilizationIterationsDone',()=>network.fit({animation:{duration:350}}));
+</script></body></html>

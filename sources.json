@@ -1,0 +1,21 @@
+{
+  "source_root": "../source-repos",
+  "repositories": [
+    {
+      "name": "kb-ultracs-datawarehouse",
+      "url": "https://github.com/Kiwibank/kb-ultracs-datawarehouse.git"
+    },
+    {
+      "name": "kb-cdp-hvr",
+      "url": "https://github.com/Kiwibank/kb-cdp-hvr.git"
+    },
+    {
+      "name": "kb-cdp-tenant-account",
+      "url": "https://github.com/Kiwibank/kb-cdp-tenant-account.git"
+    },
+    {
+      "name": "kb-cdp-tenant-enterprise",
+      "url": "https://github.com/Kiwibank/kb-cdp-tenant-enterprise.git"
+    }
+  ]
+}
