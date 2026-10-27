@@ -95,6 +95,10 @@ python -B -m lineage_poc enrichment prepare --input .\output\05-baseline-diction
 Clone only configured missing repositories. Never pull, reset or overwrite
 existing checkout work automatically. Missing access must remain an explicit
 blocker. A first run does not require existing generated CSVs or draft files.
+The default checkout location is `source-repos` **inside this application
+folder**, as configured in `sources.json`. Do not create another sibling
+`source-repos` outside the application. Preserve explicit user-provided location
+overrides and keep nested source checkouts out of the application's Git tracking.
 
 All step results go under the single `output` folder. Each step retains its
 latest files; diagnostics and integrity records are under `output\logs`.

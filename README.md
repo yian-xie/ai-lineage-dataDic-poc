@@ -14,15 +14,26 @@ does not create another run/attempt directory tree.
 README.md                    Setup, steps and how to use the result
 pyproject.toml               Python package and dependencies
 sources.json                 Four GitHub repositories and checkout location
+source-repos\                Local Git checkouts (ignored by this repository)
+  kb-ultracs-datawarehouse\
+  kb-cdp-hvr\
+  kb-cdp-tenant-account\
+  kb-cdp-tenant-enterprise\
 .github\skills\              Lineage, dictionary and AI-description instructions
 src\lineage_poc\              Working parsers, builders and viewer code
 tests\                       Tests and required regression fixtures
 output\                      All step outputs, logs and the final HTML
 ```
 
-The four source checkouts are kept outside this application's Git repository,
-in the sibling `source-repos` folder by default. Their URLs are in
-[sources.json](./sources.json). No production credentials are required.
+The source checkouts live **inside this application folder**, under
+`ai-lineage-dataDic-poc\source-repos`. Each keeps its own Git history, but the
+entire folder is excluded from the application's Git tracking. Their URLs and
+location are configured in [sources.json](./sources.json). No production
+credentials are required.
+
+The configured location is relative to that configuration file, not to the
+terminal's working directory. `--source-root` or `LINEAGE_SOURCE_ROOT` can still
+select another explicit checkout location when needed.
 
 ## Install
 

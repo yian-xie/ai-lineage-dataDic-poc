@@ -1,5 +1,5 @@
 {
-  "source_root": "../source-repos",
+  "source_root": "source-repos",
   "repositories": [
     {
       "name": "kb-ultracs-datawarehouse",
