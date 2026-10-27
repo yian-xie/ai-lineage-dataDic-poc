@@ -1,6 +1,7 @@
 """Prepare evidence for the active assistant, then validate/apply its drafts.
 
-No sentence templates, model calls, repository reads, or implicit HTML builds.
+These prepare/apply APIs make no model calls. Explicit Copilot authoring lives
+in enrichment.copilot; no sentence templates or implicit HTML builds are used.
 """
 from __future__ import annotations
 
@@ -138,7 +139,7 @@ def _unchanged_inputs(input_dir, hashes):
             'Input bundle changed; stale hashes require fresh context and assistant drafts')
 
 
-def _drafts(payload, tables):
+def _drafts(payload, tables, *, expected_ids=None):
     keys = {'schema_version', 'rubric_id', 'input_hashes', 'run_id', 'generator', 'model',
             'generated_at', 'results'}
     require(isinstance(payload, dict) and set(payload) == keys, 'Unsupported drafts.json top-level contract')
@@ -153,6 +154,10 @@ def _drafts(payload, tables):
     require(isinstance(payload['results'], list), 'Draft results must be an array')
     all_fields = tables['field_catalog.csv'].index()
     expected = {key for key, (row, _) in all_fields.items() if eligible(row)}
+    if expected_ids is not None:
+        require(isinstance(expected_ids, set) and expected_ids <= expected,
+                'Batch identities must refer only to eligible missing Ultracs fields')
+        expected = expected_ids
     results = {}
     for result in payload['results']:
         require(isinstance(result, dict), 'Each draft result must be an object')

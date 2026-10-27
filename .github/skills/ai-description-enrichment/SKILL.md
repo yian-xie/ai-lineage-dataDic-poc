@@ -11,10 +11,21 @@ The **active assistant** authors each new description after examining exact
 field-specific evidence. This is not a deterministic description generator or
 a name-to-sentence lookup. Python prepares context, verifies references and
 arithmetic, applies accepted drafts and validates preservation. It does not
-call external AI APIs, require credentials, or substitute templated prose.
+substitute templated prose. Explicit `enrichment generate` and pipeline
+`--full-run` modes invoke the user's configured Copilot CLI; the user manages
+all sign-ins manually. No alternative AI provider is called.
 
 Run this workflow only when enrichment is requested. Creating the skill or
 running `prepare` does **not** generate descriptions.
+
+For the complete workflow from a fresh start:
+
+```powershell
+python -B -m lineage_poc pipeline --clone --full-run
+```
+
+This includes new Copilot authoring, validation, application and the final
+combined HTML. Do not claim a completed run if AI execution fails.
 
 Read [the scoring rubric](./references/scoring-rubric.md),
 [the drafts contract](./references/drafts-contract.md) and
@@ -53,6 +64,20 @@ IDs and bounded useful evidence for **eligible fields only**. Large values are
 omitted with a reason, never truncated. This step produces no draft prose.
 
 ## Step 2 — active assistant authors drafts.json
+
+To have the configured Copilot CLI perform authoring automatically:
+
+```powershell
+python -B -m lineage_poc enrichment generate --input .\output\05-baseline-dictionary --context .\output\06a-enrichment-context
+```
+
+The runner supplies this skill, its references and bounded contexts in batches,
+with no tool access. It records new drafts, actual attribution/time, raw
+responses and diagnostics. Every batch and the combined draft file must pass
+the strict contract before application. A failed/invalid response stops the
+pipeline; never silently replace it with old prose or `needs_evidence`.
+
+The instructions below also apply to manual assistant authoring:
 
 Read each eligible context and, where needed, exact cells in the unchanged
 input CSVs. Treat repository paths as reported claims, not proof of source or

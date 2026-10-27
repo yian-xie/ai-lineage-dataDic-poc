@@ -12,6 +12,10 @@ separate from dictionary operation and description assessments.
 
 ## Steps
 
+To run all steps, including new AI descriptions, use
+`python -B -m lineage_poc pipeline --clone --full-run` after manual sign-in.
+This coordinator calls the same independently testable steps below.
+
 1. `sources --clone`: download missing configured repositories or verify existing
    checkouts. Never pull, reset or overwrite local work automatically.
 2. `parse`: read BASIC, HVR, Airflow, dbt and migrations as data, never as code
@@ -22,6 +26,8 @@ separate from dictionary operation and description assessments.
    generate the three baseline CSVs.
 6. Follow [the AI enrichment skill](../ai-description-enrichment/SKILL.md)
    when missing Ultracs descriptions need authoring and evidence assessment.
+   `enrichment generate` invokes the configured Copilot CLI; `prepare` and
+   `apply` remain available without model calls.
 7. Validate preservation, then run `html` to produce one report with both the
    lineage graph and data dictionary.
 

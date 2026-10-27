@@ -17,7 +17,7 @@ from .paths import OUTPUT_ROOT, PROJECT_ROOT
 STAGES = {
     "sources": "01-sources", "parse": "02-parsing", "graphs": "03-lineage-graphs",
     "columns": "04-column-lineage", "dictionary": "05-baseline-dictionary",
-    "prepare": "06a-enrichment-context", "apply": "06c-ai-enrichment",
+    "prepare": "06a-enrichment-context", "generate": "06b-ai-drafts", "apply": "06c-ai-enrichment",
     "validate": "07-validation", "html": "08-html",
 }
 
@@ -42,6 +42,18 @@ def _enrichment(args: argparse.Namespace) -> dict:
     if args.action == "prepare":
         return _record(args, "prepare", [args.input],
                        lambda output: prepare_context(args.input, output))
+    if args.action == "generate":
+        from .enrichment.copilot import generate_drafts, guidance_paths
+
+        return _record(
+            args, "generate", [args.input, args.context, *guidance_paths()],
+            lambda output: generate_drafts(
+                args.input, args.context, output, executable=args.copilot_path,
+                model=args.ai_model, timeout=args.ai_timeout,
+            ),
+            {"copilot_path": str(args.copilot_path) if args.copilot_path else None,
+             "model": args.ai_model, "batch_timeout_seconds": args.ai_timeout},
+        )
     return _record(args, "apply", [args.input, args.drafts],
                    lambda output: apply_drafts(args.input, args.drafts, output))
 
@@ -199,6 +211,12 @@ def build_parser() -> argparse.ArgumentParser:
     source_options = argparse.ArgumentParser(add_help=False)
     source_options.add_argument("--config", type=Path, default=PROJECT_ROOT / "sources.json")
     source_options.add_argument("--source-root", type=Path, help="Existing or requested source-checkout parent")
+    ai_options = argparse.ArgumentParser(add_help=False)
+    ai_options.add_argument("--copilot-path", type=Path,
+                            help="Copilot executable; default: LINEAGE_COPILOT_PATH or copilot on PATH")
+    ai_options.add_argument("--ai-model", help="Optional Copilot model; default: your configured CLI model")
+    ai_options.add_argument("--ai-timeout", type=int, default=600,
+                            help="Maximum seconds per AI batch (default: 600)")
 
     command = subcommands.add_parser("sources", parents=[recorded, source_options],
                                      help="Verify or clone explicitly configured source repositories")
@@ -224,13 +242,16 @@ def build_parser() -> argparse.ArgumentParser:
     command.add_argument("--input", type=Path, required=True)
     command.add_argument("--graph-id")
     command.set_defaults(handler=_dictionary)
-    enrichment = subcommands.add_parser("enrichment", help="Prepare AI context or apply saved assistant drafts")
+    enrichment = subcommands.add_parser("enrichment", help="Prepare context, generate new Copilot drafts, or apply saved drafts")
     actions = enrichment.add_subparsers(dest="action", required=True)
-    for action in ("prepare", "apply"):
-        command = actions.add_parser(action, parents=[recorded])
+    for action in ("prepare", "generate", "apply"):
+        command = actions.add_parser(action, parents=[recorded, ai_options] if action == "generate" else [recorded])
         command.add_argument("--input", type=Path, required=True)
         if action == "apply":
             command.add_argument("--drafts", type=Path, required=True)
+        if action == "generate":
+            command.add_argument("--context", type=Path, required=True,
+                                help="Prepared context directory from the matching baseline")
         command.set_defaults(handler=_enrichment)
     command = subcommands.add_parser("validate", parents=[recorded], help="Check bundle contracts and optional baseline preservation")
     command.add_argument("--input", type=Path, required=True)
@@ -260,12 +281,14 @@ def build_parser() -> argparse.ArgumentParser:
     command.add_argument("--depth", type=int, default=6)
     command.add_argument("--limit", type=int, default=100)
     command.set_defaults(handler=_query)
-    command = subcommands.add_parser("pipeline", parents=[recorded, source_options],
-                                     help="Connect the same steps; stop explicitly when AI drafts are needed")
+    command = subcommands.add_parser("pipeline", parents=[recorded, source_options, ai_options],
+                                     help="Run the workflow; --full-run also authors new descriptions with Copilot")
     command.add_argument("--clone", action="store_true")
     command.add_argument("--inventory", type=Path, help="Start from a supplied inventory instead of rebuilding source lineage")
     command.add_argument("--graphs", type=Path, help="Existing graphs when starting from --inventory")
     ai_result = command.add_mutually_exclusive_group()
+    ai_result.add_argument("--full-run", action="store_true",
+                           help="Generate new Ultracs descriptions with Copilot, apply/validate them and build HTML")
     ai_result.add_argument("--drafts", type=Path, help="Apply explicit assistant-authored draft JSON")
     ai_result.add_argument("--enriched", type=Path, help="Replay an existing enriched bundle after preservation validation")
     command.set_defaults(handler=_pipeline)
@@ -282,6 +305,12 @@ def main(argv: list[str] | None = None) -> int:
             raise ValueError("--depth must be at least 1.")
         if hasattr(args, "limit") and args.limit < 1:
             raise ValueError("--limit must be at least 1.")
+        if hasattr(args, "ai_timeout") and args.ai_timeout < 1:
+            raise ValueError("--ai-timeout must be at least 1 second.")
+        if hasattr(args, "full_run") and not args.full_run and (
+            args.copilot_path is not None or args.ai_model is not None or args.ai_timeout != 600
+        ):
+            raise ValueError("AI runner options require pipeline --full-run.")
         result = args.handler(args)
         if result.get("error"):
             raise ValueError(str(result["error"]))

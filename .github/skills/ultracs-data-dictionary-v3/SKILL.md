@@ -47,7 +47,9 @@ files and appends diagnostics under `output\logs`. Use the printed paths.
    repository **ai-description-enrichment** skill. Its prepare step makes
    bounded, hash-bound context; the **active assistant** authors and assesses
    each draft, or records `needs_evidence`; application validates those decisions.
-   Python never substitutes a sentence template or calls an external AI API.
+   Python never substitutes a sentence template. Explicit `enrichment generate`
+   or pipeline `--full-run` invokes the user's configured Copilot CLI; generation
+   is not hidden inside the deterministic dictionary step.
    Existing descriptions and unrelated lineage evidence remain untouched.
 
 4. Validate the resulting enriched bundle against its original bundle:

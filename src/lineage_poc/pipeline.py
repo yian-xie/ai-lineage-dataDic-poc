@@ -44,7 +44,13 @@ def _run_pipeline(args: argparse.Namespace) -> dict:
         columns = run(cli._columns, input=None, parsed=parsed, graphs=graphs, feed="DWACC")
     baseline = run(cli._dictionary, input=columns / "column_lineage.json", graph_id=None)
     context = run(cli._enrichment, action="prepare", input=baseline)
-    if args.drafts:
+    if args.full_run:
+        generated = run(
+            cli._enrichment, action="generate", input=baseline, context=context,
+            copilot_path=args.copilot_path, ai_model=args.ai_model, ai_timeout=args.ai_timeout,
+        )
+        enriched = run(cli._enrichment, action="apply", input=baseline, drafts=generated / "drafts.json")
+    elif args.drafts:
         enriched = run(cli._enrichment, action="apply", input=baseline, drafts=args.drafts)
     elif args.enriched:
         from .validation.bundle import validate_bundle
@@ -65,7 +71,8 @@ def _run_pipeline(args: argparse.Namespace) -> dict:
             "status": "awaiting_ai_drafts", "run_id": args.run_id, "steps": steps,
             "baseline": str(baseline), "context": str(context),
             "next_action": "Follow .github\\skills\\ai-description-enrichment\\SKILL.md to author "
-                           "drafts from this exact context, then run enrichment apply, validate and html.",
+                           "drafts from this exact context, or rerun with --full-run for automatic "
+                           "Copilot authoring, validation and HTML.",
             "note": "No model API was called, no generated prose was substituted, and nothing was published.",
         }
         write_json(args.runs_root / "pipeline.json", report)
@@ -74,6 +81,7 @@ def _run_pipeline(args: argparse.Namespace) -> dict:
     html = run(cli._html, input=enriched, baseline=baseline, graphs=graphs,
                columns=columns if graphs else None, selector=None)
     report = {"status": "passed", "run_id": args.run_id, "steps": steps,
+              "description_mode": "copilot" if args.full_run else "saved_drafts" if args.drafts else "saved_bundle",
               "html": str(html / "index.html")}
     write_json(args.runs_root / "pipeline.json", report)
     return report

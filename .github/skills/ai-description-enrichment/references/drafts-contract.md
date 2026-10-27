@@ -25,7 +25,10 @@ results: one decision per canonical eligible scoped ID
 No name joins, CSV line numbers, implicit default decisions or partial batches.
 All eligible fields must have either a draft or an explicit `needs_evidence`
 decision. Nonempty descriptions and out-of-scope IDs cannot be submitted.
-No external API is invoked.
+Manual draft application invokes no AI service. The explicit `generate` or
+pipeline `--full-run` mode calls the user's Copilot CLI. It validates each
+bounded authoring batch and combines accepted results before application;
+partial batches alone are not a complete draft file.
 
 ## Draft result
 

@@ -37,6 +37,49 @@ Git uses your existing GitHub sign-in. Do not put passwords or tokens in
 configuration files. Existing source checkouts are never automatically pulled,
 reset or overwritten.
 
+## Full end-to-end run with one command
+
+After you have installed and manually signed in to Git and the official
+**GitHub Copilot CLI**, run:
+
+```powershell
+python -B -m lineage_poc pipeline --clone --full-run
+```
+
+This works without any previous local outputs or saved descriptions. It runs:
+
+**Download/verify repositories > parse > lineage graphs > column-lineage JSON >
+baseline CSVs > prepare evidence > generate new Ultracs descriptions with Copilot >
+validate and apply drafts > validate the enriched bundle > combined HTML.**
+
+Open **`output\08-html\index.html`** when the result reports `status: passed`.
+All intermediate files and logs stay under the same `output` folder.
+
+- You manage sign-in yourself. The application never installs Copilot, requests
+  tokens, signs you in, or changes your credentials.
+- `--clone` downloads missing repositories; it does not pull updates into
+  existing checkouts.
+- `--full-run` invokes Copilot for **new** missing descriptions and evidence
+  assessments. It uses your Copilot access and model quota; only use it with
+  organization-approved metadata and accounts.
+- Copilot receives the enrichment skill and bounded field evidence in batches.
+  It does not get shell, file-editing or repository tools. Python validates the
+  returned JSON, exact evidence, scores and preservation before applying it.
+- If generation fails, times out or returns invalid data, the pipeline fails
+  explicitly. It never silently reuses old descriptions, substitutes template
+  prose or replaces the previous good final HTML.
+- If evidence cannot support a description, Copilot must record an explicit
+  `needs_evidence` result instead of inventing one.
+
+The default executable is `copilot` on PATH. If that resolves to a VS Code
+launcher rather than the installed CLI, set `LINEAGE_COPILOT_PATH` or pass
+`--copilot-path` with the full approved executable path. Optional `--ai-model`
+chooses a model; otherwise your Copilot configuration applies. `--ai-timeout`
+sets the timeout per batch in seconds (default: 600).
+
+The separate commands below are still available for checking or rerunning a
+specific step.
+
 ## Processing steps
 
 ### 1. Download or verify the four repositories
@@ -92,13 +135,22 @@ This step preserves supplied descriptions. It does not generate AI prose.
 python -B -m lineage_poc enrichment prepare --input .\output\05-baseline-dictionary
 ```
 
-The context is saved in `output\06a-enrichment-context`. Ask the active assistant
-to follow [the AI enrichment skill](./.github/skills/ai-description-enrichment/SKILL.md)
-and write **`output\06b-ai-drafts\drafts.json`** using that context.
+The context is saved in `output\06a-enrichment-context`. Generate new descriptions
+using Copilot and [the AI enrichment skill](./.github/skills/ai-description-enrichment/SKILL.md):
 
-The assistant authors one-or-two-sentence drafts and evidence assessments.
+```powershell
+python -B -m lineage_poc enrichment generate --input .\output\05-baseline-dictionary --context .\output\06a-enrichment-context
+```
+
+The assistant authors one-or-two-sentence drafts and evidence assessments,
+saved in **`output\06b-ai-drafts\drafts.json`**.
 Existing descriptions stay unchanged. Python prepares and checks the data;
-it does not silently generate template descriptions or call an external model.
+it does not generate template prose. Only the explicitly requested `generate`
+or `--full-run` mode invokes the Copilot CLI.
+
+Alternatively, ask the active assistant to follow the same skill and author
+that draft file manually. You do not need to use the automated runner for
+manual draft preparation or application.
 
 Apply the saved drafts:
 
@@ -199,20 +251,23 @@ quote it, for example `--selector "Account ID" "Account Opened Date"`.
 The HTML page's search box filters the current view only. It does not create a
 new file; use the commands above to save a separate column-focused report.
 
-## One-command workflow
+## Other pipeline modes
 
 ```powershell
 python -B -m lineage_poc pipeline --clone
 ```
 
-This runs the preparation steps and stops at the AI handoff with
+Without `--full-run`, `--drafts` or `--enriched`, this runs the preparation steps
+and stops at the manual AI handoff with
 `status: awaiting_ai_drafts` and exit code **3**. After authoring drafts, run the
 remaining steps above, or rerun with `--drafts .\output\06b-ai-drafts\drafts.json`.
 Stale drafts are rejected if the baseline changed.
 
-For regression verification only, `--enriched` can explicitly reuse the saved
-bundle under `tests\fixtures\reference\dictionary\ai-enriched`. That is reuse of
-previous drafts, not a new AI-generation run.
+Use exactly one of `--full-run`, `--drafts` and `--enriched`. The latter two
+explicitly reuse saved work; they do not generate new descriptions.
+For regression verification, `--enriched` can reuse the saved bundle under
+`tests\fixtures\reference\dictionary\ai-enriched`, but it must match the new
+baseline. A first fresh full run should use **`--clone --full-run`**.
 
 ## Find results and debug
 
@@ -239,6 +294,12 @@ input and rerun that step. Failed partial results are retained as a compact debu
 archive when present. A failed rerun restores the previous good files; it does
 not turn partial data into a successful result.
 
+The automatic authoring stage also saves `generation.json` and each batch's
+prompt, raw response, diagnostics and validated JSON under `output\06b-ai-drafts`.
+They contain dictionary evidence, so keep them within approved internal access.
+On a failed stage, partial files are retained in the step's debug ZIP under
+`output\logs`. A failed Copilot batch is not converted into `needs_evidence`.
+
 Use `--output-dir PATH` to put **all** results in another folder.
 There are no automatic historical output copies. Save a copy of `output`
 yourself if you need to keep an older complete result.
@@ -252,6 +313,8 @@ python -B -m pytest -q
 Fixtures test the stages without model calls. Source integration uses the four
 configured checkouts; optional tenant-landing checks are skipped if that
 additional repository is unavailable.
+Automated-generation tests use a controlled runner fixture; they do not consume
+Copilot quota or prove that a particular account is signed in.
 
 With Edge installed, an optional real-browser check can also verify the final
 graph, dictionary tabs and export when organization policy permits automation:
