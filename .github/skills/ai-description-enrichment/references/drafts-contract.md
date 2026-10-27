@@ -25,10 +25,11 @@ results: one decision per canonical eligible scoped ID
 No name joins, CSV line numbers, implicit default decisions or partial batches.
 All eligible fields must have either a draft or an explicit `needs_evidence`
 decision. Nonempty descriptions and out-of-scope IDs cannot be submitted.
-Manual draft application invokes no AI service. The explicit `generate` or
-pipeline `--full-run` mode calls the user's Copilot CLI. It validates each
-bounded authoring batch and combines accepted results before application;
-partial batches alone are not a complete draft file.
+The current VS Code Copilot Chat assistant authors the decisions. Python
+records and applies the complete validated payload; it calls no AI service or
+separate CLI. Partial authoring batches alone are not a complete draft file.
+Write pending decisions to `output\assistant-drafts.json`, then use
+`enrichment record` before applying the accepted stage file.
 
 ## Draft result
 

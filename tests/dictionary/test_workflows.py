@@ -10,7 +10,7 @@ import pytest
 from lineage_poc.dictionary.io import CSV_FILES, digest_file, equal, read_tables
 from lineage_poc.dictionary.workflow import generate_bundle
 from lineage_poc.enrichment.contracts import ENRICHMENT_COLUMNS, eligible
-from lineage_poc.enrichment.workflow import apply_drafts, prepare_context
+from lineage_poc.enrichment.workflow import apply_drafts, prepare_context, record_drafts
 from lineage_poc.paths import INPUT_ROOT
 from lineage_poc.validation.bundle import DESCRIPTION_SURFACES, validate_bundle
 from lineage_poc.validation.descriptions import validate_reference
@@ -52,6 +52,42 @@ def test_full_saved_bundles_validate_without_rewriting(reference):
     assert enriched['maximum_cell_characters']['data_dictionary.csv'] <= 32767
     assert not enriched['browser_import_verified']
     assert before == {path: digest_file(Path(path)) for path in before}
+
+
+def test_record_assistant_drafts_preserves_exact_bytes_without_applying(small_bundle, drafts, work):
+    before = {name: digest_file(small_bundle / name) for name in CSV_FILES}
+    pending = save_drafts(work / 'assistant-drafts.json', drafts)
+    original = pending.read_bytes()
+    result = record_drafts(small_bundle, pending, work / 'recorded')
+    assert result['status'] == 'passed' and result['drafts_recorded'] == 1
+    assert result['external_AI_invoked'] is False
+    assert (work / 'recorded' / 'drafts.json').read_bytes() == original
+    assert pending.read_bytes() == original
+    assert set(path.name for path in (work / 'recorded').iterdir()) == {'drafts.json'}
+    assert before == {name: digest_file(small_bundle / name) for name in CSV_FILES}
+
+
+def test_record_rejects_stale_assistant_drafts_before_delivery(small_bundle, drafts, work):
+    drafts['input_hashes']['field_catalog.csv'] = '0' * 64
+    pending = save_drafts(work / 'assistant-drafts.json', drafts)
+    with pytest.raises(ValueError, match='Stale input hashes'):
+        record_drafts(small_bundle, pending, work / 'recorded')
+    assert not (work / 'recorded' / 'drafts.json').exists()
+
+
+def test_record_keeps_protected_descriptions_and_rejects_in_place_drafts(small_bundle, drafts, work):
+    pending = save_drafts(work / 'assistant-drafts.json', drafts)
+    record_drafts(small_bundle, pending, work / 'recorded')
+    accepted = work / 'recorded' / 'drafts.json'
+    with pytest.raises(ValueError, match='separate pending draft'):
+        record_drafts(small_bundle, accepted, accepted.parent)
+    protected = next(row for row in read_tables(small_bundle)['field_catalog.csv'].rows
+                     if row['source_system'] == 'Snowflake' and row['description'])
+    drafts['results'][0]['field_id'] = protected['field_id']
+    save_drafts(pending, drafts)
+    with pytest.raises(ValueError, match='Protected or out-of-scope'):
+        record_drafts(small_bundle, pending, work / 'protected-rejected')
+    assert not (work / 'protected-rejected' / 'drafts.json').exists()
 
 
 def test_prepare_context_binds_hashes_and_excludes_protected(reference, work):

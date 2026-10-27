@@ -37,48 +37,71 @@ Git uses your existing GitHub sign-in. Do not put passwords or tokens in
 configuration files. Existing source checkouts are never automatically pulled,
 reset or overwritten.
 
-## Full end-to-end run with one command
+## Run everything in VS Code Copilot Chat
 
-After you have installed and manually signed in to Git and the official
-**GitHub Copilot CLI**, run:
+Open this application folder in VS Code, select **Agent** mode in Copilot Chat,
+and ask:
 
-```powershell
-python -B -m lineage_poc pipeline --clone --full-run
+```text
+Follow .github/skills/lineage-workflow/SKILL.md.
+Complete the full workflow and resume from the first unfinished step.
+Generate missing Ultracs descriptions in this chat, validate them,
+and finish with the combined lineage graph and data dictionary HTML.
 ```
 
-This works without any previous local outputs or saved descriptions. It runs:
+If VS Code offers `/lineage-workflow` in its slash-command menu, you can invoke
+that instead. If it does not, use the explicit file instruction above.
+The [existing skill](./.github/skills/lineage-workflow/SKILL.md) guides the current
+Copilot Chat agent; it does not start a separate AI process.
 
-**Download/verify repositories > parse > lineage graphs > column-lineage JSON >
-baseline CSVs > prepare evidence > generate new Ultracs descriptions with Copilot >
-validate and apply drafts > validate the enriched bundle > combined HTML.**
+**No Copilot CLI installation, executable-path setting or separate CLI AI
+sign-in is needed.** The current chat session authors the descriptions.
+Git access to the configured source repositories is still required, and VS Code
+may ask you to approve local tool execution.
 
-Open **`output\08-html\index.html`** when the result reports `status: passed`.
-All intermediate files and logs stay under the same `output` folder.
+The agent runs the existing Python parsers, validators and renderer internally,
+so Python remains installed, but you do not need to type each command yourself.
+All outputs and debug records remain under the same `output` folder.
 
-- You manage sign-in yourself. The application never installs Copilot, requests
-  tokens, signs you in, or changes your credentials.
-- `--clone` downloads missing repositories; it does not pull updates into
-  existing checkouts.
-- `--full-run` invokes Copilot for **new** missing descriptions and evidence
-  assessments. It uses your Copilot access and model quota; only use it with
-  organization-approved metadata and accounts.
-- Copilot receives the enrichment skill and bounded field evidence in batches.
-  It does not get shell, file-editing or repository tools. Python validates the
-  returned JSON, exact evidence, scores and preservation before applying it.
-- If generation fails, times out or returns invalid data, the pipeline fails
-  explicitly. It never silently reuses old descriptions, substitutes template
-  prose or replaces the previous good final HTML.
-- If evidence cannot support a description, Copilot must record an explicit
-  `needs_evidence` result instead of inventing one.
+### Resume from a completed step
 
-The default executable is `copilot` on PATH. If that resolves to a VS Code
-launcher rather than the installed CLI, set `LINEAGE_COPILOT_PATH` or pass
-`--copilot-path` with the full approved executable path. Optional `--ai-model`
-chooses a model; otherwise your Copilot configuration applies. `--ai-timeout`
-sets the timeout per batch in seconds (default: 600).
+For example, tell Copilot Chat:
 
-The separate commands below are still available for checking or rerunning a
-specific step.
+```text
+Follow .github/skills/lineage-workflow/SKILL.md.
+Steps 1 and 2 are already completed. Verify their saved records,
+start at step 3, and complete the remaining steps.
+Do not clone or parse the repositories again.
+```
+
+The skill checks recorded status and input/output hashes before skipping work.
+A folder existing is not enough. Missing, failed or changed prerequisites are
+reported rather than silently reused. A fresh workspace starts at step 1.
+
+The stages are: **1 repositories > 2 parsing > 3 graphs and column JSON >
+4 baseline CSVs > 5 descriptions > 6 validation > 7 combined HTML**.
+Open **`output\08-html\index.html`** after all required stages pass.
+
+### Rerun selected steps
+
+You can ask the same skill:
+
+```text
+Follow .github/skills/lineage-workflow/SKILL.md.
+Rerun step 3 only. Keep the saved source/parse results.
+```
+
+Or ask **"rerun steps 4 through 7"**, **"rerun validation only"**, or
+**"rebuild the HTML for Account_ID and OpenDate"**.
+
+An explicit rerun executes the requested steps even if they previously passed.
+The agent verifies prerequisites, runs them in dependency order, keeps the same
+output folders and logs, and does not repeat unrelated work. If an upstream
+rerun makes later results stale, it tells you what needs refreshing rather than
+silently rerunning everything or presenting an old HTML as current.
+
+The individual commands below are also available for debugging or rerunning a
+specific stage. The skill uses these same commands, not a second implementation.
 
 ## Processing steps
 
@@ -135,22 +158,26 @@ This step preserves supplied descriptions. It does not generate AI prose.
 python -B -m lineage_poc enrichment prepare --input .\output\05-baseline-dictionary
 ```
 
-The context is saved in `output\06a-enrichment-context`. Generate new descriptions
-using Copilot and [the AI enrichment skill](./.github/skills/ai-description-enrichment/SKILL.md):
+The context is saved in `output\06a-enrichment-context`. The current Copilot Chat
+assistant follows [the AI enrichment skill](./.github/skills/ai-description-enrichment/SKILL.md)
+to author new descriptions and assessments in this session. It writes the
+complete draft payload to the temporary **`output\assistant-drafts.json`**.
+
+Record and validate those drafts:
 
 ```powershell
-python -B -m lineage_poc enrichment generate --input .\output\05-baseline-dictionary --context .\output\06a-enrichment-context
+python -B -m lineage_poc enrichment record --input .\output\05-baseline-dictionary --drafts .\output\assistant-drafts.json
 ```
 
-The assistant authors one-or-two-sentence drafts and evidence assessments,
-saved in **`output\06b-ai-drafts\drafts.json`**.
-Existing descriptions stay unchanged. Python prepares and checks the data;
-it does not generate template prose. Only the explicitly requested `generate`
-or `--full-run` mode invokes the Copilot CLI.
+The validated exact draft file is saved in
+**`output\06b-ai-drafts\drafts.json`**, with a successful step record. The
+temporary pending file can then be removed. This also replaces an earlier
+failed draft-stage record safely; do not write into a failed stage by hand and
+pretend it passed.
 
-Alternatively, ask the active assistant to follow the same skill and author
-that draft file manually. You do not need to use the automated runner for
-manual draft preparation or application.
+The assistant authors one-or-two-sentence descriptions. Existing descriptions
+stay unchanged. Python checks the evidence and arithmetic; it does not generate
+template prose, call a model API, or launch Copilot CLI.
 
 Apply the saved drafts:
 
@@ -251,23 +278,23 @@ quote it, for example `--selector "Account ID" "Account Opened Date"`.
 The HTML page's search box filters the current view only. It does not create a
 new file; use the commands above to save a separate column-focused report.
 
-## Other pipeline modes
+## Optional terminal coordinator
 
 ```powershell
 python -B -m lineage_poc pipeline --clone
 ```
 
-Without `--full-run`, `--drafts` or `--enriched`, this runs the preparation steps
-and stops at the manual AI handoff with
+This deterministic coordinator runs the preparation steps and stops at
 `status: awaiting_ai_drafts` and exit code **3**. After authoring drafts, run the
 remaining steps above, or rerun with `--drafts .\output\06b-ai-drafts\drafts.json`.
 Stale drafts are rejected if the baseline changed.
 
-Use exactly one of `--full-run`, `--drafts` and `--enriched`. The latter two
-explicitly reuse saved work; they do not generate new descriptions.
+`--drafts` and `--enriched` explicitly reuse saved work; they do not generate
+new descriptions.
 For regression verification, `--enriched` can reuse the saved bundle under
 `tests\fixtures\reference\dictionary\ai-enriched`, but it must match the new
-baseline. A first fresh full run should use **`--clone --full-run`**.
+baseline. For the complete workflow including new AI descriptions, use the
+VS Code chat skill described above.
 
 ## Find results and debug
 
@@ -294,11 +321,11 @@ input and rerun that step. Failed partial results are retained as a compact debu
 archive when present. A failed rerun restores the previous good files; it does
 not turn partial data into a successful result.
 
-The automatic authoring stage also saves `generation.json` and each batch's
-prompt, raw response, diagnostics and validated JSON under `output\06b-ai-drafts`.
-They contain dictionary evidence, so keep them within approved internal access.
-On a failed stage, partial files are retained in the step's debug ZIP under
-`output\logs`. A failed Copilot batch is not converted into `needs_evidence`.
+The assistant-authored `drafts.json` and its validation record preserve the
+wording, provenance, scores and cited evidence. These contain dictionary
+metadata, so keep them within approved internal access. An inability to
+complete authoring or validation is a blocker, not a reason to silently reuse
+old prose or label all fields `needs_evidence`.
 
 Use `--output-dir PATH` to put **all** results in another folder.
 There are no automatic historical output copies. Save a copy of `output`
@@ -313,8 +340,8 @@ python -B -m pytest -q
 Fixtures test the stages without model calls. Source integration uses the four
 configured checkouts; optional tenant-landing checks are skipped if that
 additional repository is unavailable.
-Automated-generation tests use a controlled runner fixture; they do not consume
-Copilot quota or prove that a particular account is signed in.
+Tests validate supplied assistant drafts and all deterministic steps without
+calling an external model or requiring Copilot CLI.
 
 With Edge installed, an optional real-browser check can also verify the final
 graph, dictionary tabs and export when organization policy permits automation:

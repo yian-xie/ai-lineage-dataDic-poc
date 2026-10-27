@@ -1,7 +1,7 @@
 """Prepare evidence for the active assistant, then validate/apply its drafts.
 
-These prepare/apply APIs make no model calls. Explicit Copilot authoring lives
-in enrichment.copilot; no sentence templates or implicit HTML builds are used.
+The current assistant authors descriptions in VS Code. These APIs make no model
+calls and use no sentence templates, external CLI or implicit HTML builds.
 """
 from __future__ import annotations
 
@@ -139,7 +139,7 @@ def _unchanged_inputs(input_dir, hashes):
             'Input bundle changed; stale hashes require fresh context and assistant drafts')
 
 
-def _drafts(payload, tables, *, expected_ids=None):
+def _drafts(payload, tables):
     keys = {'schema_version', 'rubric_id', 'input_hashes', 'run_id', 'generator', 'model',
             'generated_at', 'results'}
     require(isinstance(payload, dict) and set(payload) == keys, 'Unsupported drafts.json top-level contract')
@@ -154,10 +154,6 @@ def _drafts(payload, tables, *, expected_ids=None):
     require(isinstance(payload['results'], list), 'Draft results must be an array')
     all_fields = tables['field_catalog.csv'].index()
     expected = {key for key, (row, _) in all_fields.items() if eligible(row)}
-    if expected_ids is not None:
-        require(isinstance(expected_ids, set) and expected_ids <= expected,
-                'Batch identities must refer only to eligible missing Ultracs fields')
-        expected = expected_ids
     results = {}
     for result in payload['results']:
         require(isinstance(result, dict), 'Each draft result must be an object')
@@ -192,6 +188,39 @@ def _drafts(payload, tables, *, expected_ids=None):
         results[key] = result
     require(set(results) == expected, 'Drafts require exactly one result for every eligible missing Ultracs field')
     return results
+
+
+def record_drafts(input_dir: Path, drafts_path: Path, output_dir: Path) -> dict:
+    """Validate and record assistant-authored JSON; never generate or repair prose."""
+    input_dir, output_dir, drafts_path = (
+        Path(path).resolve() for path in (input_dir, output_dir, drafts_path)
+    )
+    require(input_dir != output_dir and not output_dir.is_relative_to(input_dir)
+            and not input_dir.is_relative_to(output_dir),
+            'Recorded drafts must be separate from the input bundle')
+    require(drafts_path != output_dir / 'drafts.json',
+            'Use a separate pending draft file; do not overwrite a recorded input in place')
+    tables, _ = _snapshot(input_dir)
+    drafts_hash = digest_file(drafts_path)
+    payload = parse_json(drafts_path.read_text(encoding='utf-8-sig'))
+    results = _drafts(payload, tables)
+    with staging_directory(output_dir, 'assistant-drafts') as staged:
+        shutil.copyfile(drafts_path, staged / 'drafts.json')
+        _unchanged_inputs(input_dir, payload['input_hashes'])
+        require(digest_file(drafts_path) == drafts_hash
+                and digest_file(staged / 'drafts.json') == drafts_hash,
+                'Drafts changed during recording')
+        commit_outputs(staged, output_dir, ['drafts.json'])
+    return {
+        'status': 'passed', 'drafts_file': str(output_dir / 'drafts.json'),
+        'drafts_sha256': drafts_hash, 'source_drafts_file': str(drafts_path),
+        'input_hashes': payload['input_hashes'],
+        'generator': payload['generator'], 'model': payload['model'],
+        'generated_at': payload['generated_at'], 'run_id': payload['run_id'],
+        'drafts_recorded': sum(result['status'] == 'draft' for result in results.values()),
+        'needs_evidence': sum(result['status'] == 'needs_evidence' for result in results.values()),
+        'authoring_mode': 'provided_assistant_drafts', 'external_AI_invoked': False,
+    }
 
 
 def _fill_field(row, values, result, payload):
@@ -362,15 +391,19 @@ def apply_drafts(input_dir: Path, drafts_path: Path, output_dir: Path) -> dict:
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
-    for command in ('prepare', 'apply'):
+    for command in ('prepare', 'record', 'apply'):
         subparser = commands.add_parser(command)
         subparser.add_argument('--input', type=Path, required=True)
         subparser.add_argument('--output', type=Path, required=True)
-        if command == 'apply':
+        if command in ('record', 'apply'):
             subparser.add_argument('--drafts', type=Path, required=True)
     args = parser.parse_args(argv)
-    result = (prepare_context(args.input, args.output) if args.command == 'prepare'
-              else apply_drafts(args.input, args.drafts, args.output))
+    if args.command == 'prepare':
+        result = prepare_context(args.input, args.output)
+    elif args.command == 'record':
+        result = record_drafts(args.input, args.drafts, args.output)
+    else:
+        result = apply_drafts(args.input, args.drafts, args.output)
     print(json.dumps(result, indent=2))
 
 
