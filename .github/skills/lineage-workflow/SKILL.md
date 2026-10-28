@@ -164,9 +164,9 @@ python -B -m lineage_poc html --input .\output\06c-ai-enrichment --baseline .\ou
 
 Confirm `output\08-html\index.html` exists and the HTML step reports success.
 It must embed both the saved graph and the matching complete dictionary.
-Check actual graph/dictionary switching, filters, details and exports when
-approved browser tools are available. If UI checking is blocked, report that
-limitation honestly rather than bypassing policy or claiming it passed.
+Check actual graph/dictionary switching, filters and details when approved
+browser tools are available. If UI checking is blocked, report that limitation
+honestly rather than bypassing policy or claiming it passed.
 
 Only claim completion after the required stage records in `output\steps.json`
 are passed and the final HTML checks pass. An old `pipeline.json` belongs to
