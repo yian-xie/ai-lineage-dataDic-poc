@@ -130,7 +130,7 @@ structure/arithmetic, but cannot resolve evidence bound to historical hashes.
 
 Test the actual `V3Bundle.prepareBundle(files, {})` JavaScript importer and
 browser behavior: a new draft, a preserved description, needs-evidence if any,
-source-group repeats, details, origin filtering and filtered CSV export.
+source-group repeats, details and origin filtering.
 Relationship confidence must stay unchanged. Python assembly alone is not a
 browser check; explicitly report any unverified interaction.
 
