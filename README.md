@@ -230,6 +230,14 @@ or business approval.
 You can generate a new report from the existing outputs without downloading
 repositories, parsing sources, or running AI enrichment again.
 
+Run these commands from the application root in PowerShell. To ensure Python
+uses this checkout (rather than another editable `lineage-poc` installation),
+put its `src` directory first on the import path:
+
+```powershell
+$env:PYTHONPATH = (Join-Path $PWD 'src') + [IO.Path]::PathSeparator + $env:PYTHONPATH
+```
+
 First, check the column mapping. For Account_ID:
 
 ```powershell
@@ -239,17 +247,17 @@ python -B -m lineage_poc query --columns .\output\04-column-lineage\column_linea
 Then generate its separate HTML:
 
 ```powershell
-$column = "Account_ID"
-python -B -m lineage_poc html `
-  --input .\output\06c-ai-enrichment `
-  --baseline .\output\05-baseline-dictionary `
-  --graphs .\output\03-lineage-graphs `
-  --columns .\output\04-column-lineage `
-  --selector $column
+python -B -m lineage_poc html --input .\output\06c-ai-enrichment --baseline .\output\05-baseline-dictionary --graphs .\output\03-lineage-graphs --columns .\output\04-column-lineage --selector Account_ID
 ```
 
-**Open `output\08-html-accountid\index.html`.** The main
-`output\08-html\index.html` is left unchanged.
+The command writes a separate report; it does not open the browser automatically.
+Open it with:
+
+```powershell
+Start-Process .\output\08-html-accountid\index.html
+```
+
+The main `output\08-html\index.html` is left unchanged.
 
 For several columns in **one** new report, pass each selector after
 `--selector`:
@@ -263,8 +271,14 @@ python -B -m lineage_poc html `
   --selector Account_ID OpenDate
 ```
 
-Open `output\08-html-accountid-opendate\index.html`. To use a label with spaces,
-quote it, for example `--selector "Account ID" "Account Opened Date"`.
+Open the generated report with:
+
+```powershell
+Start-Process .\output\08-html-accountid-opendate\index.html
+```
+
+To use a label with spaces, quote it, for example
+`--selector "Account ID" "Account Opened Date"`.
 
 - Change `$column` to another recorded selector, such as `OpenDate`, `Balance`,
   or `KIWIBANKACCOUNTNUMBER`. Parameter names, target column names, mapping IDs
