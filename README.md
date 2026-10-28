@@ -275,6 +275,11 @@ quote it, for example `--selector "Account ID" "Account Opened Date"`.
 - The graph focuses on the matching column mapping(s) and keeps shared route
   context. The embedded data dictionary stays complete; filter it to the
   selected source when needed.
+- Selected-column reports also show a **FIELD PATH** section above the graph:
+  reported Ultracs source, extract position, HVR parameter/route, RAW relation
+  and Snowflake target, with confidence and expandable evidence. Multiple
+  selected mappings have separate paths. The main all-column report does not
+  include this section.
 - Account_ID is recorded as `KiwiAcc`, DWACC position 7, mapping to internal
   and public `KIWIBANKACCOUNTNUMBER`. It is different from `Account_Index_ID`,
   whose selector returns both inferred components.

@@ -11,7 +11,6 @@ from pathlib import Path
 
 from lineage_poc.columns.dwacc import build_enterprise_overview, confidence_percent
 from lineage_poc.graph.account import with_related_columns
-from lineage_poc.viewers.graph.columns import HTML
 from lineage_poc.viewers.graph.descriptions import describe_graph
 
 
@@ -22,6 +21,7 @@ TABLE_INPUT = REFERENCE_LINEAGE / "account_table_lineage.json"
 ENTERPRISE_INPUT = REFERENCE_LINEAGE / "account_enterprise_lineage.json"
 DEFAULT_SELECTOR = "KiwiAcc"
 
+HTML = read_template("dwacc_html.html")
 FLOW_STYLE = read_template('focused_flow_style.css')
 
 
@@ -79,51 +79,110 @@ def choose_records(records: list[dict], related_columns: list[dict], selector: s
     return matches
 
 
-def flow_section(matches: list[dict], related_columns: list[dict], explanation_name: str) -> str:
-    business_names = {name for record in matches for name in business_by_param(related_columns, record["param_column"])}
-    field_title = ", ".join(sorted(business_names)) or matches[0]["param_column"]
-    source_locators = sorted({
-        mapping.get("source_locator", "")
-        for mapping in related_columns
-        if mapping.get("business_field") in business_names and mapping.get("source_locator")
-    })
-    source_label = ", ".join(source_locators) or "Ultracs source position"
-    positions = ", ".join(str(record["ultracs_position"]) for record in matches)
-    param_names = " + ".join(record["param_column"] for record in matches)
-    snowflake_targets = sorted({
-        f"{record['snowflake_table'].split(':')[-1]} · {record['snowflake_column']}"
-        for record in matches
-    })
-    snowflake_label = "<br>".join(html.escape(value) for value in snowflake_targets)
-    datatype_label = "<br>".join(sorted({
-        f"{record['snowflake_column']}: {record.get('cdp', {}).get('data_type') or 'not declared'}"
-        for record in matches
-    }))
-    inferred = any(record["confidence"] == "inferred" for record in matches)
-    confidence_value = "inferred" if inferred else "confirmed"
-    confidence_label = "INFERRED COMPOSITE MAPPING" if inferred else "CONFIRMED COLUMN MAPPING"
-    confidence_label += f" · {confidence_percent(confidence_value)}% evidence"
-    position_label = f"DWACC · position {positions}"
-    notes = " ".join(record["notes"] for record in matches)
-    flow = f'''<section class="lineage-explanation" aria-label="{html.escape(field_title)} end-to-end lineage">
-    <div class="flow-heading"><span class="flow-kicker">FIELD PATH · {html.escape(field_title)}</span><span class="flow-confidence">{confidence_label}</span></div>
-    <div class="flow-chain">
-        <article class="flow-step"><span>01 · ULTRACS SOURCE</span><strong>{html.escape(source_label)}</strong><small>KWDW_ACC BASIC source fields</small></article>
-        <span class="flow-arrow">→</span>
-        <article class="flow-step"><span>02 · EXTRACT</span><strong>{html.escape(position_label)}</strong><small>Pipe-delimited DWACC record</small></article>
-        <span class="flow-arrow">→</span>
-        <article class="flow-step"><span>03 · HVR PARAM</span><strong>{html.escape(param_names)}</strong><small>DWACC.param column name(s)</small></article>
-        <span class="flow-arrow inferred">⇢</span>
-        <article class="flow-step"><span>04 · HVR S3 ROUTE</span><strong>ult_s3_acc1 → ult_s3_acc2</strong><small>Text → Parquet → HVR S3 · capture match inferred</small></article>
-        <span class="flow-arrow">→</span>
-        <article class="flow-step"><span>05 · ACCOUNT RAW</span><strong>ACCOUNTS_V1__ACCOUNTS</strong><small>Airflow: HVR S3 → Datalake S3 → RAW</small></article>
-        <span class="flow-arrow">→</span>
-        <article class="flow-step"><span>06 · SNOWFLAKE COLUMN</span><strong>{snowflake_label}</strong><small>Column mapping: {html.escape(field_title)}</small><small>Datatype: {datatype_label}</small></article>
-    </div>
-    <details class="branch-note"><summary>Separate direct-HVR route and evidence notes</summary><p><code>ult_sf_acc</code> lands matching DWACC rows in <code>LOADACCOUNTS_INGEST</code>, whose configured columns are <code>payload</code> and <code>integration_timestamp</code>. It does not define these named business columns, and no repository evidence connects that direct landing table to the accounts-v1 RAW relation. {html.escape(notes)}</p></details>
-    <a class="explanation-link" href="{html.escape(explanation_name)}">Read the evidence and source paths</a>
-</section>'''
-    return flow
+def flow_section(matches: list[dict], related_columns: list[dict],
+                 explanation_name: str | None = None) -> str:
+    """Present each selected mapping separately; route listings are not serial proof."""
+    if not matches:
+        raise ValueError("A field path requires at least one selected mapping.")
+
+    def escaped(value) -> str:
+        return html.escape(str(value)) if value not in (None, "") else "Not supplied"
+
+    paths = []
+    for record in matches:
+        source = record.get("ultracs", {})
+        route = record.get("ingestion_route", {})
+        extract = record["extract_file"]
+        names = business_by_param(related_columns, record["param_column"])
+        title = record.get("business_field") or ", ".join(sorted(names)) or record["param_column"]
+        program = source.get("program") or record.get("ultracs_program")
+        level = record.get("confidence")
+        percent = confidence_percent(level)
+        rating = f"{str(level or 'unspecified').replace('_', ' ').upper()} COLUMN MAPPING"
+        rating += f" · {percent}% evidence" if percent is not None else " · Not rated"
+        targets = record.get("dbt_targets", [])
+        if record.get("snowflake_table") and record.get("snowflake_column"):
+            primary = record["snowflake_table"].split(":")[-1] + " · " + record["snowflake_column"]
+        else:
+            primary = "\n".join(target["relation"].split(":")[-1] + " · " + target["column"]
+                                for target in targets) or "No documented target"
+        primary_type = record.get("cdp", {}).get("data_type") or "Not declared"
+        datatype = (
+            f"{record['snowflake_column']}: {primary_type}"
+            if record.get("snowflake_column") else primary_type
+        )
+        channels = route.get("hvr_channels", [])
+        steps = [
+            ("01 · ULTRACS SOURCE", source.get("source_locator") or source.get("basic_expression"),
+             [program, "Recorded BASIC: " + str(source.get("basic_expression") or "Not supplied")]),
+            ("02 · EXTRACT", f"{extract} · position {record['ultracs_position']}",
+             [f"Reported {extract} output slot"]),
+            ("03 · HVR PARAM", record["param_column"], [record.get("source_path")]),
+            ("04 · HVR S3 ROUTE", " / ".join(channels),
+             ["Reported channels; extract capture association remains inferred"]),
+            ("05 · ACCOUNT RAW" if extract == "DWACC" else "05 · RAW RELATION",
+             str(route.get("raw_relation") or "Not supplied").split(":")[-1],
+             [route.get("airflow_dag"), route.get("dbt_input")]),
+            ("06 · SNOWFLAKE COLUMN", primary, [f"Datatype: {datatype}"]),
+        ]
+        chain = []
+        for index, (heading, value, notes) in enumerate(steps):
+            if index:
+                inferred = index == 3
+                chain.append(f'<span class="flow-arrow{" inferred" if inferred else ""}">'
+                             + ("⇢" if inferred else "→") + "</span>")
+            chain.append(
+                '<article class="flow-step"><span>' + escaped(heading) + "</span><strong>"
+                + escaped(value).replace("\n", "<br>") + "</strong>"
+                + "".join("<small>" + escaped(note) + "</small>" for note in notes if note)
+                + "</article>"
+            )
+        evidence = [
+            ("BASIC source", source.get("source_path") or program),
+            ("Reported BASIC line", source.get("basic_source_line")),
+            ("HVR declaration", record.get("source_path")),
+            ("Recorded mapping notes", record.get("notes")),
+        ]
+        evidence_html = "".join(
+            "<li><strong>" + escaped(label) + ":</strong> <code>" + escaped(value)
+            + "</code></li>" for label, value in evidence if value not in (None, "")
+        )
+        target_html = "".join(
+            "<li>" + escaped(target.get("stage")) + " · <strong>"
+            + escaped(target["relation"].split(":")[-1] + " · " + target["column"])
+            + "</strong> · datatype: " + escaped(target.get("data_type"))
+            + " · <code>" + escaped(target.get("source_expression") or target.get("projection_expression"))
+            + "</code> · reported source: <code>" + escaped(target.get("source_path"))
+            + "</code></li>" for target in targets
+        )
+        paths.append(
+            '<section class="field-path" aria-label="' + escaped(title) + " · "
+            + escaped(record["param_column"]) + ' end-to-end lineage">'
+            + '<div class="flow-heading"><span class="flow-kicker">FIELD PATH · '
+            + escaped(title) + ' · ' + escaped(record["param_column"])
+            + '</span><span class="flow-confidence">' + escaped(rating) + "</span></div>"
+            + '<div class="flow-chain">' + "\n".join(chain) + "</div>"
+            + '<details class="branch-note"><summary>Evidence, source paths and all recorded targets'
+            + "</summary><ul>" + evidence_html + "</ul><ul>" + target_html + "</ul></details></section>"
+        )
+    caveats = (
+        "Arrows summarize reported stages, not production execution or independently verified "
+        "physical source bindings. Channel listings do not establish serial execution. "
+        "Mapping confidence is not an end-to-end probability."
+    )
+    if any(record["extract_file"] == "DWACC" for record in matches):
+        caveats += (
+            " The separate direct ult_sf_acc branch lands payload and integration_timestamp in "
+            "LOADACCOUNTS_INGEST; no recorded evidence joins it to the accounts-v1 RAW route."
+        )
+    link = (f'<a class="explanation-link" href="{escaped(explanation_name)}">'
+            "Read the evidence and source paths</a>") if explanation_name else ""
+    return (
+        '<section class="lineage-explanation" aria-label="Selected column field paths">'
+        + "\n".join(paths)
+        + '<details class="branch-note"><summary>Separate direct-HVR route and evidence notes</summary>'
+        + "<p>" + escaped(caveats) + "</p></details>" + link + "</section>"
+    )
 
 
 def business_by_param(related_columns: list[dict], param_name: str) -> set[str]:
