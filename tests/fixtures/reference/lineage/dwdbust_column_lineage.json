@@ -1,0 +1,2205 @@
+[
+  {
+    "business_field": "AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:1",
+    "ultracs_position": 1,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "CIS",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "CIS",
+      "basic_source_line": 162,
+      "basic_transformation_lines": [],
+      "loop": null,
+      "extract_file": "DWDBUST.TXT",
+      "position": 1,
+      "param_column": "AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:AccessNo::STRING AS ACCESSNUMBER,",
+      "source_line": 74,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:AccessNo::STRING AS ACCESSNUMBER,",
+        "source_line": 74,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:AccessNo::STRING AS ACCESSNUMBER,",
+        "source_line": 76,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "ACCESSNUMBER",
+        "projection_expression": "ACCESSNUMBER",
+        "projection_line": 3,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:2",
+    "ultracs_position": 2,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "PID",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "PID",
+      "basic_source_line": 162,
+      "basic_transformation_lines": [],
+      "loop": null,
+      "extract_file": "DWDBUST.TXT",
+      "position": 2,
+      "param_column": "Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "BANKINGPRODUCTCODE",
+      "data_type": "VARCHAR",
+      "description": "The Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Product::STRING AS BANKINGPRODUCTCODE,",
+      "source_line": 75,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "BANKINGPRODUCTCODE",
+        "data_type": "VARCHAR",
+        "description": "The Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Product::STRING AS BANKINGPRODUCTCODE,",
+        "source_line": 75,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "BANKINGPRODUCTCODE",
+        "data_type": "VARCHAR",
+        "description": "The Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Product::STRING AS BANKINGPRODUCTCODE,",
+        "source_line": 77,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "BANKINGPRODUCTCODE",
+        "data_type": "VARCHAR",
+        "description": "The Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "BANKINGPRODUCTCODE",
+        "projection_expression": "BANKINGPRODUCTCODE",
+        "projection_line": 20,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Status",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:3",
+    "ultracs_position": 3,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Status",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Status",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT:REC<11,7>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,7>"
+      ],
+      "description": "",
+      "basic_expression": "ACT:REC<11,7>[LEN(ACT)+1,9]",
+      "basic_source_line": 399,
+      "basic_transformation_lines": [],
+      "loop": null,
+      "extract_file": "DWDBUST.TXT",
+      "position": 3,
+      "param_column": "Status"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSETARRANGEMENTSTATUS",
+      "data_type": "VARCHAR",
+      "description": "The OffSet Arrangement Status",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Status::STRING AS OFFSETARRANGEMENTSTATUS,",
+      "source_line": 76,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSETARRANGEMENTSTATUS",
+        "data_type": "VARCHAR",
+        "description": "The OffSet Arrangement Status",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Status::STRING AS OFFSETARRANGEMENTSTATUS,",
+        "source_line": 76,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSETARRANGEMENTSTATUS",
+        "data_type": "VARCHAR",
+        "description": "The OffSet Arrangement Status",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Status::STRING AS OFFSETARRANGEMENTSTATUS,",
+        "source_line": 78,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSETARRANGEMENTSTATUS",
+        "data_type": "VARCHAR",
+        "description": "The OffSet Arrangement Status",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSETARRANGEMENTSTATUS",
+        "projection_expression": "OFFSETARRANGEMENTSTATUS",
+        "projection_line": 21,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Status",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset1_AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:4",
+    "ultracs_position": 4,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset1_AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset1_AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "ACT",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 4,
+      "param_column": "Offset1_AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET1ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account for Offset 1",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset1_AccessNo::STRING AS OFFSET1ACCESSNUMBER,",
+      "source_line": 77,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET1ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 1",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset1_AccessNo::STRING AS OFFSET1ACCESSNUMBER,",
+        "source_line": 77,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET1ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 1",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset1_AccessNo::STRING AS OFFSET1ACCESSNUMBER,",
+        "source_line": 79,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET1ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 1",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET1ACCESSNUMBER",
+        "projection_expression": "OFFSET1ACCESSNUMBER",
+        "projection_line": 4,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset1_AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset1_Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:5",
+    "ultracs_position": 5,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset1_Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset1_Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,8,TX>"
+      ],
+      "description": "",
+      "basic_expression": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 5,
+      "param_column": "Offset1_Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET1PRODUCT",
+      "data_type": "VARCHAR",
+      "description": "The Offset 1 Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset1_Product::STRING AS OFFSET1PRODUCT,",
+      "source_line": 78,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET1PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 1 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset1_Product::STRING AS OFFSET1PRODUCT,",
+        "source_line": 78,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET1PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 1 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset1_Product::STRING AS OFFSET1PRODUCT,",
+        "source_line": 80,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET1PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 1 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET1PRODUCT",
+        "projection_expression": "OFFSET1PRODUCT",
+        "projection_line": 5,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset1_Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset2_AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:6",
+    "ultracs_position": 6,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset2_AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset2_AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "ACT",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 6,
+      "param_column": "Offset2_AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET2ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account for Offset 2",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset2_AccessNo::STRING AS OFFSET2ACCESSNUMBER,",
+      "source_line": 79,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET2ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 2",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset2_AccessNo::STRING AS OFFSET2ACCESSNUMBER,",
+        "source_line": 79,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET2ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 2",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset2_AccessNo::STRING AS OFFSET2ACCESSNUMBER,",
+        "source_line": 81,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET2ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 2",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET2ACCESSNUMBER",
+        "projection_expression": "OFFSET2ACCESSNUMBER",
+        "projection_line": 6,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset2_AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset2_Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:7",
+    "ultracs_position": 7,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset2_Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset2_Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,8,TX>"
+      ],
+      "description": "",
+      "basic_expression": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 7,
+      "param_column": "Offset2_Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET2PRODUCT",
+      "data_type": "VARCHAR",
+      "description": "The Offset 2 Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset2_Product::STRING AS OFFSET2PRODUCT,",
+      "source_line": 80,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET2PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 2 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset2_Product::STRING AS OFFSET2PRODUCT,",
+        "source_line": 80,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET2PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 2 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset2_Product::STRING AS OFFSET2PRODUCT,",
+        "source_line": 82,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET2PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 2 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET2PRODUCT",
+        "projection_expression": "OFFSET2PRODUCT",
+        "projection_line": 7,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset2_Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset3_AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:8",
+    "ultracs_position": 8,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset3_AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset3_AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "ACT",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 8,
+      "param_column": "Offset3_AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET3ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account for Offset 3",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset3_AccessNo::STRING AS OFFSET3ACCESSNUMBER,",
+      "source_line": 81,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET3ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 3",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset3_AccessNo::STRING AS OFFSET3ACCESSNUMBER,",
+        "source_line": 81,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET3ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 3",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset3_AccessNo::STRING AS OFFSET3ACCESSNUMBER,",
+        "source_line": 83,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET3ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 3",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET3ACCESSNUMBER",
+        "projection_expression": "OFFSET3ACCESSNUMBER",
+        "projection_line": 8,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset3_AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset3_Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:9",
+    "ultracs_position": 9,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset3_Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset3_Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,8,TX>"
+      ],
+      "description": "",
+      "basic_expression": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 9,
+      "param_column": "Offset3_Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET3PRODUCT",
+      "data_type": "VARCHAR",
+      "description": "The Offset 3 Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset3_Product::STRING AS OFFSET3PRODUCT,",
+      "source_line": 82,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET3PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 3 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset3_Product::STRING AS OFFSET3PRODUCT,",
+        "source_line": 82,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET3PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 3 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset3_Product::STRING AS OFFSET3PRODUCT,",
+        "source_line": 84,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET3PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 3 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET3PRODUCT",
+        "projection_expression": "OFFSET3PRODUCT",
+        "projection_line": 9,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset3_Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset4_AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:10",
+    "ultracs_position": 10,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset4_AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset4_AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "ACT",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 10,
+      "param_column": "Offset4_AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET4ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account for Offset 4",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset4_AccessNo::STRING AS OFFSET4ACCESSNUMBER,",
+      "source_line": 83,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET4ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 4",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset4_AccessNo::STRING AS OFFSET4ACCESSNUMBER,",
+        "source_line": 83,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET4ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 4",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset4_AccessNo::STRING AS OFFSET4ACCESSNUMBER,",
+        "source_line": 85,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET4ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 4",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET4ACCESSNUMBER",
+        "projection_expression": "OFFSET4ACCESSNUMBER",
+        "projection_line": 10,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset4_AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset4_Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:11",
+    "ultracs_position": 11,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset4_Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset4_Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,8,TX>"
+      ],
+      "description": "",
+      "basic_expression": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 11,
+      "param_column": "Offset4_Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET4PRODUCT",
+      "data_type": "VARCHAR",
+      "description": "The Offset 4 Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset4_Product::STRING AS OFFSET4PRODUCT,",
+      "source_line": 84,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET4PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 4 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset4_Product::STRING AS OFFSET4PRODUCT,",
+        "source_line": 84,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET4PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 4 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset4_Product::STRING AS OFFSET4PRODUCT,",
+        "source_line": 86,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET4PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 4 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET4PRODUCT",
+        "projection_expression": "OFFSET4PRODUCT",
+        "projection_line": 11,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset4_Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset5_AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:12",
+    "ultracs_position": 12,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset5_AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset5_AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "ACT",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 12,
+      "param_column": "Offset5_AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET5ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account for Offset 5",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset5_AccessNo::STRING AS OFFSET5ACCESSNUMBER,",
+      "source_line": 85,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET5ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 5",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset5_AccessNo::STRING AS OFFSET5ACCESSNUMBER,",
+        "source_line": 85,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET5ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 5",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset5_AccessNo::STRING AS OFFSET5ACCESSNUMBER,",
+        "source_line": 87,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET5ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 5",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET5ACCESSNUMBER",
+        "projection_expression": "OFFSET5ACCESSNUMBER",
+        "projection_line": 12,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset5_AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset5_Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:13",
+    "ultracs_position": 13,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset5_Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset5_Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,8,TX>"
+      ],
+      "description": "",
+      "basic_expression": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 13,
+      "param_column": "Offset5_Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET5PRODUCT",
+      "data_type": "VARCHAR",
+      "description": "The Offset 5 Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset5_Product::STRING AS OFFSET5PRODUCT,",
+      "source_line": 86,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET5PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 5 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset5_Product::STRING AS OFFSET5PRODUCT,",
+        "source_line": 86,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET5PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 5 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset5_Product::STRING AS OFFSET5PRODUCT,",
+        "source_line": 88,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET5PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 5 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET5PRODUCT",
+        "projection_expression": "OFFSET5PRODUCT",
+        "projection_line": 13,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset5_Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset6_AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:14",
+    "ultracs_position": 14,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset6_AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset6_AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "ACT",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 14,
+      "param_column": "Offset6_AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET6ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account for Offset 6",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset6_AccessNo::STRING AS OFFSET6ACCESSNUMBER,",
+      "source_line": 87,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET6ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 6",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset6_AccessNo::STRING AS OFFSET6ACCESSNUMBER,",
+        "source_line": 87,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET6ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 6",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset6_AccessNo::STRING AS OFFSET6ACCESSNUMBER,",
+        "source_line": 89,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET6ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 6",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET6ACCESSNUMBER",
+        "projection_expression": "OFFSET6ACCESSNUMBER",
+        "projection_line": 14,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset6_AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset6_Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:15",
+    "ultracs_position": 15,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset6_Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset6_Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,8,TX>"
+      ],
+      "description": "",
+      "basic_expression": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 15,
+      "param_column": "Offset6_Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET6PRODUCT",
+      "data_type": "VARCHAR",
+      "description": "The Offset 6 Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset6_Product::STRING AS OFFSET6PRODUCT,",
+      "source_line": 88,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET6PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 6 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset6_Product::STRING AS OFFSET6PRODUCT,",
+        "source_line": 88,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET6PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 6 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset6_Product::STRING AS OFFSET6PRODUCT,",
+        "source_line": 90,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET6PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 6 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET6PRODUCT",
+        "projection_expression": "OFFSET6PRODUCT",
+        "projection_line": 15,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset6_Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset7_AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:16",
+    "ultracs_position": 16,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset7_AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset7_AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "ACT",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 16,
+      "param_column": "Offset7_AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET7ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account for Offset 7",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset7_AccessNo::STRING AS OFFSET7ACCESSNUMBER,",
+      "source_line": 89,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET7ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 7",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset7_AccessNo::STRING AS OFFSET7ACCESSNUMBER,",
+        "source_line": 89,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET7ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 7",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset7_AccessNo::STRING AS OFFSET7ACCESSNUMBER,",
+        "source_line": 91,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET7ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 7",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET7ACCESSNUMBER",
+        "projection_expression": "OFFSET7ACCESSNUMBER",
+        "projection_line": 16,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset7_AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset7_Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:17",
+    "ultracs_position": 17,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset7_Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset7_Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,8,TX>"
+      ],
+      "description": "",
+      "basic_expression": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 17,
+      "param_column": "Offset7_Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET7PRODUCT",
+      "data_type": "VARCHAR",
+      "description": "The Offset 7 Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset7_Product::STRING AS OFFSET7PRODUCT,",
+      "source_line": 90,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET7PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 7 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset7_Product::STRING AS OFFSET7PRODUCT,",
+        "source_line": 90,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET7PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 7 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset7_Product::STRING AS OFFSET7PRODUCT,",
+        "source_line": 92,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET7PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 7 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET7PRODUCT",
+        "projection_expression": "OFFSET7PRODUCT",
+        "projection_line": 17,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset7_Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset8_AccessNo",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:18",
+    "ultracs_position": 18,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset8_AccessNo",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset8_AccessNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "ACT",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "ACT",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 18,
+      "param_column": "Offset8_AccessNo"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET8ACCESSNUMBER",
+      "data_type": "VARCHAR",
+      "description": "The unique identifier for the Account for Offset 8",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset8_AccessNo::STRING AS OFFSET8ACCESSNUMBER,",
+      "source_line": 91,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET8ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 8",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset8_AccessNo::STRING AS OFFSET8ACCESSNUMBER,",
+        "source_line": 91,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET8ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 8",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset8_AccessNo::STRING AS OFFSET8ACCESSNUMBER,",
+        "source_line": 93,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET8ACCESSNUMBER",
+        "data_type": "VARCHAR",
+        "description": "The unique identifier for the Account for Offset 8",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET8ACCESSNUMBER",
+        "projection_expression": "OFFSET8ACCESSNUMBER",
+        "projection_line": 18,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset8_AccessNo",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "Offset8_Product",
+    "field_id": "ultracs:ACCOUNT:DWDBUST:19",
+    "ultracs_position": 19,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWDBUST.TXT",
+    "param_column": "Offset8_Product",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+      "confidence": "explicit",
+      "name": "Offset8_Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWDBUST.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. Accounts-v1 Airflow maps dwdbust to ACCOUNTS_V1__ACCOUNT_OFFSET.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+      "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "source_references": [
+        "REC<11,8,TX>"
+      ],
+      "description": "",
+      "basic_expression": "REC<11,8,TX>[LEN(ACT)+1,9]",
+      "basic_source_line": 405,
+      "basic_transformation_lines": [],
+      "loop": "TX=1..8; one ACT/record pair per loop iteration",
+      "extract_file": "DWDBUST.TXT",
+      "position": 19,
+      "param_column": "Offset8_Product"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "accounts_v1__ultracs_account_offset_v2",
+      "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+      "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+      "column": "OFFSET8PRODUCT",
+      "data_type": "VARCHAR",
+      "description": "The Offset 8 Product from the Accounts record in Ultracs",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+      "source_expression": "DATA:Offset8_Product::STRING AS OFFSET8PRODUCT,",
+      "source_line": 92,
+      "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v2",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V2",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET8PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 8 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.yml",
+        "source_expression": "DATA:Offset8_Product::STRING AS OFFSET8PRODUCT,",
+        "source_line": 92,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v2/accounts_v1__ultracs_account_offset_v2.sql"
+      },
+      {
+        "stage": "internal",
+        "model": "accounts_v1__ultracs_account_offset_v3",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET_V3",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake",
+        "column": "OFFSET8PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 8 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.yml",
+        "source_expression": "DATA:Offset8_Product::STRING AS OFFSET8PRODUCT,",
+        "source_line": 94,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/internal/accounts_v1__ultracs_account_offset_v3/accounts_v1__ultracs_account_offset_v3.sql"
+      },
+      {
+        "stage": "public",
+        "model": "accounts_v1__ultracs_account_offset",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNT_OFFSET",
+        "model_description": "The Ultracs account offset data, initially only bringing through a few specific attributes, but will be extended in the future to process columns of business value. Processed via files from the source system, via S3, and then into Snowflake.",
+        "column": "OFFSET8PRODUCT",
+        "data_type": "VARCHAR",
+        "description": "The Offset 8 Product from the Accounts record in Ultracs",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.yml",
+        "source_model": "accounts_v1__ultracs_account_offset_v3",
+        "source_column": "OFFSET8PRODUCT",
+        "projection_expression": "OFFSET8PRODUCT",
+        "projection_line": 19,
+        "source_path": "kb-cdp-tenant-account/products/accounts-v1/dbt/models/public/accounts_v1__ultracs_account_offset/accounts_v1__ultracs_account_offset.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ACCOUNTS_V1__ACCOUNT_OFFSET",
+      "dbt_input": "DATA:Offset8_Product",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_dbust.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_dbus2.json",
+        "kb-cdp-tenant-account/products/accounts-v1/airflow/accounts_v1/src/dags/accounts_v1_ingestion_v1.py"
+      ]
+    }
+  }
+]

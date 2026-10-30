@@ -1,0 +1,2040 @@
+[
+  {
+    "business_field": "AccountNo",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:1",
+    "ultracs_position": 1,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "AccountNo",
+    "hvr_parameter": {
+      "name": "AccountNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "ACCOUNTNUMBER",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes CIS to DWREL position 1 by field order; DWREL.param names it AccountNo; dbt reads DATA:AccountNo.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": null,
+      "source_references": [],
+      "source_files": [],
+      "variable_definitions": [
+        {
+          "source_line": 149,
+          "text": "CIS = FIELD(NID,'S',1)"
+        },
+        {
+          "source_line": 150,
+          "text": "CIS = FIELD(NID,'L',1)"
+        },
+        {
+          "source_line": 151,
+          "text": "CIS = FIELD(NID,'I',1)"
+        }
+      ],
+      "description": "",
+      "transformation": "CIS",
+      "basic_expression": "CIS",
+      "basic_comment": "",
+      "basic_source_line": 433,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 1,
+      "param_column": "AccountNo"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "The Account Access Number for Account Relationship",
+      "data_type": "VARCHAR",
+      "classification": "SENSITIVE",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "ACCOUNTNUMBER",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "ACCOUNTNUMBER",
+        "source_expression": "a.data:AccountNo::STRING AS accountnumber,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 58,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "The Account Access Number for Account Relationship",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "ACCOUNTNUMBER",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "ACCOUNTNUMBER",
+        "projection_expression": "ACCOUNTNUMBER",
+        "projection_line": 3,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "The Account Access Number for Account Relationship",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "ACCOUNTNUMBER",
+        "source_expression": "DATA:AccountNo::STRING AS ACCOUNTNUMBER,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 3,
+        "model_description": "Accountrelationship2 data.",
+        "description": "The Account Access Number for Account Relationship",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "ACCOUNTNUMBER",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "ACCOUNTNUMBER",
+        "projection_expression": "ACCOUNTNUMBER",
+        "projection_line": 5,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "The Account Access Number for Account Relationship",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:AccountNo"
+    }
+  },
+  {
+    "business_field": "Product",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:2",
+    "ultracs_position": 2,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "Product",
+    "hvr_parameter": {
+      "name": "Product",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "BANKINGPRODUCTCODE",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes PID to DWREL position 2 by field order; DWREL.param names it Product; dbt reads DATA:Product.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": null,
+      "source_references": [],
+      "source_files": [],
+      "variable_definitions": [
+        {
+          "source_line": 152,
+          "text": "PID = ID[LEN(CIS)+1,9]"
+        }
+      ],
+      "description": "",
+      "transformation": "PID",
+      "basic_expression": "PID",
+      "basic_comment": "",
+      "basic_source_line": 433,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 2,
+      "param_column": "Product"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "The Product from the Accounts record in Ultracs",
+      "data_type": "VARCHAR",
+      "classification": "STANDARD",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "BANKINGPRODUCTCODE",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "BANKINGPRODUCTCODE",
+        "source_expression": "a.data:Product::STRING AS bankingproductcode,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 60,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "The Product from the Accounts record in Ultracs",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "BANKINGPRODUCTCODE",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "BANKINGPRODUCTCODE",
+        "projection_expression": "BANKINGPRODUCTCODE",
+        "projection_line": 5,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "The Product from the Accounts record in Ultracs",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "BANKINGPRODUCTCODE",
+        "source_expression": "DATA:Product::STRING AS BANKINGPRODUCTCODE,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 5,
+        "model_description": "Accountrelationship2 data.",
+        "description": "The Product from the Accounts record in Ultracs",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "BANKINGPRODUCTCODE",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "BANKINGPRODUCTCODE",
+        "projection_expression": "BANKINGPRODUCTCODE",
+        "projection_line": 6,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "The Product from the Accounts record in Ultracs",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:Product"
+    }
+  },
+  {
+    "business_field": "CustomerNo",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:3",
+    "ultracs_position": 3,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "CustomerNo",
+    "hvr_parameter": {
+      "name": "CustomerNo",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "CUSTOMERNUMBER",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes AREC<29,X> to DWREL position 3 by field order; DWREL.param names it CustomerNo; dbt reads DATA:CustomerNo.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "AREC<29,X>",
+      "source_references": [
+        "AREC<29,X>"
+      ],
+      "source_files": [
+        {
+          "variable": "AREC",
+          "file": "ACCOUNT",
+          "source_line": 141
+        }
+      ],
+      "variable_definitions": [],
+      "description": "",
+      "transformation": "AREC<29,X>",
+      "basic_expression": "AREC<29,X>",
+      "basic_comment": "",
+      "basic_source_line": 433,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 3,
+      "param_column": "CustomerNo"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "Access number for each customer.",
+      "data_type": "VARCHAR",
+      "classification": "SENSITIVE",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "CUSTOMERNUMBER",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "CUSTOMERNUMBER",
+        "source_expression": "a.data:CustomerNo::STRING AS customernumber,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 59,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "Access number for each customer.",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "CUSTOMERNUMBER",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "CUSTOMERNUMBER",
+        "projection_expression": "CUSTOMERNUMBER",
+        "projection_line": 4,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "Access number for each customer.",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "CUSTOMERNUMBER",
+        "source_expression": "DATA:CustomerNo::STRING AS CUSTOMERNUMBER,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 4,
+        "model_description": "Accountrelationship2 data.",
+        "description": "Access number for each customer.",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "CUSTOMERNUMBER",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "CUSTOMERNUMBER",
+        "projection_expression": "CUSTOMERNUMBER",
+        "projection_line": 3,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "Access number for each customer.",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:CustomerNo"
+    }
+  },
+  {
+    "business_field": "RelType",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:4",
+    "ultracs_position": 4,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "RelType",
+    "hvr_parameter": {
+      "name": "RelType",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "ACCOUNTINVOLVEMENTROLETYPE",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes AREC<30,X> to DWREL position 4 by field order; DWREL.param names it RelType; dbt reads DATA:RelType.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "AREC<30,X>",
+      "source_references": [
+        "AREC<30,X>"
+      ],
+      "source_files": [
+        {
+          "variable": "AREC",
+          "file": "ACCOUNT",
+          "source_line": 141
+        }
+      ],
+      "variable_definitions": [],
+      "description": "",
+      "transformation": "AREC<30,X>",
+      "basic_expression": "AREC<30,X>",
+      "basic_comment": "",
+      "basic_source_line": 434,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 4,
+      "param_column": "RelType"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "The type of role for the Account Involvement.",
+      "data_type": "VARCHAR",
+      "classification": "SENSITIVE",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "ACCOUNTINVOLVEMENTROLETYPE",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "ACCOUNTINVOLVEMENTROLETYPE",
+        "source_expression": "a.data:RelType::STRING AS accountinvolvementroletype,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 61,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "The type of role for the Account Involvement.",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "ACCOUNTINVOLVEMENTROLETYPE",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "ACCOUNTINVOLVEMENTROLETYPE",
+        "projection_expression": "ACCOUNTINVOLVEMENTROLETYPE",
+        "projection_line": 6,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "The type of role for the Account Involvement.",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "ACCOUNTINVOLVEMENTROLETYPE",
+        "source_expression": "DATA:RelType::STRING AS ACCOUNTINVOLVEMENTROLETYPE,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 6,
+        "model_description": "Accountrelationship2 data.",
+        "description": "The type of role for the Account Involvement.",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "ACCOUNTINVOLVEMENTROLETYPE",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "ACCOUNTINVOLVEMENTROLETYPE",
+        "projection_expression": "ACCOUNTINVOLVEMENTROLETYPE",
+        "projection_line": 4,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "The type of role for the Account Involvement.",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:RelType"
+    }
+  },
+  {
+    "business_field": "StmtType",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:5",
+    "ultracs_position": 5,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "StmtType",
+    "hvr_parameter": {
+      "name": "StmtType",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "STATEMENTTYPE",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes AREC<32,X> to DWREL position 5 by field order; DWREL.param names it StmtType; dbt reads DATA:StmtType.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "AREC<32,X>",
+      "source_references": [
+        "AREC<32,X>"
+      ],
+      "source_files": [
+        {
+          "variable": "AREC",
+          "file": "ACCOUNT",
+          "source_line": 141
+        }
+      ],
+      "variable_definitions": [],
+      "description": "",
+      "transformation": "AREC<32,X>",
+      "basic_expression": "AREC<32,X>",
+      "basic_comment": "",
+      "basic_source_line": 434,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 5,
+      "param_column": "StmtType"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "Statement Type",
+      "data_type": "VARCHAR",
+      "classification": "SENSITIVE",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "STATEMENTTYPE",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "STATEMENTTYPE",
+        "source_expression": "a.data:StmtType::STRING AS statementtype,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 62,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "Statement Type",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "STATEMENTTYPE",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "STATEMENTTYPE",
+        "projection_expression": "STATEMENTTYPE",
+        "projection_line": 7,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "Statement Type",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "STATEMENTTYPE",
+        "source_expression": "DATA:StmtType::STRING AS STATEMENTTYPE,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 7,
+        "model_description": "Accountrelationship2 data.",
+        "description": "Statement Type",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "STATEMENTTYPE",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "STATEMENTTYPE",
+        "projection_expression": "STATEMENTTYPE",
+        "projection_line": 7,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "Statement Type",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:StmtType"
+    }
+  },
+  {
+    "business_field": "SignatoryonAccount",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:6",
+    "ultracs_position": 6,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "SignatoryonAccount",
+    "hvr_parameter": {
+      "name": "SignatoryonAccount",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "SIGNATORY",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes AREC<34,X> to DWREL position 6 by field order; DWREL.param names it SignatoryonAccount; dbt reads DATA:SignatoryonAccount.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "AREC<34,X>",
+      "source_references": [
+        "AREC<34,X>"
+      ],
+      "source_files": [
+        {
+          "variable": "AREC",
+          "file": "ACCOUNT",
+          "source_line": 141
+        }
+      ],
+      "variable_definitions": [],
+      "description": "",
+      "transformation": "AREC<34,X>",
+      "basic_expression": "AREC<34,X>",
+      "basic_comment": "",
+      "basic_source_line": 434,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 6,
+      "param_column": "SignatoryonAccount"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "Signatory",
+      "data_type": "VARCHAR",
+      "classification": "SENSITIVE",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "SIGNATORY",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "SIGNATORY",
+        "source_expression": "a.data:SignatoryonAccount::STRING AS signatory,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 63,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "Signatory",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "SIGNATORY",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "SIGNATORY",
+        "projection_expression": "SIGNATORY",
+        "projection_line": 8,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "Signatory",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "SIGNATORY",
+        "source_expression": "DATA:SignatoryonAccount::STRING AS SIGNATORY,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 8,
+        "model_description": "Accountrelationship2 data.",
+        "description": "Signatory",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "SIGNATORY",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "SIGNATORY",
+        "projection_expression": "SIGNATORY",
+        "projection_line": 8,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "Signatory",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:SignatoryonAccount"
+    }
+  },
+  {
+    "business_field": "Emailaddress",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:7",
+    "ultracs_position": 7,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "Emailaddress",
+    "hvr_parameter": {
+      "name": "Emailaddress",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "EMAILADDRESS",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes EREC<5,1> to DWREL position 7 by field order; DWREL.param names it Emailaddress; dbt reads DATA:EmailAddress. dbt key EmailAddress differs in case from the .param name; Snowflake VARIANT key lookup is case-sensitive, so confirm the RAW key.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [
+      {
+        "param_column": "Emailaddress",
+        "dbt_key": "EmailAddress",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 64
+      },
+      {
+        "param_column": "Emailaddress",
+        "dbt_key": "EmailAddress",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 9
+      }
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "EREC<5,1> + EREC<5,2> + EREC<5,3> + EREC<5,4>",
+      "source_references": [
+        "EREC<5,1>",
+        "EREC<5,2>",
+        "EREC<5,3>",
+        "EREC<5,4>"
+      ],
+      "source_files": [
+        {
+          "variable": "EREC",
+          "file": "EMAIL.DETAILS",
+          "source_line": 435
+        }
+      ],
+      "variable_definitions": [],
+      "description": "",
+      "transformation": "Empty when EREC<5>=\"\"; otherwise EREC<5,1>; appends \",\":EREC<5,2> when EREC<5,2> #''; appends \",\":EREC<5,3> when EREC<5,3> #''; appends \",\":EREC<5,4> when EREC<5,4> #''",
+      "basic_expression": "EREC<5,1>",
+      "basic_comment": "",
+      "basic_source_line": 439,
+      "conditional_continuations": [
+        {
+          "condition": "EREC<5,2> #''",
+          "expression": "\",\":EREC<5,2>",
+          "source_line": 440
+        },
+        {
+          "condition": "EREC<5,3> #''",
+          "expression": "\",\":EREC<5,3>",
+          "source_line": 441
+        },
+        {
+          "condition": "EREC<5,4> #''",
+          "expression": "\",\":EREC<5,4>",
+          "source_line": 442
+        }
+      ],
+      "extract_file": "DWREL",
+      "position": 7,
+      "param_column": "Emailaddress"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "Email Address",
+      "data_type": "VARCHAR",
+      "classification": "SENSITIVE",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "EMAILADDRESS",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "EMAILADDRESS",
+        "source_expression": "a.data:EmailAddress::STRING AS emailaddress,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 64,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "Email Address",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "EMAILADDRESS",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "EMAILADDRESS",
+        "projection_expression": "EMAILADDRESS",
+        "projection_line": 9,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "Email Address",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "EMAILADDRESS",
+        "source_expression": "DATA:EmailAddress::STRING AS EMAILADDRESS,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 9,
+        "model_description": "Accountrelationship2 data.",
+        "description": "Email Address",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "EMAILADDRESS",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "EMAILADDRESS",
+        "projection_expression": "EMAILADDRESS",
+        "projection_line": 9,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "Email Address",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:EmailAddress"
+    }
+  },
+  {
+    "business_field": "EmailFormat",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:8",
+    "ultracs_position": 8,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "EmailFormat",
+    "hvr_parameter": {
+      "name": "EmailFormat",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": null,
+    "snowflake_column": null,
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes EREC<7> to DWREL position 8 by field order; DWREL.param names it EmailFormat; no account-relationship-v1 dbt model reads it.",
+    "dbt_mapping_status": "no_dbt_projection_found",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "EREC<7>",
+      "source_references": [
+        "EREC<7>"
+      ],
+      "source_files": [
+        {
+          "variable": "EREC",
+          "file": "EMAIL.DETAILS",
+          "source_line": 435
+        }
+      ],
+      "variable_definitions": [],
+      "description": "EMAIL FORMAT",
+      "transformation": "EREC<7>",
+      "basic_expression": "EREC<7>",
+      "basic_comment": "EMAIL FORMAT",
+      "basic_source_line": 444,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 8,
+      "param_column": "EmailFormat"
+    },
+    "cdp": {},
+    "dbt_targets": [],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:EmailFormat"
+    }
+  },
+  {
+    "business_field": "EmailSendYN",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:9",
+    "ultracs_position": 9,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "EmailSendYN",
+    "hvr_parameter": {
+      "name": "EmailSendYN",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "EMAILSEND",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes EREC<6,1>:EREC<6,2>:EREC<6,3> to DWREL position 9 by field order; DWREL.param names it EmailSendYN; dbt reads DATA:EmailSendYN.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "EREC<6,1> + EREC<6,2> + EREC<6,3>",
+      "source_references": [
+        "EREC<6,1>",
+        "EREC<6,2>",
+        "EREC<6,3>"
+      ],
+      "source_files": [
+        {
+          "variable": "EREC",
+          "file": "EMAIL.DETAILS",
+          "source_line": 435
+        }
+      ],
+      "variable_definitions": [],
+      "description": "SEND Y/N",
+      "transformation": "EREC<6,1>:EREC<6,2>:EREC<6,3>",
+      "basic_expression": "EREC<6,1>:EREC<6,2>:EREC<6,3>",
+      "basic_comment": "SEND Y/N",
+      "basic_source_line": 445,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 9,
+      "param_column": "EmailSendYN"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "Email Send",
+      "data_type": "VARCHAR",
+      "classification": "STANDARD",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "EMAILSEND",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "EMAILSEND",
+        "source_expression": "a.data:EmailSendYN::STRING AS emailsend,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 65,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "Email Send",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "EMAILSEND",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "EMAILSEND",
+        "projection_expression": "EMAILSEND",
+        "projection_line": 10,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "Email Send",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "EMAILSEND",
+        "source_expression": "DATA:EmailSendYN::STRING AS EMAILSEND,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 10,
+        "model_description": "Accountrelationship2 data.",
+        "description": "Email Send",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "EMAILSEND",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "EMAILSEND",
+        "projection_expression": "EMAILSEND",
+        "projection_line": 10,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "Email Send",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:EmailSendYN"
+    }
+  },
+  {
+    "business_field": "EmailPassword",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:10",
+    "ultracs_position": 10,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "EmailPassword",
+    "hvr_parameter": {
+      "name": "EmailPassword",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": null,
+    "snowflake_column": null,
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes EREC<1> to DWREL position 10 by field order; DWREL.param names it EmailPassword; no account-relationship-v1 dbt model reads it.",
+    "dbt_mapping_status": "no_dbt_projection_found",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "EREC<1>",
+      "source_references": [
+        "EREC<1>"
+      ],
+      "source_files": [
+        {
+          "variable": "EREC",
+          "file": "EMAIL.DETAILS",
+          "source_line": 435
+        }
+      ],
+      "variable_definitions": [],
+      "description": "PASSWORD",
+      "transformation": "EREC<1>",
+      "basic_expression": "EREC<1>",
+      "basic_comment": "PASSWORD",
+      "basic_source_line": 446,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 10,
+      "param_column": "EmailPassword"
+    },
+    "cdp": {},
+    "dbt_targets": [],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:EmailPassword"
+    }
+  },
+  {
+    "business_field": "EmailFlg",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:11",
+    "ultracs_position": 11,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "EmailFlg",
+    "hvr_parameter": {
+      "name": "EmailFlg",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": null,
+    "snowflake_column": null,
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes EREC<3,1> to DWREL position 11 by field order; DWREL.param names it EmailFlg; no account-relationship-v1 dbt model reads it.",
+    "dbt_mapping_status": "no_dbt_projection_found",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "EREC<3,1>",
+      "source_references": [
+        "EREC<3,1>"
+      ],
+      "source_files": [
+        {
+          "variable": "EREC",
+          "file": "EMAIL.DETAILS",
+          "source_line": 435
+        }
+      ],
+      "variable_definitions": [],
+      "description": "",
+      "transformation": "EREC<3,1>",
+      "basic_expression": "EREC<3,1>",
+      "basic_comment": "",
+      "basic_source_line": 447,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 11,
+      "param_column": "EmailFlg"
+    },
+    "cdp": {},
+    "dbt_targets": [],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:EmailFlg"
+    }
+  },
+  {
+    "business_field": "LetterFlg",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:12",
+    "ultracs_position": 12,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "LetterFlg",
+    "hvr_parameter": {
+      "name": "LetterFlg",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": null,
+    "snowflake_column": null,
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes AREC<131,X> to DWREL position 12 by field order; DWREL.param names it LetterFlg; no account-relationship-v1 dbt model reads it.",
+    "dbt_mapping_status": "no_dbt_projection_found",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "AREC<131,X>",
+      "source_references": [
+        "AREC<131,X>"
+      ],
+      "source_files": [
+        {
+          "variable": "AREC",
+          "file": "ACCOUNT",
+          "source_line": 141
+        }
+      ],
+      "variable_definitions": [],
+      "description": "LET",
+      "transformation": "AREC<131,X>",
+      "basic_expression": "AREC<131,X>",
+      "basic_comment": "LET",
+      "basic_source_line": 448,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 12,
+      "param_column": "LetterFlg"
+    },
+    "cdp": {},
+    "dbt_targets": [],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:LetterFlg"
+    }
+  },
+  {
+    "business_field": "DateRun",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:13",
+    "ultracs_position": 13,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "DateRun",
+    "hvr_parameter": {
+      "name": "DateRun",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+    "snowflake_column": "DATERUN",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes OCONV(RUNDATE,'D4') to DWREL position 13 by field order; DWREL.param names it DateRun; dbt reads DATA:DateRun.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": null,
+      "source_references": [],
+      "source_files": [],
+      "variable_definitions": [],
+      "description": "",
+      "transformation": "OCONV(RUNDATE,'D4')",
+      "basic_expression": "OCONV(RUNDATE,'D4')",
+      "basic_comment": "",
+      "basic_source_line": 449,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 13,
+      "param_column": "DateRun"
+    },
+    "cdp": {
+      "model": "vw_account_relationship_v1__accrelationship_v1",
+      "model_description": "Accountrelationship2 data",
+      "description": "Date Run in Ultracs",
+      "data_type": "VARCHAR",
+      "classification": "STANDARD",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml",
+      "table": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+      "column": "DATERUN",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "DATERUN",
+        "source_expression": "TRY_TO_DATE(DATA:DateRun::STRING, 'DD MON YYYY') AS DATERUN,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 12,
+        "model_description": "Accountrelationship2 data.",
+        "description": "Date Run in Ultracs",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "DATERUN",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "DATERUN",
+        "projection_expression": "DATERUN",
+        "projection_line": 12,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "Date Run in Ultracs",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:DateRun"
+    }
+  },
+  {
+    "business_field": "AltNameFlag",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:14",
+    "ultracs_position": 14,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "AltNameFlag",
+    "hvr_parameter": {
+      "name": "AltNameFlag",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "ALTERNATIVENAMEFLAG",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes AREC<33,X> to DWREL position 14 by field order; DWREL.param names it AltNameFlag; dbt reads DATA:AltNameFlag.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "AREC<33,X>",
+      "source_references": [
+        "AREC<33,X>"
+      ],
+      "source_files": [
+        {
+          "variable": "AREC",
+          "file": "ACCOUNT",
+          "source_line": 141
+        }
+      ],
+      "variable_definitions": [],
+      "description": "ALT NAME APPLY",
+      "transformation": "AREC<33,X>",
+      "basic_expression": "AREC<33,X>",
+      "basic_comment": "ALT NAME APPLY",
+      "basic_source_line": 450,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 14,
+      "param_column": "AltNameFlag"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "Alternative Name Flag",
+      "data_type": "VARCHAR",
+      "classification": "STANDARD",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "ALTERNATIVENAMEFLAG",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "ALTERNATIVENAMEFLAG",
+        "source_expression": "a.data:AltNameFlag::STRING AS alternativenameflag,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 66,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "Alternative Name Flag",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "ALTERNATIVENAMEFLAG",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "ALTERNATIVENAMEFLAG",
+        "projection_expression": "ALTERNATIVENAMEFLAG",
+        "projection_line": 11,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "Alternative Name Flag",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "ALTERNATIVENAMEFLAG",
+        "source_expression": "DATA:AltNameFlag::STRING AS ALTERNATIVENAMEFLAG,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 11,
+        "model_description": "Accountrelationship2 data.",
+        "description": "Alternative Name Flag",
+        "data_type": "VARCHAR",
+        "classification": "SENSITIVE",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "ALTERNATIVENAMEFLAG",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "ALTERNATIVENAMEFLAG",
+        "projection_expression": "ALTERNATIVENAMEFLAG",
+        "projection_line": 11,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "Alternative Name Flag",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:AltNameFlag"
+    }
+  },
+  {
+    "business_field": "TaxToApplyFlag",
+    "field_id": "ultracs:ACCOUNT_RELATIONSHIP:DWREL:15",
+    "ultracs_position": 15,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC",
+    "extract_file": "DWREL",
+    "param_column": "TaxToApplyFlag",
+    "hvr_parameter": {
+      "name": "TaxToApplyFlag",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "snowflake_table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+    "snowflake_column": "TAXTOAPPLYFLAG",
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWREL.param",
+    "notes": "KWDW_ACC writes AREC<31,X> to DWREL position 15 by field order; DWREL.param names it TaxToApplyFlag; dbt reads DATA:TaxToApplyFlag.",
+    "dbt_mapping_status": "mapped",
+    "dbt_key_case_differences": [],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC",
+      "source_locator": "AREC<31,X>",
+      "source_references": [
+        "AREC<31,X>"
+      ],
+      "source_files": [
+        {
+          "variable": "AREC",
+          "file": "ACCOUNT",
+          "source_line": 141
+        }
+      ],
+      "variable_definitions": [],
+      "description": "TFN APPLY FLG",
+      "transformation": "AREC<31,X>",
+      "basic_expression": "AREC<31,X>",
+      "basic_comment": "TFN APPLY FLG",
+      "basic_source_line": 451,
+      "conditional_continuations": [],
+      "extract_file": "DWREL",
+      "position": 15,
+      "param_column": "TaxToApplyFlag"
+    },
+    "cdp": {
+      "model": "account_relationship_v1__customer_account_relationship",
+      "model_description": "Customer Account Product Relationship.",
+      "description": "Tax To Apply Flag",
+      "data_type": "VARCHAR",
+      "classification": "STANDARD",
+      "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml",
+      "table": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+      "column": "TAXTOAPPLYFLAG",
+      "stage": "public"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "account_relationship_v1__customer_account_relationship_v1",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship_v1",
+        "relation": "snowflake:relation:INTERNAL.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP_V1",
+        "column": "TAXTOAPPLYFLAG",
+        "source_expression": "a.data:TaxToApplyFlag::STRING AS taxtoapplyflag,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.sql",
+        "source_line": 67,
+        "model_description": "Customer To Acount Relationship Type",
+        "description": "Tax To Apply Flag",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/account_relationship_v1__customer_account_relationship_v1/account_relationship_v1__customer_account_relationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "account_relationship_v1__customer_account_relationship",
+        "model_id": "dbt:model:account_relationship_v1__customer_account_relationship",
+        "relation": "snowflake:relation:PUBLIC.ACCOUNT_RELATIONSHIP_V1__CUSTOMER_ACCOUNT_RELATIONSHIP",
+        "column": "TAXTOAPPLYFLAG",
+        "source_model": "account_relationship_v1__customer_account_relationship_v1",
+        "source_column": "TAXTOAPPLYFLAG",
+        "projection_expression": "TAXTOAPPLYFLAG",
+        "projection_line": 12,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.sql",
+        "model_description": "Customer Account Product Relationship.",
+        "description": "Tax To Apply Flag",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/account_relationship_v1__customer_account_relationship/account_relationship_v1__customer_account_relationship.yml"
+      },
+      {
+        "stage": "internal",
+        "model": "v_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:v_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:INTERNAL.V_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "TAXTOAPPLYFLAG",
+        "source_expression": "DATA:TaxToApplyFlag::STRING AS TAXTOAPPLYFLAG,",
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.sql",
+        "source_line": 13,
+        "model_description": "Accountrelationship2 data.",
+        "description": "Tax To Apply Flag",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/internal/v_account_relationship_v1__accrelationship_v1/v_account_relationship_v1__accrelationship_v1.yml"
+      },
+      {
+        "stage": "public",
+        "model": "vw_account_relationship_v1__accrelationship_v1",
+        "model_id": "dbt:model:vw_account_relationship_v1__accrelationship_v1",
+        "relation": "snowflake:relation:PUBLIC.VW_ACCOUNT_RELATIONSHIP_V1__ACCRELATIONSHIP_V1",
+        "column": "TAXTOAPPLYFLAG",
+        "source_model": "v_account_relationship_v1__accrelationship_v1",
+        "source_column": "TAXTOAPPLYFLAG",
+        "projection_expression": "TAXTOAPPLYFLAG",
+        "projection_line": 13,
+        "source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.sql",
+        "model_description": "Accountrelationship2 data",
+        "description": "Tax To Apply Flag",
+        "data_type": "VARCHAR",
+        "classification": "STANDARD",
+        "schema_source_path": "kb-cdp-tenant-account/products/account-relationship-v1/dbt/models/public/vw_account_relationship_v1__accrelationship_v1/vw_account_relationship_v1__accrelationship_v1.yml"
+      }
+    ],
+    "ingestion_route": {
+      "hvr_channels": [
+        "ult_s3_rel1",
+        "ult_s3_rel2"
+      ],
+      "s3_paths": [
+        "s3:path:DATALAKE:ultracs:dwrel",
+        "s3:path:HVR:ultracs:dwrel"
+      ],
+      "airflow_dag": "account_relationship_v1_ingestion_v1",
+      "airflow_tasks": [
+        "copy_s3_files_from_hvr_to_datalake_task_for_dwrel",
+        "copy_s3_files_to_snowflake_task_for_dwrel"
+      ],
+      "raw_relation": "snowflake:relation:RAW.ACCOUNT_RELATIONSHIP_V1__RELATIONSHIPS",
+      "separate_direct_branch": {
+        "hvr_channels": [
+          "ult_sf_rel"
+        ],
+        "capture_patterns": [
+          "DWREL.TXT"
+        ],
+        "landing_relations": [
+          "snowflake:relation:LOADRELATIONSHIPS_INGEST"
+        ],
+        "associated_with_extract_by_capture_pattern": false,
+        "joined_to_raw_relation": false
+      },
+      "dbt_input": "DATA:TaxToApplyFlag"
+    }
+  }
+]

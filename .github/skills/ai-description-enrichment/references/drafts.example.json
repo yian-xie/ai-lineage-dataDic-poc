@@ -1,0 +1,190 @@
+{
+  "schema_version": "description-drafts-v1",
+  "rubric_id": "description-evidence-v1",
+  "input_hashes": {
+    "asset_registry.csv": "36f3261085f8f891caffc8c5834d7e4ef52e54019be37497753e2da7e063c6c4",
+    "field_catalog.csv": "d6d8110589febcb8c7a9e01afac8694266c8dd240f8089d6f0220c14860651f7",
+    "data_dictionary.csv": "038edf763bf7ed8c9d2fb682692c61e21b3f7c259d0cda6c5730fd628a12c416"
+  },
+  "run_id": "ai-description-2026-10-20T03:45:42.773633+00:00",
+  "generator": "AI assistant using Copilot SDK in VS Code",
+  "model": null,
+  "generated_at": "2026-10-20T03:55:17.875841+00:00",
+  "results": [
+    {
+      "graph_id": "sample-input",
+      "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+      "field_id": "source-field:930153d4d1bf5d3a7c23084c",
+      "status": "draft",
+      "description": "Scoped AREC<19> value is emitted as RepayMeth and mapped to REPAYMENTARRANGEMENTID. The supplied mapping does not establish whether the source denotes a repayment method, arrangement identifier or another code, and does not bind it to a physical file.",
+      "assessment": {
+        "assessment_scope": "description_evidence",
+        "assessment_origin": "ai_self_assessment",
+        "rubric_id": "description-evidence-v1",
+        "verification_mode": "supplied_csv_only",
+        "score_10": 7,
+        "components": [
+          {
+            "criterion": "identity_grounding",
+            "points": 1,
+            "maximum": 2,
+            "reason": "The CSV identifies this scoped BASIC reference uniquely, but does not establish its physical MultiValue file binding.",
+            "evidence_refs": [
+              "E1",
+              "E2"
+            ]
+          },
+          {
+            "criterion": "meaning_support",
+            "points": 1,
+            "maximum": 2,
+            "reason": "The draft preserves a label ambiguity rather than inventing repayment-code semantics.",
+            "evidence_refs": [
+              "E3",
+              "E7"
+            ]
+          },
+          {
+            "criterion": "transformation_support",
+            "points": 2,
+            "maximum": 2,
+            "reason": "The direct reference and DATA:RepayMeth projection support the recorded selection.",
+            "evidence_refs": [
+              "E4",
+              "E5"
+            ]
+          },
+          {
+            "criterion": "corroboration",
+            "points": 1,
+            "maximum": 2,
+            "reason": "The target metadata only repeats the association and cannot resolve the method-versus-identifier interpretation.",
+            "evidence_refs": [
+              "E6",
+              "E7"
+            ]
+          },
+          {
+            "criterion": "uncertainty_handling",
+            "points": 2,
+            "maximum": 2,
+            "reason": "The description limits itself to supplied claims and retains this specific gap: Confirm RepayMeth's business meaning and permitted values.",
+            "evidence_refs": [
+              "E2",
+              "E4",
+              "E7",
+              "E8"
+            ]
+          }
+        ],
+        "evidence_refs": {
+          "E1": {
+            "file": "field_catalog.csv",
+            "input_sha256": "d6d8110589febcb8c7a9e01afac8694266c8dd240f8089d6f0220c14860651f7",
+            "graph_id": "sample-input",
+            "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+            "row_id_column": "field_id",
+            "row_id": "source-field:930153d4d1bf5d3a7c23084c",
+            "column": "field_id",
+            "json_pointer": null,
+            "value": "source-field:930153d4d1bf5d3a7c23084c"
+          },
+          "E2": {
+            "file": "field_catalog.csv",
+            "input_sha256": "d6d8110589febcb8c7a9e01afac8694266c8dd240f8089d6f0220c14860651f7",
+            "graph_id": "sample-input",
+            "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+            "row_id_column": "field_id",
+            "row_id": "source-field:930153d4d1bf5d3a7c23084c",
+            "column": "physical_binding_status",
+            "json_pointer": null,
+            "value": "file_binding_not_supplied"
+          },
+          "E3": {
+            "file": "data_dictionary.csv",
+            "input_sha256": "038edf763bf7ed8c9d2fb682692c61e21b3f7c259d0cda6c5730fd628a12c416",
+            "graph_id": "sample-input",
+            "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+            "row_id_column": "dictionary_entry_id",
+            "row_id": "dictionary-row:0e67b5fe544701fab2d41acb",
+            "column": "extract_column",
+            "json_pointer": null,
+            "value": "RepayMeth"
+          },
+          "E4": {
+            "file": "data_dictionary.csv",
+            "input_sha256": "038edf763bf7ed8c9d2fb682692c61e21b3f7c259d0cda6c5730fd628a12c416",
+            "graph_id": "sample-input",
+            "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+            "row_id_column": "dictionary_entry_id",
+            "row_id": "dictionary-row:0e67b5fe544701fab2d41acb",
+            "column": "basic_expression",
+            "json_pointer": null,
+            "value": "AREC<19>"
+          },
+          "E5": {
+            "file": "data_dictionary.csv",
+            "input_sha256": "038edf763bf7ed8c9d2fb682692c61e21b3f7c259d0cda6c5730fd628a12c416",
+            "graph_id": "sample-input",
+            "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+            "row_id_column": "dictionary_entry_id",
+            "row_id": "dictionary-row:0e67b5fe544701fab2d41acb",
+            "column": "basic_transformation",
+            "json_pointer": null,
+            "value": "AREC<19>"
+          },
+          "E6": {
+            "file": "data_dictionary.csv",
+            "input_sha256": "038edf763bf7ed8c9d2fb682692c61e21b3f7c259d0cda6c5730fd628a12c416",
+            "graph_id": "sample-input",
+            "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+            "row_id_column": "dictionary_entry_id",
+            "row_id": "dictionary-row:0e67b5fe544701fab2d41acb",
+            "column": "target_source_expression",
+            "json_pointer": null,
+            "value": "DATA:RepayMeth::STRING AS REPAYMENTARRANGEMENTID,"
+          },
+          "E7": {
+            "file": "data_dictionary.csv",
+            "input_sha256": "038edf763bf7ed8c9d2fb682692c61e21b3f7c259d0cda6c5730fd628a12c416",
+            "graph_id": "sample-input",
+            "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+            "row_id_column": "dictionary_entry_id",
+            "row_id": "dictionary-row:0e67b5fe544701fab2d41acb",
+            "column": "snowflake_description",
+            "json_pointer": null,
+            "value": "REPAYMENTARRANGEMENTID sourced from RepayMeth"
+          },
+          "E8": {
+            "file": "field_catalog.csv",
+            "input_sha256": "d6d8110589febcb8c7a9e01afac8694266c8dd240f8089d6f0220c14860651f7",
+            "graph_id": "sample-input",
+            "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+            "row_id_column": "field_id",
+            "row_id": "source-field:930153d4d1bf5d3a7c23084c",
+            "column": "notes_json",
+            "json_pointer": "",
+            "value": [
+              "The record reference is a BASIC record variable/context; the physical Ultracs file and key binding were not supplied.",
+              "KWDW_ACC writes AREC<19> to DWACC position 22; DWACC.param names it RepayMeth; dbt reads DATA:RepayMeth."
+            ]
+          }
+        },
+        "calculation": "1 + 1 + 2 + 1 + 2 = 7 / 10",
+        "rationale": "1 + 1 + 2 + 1 + 2 = 7 / 10. The CSV identifies this scoped BASIC reference uniquely, but does not establish its physical MultiValue file binding. The draft preserves a label ambiguity rather than inventing repayment-code semantics. The direct reference and DATA:RepayMeth projection support the recorded selection. The target metadata only repeats the association and cannot resolve the method-versus-identifier interpretation. The description limits itself to supplied claims and retains this specific gap: Confirm RepayMeth's business meaning and permitted values.",
+        "limitations": [
+          "Physical MultiValue file binding is not supplied; CSV claims have not been independently source- or runtime-verified.",
+          "Confirm RepayMeth's business meaning and permitted values."
+        ],
+        "open_questions": [
+          "Confirm RepayMeth's business meaning and permitted values."
+        ],
+        "assessed_by": "AI assistant using Copilot SDK in VS Code",
+        "model": null,
+        "assessed_at": "2026-10-20T03:55:17.875841+00:00",
+        "human_review_status": "not_reviewed",
+        "is_probability": false
+      }
+    }
+  ]
+}

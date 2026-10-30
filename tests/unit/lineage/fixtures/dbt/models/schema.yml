@@ -1,0 +1,27 @@
+version: 2
+sources:
+  - name: fixture_raw
+    schema: RAW
+    tables:
+      - name: ACCOUNTS
+models:
+  - name: sample_internal
+    config:
+      schema: INTERNAL
+      materialized: incremental
+    description: |
+      Māori account evidence
+      remains multiline.
+    columns:
+      - name: ACCOUNTNUMBER
+        description: ""
+        data_type: VARCHAR(100)
+  - name: sample_public
+    config:
+      schema: PUBLIC
+      materialized: view
+    description: Public fixture view
+    columns:
+      - name: ACCOUNTNUMBER
+        description: Declared in repository metadata.
+        data_type: VARCHAR(100)

@@ -1,0 +1,9 @@
+{
+  "data_source": "Ultracs",
+  "delim": "|",
+  "columns": {
+    "SecondAlphabetically": {"data_type": "string", "description": "Māori\nsecond line"},
+    "FirstAlphabetically": {"data_type": "string", "description": ""},
+    "MissingColumn1": {"data_type": "string", "description": null}
+  }
+}

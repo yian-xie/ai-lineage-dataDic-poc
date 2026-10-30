@@ -1,0 +1,27 @@
+{
+  "schema_version": "description-drafts-v1",
+  "rubric_id": "description-evidence-v1",
+  "input_hashes": {
+    "asset_registry.csv": "36f3261085f8f891caffc8c5834d7e4ef52e54019be37497753e2da7e063c6c4",
+    "field_catalog.csv": "d6d8110589febcb8c7a9e01afac8694266c8dd240f8089d6f0220c14860651f7",
+    "data_dictionary.csv": "038edf763bf7ed8c9d2fb682692c61e21b3f7c259d0cda6c5730fd628a12c416"
+  },
+  "run_id": "ai-description-2026-10-20T03:45:42.773633+00:00",
+  "generator": "AI assistant using Copilot SDK in VS Code",
+  "model": null,
+  "generated_at": "2026-10-20T03:55:17.875841+00:00",
+  "results": [
+    {
+      "graph_id": "sample-input",
+      "snapshot_id": "sha256:ca0735195e57292068f4596cffb266cfd579800343963e8514d3c17ad9429c52",
+      "field_id": "source-field:930153d4d1bf5d3a7c23084c",
+      "status": "needs_evidence",
+      "description": null,
+      "assessment": null,
+      "reason": "1 + 1 + 2 + 1 + 2 = 7 / 10. The CSV identifies this scoped BASIC reference uniquely, but does not establish its physical MultiValue file binding. The draft preserves a label ambiguity rather than inventing repayment-code semantics. The direct reference and DATA:RepayMeth projection support the recorded selection. The target metadata only repeats the association and cannot resolve the method-versus-identifier interpretation. The description limits itself to supplied claims and retains this specific gap: Confirm RepayMeth's business meaning and permitted values.",
+      "open_questions": [
+        "Confirm RepayMeth's business meaning and permitted values."
+      ]
+    }
+  ]
+}

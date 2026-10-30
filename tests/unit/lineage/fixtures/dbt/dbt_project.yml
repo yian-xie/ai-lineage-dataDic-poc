@@ -1,0 +1,11 @@
+name: fixture_project
+version: "1.0"
+config-version: 2
+models:
+  fixture_project:
+    internal:
+      +schema: INTERNAL
+      +materialized: incremental
+    public:
+      +schema: PUBLIC
+      +materialized: view

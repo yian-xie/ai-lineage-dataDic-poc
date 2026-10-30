@@ -1,0 +1,2 @@
+# Input hashes and golden CSV evidence depend on exact bytes, not Git EOL conversion.
+tests/fixtures/reference/** binary

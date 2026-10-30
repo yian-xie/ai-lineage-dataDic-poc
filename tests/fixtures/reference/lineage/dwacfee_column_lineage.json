@@ -1,0 +1,1668 @@
+[
+  {
+    "business_field": "ACCESSNUMBER",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:1",
+    "ultracs_position": 1,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "ACCESSNUMBER",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "ACCESSNUMBER",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "CIS",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "CIS",
+      "basic_source_line": 34,
+      "basic_transformation_lines": [],
+      "loop": null,
+      "extract_file": "DWACFEE.TXT",
+      "position": 1,
+      "param_column": "ACCESSNUMBER"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "ACCESSNUMBER",
+      "data_type": "NUMBER(38, 0)",
+      "description": "Stores Access Number data",
+      "classification": "SENSITIVE",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:ACCESSNUMBER AS NUMBER(38, 0)) AS accessnumber,",
+      "source_line": 73,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "ACCESSNUMBER",
+        "data_type": "NUMBER(38, 0)",
+        "description": "Stores Access Number data",
+        "classification": "SENSITIVE",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:ACCESSNUMBER AS NUMBER(38, 0)) AS accessnumber,",
+        "source_line": 73,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:ACCESSNUMBER",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "PRODUCT",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:2",
+    "ultracs_position": 2,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "PRODUCT",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "PRODUCT",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "PID",
+      "source_references": [],
+      "description": "",
+      "basic_expression": "PID",
+      "basic_source_line": 34,
+      "basic_transformation_lines": [],
+      "loop": null,
+      "extract_file": "DWACFEE.TXT",
+      "position": 2,
+      "param_column": "PRODUCT"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "PRODUCTCODE",
+      "data_type": "VARCHAR",
+      "description": "Stores Product data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:PRODUCT AS STRING) AS productcode,",
+      "source_line": 74,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "PRODUCTCODE",
+        "data_type": "VARCHAR",
+        "description": "Stores Product data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:PRODUCT AS STRING) AS productcode,",
+        "source_line": 74,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:PRODUCT",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "MAXFEEAMOUNT",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:3",
+    "ultracs_position": 3,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "MAXFEEAMOUNT",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "MAXFEEAMOUNT",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 3,
+      "param_column": "MAXFEEAMOUNT"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "MAXFEEAMOUNT",
+      "data_type": "NUMBER(38,5)",
+      "description": "Stores Max Fee Amount data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:MAXFEEAMOUNT AS NUMBER(38, 5)) AS maxfeeamount,",
+      "source_line": 75,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "MAXFEEAMOUNT",
+        "data_type": "NUMBER(38,5)",
+        "description": "Stores Max Fee Amount data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:MAXFEEAMOUNT AS NUMBER(38, 5)) AS maxfeeamount,",
+        "source_line": 75,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:MAXFEEAMOUNT",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "ACTIONONOVERDRAFTACCOUNT",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:4",
+    "ultracs_position": 4,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "ACTIONONOVERDRAFTACCOUNT",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "ACTIONONOVERDRAFTACCOUNT",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 4,
+      "param_column": "ACTIONONOVERDRAFTACCOUNT"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "ACTIONONOVERDRAFTACCOUNT",
+      "data_type": "VARCHAR",
+      "description": "Stores Action On Overdraft Account data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:ACTIONONOVERDRAFTACCOUNT AS STRING) AS actiononoverdraftaccount,",
+      "source_line": 76,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "ACTIONONOVERDRAFTACCOUNT",
+        "data_type": "VARCHAR",
+        "description": "Stores Action On Overdraft Account data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:ACTIONONOVERDRAFTACCOUNT AS STRING) AS actiononoverdraftaccount,",
+        "source_line": 76,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:ACTIONONOVERDRAFTACCOUNT",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "FLATFEEFLAG",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:5",
+    "ultracs_position": 5,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "FLATFEEFLAG",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "FLATFEEFLAG",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 5,
+      "param_column": "FLATFEEFLAG"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "FLATFEEFLAG",
+      "data_type": "VARCHAR",
+      "description": "Stores Flat Fee Flag data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:FLATFEEFLAG AS STRING) AS flatfeeflag,",
+      "source_line": 77,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "FLATFEEFLAG",
+        "data_type": "VARCHAR",
+        "description": "Stores Flat Fee Flag data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:FLATFEEFLAG AS STRING) AS flatfeeflag,",
+        "source_line": 77,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:FLATFEEFLAG",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "FLATFEEAMOUNT",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:6",
+    "ultracs_position": 6,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "FLATFEEAMOUNT",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "FLATFEEAMOUNT",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 6,
+      "param_column": "FLATFEEAMOUNT"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "FLATFEEAMOUNT",
+      "data_type": "NUMBER(38,5)",
+      "description": "Stores Flat Fee Amount data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:FLATFEEAMOUNT AS NUMBER(38, 5)) AS flatfeeamount,",
+      "source_line": 78,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "FLATFEEAMOUNT",
+        "data_type": "NUMBER(38,5)",
+        "description": "Stores Flat Fee Amount data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:FLATFEEAMOUNT AS NUMBER(38, 5)) AS flatfeeamount,",
+        "source_line": 78,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:FLATFEEAMOUNT",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "BALANCECALCMETHOD",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:7",
+    "ultracs_position": 7,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "BALANCECALCMETHOD",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "BALANCECALCMETHOD",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 7,
+      "param_column": "BALANCECALCMETHOD"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "BALANCECALCMETHOD",
+      "data_type": "VARCHAR",
+      "description": "Stores Balance Calc Method data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:BALANCECALCMETHOD AS STRING) AS balancecalcmethod,",
+      "source_line": 79,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "BALANCECALCMETHOD",
+        "data_type": "VARCHAR",
+        "description": "Stores Balance Calc Method data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:BALANCECALCMETHOD AS STRING) AS balancecalcmethod,",
+        "source_line": 79,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:BALANCECALCMETHOD",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "FEETYPESTDTRANSACTION",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:8",
+    "ultracs_position": 8,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "FEETYPESTDTRANSACTION",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "FEETYPESTDTRANSACTION",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 8,
+      "param_column": "FEETYPESTDTRANSACTION"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "FEETYPESTDTRANSACTION",
+      "data_type": "VARCHAR",
+      "description": "Stores Fee Type Std Transaction data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:FEETYPESTDTRANSACTION AS STRING) AS feetypestdtransaction,",
+      "source_line": 80,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "FEETYPESTDTRANSACTION",
+        "data_type": "VARCHAR",
+        "description": "Stores Fee Type Std Transaction data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:FEETYPESTDTRANSACTION AS STRING) AS feetypestdtransaction,",
+        "source_line": 80,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:FEETYPESTDTRANSACTION",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "FEETYPEATMTRANSACTION",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:9",
+    "ultracs_position": 9,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "FEETYPEATMTRANSACTION",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "FEETYPEATMTRANSACTION",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 9,
+      "param_column": "FEETYPEATMTRANSACTION"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "FEETYPEATMTRANSACTION",
+      "data_type": "VARCHAR",
+      "description": "Stores Fee Type ATM Transaction data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:FEETYPEATMTRANSACTION AS STRING) AS feetypeatmtransaction,",
+      "source_line": 81,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "FEETYPEATMTRANSACTION",
+        "data_type": "VARCHAR",
+        "description": "Stores Fee Type ATM Transaction data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:FEETYPEATMTRANSACTION AS STRING) AS feetypeatmtransaction,",
+        "source_line": 81,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:FEETYPEATMTRANSACTION",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "FEETYPEPOSTRANSACTION",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:10",
+    "ultracs_position": 10,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "FEETYPEPOSTRANSACTION",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "FEETYPEPOSTRANSACTION",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 10,
+      "param_column": "FEETYPEPOSTRANSACTION"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "FEETYPEPOSTRANSACTION",
+      "data_type": "VARCHAR",
+      "description": "Stores Fee Type POS Transaction data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:FEETYPEPOSTRANSACTION AS STRING) AS feetypepostransaction,",
+      "source_line": 82,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "FEETYPEPOSTRANSACTION",
+        "data_type": "VARCHAR",
+        "description": "Stores Fee Type POS Transaction data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:FEETYPEPOSTRANSACTION AS STRING) AS feetypepostransaction,",
+        "source_line": 82,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:FEETYPEPOSTRANSACTION",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "NUMBERFREETRANSACTIONALLTYPES",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:11",
+    "ultracs_position": 11,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "NUMBERFREETRANSACTIONALLTYPES",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "NUMBERFREETRANSACTIONALLTYPES",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 11,
+      "param_column": "NUMBERFREETRANSACTIONALLTYPES"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "NUMBERFREETRANSACTIONALLTYPES",
+      "data_type": "NUMBER(38,0)",
+      "description": "Stores Number Free Transaction All Types data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:NUMBERFREETRANSACTIONALLTYPES AS NUMBER(38, 0)) AS numberfreetransactionalltypes,",
+      "source_line": 83,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "NUMBERFREETRANSACTIONALLTYPES",
+        "data_type": "NUMBER(38,0)",
+        "description": "Stores Number Free Transaction All Types data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:NUMBERFREETRANSACTIONALLTYPES AS NUMBER(38, 0)) AS numberfreetransactionalltypes,",
+        "source_line": 83,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:NUMBERFREETRANSACTIONALLTYPES",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "NUMBERFREETRANSACTIONSTDTRANSACTION",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:12",
+    "ultracs_position": 12,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "NUMBERFREETRANSACTIONSTDTRANSACTION",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "NUMBERFREETRANSACTIONSTDTRANSACTION",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 12,
+      "param_column": "NUMBERFREETRANSACTIONSTDTRANSACTION"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "NUMBERFREETRANSACTIONSTDTRANSACTION",
+      "data_type": "NUMBER(38,0)",
+      "description": "Stores Number Free Transaction Std Transaction data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:NUMBERFREETRANSACTIONSTDTRANSACTION AS NUMBER(38, 0)) AS numberfreetransactionstdtransaction,",
+      "source_line": 84,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "NUMBERFREETRANSACTIONSTDTRANSACTION",
+        "data_type": "NUMBER(38,0)",
+        "description": "Stores Number Free Transaction Std Transaction data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:NUMBERFREETRANSACTIONSTDTRANSACTION AS NUMBER(38, 0)) AS numberfreetransactionstdtransaction,",
+        "source_line": 84,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:NUMBERFREETRANSACTIONSTDTRANSACTION",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "NUMBERFREETRANSACTIONATMTRANSACTION",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:13",
+    "ultracs_position": 13,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "NUMBERFREETRANSACTIONATMTRANSACTION",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "NUMBERFREETRANSACTIONATMTRANSACTION",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 13,
+      "param_column": "NUMBERFREETRANSACTIONATMTRANSACTION"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "NUMBERFREETRANSACTIONATMTRANSACTION",
+      "data_type": "NUMBER(38,0)",
+      "description": "Stores Number Free Transaction ATM Transaction data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:NUMBERFREETRANSACTIONATMTRANSACTION AS NUMBER(38, 0)) AS numberfreetransactionatmtransaction,",
+      "source_line": 85,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "NUMBERFREETRANSACTIONATMTRANSACTION",
+        "data_type": "NUMBER(38,0)",
+        "description": "Stores Number Free Transaction ATM Transaction data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:NUMBERFREETRANSACTIONATMTRANSACTION AS NUMBER(38, 0)) AS numberfreetransactionatmtransaction,",
+        "source_line": 85,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:NUMBERFREETRANSACTIONATMTRANSACTION",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "NUMBERFREETRANSACTIONPOSTRANSACTION",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:14",
+    "ultracs_position": 14,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "NUMBERFREETRANSACTIONPOSTRANSACTION",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "NUMBERFREETRANSACTIONPOSTRANSACTION",
+      "type": "string",
+      "obfuscate": "Y",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 14,
+      "param_column": "NUMBERFREETRANSACTIONPOSTRANSACTION"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "NUMBERFREETRANSACTIONPOSTRANSACTION",
+      "data_type": "NUMBER(38,0)",
+      "description": "Stores Number Free Transaction POS Transaction data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:NUMBERFREETRANSACTIONPOSTRANSACTION AS NUMBER(38, 0)) AS numberfreetransactionpostransaction,",
+      "source_line": 86,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "NUMBERFREETRANSACTIONPOSTRANSACTION",
+        "data_type": "NUMBER(38,0)",
+        "description": "Stores Number Free Transaction POS Transaction data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:NUMBERFREETRANSACTIONPOSTRANSACTION AS NUMBER(38, 0)) AS numberfreetransactionpostransaction,",
+        "source_line": 86,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:NUMBERFREETRANSACTIONPOSTRANSACTION",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "EXEMPTALLFEESFLAG",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:15",
+    "ultracs_position": 15,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "EXEMPTALLFEESFLAG",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "EXEMPTALLFEESFLAG",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 15,
+      "param_column": "EXEMPTALLFEESFLAG"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "EXEMPTALLFEESFLAG",
+      "data_type": "VARCHAR",
+      "description": "Stores Exempt All Fees Flag data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:EXEMPTALLFEESFLAG AS STRING) AS exemptallfeesflag,",
+      "source_line": 87,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "EXEMPTALLFEESFLAG",
+        "data_type": "VARCHAR",
+        "description": "Stores Exempt All Fees Flag data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:EXEMPTALLFEESFLAG AS STRING) AS exemptallfeesflag,",
+        "source_line": 87,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:EXEMPTALLFEESFLAG",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "LASTOP",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:16",
+    "ultracs_position": 16,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "LASTOP",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "LASTOP",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 16,
+      "param_column": "LASTOP"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "LASTOP",
+      "data_type": "VARCHAR",
+      "description": "Stores Last OP data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:LASTOP AS STRING) AS lastop,",
+      "source_line": 88,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "LASTOP",
+        "data_type": "VARCHAR",
+        "description": "Stores Last OP data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:LASTOP AS STRING) AS lastop,",
+        "source_line": 88,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:LASTOP",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "LASTBRANCHFEECHANGE",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:17",
+    "ultracs_position": 17,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "LASTBRANCHFEECHANGE",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "LASTBRANCHFEECHANGE",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 17,
+      "param_column": "LASTBRANCHFEECHANGE"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "LASTBRANCHFEECHANGE",
+      "data_type": "NUMBER(38,0)",
+      "description": "Stores Last Branch Fee Change data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "CAST(src.data:LASTBRANCHFEECHANGE AS NUMBER(38, 0)) AS lastbranchfeechange,",
+      "source_line": 89,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "LASTBRANCHFEECHANGE",
+        "data_type": "NUMBER(38,0)",
+        "description": "Stores Last Branch Fee Change data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "CAST(src.data:LASTBRANCHFEECHANGE AS NUMBER(38, 0)) AS lastbranchfeechange,",
+        "source_line": 89,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:LASTBRANCHFEECHANGE",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "LASTCHANGEDATE",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:18",
+    "ultracs_position": 18,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "LASTCHANGEDATE",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "LASTCHANGEDATE",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 18,
+      "param_column": "LASTCHANGEDATE"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "LASTCHANGEDATE",
+      "data_type": "DATE",
+      "description": "Stores Last Change Date data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "TO_DATE(CAST(src.data:LASTCHANGEDATE AS STRING), 'DD MON YYYY') AS lastchangedate,",
+      "source_line": 90,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "LASTCHANGEDATE",
+        "data_type": "DATE",
+        "description": "Stores Last Change Date data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "TO_DATE(CAST(src.data:LASTCHANGEDATE AS STRING), 'DD MON YYYY') AS lastchangedate,",
+        "source_line": 90,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:LASTCHANGEDATE",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  },
+  {
+    "business_field": "LASTCHANGETIME",
+    "field_id": "ultracs:ACCOUNT:DWACFEE:19",
+    "ultracs_position": 19,
+    "ultracs_program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+    "extract_file": "DWACFEE.TXT",
+    "param_column": "LASTCHANGETIME",
+    "hvr_parameter": {
+      "source_path": "C:/Users/ybalch01/Github-repo-poc/kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+      "confidence": "explicit",
+      "name": "LASTCHANGETIME",
+      "type": "string",
+      "obfuscate": "N",
+      "cleanup": {
+        "enabled": "N",
+        "remove_chars": []
+      }
+    },
+    "confidence": "inferred",
+    "source_path": "kb-cdp-hvr/hvr-config/scripts/DWACFEE.param",
+    "notes": "BASIC output fields are aligned to HVR .param columns by one-based position; the counts match, but the BASIC record does not declare the .param names. This association is inferred. ult-account-fees-v1 Airflow maps dwacfee to the account-fee raw source.",
+    "dbt_mapping_status": "mapped",
+    "route_status": "repository_static_route_found",
+    "route_evidence": [
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+      "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+      "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+    ],
+    "ultracs": {
+      "program": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_path": "kb-ultracs-datawarehouse/KWDW_ACC2",
+      "source_locator": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "source_references": [
+        "AREC<AA>",
+        "AREC<AA>"
+      ],
+      "description": "",
+      "basic_expression": "AREC<AA> (FLD=AREC<AA>; AA=132..148)",
+      "basic_source_line": 40,
+      "basic_transformation_lines": [],
+      "loop": "AA=132..148",
+      "extract_file": "DWACFEE.TXT",
+      "position": 19,
+      "param_column": "LASTCHANGETIME"
+    },
+    "cdp": {
+      "stage": "internal",
+      "model": "ult_account_fees_v1__account_fee_v1",
+      "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+      "model_description": "Ultracs  account fee details for each account fee record.",
+      "column": "LASTCHANGETIME",
+      "data_type": "TIME",
+      "description": "Stores Last Change Time data",
+      "classification": "STANDARD",
+      "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+      "source_expression": "TO_TIME(CAST(src.data:LASTCHANGETIME AS STRING), 'HH12:MIAM') AS lastchangetime,",
+      "source_line": 91,
+      "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+    },
+    "dbt_targets": [
+      {
+        "stage": "internal",
+        "model": "ult_account_fees_v1__account_fee_v1",
+        "relation": "snowflake:relation:INTERNAL.ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE_V1",
+        "model_description": "Ultracs  account fee details for each account fee record.",
+        "column": "LASTCHANGETIME",
+        "data_type": "TIME",
+        "description": "Stores Last Change Time data",
+        "classification": "STANDARD",
+        "schema_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.yml",
+        "source_expression": "TO_TIME(CAST(src.data:LASTCHANGETIME AS STRING), 'HH12:MIAM') AS lastchangetime,",
+        "source_line": 91,
+        "source_path": "kb-cdp-tenant-account/products/ult-account-fees-v1/dbt/models/internal/ult_account_fees_v1__ultracs_account_fee_v1/ult_account_fees_v1__account_fee_v1.sql"
+      }
+    ],
+    "ingestion_route": {
+      "status": "repository_static_route_found",
+      "raw_source": "ULT_ACCOUNT_FEES_V1__ACCOUNT_FEE__RAW",
+      "dbt_input": "DATA:LASTCHANGETIME",
+      "evidence": [
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_sf_afe.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe1.json",
+        "kb-cdp-hvr/hvr-config/apps/channels/ult_s3_afe2.json",
+        "kb-cdp-tenant-account/products/ult-account-fees-v1/airflow/ult_account_fees_v1/src/dags/ult_account_fees_v1_ingestion_v1.py"
+      ]
+    }
+  }
+]

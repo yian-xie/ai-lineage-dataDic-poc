@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Recorded workflow artifacts and private local checkout configuration
+outputs/runs/
+outputs/published/
+output/
+/source-repos/
+config/sources.local.json
+sources.local.json
