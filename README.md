@@ -13,12 +13,15 @@ does not create another run/attempt directory tree.
 ```text
 README.md                    Setup, steps and how to use the result
 pyproject.toml               Python package and dependencies
-sources.json                 Four GitHub repositories and checkout location
+sources.json                 Repository URLs and checkout location
 source-repos\                Local Git checkouts (ignored by this repository)
   kb-ultracs-datawarehouse\
   kb-cdp-hvr\
   kb-cdp-tenant-account\
   kb-cdp-tenant-enterprise\
+  kb-cdp-tenant-protect-downstream\
+  kb-cdp-tenant-landing\
+repo-understanding\          Source repository roles, evidence and integration notes
 .github\skills\              Lineage, dictionary and AI-description instructions
 src\lineage_poc\              Working parsers, builders and viewer code
 tests\                       Tests and required regression fixtures
@@ -30,6 +33,12 @@ The source checkouts live **inside this application folder**, under
 entire folder is excluded from the application's Git tracking. Their URLs and
 location are configured in [sources.json](./sources.json). No production
 credentials are required.
+
+The configuration now includes six repositories. The additional Landing and
+Protect-downstream checkouts are documented in the
+[repository understanding report](./repo-understanding/README.md).
+Downloading them does not automatically connect their metadata to the main
+lineage graph; the report explains existing support and remaining integration.
 
 The configured location is relative to that configuration file, not to the
 terminal's working directory. `--source-root` or `LINEAGE_SOURCE_ROOT` can still
@@ -116,7 +125,7 @@ specific stage. The skill uses these same commands, not a second implementation.
 
 ## Processing steps
 
-### 1. Download or verify the four repositories
+### 1. Download or verify the configured repositories
 
 ```powershell
 python -B -m lineage_poc sources --clone
@@ -367,9 +376,10 @@ yourself if you need to keep an older complete result.
 python -B -m pytest -q
 ```
 
-Fixtures test the stages without model calls. Source integration uses the four
-configured checkouts; optional tenant-landing checks are skipped if that
-additional repository is unavailable.
+Fixtures test the stages without model calls. Lineage integration covers the
+original four repositories; optional tenant-landing checks are skipped if that
+additional repository is unavailable. Protect-downstream lineage integration
+has not yet been implemented.
 Tests validate supplied assistant drafts and all deterministic steps without
 calling an external model or requiring Copilot CLI.
 
