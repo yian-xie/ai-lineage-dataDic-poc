@@ -14,4 +14,4 @@ SKILL_ROOT = PROJECT_ROOT / ".github" / "skills"
 
 def source_root() -> Path:
     configured = os.environ.get("LINEAGE_SOURCE_ROOT")
-    return Path(configured).expanduser().resolve() if configured else PROJECT_ROOT.parent / "source-repos"
+    return Path(configured).expanduser().resolve() if configured else PROJECT_ROOT / "source-repos"

@@ -10,11 +10,24 @@ user-invocable: true
 The **active assistant** authors each new description after examining exact
 field-specific evidence. This is not a deterministic description generator or
 a name-to-sentence lookup. Python prepares context, verifies references and
-arithmetic, applies accepted drafts and validates preservation. It does not
-call external AI APIs, require credentials, or substitute templated prose.
+arithmetic, records accepted drafts, applies them and validates preservation.
+It does not generate templated prose or call another model process. **Use the
+current VS Code Copilot Chat assistant for authoring**, not a separate Copilot
+CLI, model API, or additional AI sign-in.
 
 Run this workflow only when enrichment is requested. Creating the skill or
 running `prepare` does **not** generate descriptions.
+
+For the complete workflow from a fresh start or a verified resume, ask Copilot
+Chat to follow [the lineage workflow skill](../lineage-workflow/SKILL.md):
+
+```text
+Run the complete workflow in this chat. Resume from the first unfinished step,
+author missing Ultracs descriptions here, and finish the combined HTML.
+```
+
+The current assistant performs all remaining stages. Python remains internal
+tooling for deterministic work, validation and file generation.
 
 Read [the scoring rubric](./references/scoring-rubric.md),
 [the drafts contract](./references/drafts-contract.md) and
@@ -57,6 +70,9 @@ omitted with a reason, never truncated. This step produces no draft prose.
 Read each eligible context and, where needed, exact cells in the unchanged
 input CSVs. Treat repository paths as reported claims, not proof of source or
 runtime inspection. Do not read repositories or live systems in this workflow.
+Use bounded batches, normally 5-10 fields, and author descriptions and criterion
+judgments yourself in the current chat. Local code may assemble JSON and check
+references/arithmetic, but must not generate name-based sentence templates.
 
 For **every** eligible scoped field, author exactly one decision:
 
@@ -72,13 +88,23 @@ criterion points need verified original-CSV references. Mirrors of one claim
 are not independent corroboration. The local code recomputes the five-point sum
 and rejects invented weights, stale hashes, invalid evidence or arithmetic.
 
-Write `output\06b-ai-drafts\drafts.json` using
+Write the complete pending `output\assistant-drafts.json` using
 [the exact schema and examples](./references/drafts-contract.md). Do not overwrite
-the recorded context or its draft template.
+the recorded context or the accepted stage folder directly.
 Record actual assistant attribution, known model or null, and actual UTC time.
 Do not pretend an archived example was newly generated.
 
-## Step 3 — apply, independently testable
+## Step 3 — record and apply, independently testable
+
+```powershell
+python -B -m lineage_poc enrichment record --input .\output\05-baseline-dictionary --drafts .\output\assistant-drafts.json
+```
+
+This validates the complete payload and records its exact bytes as
+`output\06b-ai-drafts\drafts.json` with a successful step record. It can replace
+a prior failed draft stage without running an external AI process. Correct a
+rejected payload in the pending file, never in the baseline. After recording
+succeeds, delete only the pending file you created.
 
 ```powershell
 python -m lineage_poc enrichment apply --input .\output\05-baseline-dictionary --drafts .\output\06b-ai-drafts\drafts.json
@@ -104,20 +130,22 @@ structure/arithmetic, but cannot resolve evidence bound to historical hashes.
 
 Test the actual `V3Bundle.prepareBundle(files, {})` JavaScript importer and
 browser behavior: a new draft, a preserved description, needs-evidence if any,
-source-group repeats, details, origin filtering and filtered CSV export.
+source-group repeats, details and origin filtering.
 Relationship confidence must stay unchanged. Python assembly alone is not a
 browser check; explicitly report any unverified interaction.
 
 ## Library/module interfaces
 
 ```python
-from lineage_poc.enrichment.workflow import prepare_context, apply_drafts
+from lineage_poc.enrichment.workflow import prepare_context, record_drafts, apply_drafts
 context = prepare_context(input_dir, context_dir)
+recorded = record_drafts(input_dir, pending_drafts_path, drafts_dir)
 result = apply_drafts(input_dir, drafts_path, output_dir)
 ```
 
 ```powershell
 python -m lineage_poc.enrichment.workflow prepare --input BUNDLE --output CONTEXT_DIR
+python -m lineage_poc.enrichment.workflow record --input BUNDLE --drafts PENDING_JSON --output DRAFTS_DIR
 python -m lineage_poc.enrichment.workflow apply --input BUNDLE --drafts DRAFTS_JSON --output ENRICHED
 ```
 

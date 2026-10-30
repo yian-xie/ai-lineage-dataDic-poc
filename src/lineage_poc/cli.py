@@ -17,7 +17,7 @@ from .paths import OUTPUT_ROOT, PROJECT_ROOT
 STAGES = {
     "sources": "01-sources", "parse": "02-parsing", "graphs": "03-lineage-graphs",
     "columns": "04-column-lineage", "dictionary": "05-baseline-dictionary",
-    "prepare": "06a-enrichment-context", "apply": "06c-ai-enrichment",
+    "prepare": "06a-enrichment-context", "record": "06b-ai-drafts", "apply": "06c-ai-enrichment",
     "validate": "07-validation", "html": "08-html",
 }
 
@@ -37,11 +37,15 @@ def _dictionary(args: argparse.Namespace) -> dict:
 
 
 def _enrichment(args: argparse.Namespace) -> dict:
-    from .enrichment.workflow import apply_drafts, prepare_context
+    from .enrichment.workflow import apply_drafts, prepare_context, record_drafts
 
     if args.action == "prepare":
         return _record(args, "prepare", [args.input],
                        lambda output: prepare_context(args.input, output))
+    if args.action == "record":
+        return _record(args, "record", [args.input],
+                       lambda output: record_drafts(args.input, args.drafts, output),
+                       {"assistant_drafts_source": str(args.drafts.resolve())})
     return _record(args, "apply", [args.input, args.drafts],
                    lambda output: apply_drafts(args.input, args.drafts, output))
 
@@ -224,12 +228,12 @@ def build_parser() -> argparse.ArgumentParser:
     command.add_argument("--input", type=Path, required=True)
     command.add_argument("--graph-id")
     command.set_defaults(handler=_dictionary)
-    enrichment = subcommands.add_parser("enrichment", help="Prepare AI context or apply saved assistant drafts")
+    enrichment = subcommands.add_parser("enrichment", help="Prepare context, record assistant drafts, or apply them")
     actions = enrichment.add_subparsers(dest="action", required=True)
-    for action in ("prepare", "apply"):
+    for action in ("prepare", "record", "apply"):
         command = actions.add_parser(action, parents=[recorded])
         command.add_argument("--input", type=Path, required=True)
-        if action == "apply":
+        if action in ("record", "apply"):
             command.add_argument("--drafts", type=Path, required=True)
         command.set_defaults(handler=_enrichment)
     command = subcommands.add_parser("validate", parents=[recorded], help="Check bundle contracts and optional baseline preservation")
@@ -261,7 +265,7 @@ def build_parser() -> argparse.ArgumentParser:
     command.add_argument("--limit", type=int, default=100)
     command.set_defaults(handler=_query)
     command = subcommands.add_parser("pipeline", parents=[recorded, source_options],
-                                     help="Connect the same steps; stop explicitly when AI drafts are needed")
+                                     help="Run deterministic stages; use the VS Code skill for new AI descriptions")
     command.add_argument("--clone", action="store_true")
     command.add_argument("--inventory", type=Path, help="Start from a supplied inventory instead of rebuilding source lineage")
     command.add_argument("--graphs", type=Path, help="Existing graphs when starting from --inventory")

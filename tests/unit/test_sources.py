@@ -3,6 +3,7 @@ import json
 import pytest
 
 from lineage_poc import sources
+from lineage_poc.paths import PROJECT_ROOT, source_root
 
 
 def configuration(tmp_path, url="https://github.com/example/source.git"):
@@ -17,6 +18,22 @@ def test_source_location_is_relative_to_configuration_not_shell(tmp_path, monkey
     monkeypatch.chdir(tmp_path.parent)
     assert sources.configured_root(path) == tmp_path / "checkouts"
     assert sources.configured_root(path, tmp_path / "override") == tmp_path / "override"
+
+
+def test_project_default_source_checkouts_are_inside_application(tmp_path, monkeypatch):
+    monkeypatch.delenv("LINEAGE_SOURCE_ROOT", raising=False)
+    monkeypatch.chdir(tmp_path)
+    expected = PROJECT_ROOT / "source-repos"
+    assert source_root() == expected
+    assert sources.configured_root(PROJECT_ROOT / "sources.json") == expected
+
+
+def test_explicit_source_location_override_is_preserved(tmp_path, monkeypatch):
+    configured = tmp_path / "custom-checkouts"
+    monkeypatch.setenv("LINEAGE_SOURCE_ROOT", str(configured))
+    assert source_root() == configured
+    assert sources.configured_root(PROJECT_ROOT / "sources.json") == configured
+    assert sources.configured_root(PROJECT_ROOT / "sources.json", tmp_path / "argument") == tmp_path / "argument"
 
 
 def test_credentials_are_not_allowed_in_recorded_urls(tmp_path):

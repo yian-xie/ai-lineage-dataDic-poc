@@ -37,3 +37,20 @@ def test_discoverable_skills_have_matching_valid_frontmatter():
         assert isinstance(frontmatter["description"], str)
         assert 10 <= len(frontmatter["description"]) <= 1024
         assert len(text.splitlines()) <= 500
+
+
+def test_full_workflow_skill_runs_in_chat_and_supports_resume_and_targeted_reruns():
+    skill = (PROJECT_ROOT / ".github" / "skills" / "lineage-workflow" / "SKILL.md").read_text(
+        encoding="utf-8",
+    )
+    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+    assert "current VS Code Copilot Chat agent" in skill
+    assert "user-invocable: true" in skill
+    assert "Resume by default" in skill
+    assert 'steps 1 and 2 are completed; start at step 3' in skill
+    assert "accepted_data" in skill and 'inventory(Path(item["path"]))' in skill
+    assert "rerun steps 4 through 7" in skill
+    assert "Do not stop after context preparation" in skill
+    assert "enrichment record" in skill
+    assert "pipeline --clone --full-run" not in skill + readme
+    assert "enrichment generate" not in skill + readme

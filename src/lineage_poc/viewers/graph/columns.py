@@ -9,6 +9,7 @@ from lineage_poc.columns.dwacc import build_enterprise_overview
 from lineage_poc.graph.account import with_related_columns
 from ._templates import read_template
 from .descriptions import describe_graph
+from .focused import FLOW_STYLE, flow_section
 
 HTML = read_template("dwacc_html.html")
 
@@ -64,4 +65,19 @@ def render_html(
         "__ENTERPRISE_DATA__": embed_json(describe_graph(overview)),
         "__DICTIONARY_DOCUMENT__": embed_json(dictionary_document or ""),
     }
-    return re.sub("|".join(replacements), lambda match: replacements[match.group(0)], template)
+    rendered = re.sub("|".join(replacements), lambda match: replacements[match.group(0)], template)
+    if selector is not None and records:
+        marker = "</header>\n<main>"
+        if rendered.count(marker) != 1 or rendered.count("</head>") != 1:
+            raise ValueError("The selected-column template must contain one field-path insertion point.")
+        rendered = rendered.replace(
+            "</head>", '<style id="field-path-styles">' + FLOW_STYLE + "</style>\n</head>", 1,
+        )
+        related = [
+            mapping for node in table_graph["nodes"]
+            for mapping in node.get("properties", {}).get("related_columns", [])
+        ]
+        rendered = rendered.replace(
+            marker, "</header>\n" + flow_section(records, related) + "\n<main>", 1,
+        )
+    return rendered

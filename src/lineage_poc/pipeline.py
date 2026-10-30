@@ -65,7 +65,8 @@ def _run_pipeline(args: argparse.Namespace) -> dict:
             "status": "awaiting_ai_drafts", "run_id": args.run_id, "steps": steps,
             "baseline": str(baseline), "context": str(context),
             "next_action": "Follow .github\\skills\\ai-description-enrichment\\SKILL.md to author "
-                           "drafts from this exact context, then run enrichment apply, validate and html.",
+                           "drafts from this exact context in the current VS Code assistant session, "
+                           "then record/apply the drafts, validate and build HTML.",
             "note": "No model API was called, no generated prose was substituted, and nothing was published.",
         }
         write_json(args.runs_root / "pipeline.json", report)
@@ -74,6 +75,7 @@ def _run_pipeline(args: argparse.Namespace) -> dict:
     html = run(cli._html, input=enriched, baseline=baseline, graphs=graphs,
                columns=columns if graphs else None, selector=None)
     report = {"status": "passed", "run_id": args.run_id, "steps": steps,
+              "description_mode": "saved_drafts" if args.drafts else "saved_bundle",
               "html": str(html / "index.html")}
     write_json(args.runs_root / "pipeline.json", report)
     return report

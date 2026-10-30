@@ -223,6 +223,6 @@ __marimo__/
 outputs/runs/
 outputs/published/
 output/
-source-repos/
+/source-repos/
 config/sources.local.json
 sources.local.json

@@ -14,15 +14,26 @@ does not create another run/attempt directory tree.
 README.md                    Setup, steps and how to use the result
 pyproject.toml               Python package and dependencies
 sources.json                 Four GitHub repositories and checkout location
+source-repos\                Local Git checkouts (ignored by this repository)
+  kb-ultracs-datawarehouse\
+  kb-cdp-hvr\
+  kb-cdp-tenant-account\
+  kb-cdp-tenant-enterprise\
 .github\skills\              Lineage, dictionary and AI-description instructions
 src\lineage_poc\              Working parsers, builders and viewer code
 tests\                       Tests and required regression fixtures
 output\                      All step outputs, logs and the final HTML
 ```
 
-The four source checkouts are kept outside this application's Git repository,
-in the sibling `source-repos` folder by default. Their URLs are in
-[sources.json](./sources.json). No production credentials are required.
+The source checkouts live **inside this application folder**, under
+`ai-lineage-dataDic-poc\source-repos`. Each keeps its own Git history, but the
+entire folder is excluded from the application's Git tracking. Their URLs and
+location are configured in [sources.json](./sources.json). No production
+credentials are required.
+
+The configured location is relative to that configuration file, not to the
+terminal's working directory. `--source-root` or `LINEAGE_SOURCE_ROOT` can still
+select another explicit checkout location when needed.
 
 ## Install
 
@@ -36,6 +47,72 @@ python -B -m lineage_poc --help
 Git uses your existing GitHub sign-in. Do not put passwords or tokens in
 configuration files. Existing source checkouts are never automatically pulled,
 reset or overwritten.
+
+## Run everything in VS Code Copilot Chat
+
+Open this application folder in VS Code, select **Agent** mode in Copilot Chat,
+and ask:
+
+```text
+Follow .github/skills/lineage-workflow/SKILL.md.
+Complete the full workflow and resume from the first unfinished step.
+Generate missing Ultracs descriptions in this chat, validate them,
+and finish with the combined lineage graph and data dictionary HTML.
+```
+
+If VS Code offers `/lineage-workflow` in its slash-command menu, you can invoke
+that instead. If it does not, use the explicit file instruction above.
+The [existing skill](./.github/skills/lineage-workflow/SKILL.md) guides the current
+Copilot Chat agent; it does not start a separate AI process.
+
+**No Copilot CLI installation, executable-path setting or separate CLI AI
+sign-in is needed.** The current chat session authors the descriptions.
+Git access to the configured source repositories is still required, and VS Code
+may ask you to approve local tool execution.
+
+The agent runs the existing Python parsers, validators and renderer internally,
+so Python remains installed, but you do not need to type each command yourself.
+All outputs and debug records remain under the same `output` folder.
+
+### Resume from a completed step
+
+For example, tell Copilot Chat:
+
+```text
+Follow .github/skills/lineage-workflow/SKILL.md.
+Steps 1 and 2 are already completed. Verify their saved records,
+start at step 3, and complete the remaining steps.
+Do not clone or parse the repositories again.
+```
+
+The skill checks recorded status and input/output hashes before skipping work.
+A folder existing is not enough. Missing, failed or changed prerequisites are
+reported rather than silently reused. A fresh workspace starts at step 1.
+
+The stages are: **1 repositories > 2 parsing > 3 graphs and column JSON >
+4 baseline CSVs > 5 descriptions > 6 validation > 7 combined HTML**.
+Open **`output\08-html\index.html`** after all required stages pass.
+
+### Rerun selected steps
+
+You can ask the same skill:
+
+```text
+Follow .github/skills/lineage-workflow/SKILL.md.
+Rerun step 3 only. Keep the saved source/parse results.
+```
+
+Or ask **"rerun steps 4 through 7"**, **"rerun validation only"**, or
+**"rebuild the HTML for Account_ID and OpenDate"**.
+
+An explicit rerun executes the requested steps even if they previously passed.
+The agent verifies prerequisites, runs them in dependency order, keeps the same
+output folders and logs, and does not repeat unrelated work. If an upstream
+rerun makes later results stale, it tells you what needs refreshing rather than
+silently rerunning everything or presenting an old HTML as current.
+
+The individual commands below are also available for debugging or rerunning a
+specific stage. The skill uses these same commands, not a second implementation.
 
 ## Processing steps
 
@@ -92,13 +169,26 @@ This step preserves supplied descriptions. It does not generate AI prose.
 python -B -m lineage_poc enrichment prepare --input .\output\05-baseline-dictionary
 ```
 
-The context is saved in `output\06a-enrichment-context`. Ask the active assistant
-to follow [the AI enrichment skill](./.github/skills/ai-description-enrichment/SKILL.md)
-and write **`output\06b-ai-drafts\drafts.json`** using that context.
+The context is saved in `output\06a-enrichment-context`. The current Copilot Chat
+assistant follows [the AI enrichment skill](./.github/skills/ai-description-enrichment/SKILL.md)
+to author new descriptions and assessments in this session. It writes the
+complete draft payload to the temporary **`output\assistant-drafts.json`**.
 
-The assistant authors one-or-two-sentence drafts and evidence assessments.
-Existing descriptions stay unchanged. Python prepares and checks the data;
-it does not silently generate template descriptions or call an external model.
+Record and validate those drafts:
+
+```powershell
+python -B -m lineage_poc enrichment record --input .\output\05-baseline-dictionary --drafts .\output\assistant-drafts.json
+```
+
+The validated exact draft file is saved in
+**`output\06b-ai-drafts\drafts.json`**, with a successful step record. The
+temporary pending file can then be removed. This also replaces an earlier
+failed draft-stage record safely; do not write into a failed stage by hand and
+pretend it passed.
+
+The assistant authors one-or-two-sentence descriptions. Existing descriptions
+stay unchanged. Python checks the evidence and arithmetic; it does not generate
+template prose, call a model API, or launch Copilot CLI.
 
 Apply the saved drafts:
 
@@ -140,6 +230,14 @@ or business approval.
 You can generate a new report from the existing outputs without downloading
 repositories, parsing sources, or running AI enrichment again.
 
+Run these commands from the application root in PowerShell. To ensure Python
+uses this checkout (rather than another editable `lineage-poc` installation),
+put its `src` directory first on the import path:
+
+```powershell
+$env:PYTHONPATH = (Join-Path $PWD 'src') + [IO.Path]::PathSeparator + $env:PYTHONPATH
+```
+
 First, check the column mapping. For Account_ID:
 
 ```powershell
@@ -149,17 +247,17 @@ python -B -m lineage_poc query --columns .\output\04-column-lineage\column_linea
 Then generate its separate HTML:
 
 ```powershell
-$column = "Account_ID"
-python -B -m lineage_poc html `
-  --input .\output\06c-ai-enrichment `
-  --baseline .\output\05-baseline-dictionary `
-  --graphs .\output\03-lineage-graphs `
-  --columns .\output\04-column-lineage `
-  --selector $column
+python -B -m lineage_poc html --input .\output\06c-ai-enrichment --baseline .\output\05-baseline-dictionary --graphs .\output\03-lineage-graphs --columns .\output\04-column-lineage --selector Account_ID
 ```
 
-**Open `output\08-html-accountid\index.html`.** The main
-`output\08-html\index.html` is left unchanged.
+The command writes a separate report; it does not open the browser automatically.
+Open it with:
+
+```powershell
+Start-Process .\output\08-html-accountid\index.html
+```
+
+The main `output\08-html\index.html` is left unchanged.
 
 For several columns in **one** new report, pass each selector after
 `--selector`:
@@ -173,8 +271,14 @@ python -B -m lineage_poc html `
   --selector Account_ID OpenDate
 ```
 
-Open `output\08-html-accountid-opendate\index.html`. To use a label with spaces,
-quote it, for example `--selector "Account ID" "Account Opened Date"`.
+Open the generated report with:
+
+```powershell
+Start-Process .\output\08-html-accountid-opendate\index.html
+```
+
+To use a label with spaces, quote it, for example
+`--selector "Account ID" "Account Opened Date"`.
 
 - Change `$column` to another recorded selector, such as `OpenDate`, `Balance`,
   or `KIWIBANKACCOUNTNUMBER`. Parameter names, target column names, mapping IDs
@@ -185,6 +289,11 @@ quote it, for example `--selector "Account ID" "Account Opened Date"`.
 - The graph focuses on the matching column mapping(s) and keeps shared route
   context. The embedded data dictionary stays complete; filter it to the
   selected source when needed.
+- Selected-column reports also show a **FIELD PATH** section above the graph:
+  reported Ultracs source, extract position, HVR parameter/route, RAW relation
+  and Snowflake target, with confidence and expandable evidence. Multiple
+  selected mappings have separate paths. The main all-column report does not
+  include this section.
 - Account_ID is recorded as `KiwiAcc`, DWACC position 7, mapping to internal
   and public `KIWIBANKACCOUNTNUMBER`. It is different from `Account_Index_ID`,
   whose selector returns both inferred components.
@@ -199,20 +308,23 @@ quote it, for example `--selector "Account ID" "Account Opened Date"`.
 The HTML page's search box filters the current view only. It does not create a
 new file; use the commands above to save a separate column-focused report.
 
-## One-command workflow
+## Optional terminal coordinator
 
 ```powershell
 python -B -m lineage_poc pipeline --clone
 ```
 
-This runs the preparation steps and stops at the AI handoff with
+This deterministic coordinator runs the preparation steps and stops at
 `status: awaiting_ai_drafts` and exit code **3**. After authoring drafts, run the
 remaining steps above, or rerun with `--drafts .\output\06b-ai-drafts\drafts.json`.
 Stale drafts are rejected if the baseline changed.
 
-For regression verification only, `--enriched` can explicitly reuse the saved
-bundle under `tests\fixtures\reference\dictionary\ai-enriched`. That is reuse of
-previous drafts, not a new AI-generation run.
+`--drafts` and `--enriched` explicitly reuse saved work; they do not generate
+new descriptions.
+For regression verification, `--enriched` can reuse the saved bundle under
+`tests\fixtures\reference\dictionary\ai-enriched`, but it must match the new
+baseline. For the complete workflow including new AI descriptions, use the
+VS Code chat skill described above.
 
 ## Find results and debug
 
@@ -239,6 +351,12 @@ input and rerun that step. Failed partial results are retained as a compact debu
 archive when present. A failed rerun restores the previous good files; it does
 not turn partial data into a successful result.
 
+The assistant-authored `drafts.json` and its validation record preserve the
+wording, provenance, scores and cited evidence. These contain dictionary
+metadata, so keep them within approved internal access. An inability to
+complete authoring or validation is a blocker, not a reason to silently reuse
+old prose or label all fields `needs_evidence`.
+
 Use `--output-dir PATH` to put **all** results in another folder.
 There are no automatic historical output copies. Save a copy of `output`
 yourself if you need to keep an older complete result.
@@ -252,6 +370,8 @@ python -B -m pytest -q
 Fixtures test the stages without model calls. Source integration uses the four
 configured checkouts; optional tenant-landing checks are skipped if that
 additional repository is unavailable.
+Tests validate supplied assistant drafts and all deterministic steps without
+calling an external model or requiring Copilot CLI.
 
 With Edge installed, an optional real-browser check can also verify the final
 graph, dictionary tabs and export when organization policy permits automation:
