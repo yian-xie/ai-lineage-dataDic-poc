@@ -87,7 +87,11 @@ def _walk_model_yaml(model_root: Path) -> Iterable[Tuple[Path, Dict[str, Any]]]:
 def parse_dbt_project(path: str | Path) -> GraphPayload:
     """Parse dbt YAML declarations and SQL source()/ref() calls under a project or models directory."""
     project_path = Path(path)
-    model_root = project_path / "models" if (project_path / "models").is_dir() else project_path
+    model_root = (
+        project_path / "models"
+        if (project_path / "dbt_project.yml").is_file() or (project_path / "models").is_dir()
+        else project_path
+    )
     graph = GraphPayload(nodes=[], edges=[])
     sources: Dict[Tuple[str, str], str] = {}
     models: Dict[str, Dict[str, Any]] = {}

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from lineage_poc.parsers import parse_airflow_dag, parse_basic_file, parse_dbt_project, parse_hvr_config, parse_landing_tenant, parse_schemachange_file
+from lineage_poc.parsers import parse_airflow_dag, parse_basic_file, parse_dbt_project, parse_hvr_config, parse_landing_repo, parse_landing_tenant, parse_protect_downstream, parse_schemachange_file
 
 
 WORKSPACE = default_source_root()
@@ -97,6 +97,20 @@ def test_dbt_parser_extracts_model_sources_and_materialization():
     assert {edge.type for edge in graph.edges} <= {"DEPENDS_ON", "RESOLVES_TO", "MATERIALIZES_AS"}
 
 
+def test_dbt_project_without_materialized_models_directory_ignores_project_config(tmp_path):
+    project = tmp_path / "dbt"
+    project.mkdir()
+    (project / "dbt_project.yml").write_text(
+        "models:\n  sample_project:\n    +schema: internal\n",
+        encoding="utf-8",
+    )
+
+    graph = parse_dbt_project(project)
+
+    assert graph.nodes == []
+    assert graph.edges == []
+
+
 def test_enterprise_dbt_parser_preserves_repository_model_and_relation_descriptions():
     dbt_path = WORKSPACE / "kb-cdp-tenant-enterprise/products/int-account-v1/dbt"
     graph = parse_dbt_project(dbt_path)
@@ -145,6 +159,61 @@ def test_landing_parser_namespaces_ultracs_models_and_finds_account_source_hando
         edge.source == landing_source.id
         and edge.type == "RESOLVES_TO"
         for edge in graph.edges
+    )
+
+
+@pytest.mark.skipif(
+    not (WORKSPACE / "kb-cdp-tenant-landing").is_dir(),
+    reason="Optional kb-cdp-tenant-landing checkout is absent.",
+)
+def test_landing_repo_parser_preserves_pipeline_and_ingestion_evidence_without_false_hvr_bridge():
+    nodes, edges = parse_landing_repo(
+        WORKSPACE / "kb-cdp-tenant-landing",
+        products=("ultracs-v1",),
+    )
+    node_ids = {node["id"] for node in nodes}
+    node_names = {
+        str(node.get("properties", {}).get("name", "")).casefold()
+        for node in nodes
+    }
+    product = next(node for node in nodes if node["type"] == "CDP_PRODUCT")
+
+    assert "loadnewaccounts_ingest" in node_names
+    assert product["properties"]["pipeline_configs"][0]["snowflake"]["schema"] == "ULTRACS_INTERNAL"
+    assert "loadaccounts_ingest" not in node_names
+    assert not any(edge["type"] == "LANDS_IN" for edge in edges)
+    assert all(edge["source"] in node_ids and edge["target"] in node_ids for edge in edges)
+    assert all(node["properties"].get("source_path") for node in nodes)
+    assert all(edge["properties"].get("source_path") for edge in edges)
+    assert all(
+        edge["properties"].get("reason")
+        for edge in edges
+        if edge["properties"].get("confidence") == "inferred"
+    )
+
+
+@pytest.mark.skipif(
+    not (WORKSPACE / "kb-cdp-tenant-protect-downstream").is_dir(),
+    reason="Optional kb-cdp-tenant-protect-downstream checkout is absent.",
+)
+def test_protect_downstream_parser_emits_schema_types_with_provenance():
+    nodes, edges = parse_protect_downstream(WORKSPACE / "kb-cdp-tenant-protect-downstream")
+    node_types = {node["type"] for node in nodes}
+    edge_types = {edge["type"] for edge in edges}
+    node_ids = {node["id"] for node in nodes}
+
+    assert {"CDP_PRODUCT", "DBT_MODEL", "AIRFLOW_DAG", "AIRFLOW_TASK"} <= node_types
+    assert {"CONTAINS", "DEPENDS_ON", "MATERIALIZES_AS", "PRECEDES", "COPIES_TO"} <= edge_types
+    assert node_types <= {
+        "CDP_PRODUCT", "DBT_SOURCE", "DBT_MODEL", "SNOWFLAKE_RELATION",
+        "AIRFLOW_DAG", "AIRFLOW_TASK", "SCHEMACHANGE_MIGRATION", "S3_PATH",
+    }
+    assert all(node["properties"].get("source_path") for node in nodes)
+    assert all(edge["source"] in node_ids and edge["target"] in node_ids for edge in edges)
+    assert all(
+        edge["properties"].get("reason")
+        for edge in edges
+        if edge["properties"].get("confidence") == "inferred"
     )
 
 
