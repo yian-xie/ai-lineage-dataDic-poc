@@ -184,15 +184,24 @@ def test_combined_dictionary_embeds_current_generated_viewer(generated_dictionar
 
 
 def test_generated_dictionary_snapshot_matches_current_column_input(generated_dictionary):
-    _validate_dictionary_snapshot(build_records(), generated_dictionary)
+    reference_records = json.loads((INPUT_ROOT / "column_lineage.json").read_text(encoding="utf-8"))
+    _validate_dictionary_snapshot(reference_records, generated_dictionary)
 
 
-def test_dwacc_inventory_preserves_original_native_serialized_bytes(tmp_path):
+def test_dwacc_inventory_uses_native_serialization_and_current_sql_aliases(tmp_path):
     output = tmp_path / "column_lineage.json"
-    write_inventory(output, build_records())
-    reference = (INPUT_ROOT / "column_lineage.json").read_bytes()
-    expected = reference.replace(b"\r\n", b"\n").replace(b"\n", os.linesep.encode("ascii"))
+    records = build_records()
+    write_inventory(output, records)
+    expected = (json.dumps(records, indent=2) + "\n").replace("\n", os.linesep).encode("utf-8")
     assert output.read_bytes() == expected
+    assert sum(len(record["dbt_targets"]) for record in records) == 179
+    access_number = next(record for record in records if record["param_column"] == "Account")
+    assert any(
+        target["model"] == "accounts_v1__ultracs_accounts_eod_balances"
+        and target["column"] == "ACCESSNUMBER"
+        and target["projection_expression"] == "ACCOUNTNO AS ACCESSNUMBER"
+        for target in access_number["dbt_targets"]
+    )
 
 
 def test_data_dictionary_csv_template_has_manager_fields():

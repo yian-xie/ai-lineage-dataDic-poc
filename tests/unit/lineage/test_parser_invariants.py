@@ -50,3 +50,16 @@ def test_dbt_column_expressions_keep_exact_keys_and_direct_public_projection():
     assert projections == [{"source_column": "KiwiAcc", "target_column": "ACCOUNTNUMBER", "source_expression": "DATA:KiwiAcc::VARCHAR(100) AS ACCOUNTNUMBER", "source_line": 2}]
     public = _selected_sql_projections(FIXTURES / "dbt" / "models" / "public" / "sample_public.sql")
     assert set(public) == {"ACCOUNTNUMBER"}
+
+
+def test_public_projection_parser_keeps_casted_and_aliased_columns(tmp_path):
+    sql = tmp_path / "public_model.sql"
+    sql.write_text(
+        "SELECT\n    EODDATE AS SNAPSHOTDATE,\n    BALANCE::FLOAT AS ACCOUNTBALANCE,\n    LASTTRANDATE\nFROM source_relation\n",
+        encoding="utf-8",
+    )
+
+    projections = _selected_sql_projections(sql)
+
+    assert set(projections) == {"SNAPSHOTDATE", "ACCOUNTBALANCE", "LASTTRANDATE"}
+    assert projections["ACCOUNTBALANCE"]["source_expression"] == "BALANCE::FLOAT AS ACCOUNTBALANCE"
