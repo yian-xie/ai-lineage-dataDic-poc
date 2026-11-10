@@ -5,6 +5,8 @@ from .basic import parse_basic_file
 from .dbt import parse_dbt_project
 from .hvr import parse_hvr_config, parse_hvr_param
 from .landing import parse_landing_tenant
+from .landing_parser import parse as parse_landing_repo
+from .protect_downstream_parser import parse as parse_protect_downstream
 from .schemachange import parse_schemachange_file
 from .ultracs_basic import UltracsBasicProgram, parse_ultracs_basic, parse_ultracs_basic_file, parse_ultracs_record
 
@@ -15,6 +17,8 @@ __all__ = [
     "parse_hvr_config",
     "parse_hvr_param",
     "parse_landing_tenant",
+    "parse_landing_repo",
+    "parse_protect_downstream",
     "parse_schemachange_file",
     "UltracsBasicProgram",
     "parse_ultracs_basic",
