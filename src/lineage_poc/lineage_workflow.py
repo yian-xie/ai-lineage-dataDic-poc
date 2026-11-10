@@ -58,12 +58,13 @@ def _record_stage(destination: Path, stage: str, outputs: dict[str, Path], **det
     return summary
 
 
-def parse_sources(source_root: Path, destination: Path, parser: str = "all") -> dict:
+def parse_sources(source_root: Path, destination: Path, parser: str = "all",
+                  repositories: tuple[str, ...] | None = None) -> dict:
     """Record parser fragments plus immutable source evidence, without building graphs."""
     source_root = Path(source_root).resolve()
     destination = Path(destination).resolve()
     parser = parser.lower()
-    manifest = capture_sources(source_root, destination, parser)
+    manifest = capture_sources(source_root, destination, parser, repositories)
     with materialize_snapshot(manifest, destination, destination) as (_, evidence_root):
         outputs, counts = _parse_snapshot(evidence_root, destination, parser)
     archive_path = destination / manifest["snapshot_archive"]["path"]

@@ -72,7 +72,7 @@ def graph_payload(document: dict) -> GraphPayload:
     )
 
 
-def discover_sources(source_root: Path, parser: str) -> list[Path]:
+def discover_sources(source_root: Path, parser: str, repositories: tuple[str, ...] | None = None) -> list[Path]:
     if parser not in PARSERS:
         raise ValueError(f"Unknown parser {parser!r}; choose from {', '.join(PARSERS)}")
     needed = {
@@ -84,6 +84,10 @@ def discover_sources(source_root: Path, parser: str) -> list[Path]:
         "schemachange": REQUIRED_REPOSITORIES[2:],
         "landing": ("kb-cdp-tenant-landing",),
     }[parser]
+    if repositories is not None:
+        excluded = set(needed) - set(repositories)
+        if excluded:
+            raise ValueError(f"Parser {parser!r} requires configured repositories: {', '.join(sorted(excluded))}")
     missing = [name for name in needed if not (source_root / name).is_dir()]
     if missing:
         raise FileNotFoundError(f"Required source repositories are missing under {source_root}: {', '.join(missing)}")
@@ -113,7 +117,8 @@ def discover_sources(source_root: Path, parser: str) -> list[Path]:
                 and (path.suffix.lower() in {".py", ".sql", ".yml", ".yaml"} or path.name.lower().endswith(". sql"))
             )
     landing = source_root / "kb-cdp-tenant-landing"
-    if parser == "landing" or parser == "all" and landing.is_dir():
+    if parser == "landing" or (parser == "all" and landing.is_dir()
+                              and (repositories is None or landing.name in repositories)):
         paths.update(
             path for path in landing.rglob("*")
             if path.is_file() and ".git" not in path.parts and path.suffix.lower() in {".sql", ".yml", ".yaml", ".py"}
@@ -121,12 +126,13 @@ def discover_sources(source_root: Path, parser: str) -> list[Path]:
     return sorted(paths)
 
 
-def capture_sources(source_root: Path, destination: Path, parser: str) -> dict:
+def capture_sources(source_root: Path, destination: Path, parser: str,
+                    repositories: tuple[str, ...] | None = None) -> dict:
     source_root = Path(source_root).resolve()
     destination = Path(destination).resolve()
     if source_root == destination or destination.is_relative_to(source_root) or source_root.is_relative_to(destination):
         raise ValueError("The parse destination must be separate from the source repositories.")
-    paths = discover_sources(source_root, parser)
+    paths = discover_sources(source_root, parser, repositories)
     archive_path = destination / SNAPSHOT_NAME
     contents = {}
     for path in paths:
@@ -153,6 +159,8 @@ def capture_sources(source_root: Path, destination: Path, parser: str) -> dict:
                 archive.writestr(info, content)
     revisions = {}
     for name in (*REQUIRED_REPOSITORIES, "kb-cdp-tenant-landing"):
+        if repositories is not None and name not in repositories:
+            continue
         repository = source_root / name
         if repository.is_dir():
             if not (repository / ".git").exists():

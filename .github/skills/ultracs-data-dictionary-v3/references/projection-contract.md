@@ -40,6 +40,11 @@ Extract positions are output slots, not source attributes. A reported extract
 file/header is not an invented HVR table. RAW `DATA:key` fields are logical JSON
 paths, not asserted physical Snowflake columns. Internal/public target bindings,
 renames and transformations are scoped to the exact declared target.
+Recorded simple RAW keys may start with a digit, such as
+`DATA:3rdPartyChqDetails`, including the SQL projection form
+`DATA:"3rdPartyChqDetails"`; preserve the exact case and key rather than applying
+SQL column-identifier naming rules to JSON keys. Projection expressions retain
+their original quoting.
 
 ## Descriptions and governance
 

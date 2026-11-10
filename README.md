@@ -19,7 +19,6 @@ source-repos\                Local Git checkouts (ignored by this repository)
   kb-cdp-hvr\
   kb-cdp-tenant-account\
   kb-cdp-tenant-enterprise\
-  kb-cdp-tenant-protect-downstream\
   kb-cdp-tenant-landing\
 repo-understanding\          Source repository roles, evidence and integration notes
 .github\skills\              Lineage, dictionary and AI-description instructions

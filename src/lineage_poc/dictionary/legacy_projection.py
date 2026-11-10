@@ -13,6 +13,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 COLUMNS = Path(__file__).resolve().parent / 'mapping_columns.json'
+RAW_KEY_PATTERN = re.compile(
+    r'\bDATA:(?:"(?P<quoted>[A-Za-z0-9_]+)"|(?P<plain>[A-Za-z0-9_]+))', re.I)
 
 
 def js(value):
@@ -150,9 +152,9 @@ def project(input_path):
         p = '/' + str(i)
         u, h, route = r['ultracs'], r['hvr_parameter'], r['ingestion_route']
         group = uid('source-entry', snapshot, r['field_id'])
-        raw_key = re.fullmatch(r'DATA:([A-Za-z_][A-Za-z0-9_]*)', route['dbt_input'], re.I)
+        raw_key = RAW_KEY_PATTERN.fullmatch(route['dbt_input'])
         assert raw_key, ('Unsupported declared logical RAW key', r['field_id'])
-        key = raw_key.group(1)
+        key = raw_key.group('quoted') or raw_key.group('plain')
         source_resolved = bool(u.get('source_locator') and len(u.get('source_references', [])) == 1
                                and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*<\d+(?:,\d+)*>', u['source_locator'])
                                and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*<\d+(?:,\d+)*>', u['source_references'][0]))
@@ -242,7 +244,7 @@ def project(input_path):
                 'evidence_json': [ref(p + '/hvr_parameter/cleanup', role='reported_cleanup_configuration',
                                       reported_parameter_path=r['source_path'])]}
         sources[r['field_id']] = dict(group=group, source_id=source_id, extract_id=extract_id,
-                                     raw_id=raw_id, basic_op=basic_op, raw_op=raw_op,
+                                     raw_id=raw_id, raw_key=key, basic_op=basic_op, raw_op=raw_op,
                                      source_resolved=source_resolved, source_gaps=missing_source,
                                      unconfirmed_record_binding=unconfirmed_record_binding,
                                      record_index=i)
@@ -265,12 +267,14 @@ def project(input_path):
             tp = p + '/dbt_targets/' + str(j)
             tid = uid('snowflake-field', snapshot, t['relation'], t['column'])
             expr = t['source_expression']
-            keys = list(dict.fromkeys(re.findall(r'\bDATA:([A-Za-z_][A-Za-z0-9_]*)', expr, re.I)))
+            keys = list(dict.fromkeys(
+                match.group('quoted') or match.group('plain')
+                for match in RAW_KEY_PATTERN.finditer(expr)))
             # Matching the DATA alias ignores case; matching the JSON key does not.
             raw_inputs = []
             for key in keys:
                 matching = [rr for rr in records if rr['ingestion_route']['raw_relation'] == r['ingestion_route']['raw_relation']
-                            and rr['ingestion_route']['dbt_input'].split(':', 1)[1] == key]
+                            and sources[rr['field_id']]['raw_key'] == key]
                 assert len(matching) == 1, ('Missing/ambiguous input JSON key', tp, key)
                 raw_inputs.append(sources[matching[0]['field_id']]['raw_id'])
             assert raw_inputs, ('No structured DATA key could be resolved', tp)

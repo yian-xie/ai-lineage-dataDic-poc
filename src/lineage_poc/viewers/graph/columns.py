@@ -30,8 +30,12 @@ def render_html(
     dictionary_document: str | None = None,
     feed: str = "DWACC",
     selector: str | None = None,
+    feed_configuration: dict[str, Any] | None = None,
 ) -> str:
-    table_graph = describe_graph(with_related_columns(graph, records))
+    configuration = feed_configuration or {}
+    table_graph = describe_graph(with_related_columns(
+        graph, records, extract_name=configuration.get("extract_name", "DWACC"),
+    ))
     overview = build_enterprise_overview(records, graph=enterprise_graph or {"nodes": [], "edges": []})
     template = HTML
     if feed == "DWREL":
@@ -59,7 +63,41 @@ def render_html(
         title = escape(f"{selector} ({feed})")
         template = template.replace(f"<title>{feed} Column Lineage</title>", f"<title>{title} Column Lineage</title>")
         template = template.replace(f"{feed} column lineage", f"{title} lineage")
+    default_subtitles = {
+        "DWACC": "Ultracs → HVR Parquet → account Snowflake models",
+        "DWREL": "Ultracs → HVR → relationship Snowflake models",
+    }
+    feed_title = configuration.get("title", f"{feed} Column Lineage")
+    feed_subtitle = configuration.get("subtitle", default_subtitles.get(feed, "Repository evidence · column lineage"))
+    template = template.replace("__FEED_TITLE__", escape(feed_title))
+    template = template.replace("__FEED_NAME__", escape(feed))
+    template = template.replace("__FEED_SUBTITLE__", escape(feed_subtitle))
+    template = template.replace(
+        "+' · DWACC position '+esc(",
+        "+' · '+esc(viewerConfig.positionLabel||'DWACC position')+' '+esc(",
+    )
+    template = template.replace(
+        "'DWACC Position':record.ultracs_position",
+        "[viewerConfig.positionLabel||'DWACC Position']:record.ultracs_position",
+    )
+    template = template.replace(
+        "'Lineage Reference':'account_table_lineage.json'",
+        "'Lineage Reference':viewerConfig.lineageReference||'account_table_lineage.json'",
+    )
+    template = template.replace(
+        "html+='<p>CDP: '",
+        "html+='<p>'+esc(viewerConfig.targetLabel||'CDP')+': '",
+    )
+    template = template.replace(
+        "<b>CDP description <span class=\"description-origin\">",
+        "<b>'+esc(viewerConfig.targetLabel||'CDP')+' description <span class=\"description-origin\">",
+    )
+    template = template.replace(
+        ":'Account slice','Upstream Sources'",
+        ":(viewerConfig.reportScopeLabel||'Account slice'),'Upstream Sources'",
+    )
     replacements = {
+        "__FEED_CONFIG__": json.dumps(configuration, separators=(",", ":"), ensure_ascii=True).replace("<", "\\u003c"),
         "__TABLE_DATA__": embed_json(table_graph),
         "__COLUMN_DATA__": embed_json(records),
         "__ENTERPRISE_DATA__": embed_json(describe_graph(overview)),

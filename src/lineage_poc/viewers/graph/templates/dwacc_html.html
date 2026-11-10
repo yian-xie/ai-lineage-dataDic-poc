@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DWACC Column Lineage</title>
+<title>__FEED_TITLE__</title>
 <link rel="stylesheet" href="https://unpkg.com/vis-network/styles/vis-network.min.css">
 <style>
 :root{color-scheme:light;--ink:#193238;--muted:#62777b;--line:#d6e1de;--paper:#eef4f1;--panel:#fff;--green:#24794f;--coral:#d87968;--amber:#c4893d;--purple:#7963a1;--teal:#218b83;--blue:#397b9d;--gray:#738286}
@@ -65,7 +65,7 @@ body.schema-mode .controls,body.schema-mode .route-toggle{display:none!important
 </head>
 <body>
 <header>
-  <div class="brand"><div class="mark">DW</div><h1>DWACC column lineage<span class="subtitle">Ultracs → HVR Parquet → account Snowflake models</span></h1></div>
+  <div class="brand"><div class="mark">DW</div><h1>__FEED_NAME__ column lineage<span class="subtitle">__FEED_SUBTITLE__</span></h1></div>
   <input id="search" type="search" placeholder="Search field, column, node, evidence…" aria-label="Search lineage graph">
   <div class="controls">
     <label><input id="confirmedOnly" type="checkbox">Confirmed only</label>
@@ -152,8 +152,10 @@ body.schema-mode .controls,body.schema-mode .route-toggle{display:none!important
 <script id="table-data" type="application/json">__TABLE_DATA__</script>
 <script id="column-data" type="application/json">__COLUMN_DATA__</script>
 <script id="enterprise-data" type="application/json">__ENTERPRISE_DATA__</script>
+<script id="feed-config" type="application/json">__FEED_CONFIG__</script>
 <script>
-const tableGraph=JSON.parse(document.getElementById('table-data').textContent),columnRecords=JSON.parse(document.getElementById('column-data').textContent),enterpriseOverview=JSON.parse(document.getElementById('enterprise-data').textContent);
+const tableGraph=JSON.parse(document.getElementById('table-data').textContent),columnRecords=JSON.parse(document.getElementById('column-data').textContent),enterpriseOverview=JSON.parse(document.getElementById('enterprise-data').textContent),viewerConfig=JSON.parse(document.getElementById('feed-config').textContent);
+if(viewerConfig.view_note)document.getElementById('viewNote').textContent=viewerConfig.view_note;
 function confidencePercent(value){return ({explicit:95,confirmed:95,confirmed_calculated:90,declared_source:85,inferred:60,unconfirmed:50})[String(value||'').toLowerCase()]??null}
 function confidenceLabel(value){const score=confidencePercent(value);return score===null?String(value||'unspecified')+' (not rated)':String(value||'unspecified')+' ('+score+'%)'}
 function confidenceBucket(value){const label=String(value||'').toLowerCase();if(['explicit','confirmed'].includes(label))return 'explicit';if(label==='confirmed_calculated')return 'calculated';if(label==='declared_source')return 'declared_source';if(['inferred','candidate_composite_key'].includes(label))return 'inferred';if(label==='unconfirmed')return 'unconfirmed';return 'not_rated'}
@@ -165,18 +167,20 @@ const layerTypes={MV_FILE:'source',PROGRAM:'extract',EXTRACT_FILE:'extract',HVR_
 function nodeLayer(node){const schema=String(node.properties?.schema||'').toUpperCase();if(node.properties?.layer)return node.properties.layer;if(node.type==='DBT_SOURCE'&&schema==='RAW')return 'landing';if(node.type==='DBT_SOURCE'&&schema==='PUBLIC')return 'public';return layerTypes[node.type]||'internal'}
 function nodeRoute(node){
   const id=node.id,type=node.type;
+  if(viewerConfig.routes?.[id])return viewerConfig.routes[id];
   if(id==='extract:DWACC'||type==='PROGRAM'||type==='MV_FILE'||id==='hvr:location:fs_ultracs'||type==='CDP_PRODUCT'||type==='AIRFLOW_DAG')return 'shared';
   if(id.includes('ult_sf_acc')||id.includes('LOADACCOUNTS_INGEST')||id==='hvr:location:sf_lnd_ultra')return 'direct';
   if(id.includes('ult_s3_acc')||id==='hvr:location:fs_hvr_conv'||id==='hvr:location:s3_hvrf'||id.toLowerCase().includes('dwacc')||id.includes('ACCOUNTS_V1__ACCOUNTS')||type==='AIRFLOW_TASK'||type==='DBT_SOURCE'||type==='DBT_MODEL'||type==='SCHEMACHANGE_MIGRATION')return 's3';
   return 'shared';
 }
-function edgeRoute(edge){if(edge.type==='CARRIED_BY')return edge.target.includes('ult_sf_acc')?'direct':'s3';const source=nodeRoute({id:edge.source,type:rawNodes.get(edge.source)?.type||''}),target=nodeRoute({id:edge.target,type:rawNodes.get(edge.target)?.type||''});if(source==='direct'||target==='direct')return 'direct';if(source==='s3'||target==='s3')return 's3';return 'shared'}
+function edgeRoute(edge){const source=nodeRoute({id:edge.source,type:rawNodes.get(edge.source)?.type||''}),target=nodeRoute({id:edge.target,type:rawNodes.get(edge.target)?.type||''});if(source==='direct'||target==='direct')return 'direct';if(source==='s3'||target==='s3')return 's3';return 'shared'}
 const rawNodes=new Map(tableGraph.nodes.map(node=>[node.id,node]));
-const extract=tableGraph.nodes.find(node=>node.type==='EXTRACT_FILE'&&node.properties.name==='DWACC');
+const extract=tableGraph.nodes.find(node=>node.id===viewerConfig.extractNodeId)||tableGraph.nodes.find(node=>node.type==='EXTRACT_FILE'&&node.properties.name==='DWACC');
+const columnMappingSource=viewerConfig.columnMappingSourceNodeId||extract?.id;
 const nodes=[],edges=[];
 for(const node of tableGraph.nodes){
   const props=node.properties||{},color=colors[node.type]||'#738286',boundary=props.is_boundary_node===true||node.type==='MV_FILE'||(node.type==='SNOWFLAKE_RELATION'&&props.layer==='public')||node.id==='snowflake:relation:LOADACCOUNTS_INGEST';
-  const entry=node.id==='basic:file:ACCOUNT'||node.id==='basic:file:TRAN';
+  const entry=viewerConfig.entryNodeIds?.includes(node.id)||(node.id==='basic:file:ACCOUNT'||node.id==='basic:file:TRAN');
   nodes.push({id:node.id,label:node.type+'\\n'+(props.name||props.path||node.id.split(':').pop()),title:node.id+'\\nDescription ('+(props.html_description_origin||'Generated')+'): '+(props.html_description||'Description unavailable.'),shape:'dot',size:boundary?25:entry?22:16,borderWidth:entry?4:boundary?3:1,color:{background:color,border:entry?'#183238':color,highlight:{background:color,border:'#142e32'}},font:{face:'Aptos, Segoe UI, sans-serif',size:12,color:'#183238',strokeWidth:3,strokeColor:'#ffffff'},layer:nodeLayer(node),confidence:props.confidence||'unspecified',route:nodeRoute(node),properties:props,entityType:node.type});
 }
 for(const edge of tableGraph.edges){
@@ -188,10 +192,15 @@ for(const record of columnRecords){
   for(const target of targets){
     const relation=target.relation||record.snowflake_table,column=target.column||record.snowflake_column;
     const targetTitle=target.model+'.'+column+' · '+target.stage;
-    edges.push({id:'column:'+record.field_id+':'+target.stage+':'+relation+':'+column,from:extract.id,to:relation,label:'',title:record.param_column+' → '+targetTitle+' · '+confidenceLabel(record.confidence)+' · '+(target.data_type||'type not declared')+'\\nBASIC: '+(record.ultracs?.basic_expression||record.ultracs?.transformation||'Expression not recorded')+'\\nDBT: '+(target.source_expression||target.projection_expression||'Column projection'),arrows:'to',dashes:record.confidence==='inferred',color:{color:record.confidence==='inferred'?'#c58a37':'#18764f',highlight:'#123d2c'},width:record.confidence==='inferred'?2:2.4,edgeType:'COLUMN_MAPPING',confidence:record.confidence,route:'s3',properties:{...record,dbt_target:target,html_description:record.notes||target.description||'Column mapping from DWACC parameter to dbt output.',html_description_origin:'Repository evidence'},columnMapping:true});
+    if(!columnMappingSource||!relation||!column)continue;
+    edges.push({id:'column:'+record.field_id+':'+target.stage+':'+relation+':'+column,from:columnMappingSource,to:relation,label:'',title:record.param_column+' → '+targetTitle+' · '+confidenceLabel(record.confidence)+' · '+(target.data_type||'type not declared')+'\nBASIC: '+(record.ultracs?.basic_expression||record.ultracs?.transformation||'Expression not recorded')+'\nDBT: '+(target.source_expression||target.projection_expression||'Column projection'),arrows:'to',dashes:record.confidence==='inferred',color:{color:record.confidence==='inferred'?'#c58a37':'#18764f',highlight:'#123d2c'},width:record.confidence==='inferred'?2:2.4,edgeType:'COLUMN_MAPPING',confidence:record.confidence,route:viewerConfig.columnMappingRoute||'s3',properties:{...record,dbt_target:target,html_description:record.notes||target.description||'Column mapping to a dbt output.',html_description_origin:'Repository evidence'},columnMapping:true});
   }
 }
-const schemaEditsKey='dwacc-column-schema-edits-v1';
+for(const candidate of viewerConfig.candidateLinks||[]){
+  if(!candidate.from||!candidate.to)continue;
+  edges.push({id:'candidate:'+candidate.from+'|'+candidate.to,from:candidate.from,to:candidate.to,label:'candidate',title:candidate.type+' · '+confidenceLabel(candidate.confidence)+'\n'+candidate.reason,arrows:'to',dashes:true,color:{color:'#c58a37',highlight:'#8c5c20'},width:2,edgeType:candidate.type||'CANDIDATE_LINK',confidence:candidate.confidence||'inferred',route:candidate.route||'direct',properties:candidate,candidateLink:true});
+}
+const schemaEditsKey=viewerConfig.schemaEditKey||'dwacc-column-schema-edits-v1';
 let schemaEdits={};
 try{schemaEdits=JSON.parse(localStorage.getItem(schemaEditsKey)||'{}')||{}}catch{schemaEdits={}}
 let schemaEditing=false,selectedSchemaNodeId=null;
@@ -208,12 +217,13 @@ function schemaNode(id,kind,name,x,y,properties={}){
 }
 const schemaNodes=[],schemaEdges=[];
 const firstRecord=columnRecords[0]||{};
-const schemaRepositories=[
+const defaultSchemaRepositories=[
   {id:'repo:ultracs',name:(firstRecord.ultracs?.program||'kb-ultracs-datawarehouse').split('/')[0],x:-360,path:firstRecord.ultracs?.program||''},
   {id:'repo:hvr',name:(firstRecord.source_path||'kb-cdp-hvr/hvr-config/scripts/DWACC.param').split('/')[0],x:0,path:firstRecord.source_path||''},
   {id:'repo:cdp',name:(firstRecord.cdp?.source_path||'kb-cdp-tenant-account').split('/')[0],x:360,path:firstRecord.cdp?.source_path||''},
   {id:'repo:enterprise',name:'kb-cdp-tenant-enterprise',x:720,path:'kb-cdp-tenant-enterprise'},
 ];
+const schemaRepositories=viewerConfig.schemaRepositories||defaultSchemaRepositories;
 function addSchemaEdge(from,to,label,confidence='confirmed',properties={}){
   const index=schemaEdges.length;
   const fromName=schemaNodes.find(node=>node.id===from)?.properties?.name||from,toName=schemaNodes.find(node=>node.id===to)?.properties?.name||to;
@@ -316,6 +326,7 @@ const schemaGroupTypes={
   jobs:new Set(['AIRFLOW_DAG','AIRFLOW_TASK','DBT_MODEL','SCHEMACHANGE_MIGRATION','CDP_PRODUCT']),
   target:new Set(['S3_PATH','SNOWFLAKE_RELATION'])
 };
+if(viewerConfig.schemaGroupTypes)for(const [group,types] of Object.entries(viewerConfig.schemaGroupTypes))schemaGroupTypes[group]=new Set(types);
 const existingSchemaIds=new Set(schemaNodes.map(node=>node.id));
 for(const node of tableGraph.nodes){
   if(!Object.values(schemaGroupTypes).some(types=>types.has(node.type))||existingSchemaIds.has(node.id))continue;
@@ -351,6 +362,7 @@ const schemaFlowGroups=[
   {key:'jobs',label:'Jobs',shape:'shape-jobs',nodes:[schemaFlowEntry(schemaFlowFind('AIRFLOW_TASK','task_id','copy_s3_files_to_snowflake_task_for_dwacc'),'copy_s3_files_to_snowflake_task_for_dwacc','jobs'),schemaFlowEntry(schemaFlowFind('DBT_MODEL','name','accounts_v1__ultracs_accounts_detail'),'accounts_v1__ultracs_accounts_detail','jobs')].filter(Boolean)},
   {key:'target',label:'Target',shape:'shape-target',nodes:[schemaFlowEntry(schemaFlowFind('SNOWFLAKE_RELATION','name','PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL'),'PUBLIC.ACCOUNTS_V1__ULTRACS_ACCOUNTS_DETAIL','target')].filter(Boolean)}
 ];
+if(Array.isArray(viewerConfig.schemaFlowGroups))schemaFlowGroups.splice(0,schemaFlowGroups.length,...viewerConfig.schemaFlowGroups);
 const schemaFlowLinks=[
   {from:schemaFlowGroups[0].nodes[0]?.id,to:schemaFlowGroups[1].nodes[0]?.id},
   {from:schemaFlowGroups[0].nodes[1]?.id,to:schemaFlowGroups[1].nodes[0]?.id},
@@ -360,10 +372,12 @@ const schemaFlowLinks=[
   {from:schemaFlowGroups[3].nodes[0]?.id,to:schemaFlowGroups[3].nodes[1]?.id},
   {from:schemaFlowGroups[3].nodes[1]?.id,to:schemaFlowGroups[4].nodes[0]?.id}
 ].filter(link=>link.from&&link.to);
+if(Array.isArray(viewerConfig.schemaFlowLinks))schemaFlowLinks.splice(0,schemaFlowLinks.length,...viewerConfig.schemaFlowLinks);
 const schemaDirectBranch={
   source:schemaFlowEntry(schemaFlowFind('EXTRACT_FILE','name','DWACC'),'DWACC','extract'),
   target:schemaFlowEntry(schemaFlowFind('SNOWFLAKE_RELATION','name','loadaccounts_ingest'),'LOADACCOUNTS_INGEST','target')
 };
+if(viewerConfig.schemaDirectBranch){schemaDirectBranch.source=viewerConfig.schemaDirectBranch.source;schemaDirectBranch.target=viewerConfig.schemaDirectBranch.target}
 const schemaFlowExpanded=new Set(),schemaFlowCollapseTimers=new Map();
 function schemaFlowNodeButton(entry){
   const button=document.createElement('button');button.type='button';button.className='schema-flow-node '+entry.group+' '+(entry.group==='source'?'shape-source':entry.group==='extract'?'shape-extract':entry.group==='staging'?'shape-staging':entry.group==='jobs'?'shape-jobs':'shape-target');
@@ -375,7 +389,7 @@ function renderSchemaDirectBranch(){
   if(!schemaFlowExpanded.has('extract')||!schemaFlowExpanded.has('target')){branch.hidden=true;return}
   branch.hidden=false;branch.append(schemaFlowNodeButton(schemaDirectBranch.source));
   const edge=document.createElement('span');edge.className='schema-direct-edge';edge.setAttribute('aria-hidden','true');
-  const warning=document.createElement('span');warning.className='schema-gap-badge';warning.textContent='!';warning.title='No repository evidence connects the direct HVR landing relation to the account RAW/dbt path.';warning.setAttribute('aria-label',warning.title);edge.append(warning);
+  const warning=document.createElement('span');warning.className='schema-gap-badge';warning.textContent='!';warning.title=viewerConfig.directBranchGap||'No repository evidence connects the direct HVR landing relation to the account RAW/dbt path.';warning.setAttribute('aria-label',warning.title);edge.append(warning);
   branch.append(edge,schemaFlowNodeButton(schemaDirectBranch.target));
 }
 function renderSchemaLinks(){
@@ -427,6 +441,7 @@ function toggleSchemaFlowGroup(group,toggle,list){
 const schemaCanvasNodes=schemaNodes.filter(node=>!node.groupOnly),schemaCanvasNodeIds=new Set(schemaCanvasNodes.map(node=>node.id));
 const schemaCanvasEdges=schemaEdges.filter(edge=>schemaCanvasNodeIds.has(edge.from)&&schemaCanvasNodeIds.has(edge.to));
 function buildMappedPathNodeIds(){
+  if(Array.isArray(viewerConfig.mappedPathNodeIds))return new Set(viewerConfig.mappedPathNodeIds);
   const visible=new Set(),queue=[];
   const targetRelations=new Set(columnRecords.flatMap(record=>record.dbt_targets?.map(target=>target.relation)||[record.snowflake_table]));
   for(const edge of tableGraph.edges){

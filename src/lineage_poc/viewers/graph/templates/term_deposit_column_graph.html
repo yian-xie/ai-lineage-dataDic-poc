@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Term Deposit Column Lineage | DWTDS</title>
+<style>
+:root{color-scheme:light;--ink:#172e32;--muted:#64777a;--line:#d5dfdd;--paper:#edf3f1;--panel:#fff;--green:#28734e;--gold:#a96b25;--blue:#387b98;--teal:#21847c;--charcoal:#48585b;--red:#a64e3c}
+*{box-sizing:border-box}
+html,body{min-height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font:14px/1.45 "Segoe UI",Tahoma,sans-serif}
+header{display:grid;grid-template-columns:minmax(230px,1fr) minmax(260px,400px) auto;align-items:center;gap:18px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line)}
+.title{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.title h1{margin:0;font-size:19px;font-weight:700}.title span{color:var(--muted);font-size:12px}
+.search{width:100%;height:38px;padding:0 12px;border:1px solid #b6c7c4;border-radius:4px;background:#fff;color:var(--ink);font:inherit}
+.filters{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:5px;background:#f3f6f5}
+.filters button{min-height:31px;padding:5px 10px;border:0;border-radius:3px;background:transparent;color:#43575a;font:600 12px "Segoe UI",Tahoma,sans-serif;cursor:pointer;white-space:nowrap}
+.filters button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px #183e331c}
+.filters button:focus-visible,.search:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.summary{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 22px;color:var(--muted);font-size:12px}
+.summary strong{color:var(--ink);font-size:13px;font-weight:650}
+.legend{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.legend-item{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green)}.dot.extract{background:var(--gold)}.dot.hvr{background:var(--blue)}.dot.landing{background:var(--teal)}.dot.internal{background:var(--charcoal)}
+.confidence-key{border-bottom:2px solid #6b7779;padding-bottom:2px}.confidence-key.inferred{border-bottom-style:dashed;border-color:var(--gold)}
+main{padding:0 18px 24px}
+.graph-scroll{overflow:auto;border:1px solid var(--line);background:#fff}
+.lanes,.field-row{display:grid;grid-template-columns:150px minmax(150px,1fr) 44px minmax(150px,1fr) 44px minmax(150px,1fr) 44px minmax(150px,1fr) 44px minmax(170px,1.1fr);min-width:1100px;align-items:stretch}
+.lanes{position:sticky;top:0;z-index:2;background:#f8faf9;border-bottom:1px solid var(--line)}
+.lanes>div{padding:10px 11px;color:#506469;font-size:10px;font-weight:750;text-transform:uppercase;letter-spacing:.04em}
+.field-row{min-height:76px;border-bottom:1px solid #e4eae8}
+.field-row[hidden]{display:none}
+.field-row:last-child{border-bottom:0}.field-row:hover{background:#f9fbfa}
+.field-label{display:flex;flex-direction:column;justify-content:center;gap:3px;padding:8px 11px;border-right:1px solid #e4eae8;min-width:0}
+.field-label strong{font-size:12px;overflow-wrap:anywhere}.field-label small{color:var(--muted);font-size:10px;overflow-wrap:anywhere}
+.node-cell{display:flex;align-items:center;padding:7px 5px;min-width:0}
+.node{width:100%;min-height:48px;padding:7px 9px;border-left:3px solid var(--green);background:#f0f6f1;overflow:hidden}
+.node.extract{border-color:var(--gold);background:#faf4eb}.node.hvr{border-color:var(--blue);background:#edf5f8}.node.landing{border-color:var(--teal);background:#edf7f5}.node.internal{border-color:var(--charcoal);background:#f0f3f3}
+.node strong{display:block;font-size:11px;line-height:1.3;overflow-wrap:anywhere}.node small{display:block;margin-top:3px;color:#5d7073;font:10px/1.35 Consolas,"Courier New",monospace;overflow-wrap:anywhere}
+.connector{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;color:#64777a;font-size:9px;text-align:center}
+.connector .track{position:relative;width:100%;height:1px;background:#809294}
+.connector .track:after{position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid #64777a;border-right:1px solid #64777a;content:"";transform:rotate(45deg)}
+.connector.inferred .track{height:0;border-top:1px dashed var(--gold);background:none}
+.connector.inferred .track:after{border-color:var(--gold)}
+.connector em{font-style:normal;color:#5d7073;font-size:8px;text-transform:uppercase}
+.connector.inferred em{color:#8b5a21}
+.gap-node{display:flex;align-items:center;min-height:48px;width:100%;padding:7px 9px;border-left:3px solid var(--red);background:#fbf0ed;color:#863f33;font-size:11px}
+.gap-note{grid-column:2/-1;padding:0 10px 8px;color:#7a493e;font-size:11px}
+.gap-note summary{width:max-content;cursor:pointer;font-weight:650}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+@media(max-width:900px){header{grid-template-columns:1fr auto;gap:10px;padding:12px}.title{grid-column:1/-1}.search{grid-column:1/-1;grid-row:2}.filters{grid-column:1/-1;grid-row:3;justify-self:start;max-width:100%;overflow:auto}.summary{align-items:flex-start;flex-direction:column;padding:10px 12px}main{padding:0 8px 16px}.lanes,.field-row{min-width:1100px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="title"><h1>Term Deposit Column Lineage</h1><span>DWTDS · repository-static evidence</span></div>
+  <input id="search" class="search" type="search" placeholder="Search fields, expressions, targets" aria-label="Search columns">
+  <nav class="filters" aria-label="Filter fields">
+    <button type="button" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" data-filter="mapped" aria-pressed="false">Mapped</button>
+    <button type="button" data-filter="gaps" aria-pressed="false">Gaps</button>
+  </nav>
+</header>
+<div class="summary"><strong id="summary"></strong><div class="legend" aria-label="Lineage legend">
+  <span class="legend-item"><i class="dot"></i>Ultracs</span><span class="legend-item"><i class="dot extract"></i>Extract</span><span class="legend-item"><i class="dot hvr"></i>HVR</span><span class="legend-item"><i class="dot landing"></i>RAW</span><span class="legend-item"><i class="dot internal"></i>Internal</span><span class="legend-item"><i class="confidence-key"></i>Explicit</span><span class="legend-item"><i class="confidence-key inferred"></i>Inferred</span>
+</div></div>
+<main>
+  <div class="graph-scroll">
+    <div class="lanes" aria-hidden="true"><div>Field</div><div>Ultracs source</div><div></div><div>DWTDS extract</div><div></div><div>HVR parameter</div><div></div><div>RAW attribute</div><div></div><div>Internal dbt column</div></div>
+    <section id="rows" aria-label="Term Deposit column lineage graph"></section>
+  </div>
+</main>
+<script id="lineage-data" type="application/json">__GRAPH_DATA__</script>
+<script>
+const graph=JSON.parse(document.getElementById('lineage-data').textContent);
+const layers=['source','extract','hvr_parameter','landing','internal'];
+const layerClass={source:'source',extract:'extract',hvr_parameter:'hvr',landing:'landing',internal:'internal'};
+const nodesByField=new Map(),edgesByPair=new Map(),gapsByField=new Map();
+for(const node of graph.nodes){const id=node.properties.field_id;if(!nodesByField.has(id))nodesByField.set(id,[]);nodesByField.get(id).push(node)}
+for(const edge of graph.edges)edgesByPair.set(edge.source+'\u0000'+edge.target,edge);
+for(const gap of graph.gap_register||[]){if(!gapsByField.has(gap.field_id))gapsByField.set(gap.field_id,[]);gapsByField.get(gap.field_id).push(gap)}
+const fields=[...nodesByField.entries()].map(([id,nodes])=>({id,nodes,props:nodes.find(n=>n.properties.layer==='source')?.properties||{},mapped:nodes.some(n=>n.properties.layer==='internal')})).sort((a,b)=>(a.props.position||0)-(b.props.position||0));
+const rows=document.getElementById('rows'),search=document.getElementById('search'),summary=document.getElementById('summary');
+let filter='all';
+function nodeFor(field,layer){return field.nodes.find(node=>node.properties.layer===layer)}
+function makeNode(node,layer){
+  if(!node)return null;
+  const element=document.createElement('div');element.className='node '+layerClass[layer];
+  const props=node.properties,label=document.createElement('strong'),detail=document.createElement('small');
+  label.textContent=props.name||'Unnamed field';
+  detail.textContent=props.expression||props.locator||props.relation||props.model||props.data_type||props.extract_file||'';
+  const source=[props.source_path,props.source_line?'line '+props.source_line:'',props.expression||''].filter(Boolean).join('\n');
+  element.title=source;element.append(label,detail);return element;
+}
+function makeGap(text,title){const element=document.createElement('div');element.className='gap-node';element.textContent=text;element.title=title||text;return element}
+function makeConnector(from,to){
+  if(!from||!to)return makeGap('Boundary gap','No supported edge connects these layers.');
+  const edge=edgesByPair.get(from.id+'\u0000'+to.id);
+  if(!edge)return makeGap('Boundary gap','No supported edge connects these layers.');
+  const element=document.createElement('div');element.className='connector '+(edge.properties.confidence==='inferred'?'inferred':'explicit');
+  const track=document.createElement('span'),label=document.createElement('em');track.className='track';label.textContent=edge.properties.confidence||'not rated';
+  element.title=[edge.type,edge.properties.reason,edge.properties.source_path].filter(Boolean).join('\n');element.append(track,label);return element;
+}
+function makeRow(field){
+  const row=document.createElement('div');row.className='field-row';row.dataset.mapped=field.mapped?'true':'false';
+  const label=document.createElement('div');label.className='field-label';
+  const name=document.createElement('strong'),id=document.createElement('small');name.textContent=String(field.props.position||'')+'. '+(field.props.name||field.id);id.textContent=field.id;label.append(name,id);row.append(label);
+  const selected=layers.map(layer=>nodeFor(field,layer));
+  for(let index=0;index<layers.length;index++){
+    const cell=document.createElement('div');cell.className='node-cell';
+    cell.append(selected[index]?makeNode(selected[index],layers[index]):makeGap(index===4?'No dbt target':'No field evidence'));
+    row.append(cell);
+    if(index<layers.length-1)row.append(makeConnector(selected[index],selected[index+1]));
+  }
+  const fieldGaps=gapsByField.get(field.id)||[];
+  if(fieldGaps.length){const details=document.createElement('details');details.className='gap-note';const heading=document.createElement('summary');heading.textContent='Gap evidence';details.append(heading);for(const gap of fieldGaps){const note=document.createElement('div');note.textContent=gap.reason;details.append(note)}row.append(details)}
+  row.dataset.search=JSON.stringify(field.nodes.map(node=>node.properties)).toLowerCase()+' '+field.id.toLowerCase();return row;
+}
+const elements=fields.map(makeRow);function update(){const query=search.value.trim().toLowerCase();let visible=0;for(let index=0;index<fields.length;index++){const field=fields[index],row=elements[index],matchesFilter=filter==='all'||(filter==='mapped'?field.mapped:!field.mapped),matchesText=!query||row.dataset.search.includes(query);row.hidden=!(matchesFilter&&matchesText);if(!row.hidden)visible++}summary.textContent=`${visible} / ${fields.length} fields · ${graph.summary.mapped_columns} mapped · ${graph.summary.unmapped_columns} gaps`}
+for(const row of elements)rows.append(row);document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{filter=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));update()}));search.addEventListener('input',update);update();
+</script>
+</body>
+</html>

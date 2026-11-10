@@ -57,12 +57,16 @@ def _related_columns(records: Iterable[Dict[str, Any]]) -> list[Dict[str, Any]]:
     return related
 
 
-def with_related_columns(graph: Dict[str, Any], records: Iterable[Dict[str, Any]]) -> Dict[str, Any]:
+def with_related_columns(
+    graph: Dict[str, Any],
+    records: Iterable[Dict[str, Any]],
+    extract_name: str = "DWACC",
+) -> Dict[str, Any]:
     """Compose column presentation onto a graph without rebuilding either input."""
     result = deepcopy(graph)
     related = _related_columns(records)
     for node in result["nodes"]:
-        if node["type"] == "EXTRACT_FILE" and node.get("properties", {}).get("name") == "DWACC":
+        if node["type"] == "EXTRACT_FILE" and node.get("properties", {}).get("name") == extract_name:
             node.setdefault("properties", {})["related_columns"] = deepcopy(related)
     return result
 

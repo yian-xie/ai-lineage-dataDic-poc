@@ -18,7 +18,7 @@ STAGES = {
     "sources": "01-sources", "parse": "02-parsing", "graphs": "03-lineage-graphs",
     "columns": "04-column-lineage", "dictionary": "05-baseline-dictionary",
     "prepare": "06a-enrichment-context", "record": "06b-ai-drafts", "apply": "06c-ai-enrichment",
-    "validate": "07-validation", "html": "08-html",
+    "validate": "07-validation", "html": "08-html", "account-slice": "09-account-data-slice",
 }
 
 
@@ -116,12 +116,13 @@ def _sources(args: argparse.Namespace) -> dict:
 
 def _parse(args: argparse.Namespace) -> dict:
     from .lineage_workflow import parse_sources
-    from .sources import configured_root
+    from .sources import configured_root, source_configuration
 
     def operation(output: Path) -> dict:
         root = configured_root(args.config, args.source_root)
         before = inventory(root)
-        result = parse_sources(root, output, args.parser)
+        repositories = tuple(item["name"] for item in source_configuration(args.config)["repositories"])
+        result = parse_sources(root, output, args.parser, repositories=repositories)
         if inventory(root) != before:
             raise ValueError("Source files changed during parsing; the attempt was not accepted.")
         result["source_inputs"] = {
@@ -166,6 +167,44 @@ def _columns(args: argparse.Namespace) -> dict:
     return _record(args, "columns", [args.parsed, args.graphs],
                    lambda output: build_columns(args.parsed, args.graphs, output, args.feed),
                    {"feed": args.feed, "mode": "build"})
+
+
+def _account_slice(args: argparse.Namespace) -> dict:
+    from .graph.account_data_slice import (
+        build_account_data_slice,
+        find_column_record,
+        input_source_paths,
+    )
+    from .sources import configured_root
+
+    source_root = configured_root(args.config, args.source_root)
+    records = read_json(args.columns)
+    if not isinstance(records, list):
+        raise ValueError("The account slice requires a column inventory JSON array.")
+    column_record = find_column_record(records, args.field_id)
+    evidence_paths = input_source_paths(source_root, column_record)
+    inputs = [args.config, args.graph, args.columns, args.protect, args.landing, *evidence_paths]
+
+    def operation(output: Path) -> dict:
+        payload = build_account_data_slice(
+            read_json(args.graph), records, read_json(args.protect), read_json(args.landing),
+            source_root, field_id=args.field_id,
+            input_snapshots={
+                path.resolve().as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+                for path in inputs
+            },
+        )
+        target = output / "account_data_slice_lineage.json"
+        write_json(target, payload)
+        return {
+            "payload": str(target), "field_id": args.field_id,
+            "nodes": len(payload["nodes"]), "edges": len(payload["edges"]),
+            "candidate_links": len(payload.get("candidate_links", [])),
+            "gaps": len(payload.get("gap_register", [])),
+        }
+
+    return _record(args, "account-slice", inputs, operation,
+                   {"field_id": args.field_id, "source_root": str(source_root)})
 
 
 def _query(args: argparse.Namespace) -> dict:
@@ -224,6 +263,16 @@ def build_parser() -> argparse.ArgumentParser:
     command.add_argument("--graphs", type=Path)
     command.add_argument("--feed", default="DWACC", help="DWACC, DWREL, a supported feed, or all")
     command.set_defaults(handler=_columns)
+    command = subcommands.add_parser(
+        "account-slice", parents=[recorded, source_options],
+        help="Build a bounded Account Open Date graph with Protect and Landing context/gaps",
+    )
+    command.add_argument("--graph", type=Path, default=OUTPUT_ROOT / "03-lineage-graphs" / "account_table_lineage.json")
+    command.add_argument("--columns", type=Path, default=OUTPUT_ROOT / "04-column-lineage" / "column_lineage.json")
+    command.add_argument("--protect", type=Path, default=OUTPUT_ROOT / "protect_downstream_payload.json")
+    command.add_argument("--landing", type=Path, default=OUTPUT_ROOT / "landing_payload.json")
+    command.add_argument("--field-id", default="ultracs:SAVINGS_ACCOUNT:DWACC:54")
+    command.set_defaults(handler=_account_slice)
     command = subcommands.add_parser("dictionary", parents=[recorded], help="Generate only the three baseline CSVs")
     command.add_argument("--input", type=Path, required=True)
     command.add_argument("--graph-id")

@@ -43,6 +43,22 @@ def test_parse_records_exact_bytes_ordered_metadata_and_hashes(source_factory, t
     json.dumps(result)
 
 
+def test_explicit_four_repository_scope_excludes_existing_landing_checkout(source_factory, tmp_path):
+    from lineage_poc.parsers.snapshot import REQUIRED_REPOSITORIES
+
+    source = source_factory()
+    landing = source / "kb-cdp-tenant-landing"
+    landing.mkdir(exist_ok=True)
+    (landing / "excluded.sql").write_text("SELECT 1", encoding="utf-8")
+    parsed = tmp_path / "parsed"
+    parse_sources(source, parsed, repositories=REQUIRED_REPOSITORIES)
+    manifest = read_json(parsed / "manifest.json")
+    assert set(manifest["repositories"]) == set(REQUIRED_REPOSITORIES)
+    assert not any(item["path"].startswith("kb-cdp-tenant-landing/") for item in manifest["files"])
+    assert not (parsed / "fragments" / "landing.json").exists()
+    assert (landing / "excluded.sql").read_text() == "SELECT 1"
+
+
 def test_stages_survive_removed_checkouts_and_foreign_cwd(source_factory, tmp_path, monkeypatch):
     description = "Māori account\n</script> & evidence"
     source = source_factory(description=description)

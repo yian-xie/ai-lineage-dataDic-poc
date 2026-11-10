@@ -90,3 +90,35 @@ def test_json_pointer_preserves_null_empty_and_container_distinctions():
     for path in ('not-a-pointer', '/a~2b', '/a~1b/~0/01', '/absent'):
         with pytest.raises(ValueError):
             pointer(value, path)
+
+
+@pytest.mark.parametrize('quoted', [False, True])
+@pytest.mark.parametrize('quoted_route', [False, True])
+def test_dictionary_preserves_digit_leading_raw_json_keys(tmp_path, quoted, quoted_route):
+    from lineage_poc.dictionary.workflow import generate_bundle
+    from lineage_poc.dictionary.io import read_tables
+    from lineage_poc.validation.bundle import validate_bundle
+
+    records = json.loads((EXAMPLES / 'sample-input.json').read_bytes())
+    record = records[0]
+    original_key = record['param_column']
+    key = '3rdPartyChqDetails'
+    record['param_column'] = key
+    record['hvr_parameter']['name'] = key
+    record['ultracs']['param_column'] = key
+    record['ingestion_route']['dbt_input'] = 'DATA:' + ('"' + key + '"' if quoted_route else key)
+    sql_key = '"' + key + '"' if quoted else key
+    for target in record['dbt_targets']:
+        if target['stage'] == 'internal':
+            target['source_expression'] = target['source_expression'].replace(
+                'DATA:' + original_key, 'DATA:' + sql_key)
+    source = tmp_path / 'columns.json'
+    source.write_text(json.dumps(records), encoding='utf-8')
+    bundle = tmp_path / 'bundle'
+    generate_bundle(source, bundle)
+    validate_bundle(bundle)
+    fields = read_tables(bundle)['field_catalog.csv'].rows
+    raw_fields = [row for row in fields if row['layer'] == 'raw']
+    assert len(raw_fields) == 1
+    assert raw_fields[0]['field_name'] == 'DATA:' + key
+    assert json.loads(raw_fields[0]['downstream_field_ids_json'])
