@@ -80,6 +80,7 @@ def test_stages_survive_removed_checkouts_and_foreign_cwd(source_factory, tmp_pa
     column_result = build_columns(parsed, graphs, columns)
     records = read_json(columns / "column_lineage.json")
     assert len(records) == 1
+    assert {target["stage"] for target in records[0]["dbt_targets"]} == {"internal", "public"}
     assert records[0]["cdp"]["description"] == description
     assert records[0]["ultracs"]["basic_expression"] == "REC<4,8>"
     assert records[0]["confidence"] == "confirmed"
@@ -153,6 +154,14 @@ def test_selected_basic_parser_does_not_require_other_repositories(tmp_path):
     assert result["counts"]["source_files"] == 1
     assert built["counts"]["table_lineage"]["nodes"] > 0
     assert set(built["outputs"]) == {"table_lineage"}
+
+
+def test_dwrel_scope_reports_missing_product_inputs(source_factory, tmp_path):
+    parsed = tmp_path / "parsed"
+    parse_sources(source_factory(), parsed)
+
+    with pytest.raises(FileNotFoundError, match="DWREL graph requires missing source inputs"):
+        build_graphs(parsed, tmp_path / "graphs", scope="dwrel")
 
 
 def test_columns_reject_graphs_from_a_different_parse_run(source_factory, tmp_path):

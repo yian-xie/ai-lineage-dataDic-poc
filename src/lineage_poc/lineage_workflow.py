@@ -148,6 +148,7 @@ def build_graphs(parsed_dir: Path, destination: Path, scope: str = "all") -> dic
 def _build_graph_snapshots(parsed_dir: Path, destination: Path, scope: str, parse_manifest: dict, evidence_root: Path) -> tuple[dict, dict]:
     full = read_json(parsed_dir / "fragments" / "table_inputs.json")
     graphs = {}
+    counts = {}
     can_slice = parse_manifest["parser"] == "all" and any(
         node["type"] == "PROGRAM" and node.get("properties", {}).get("name", "").upper() == "KWDW_ACC"
         for node in full["nodes"]
@@ -174,7 +175,21 @@ def _build_graph_snapshots(parsed_dir: Path, destination: Path, scope: str, pars
             graphs["account_table_lineage"] = account
     graphs["table_lineage"] = full
     if can_slice and scope in {"all", "dwrel"}:
-        graphs["dwrel_table_lineage"] = dwrel.build_graph(full_graph=full, source_root=evidence_root)
+        dag_path = evidence_root / dwrel.DAG_PATH
+        dbt_path = evidence_root / dwrel.PRODUCT_PATH / "dbt"
+        missing = []
+        if not dag_path.is_file():
+            missing.append(dag_path.relative_to(evidence_root).as_posix())
+        if not dbt_path.is_dir():
+            missing.append(dbt_path.relative_to(evidence_root).as_posix())
+        if missing and scope == "dwrel":
+            raise FileNotFoundError(f"DWREL graph requires missing source inputs: {', '.join(missing)}")
+        if missing:
+            counts["skipped_graphs"] = {
+                "dwrel_table_lineage": {"reason": "required source inputs are missing", "missing_inputs": missing}
+            }
+        else:
+            graphs["dwrel_table_lineage"] = dwrel.build_graph(full_graph=full, source_root=evidence_root)
     landing_fragment = parsed_dir / "fragments" / "landing.json"
     if scope == "landing" and not landing_fragment.is_file():
         raise FileNotFoundError("The optional kb-cdp-tenant-landing repository was not captured in this parse snapshot.")
@@ -184,7 +199,6 @@ def _build_graph_snapshots(parsed_dir: Path, destination: Path, scope: str, pars
         accumulator.add_graph(parsed_landing)
         graphs["landing_tenant_lineage"] = accumulator.payload()
     outputs = {}
-    counts = {}
     for name, graph in graphs.items():
         output = destination / f"{name}.json"
         write_json(output, normalize_evidence(graph, evidence_root))
@@ -233,9 +247,8 @@ def _build_column_snapshots(parsed_dir: Path, graphs_dir: Path, destination: Pat
     outputs = {}
     for selected in feeds:
         if selected == "DWACC":
-            graph_name = "account_table_lineage" if (graphs_dir / "account_table_lineage.json").is_file() else "table_lineage"
             records = dwacc.build_records(
-                table_graph=_require_graph(graphs_dir, graph_name),
+                table_graph=_require_graph(graphs_dir, "table_lineage"),
                 param_data=read_json(parsed_dir / "hvr_param_metadata.json"),
                 source_root=evidence_root,
             )

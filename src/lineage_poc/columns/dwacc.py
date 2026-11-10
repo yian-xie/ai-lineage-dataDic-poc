@@ -135,11 +135,17 @@ def _selected_sql_projections(path: Path) -> Dict[str, Dict[str, Any]]:
   projections = {}
   for offset, line in enumerate(select.splitlines()):
     token = line.strip().rstrip(",")
-    if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", token):
-      projections[token.upper()] = {
+    alias = re.search(r"\bAS\s+([A-Za-z_][A-Za-z0-9_]*)\s*$", token, re.IGNORECASE)
+    if alias:
+      column = alias.group(1).upper()
+    elif re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", token):
+      column = token.upper()
+    else:
+      continue
+    projections[column] = {
         "source_expression": token,
         "source_line": start_line + offset,
-      }
+    }
   return projections
 
 

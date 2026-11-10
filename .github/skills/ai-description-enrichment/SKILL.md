@@ -35,6 +35,14 @@ Read [the scoring rubric](./references/scoring-rubric.md),
 
 ## Inputs and protected fields
 
+Before each fresh dictionary run, tell the user: **Missing-description
+enrichment currently applies only to blank canonical Ultracs source fields. It
+does not create descriptions for HVR, CDP/Airflow/dbt, RAW/Snowflake, assets, or
+fields with existing descriptions. Expanding this scope is a workflow contract
+change, not a run flag; it requires explicit approval plus supported identities
+and evidence, provenance and preservation validation, CSV projection, viewer,
+and test updates. Until then, this run remains Ultracs-only.**
+
 Use one exact matching bundle: `asset_registry.csv`, `field_catalog.csv`,
 `data_dictionary.csv`. Resolve the repository from the workspace, not from this
 skill's former location. Package code lives in `src\lineage_poc\enrichment` and
@@ -74,13 +82,33 @@ Use bounded batches, normally 5-10 fields, and author descriptions and criterion
 judgments yourself in the current chat. Local code may assemble JSON and check
 references/arithmetic, but must not generate name-based sentence templates.
 
+**Default to a technical draft, not `needs_evidence`.** An empty description in
+the input JSON does not make the field's recorded mapping unusable. For each
+eligible field, inspect its exact BASIC/source expression or locator, extract
+name and position, and supported target projection/column. When those claims
+support a precise technical description, draft it even when business meaning
+or physical file binding is unknown. Describe the recorded mapping as reported
+evidence; do not turn names, abbreviations, target descriptions, or SQL casts
+into unverified business definitions. State missing physical binding, ambiguous
+aliases, material conflicts, or unsupported business meaning in the description
+when they affect its interpretation. A technical draft is not an approved
+business definition or runtime verification.
+
+Use `needs_evidence` only when the field-specific evidence cannot support even
+a useful, bounded technical description, or when unresolved contradictions
+prevent an accurate description. Missing business definition or physical file
+binding by itself is not enough to reject a technical mapping draft. Keep
+explicit placeholder identities such as `MissingColumn` unresolved; describe
+only their recorded mapping and state that the source meaning is unknown.
+
 For **every** eligible scoped field, author exactly one decision:
 
 - `draft`: one or two concise English sentences; exactly five rubric criteria
   with field-specific reasons and verifiable evidence references. State real
   uncertainty, aliases, missing physical binding and unsupported business meaning.
 - `needs_evidence`: null description and assessment, an explicit reason and
-  open questions. Do not fabricate prose to force completeness or a score.
+  open questions. Use only when the technical description itself is unsupported
+  or contradictory; do not use it just because business meaning is unavailable.
 
 Use only `description-evidence-v1`. Score the support for the exact prose, not
 lineage certainty, business importance or production correctness. Positive
@@ -133,6 +161,16 @@ browser behavior: a new draft, a preserved description, needs-evidence if any,
 source-group repeats, details and origin filtering.
 Relationship confidence must stay unchanged. Python assembly alone is not a
 browser check; explicitly report any unverified interaction.
+
+For every newly drafted field, verify that the enriched Field Catalog
+`description` is nonempty and that each matching Dictionary row's
+`source_description` mirrors it exactly. The Dictionary view renders that CSV
+column; rebuild `output\08-html\index.html` from the enriched bundle so the
+embedded report contains the updated descriptions. Confirm the HTML-stage
+embedded CSV hashes match the enriched bundle. If browser testing is available,
+also confirm the source-description text appears in the Dictionary table and
+the selected row's details; never treat `Not supplied` as a replacement for a
+missing generated description.
 
 ## Library/module interfaces
 
