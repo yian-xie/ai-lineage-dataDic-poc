@@ -54,3 +54,14 @@ def test_full_workflow_skill_runs_in_chat_and_supports_resume_and_targeted_rerun
     assert "enrichment record" in skill
     assert "pipeline --clone --full-run" not in skill + readme
     assert "enrichment generate" not in skill + readme
+
+
+def test_enrichment_skill_defaults_to_supported_descriptions_and_checks_display():
+    skill = (PROJECT_ROOT / ".github" / "skills" / "ai-description-enrichment" / "SKILL.md").read_text(
+        encoding="utf-8",
+    )
+    normalized = re.sub(r"\s+", " ", skill)
+    assert "Default to a technical draft, not `needs_evidence`." in normalized
+    assert "Missing business definition or physical file binding by itself is not enough" in normalized
+    assert "`source_description` mirrors it exactly" in normalized
+    assert "embedded CSV hashes match the enriched bundle" in normalized

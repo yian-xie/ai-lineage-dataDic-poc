@@ -172,6 +172,15 @@ Result: `output\05-baseline-dictionary`, containing:
 
 This step preserves supplied descriptions. It does not generate AI prose.
 
+**Required scope warning for every fresh dictionary run:** Missing-description
+enrichment currently applies only to canonical Ultracs source fields whose
+descriptions are blank. It does not create descriptions for HVR, CDP/Airflow/dbt,
+RAW/Snowflake, asset, or already-described fields. A broader override is a
+workflow contract change, not a run flag: supported identities and evidence,
+provenance and preservation validation, CSV projection, viewer behavior, and
+tests must all be updated and explicitly approved. Until then, keep enrichment
+within the current Ultracs-only scope and do not infer definitions from names.
+
 ### 5. Use the AI skill to fill missing Ultracs descriptions
 
 ```powershell
