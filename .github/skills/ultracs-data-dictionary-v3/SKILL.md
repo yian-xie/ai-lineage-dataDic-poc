@@ -27,6 +27,14 @@ them or treat them as an automatic replacement for missing processing inputs.
 All CLI results are saved under one `output` folder. Each step keeps its latest
 files and appends diagnostics under `output\logs`. Use the printed paths.
 
+Before each fresh dictionary run, tell the user: **Missing-description
+enrichment currently applies only to blank canonical Ultracs source fields. It
+does not create descriptions for HVR, CDP/Airflow/dbt, RAW/Snowflake, assets, or
+fields with existing descriptions. Expanding this scope is a workflow contract
+change, not a run flag; it requires explicit approval plus supported identities
+and evidence, provenance and preservation validation, CSV projection, viewer,
+and test updates. Until then, this run remains Ultracs-only.**
+
 1. Generate **CSV only**:
 
    ```powershell

@@ -69,6 +69,14 @@ Do not silently reuse the historical enriched bundle or example descriptions.
 Only missing Ultracs source descriptions are eligible. Preserve every existing
 description, metadata, raw record and relationship assessment.
 
+Before each fresh dictionary run, tell the user: **Missing-description
+enrichment currently applies only to blank canonical Ultracs source fields. It
+does not create descriptions for HVR, CDP/Airflow/dbt, RAW/Snowflake, assets, or
+fields with existing descriptions. Expanding this scope is a workflow contract
+change, not a run flag; it requires explicit approval plus supported identities
+and evidence, provenance and preservation validation, CSV projection, viewer,
+and test updates. Until then, this run remains Ultracs-only.**
+
 If Git access, local execution approval, an input contract or validation blocks
 progress, report the exact stage and log. Never manufacture success. The user
 manages Git sign-in and VS Code tool approvals; do not request credentials.
