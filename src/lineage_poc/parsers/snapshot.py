@@ -29,13 +29,31 @@ ACCOUNT_PRODUCTS = (
     "ult-account-fees-v1",
     "ult-account-payment-v1",
 )
+ACCOUNT_DOMAIN_PRODUCTS = ACCOUNT_PRODUCTS + (
+    "account-profile-topic-v1", "ads-eod-customeraccount-topic-v1",
+    "ads-eod-internalaccount-topic-v1", "ads-posting-topic-v1",
+    "ads-transaction-topic-v1", "eod-balance-v1", "sys-accmig-recon-v1",
+)
 ENTERPRISE_PRODUCTS = (
     "int-account-v1",
     "enterprise-integrated-account-v1",
     "cur-dimaccount-v1",
     "cur-factaccount-v1",
 )
-PARSERS = ("all", "basic", "hvr", "airflow", "dbt", "schemachange", "landing")
+TMV_REPOSITORIES = (
+    "kb-cdp-tenant-landing",
+    "kb-accounts",
+    "kb-cdp-tenant-protect-downstream",
+)
+ACCOUNT_DOMAIN_REPOSITORIES = (
+    "kb-accounts", "kb-cdp-tenant-account", "kb-cdp-tenant-enterprise",
+    "kb-cdp-tenant-protect-downstream",
+)
+CDP_ACCOUNT_REPOSITORIES = ("kb-accounts", "kb-cdp-tenant-account")
+PARSERS = (
+    "all", "basic", "hvr", "airflow", "dbt", "schemachange", "landing",
+    "protect_downstream", "accounts", "tmv", "tmv-account", "account-domain", "cdp-account",
+)
 FORMAT = "lineage-poc-source-evidence-v2"
 SNAPSHOT_NAME = "source-snapshot.zip"
 
@@ -83,11 +101,51 @@ def discover_sources(source_root: Path, parser: str) -> list[Path]:
         "dbt": REQUIRED_REPOSITORIES[2:],
         "schemachange": REQUIRED_REPOSITORIES[2:],
         "landing": ("kb-cdp-tenant-landing",),
+        "protect_downstream": ("kb-cdp-tenant-protect-downstream",),
+        "accounts": ("kb-accounts",),
+        "tmv": TMV_REPOSITORIES,
+        "tmv-account": TMV_REPOSITORIES,
+        "account-domain": ACCOUNT_DOMAIN_REPOSITORIES,
+        "cdp-account": CDP_ACCOUNT_REPOSITORIES,
     }[parser]
     missing = [name for name in needed if not (source_root / name).is_dir()]
     if missing:
         raise FileNotFoundError(f"Required source repositories are missing under {source_root}: {', '.join(missing)}")
+    if parser == "tmv-account":
+        from .tmv_account import discover_account_sources
+        return discover_account_sources(source_root)
     paths: set[Path] = set()
+    if parser == "account-domain":
+        from .tmv_account import PROTECT_ACCOUNT_PRODUCTS
+        for repository, products in (
+            ("kb-cdp-tenant-account", ACCOUNT_DOMAIN_PRODUCTS),
+            ("kb-cdp-tenant-enterprise", ENTERPRISE_PRODUCTS),
+            ("kb-cdp-tenant-protect-downstream", PROTECT_ACCOUNT_PRODUCTS),
+        ):
+            for product in products:
+                paths.update(path for path in (source_root / repository / "products" / product).rglob("*")
+                             if path.is_file() and ".git" not in path.parts
+                             and (path.suffix.lower() in {".py", ".sql", ".yml", ".yaml"}
+                                  or path.name.lower().endswith(". sql")))
+        paths.update(path for path in (source_root / "kb-accounts").rglob("*.csproj")
+                     if path.is_file() and ".git" not in path.parts)
+        paths.update(path for path in (source_root / "kb-accounts/src").rglob("*.cs")
+                 if path.is_file() and not any("Tests" in part or part in {".git", "bin", "obj"} for part in path.parts))
+        return sorted(paths)
+    if parser == "cdp-account":
+        account_root = source_root / "kb-cdp-tenant-account" / "products"
+        paths.update(path for path in account_root.rglob("*") if path.is_file() and ".git" not in path.parts
+                     and (path.suffix.lower() in {".sql", ".yml", ".yaml", ".py"} or path.name.lower() == "readme.md"))
+        accounts = source_root / "kb-accounts"
+        paths.update(path for path in accounts.rglob("*.csproj") if path.is_file() and ".git" not in path.parts)
+        paths.update(path for path in (accounts / "src").rglob("*.cs") if path.is_file()
+                     and not any("Tests" in part or part in {".git", "bin", "obj"} for part in path.parts))
+        paths.update(path for path in (accounts / "topic-definitions").rglob("*") if path.is_file()
+                     and path.suffix.lower() in {".json", ".yml", ".yaml"})
+        paths.update(path for path in (accounts / "catalog").glob("*.yaml") if path.is_file())
+        paths.update(path for path in (accounts / "docs").rglob("*.md") if path.is_file()
+                     and any(term in path.as_posix().casefold() for term in ("profile", "transaction", "account")))
+        return sorted(paths)
     if parser in {"all", "basic"}:
         paths.update(
             path for path in (source_root / REQUIRED_REPOSITORIES[0]).rglob("*")
@@ -113,10 +171,23 @@ def discover_sources(source_root: Path, parser: str) -> list[Path]:
                 and (path.suffix.lower() in {".py", ".sql", ".yml", ".yaml"} or path.name.lower().endswith(". sql"))
             )
     landing = source_root / "kb-cdp-tenant-landing"
-    if parser == "landing" or parser == "all" and landing.is_dir():
+    if parser in {"landing", "tmv"} or parser == "all" and landing.is_dir():
         paths.update(
             path for path in landing.rglob("*")
             if path.is_file() and ".git" not in path.parts and path.suffix.lower() in {".sql", ".yml", ".yaml", ".py"}
+        )
+    protect = source_root / "kb-cdp-tenant-protect-downstream"
+    if parser in {"protect_downstream", "tmv"} or parser == "all" and protect.is_dir():
+        paths.update(
+            path for path in protect.rglob("*")
+            if path.is_file() and ".git" not in path.parts
+            and path.suffix.lower() in {".sql", ".yml", ".yaml", ".py"}
+        )
+    accounts = source_root / "kb-accounts"
+    if parser in {"accounts", "tmv"} or parser == "all" and accounts.is_dir():
+        paths.update(
+            path for path in accounts.rglob("*.csproj")
+            if path.is_file() and ".git" not in path.parts
         )
     return sorted(paths)
 
@@ -152,7 +223,13 @@ def capture_sources(source_root: Path, destination: Path, parser: str) -> dict:
                 info.external_attr = (stat.S_IFREG | 0o600) << 16
                 archive.writestr(info, content)
     revisions = {}
-    for name in (*REQUIRED_REPOSITORIES, "kb-cdp-tenant-landing"):
+    revision_names = CDP_ACCOUNT_REPOSITORIES if parser == "cdp-account" else ACCOUNT_DOMAIN_REPOSITORIES if parser == "account-domain" else TMV_REPOSITORIES if parser in {"tmv", "tmv-account"} else (
+        *REQUIRED_REPOSITORIES,
+        "kb-cdp-tenant-landing",
+        "kb-cdp-tenant-protect-downstream",
+        "kb-accounts",
+    )
+    for name in revision_names:
         repository = source_root / name
         if repository.is_dir():
             if not (repository / ".git").exists():

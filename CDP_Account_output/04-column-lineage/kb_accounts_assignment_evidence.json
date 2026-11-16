@@ -1,0 +1,1497 @@
+[
+  {
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Infrastructure/PaymentInstructionMapper.cs",
+    "assignments": [
+      {
+        "expression": "RequestId = paymentInstructionRequestInput.RequestId",
+        "source_line": 46,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ClientBatchId = clientBatchId",
+        "source_line": 47,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ClientId = clientId",
+        "source_line": 48,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionId = paymentInstructionRequestInput.PaymentInstruction.TransactionId",
+        "source_line": 49,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Lifecycle = paymentInstructionRequestInput.PaymentInstruction.Lifecycle.ToString()",
+        "source_line": 50,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Type = paymentInstructionRequestInput.PaymentInstruction.Type.ToString()",
+        "source_line": 51,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "RequestDate = utcNow",
+        "source_line": 52,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Id = paymentInstruction.RequestId",
+        "source_line": 74,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ClientBatchId = paymentInstruction.ClientBatchId",
+        "source_line": 75,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ClientId = paymentInstruction.ClientId",
+        "source_line": 76,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionId = paymentInstruction.TransactionId",
+        "source_line": 77,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Lifecycle = Enum.Parse<Lifecycle>(paymentInstruction.Lifecycle!)",
+        "source_line": 78,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Type = Enum.Parse<TransactionType>(paymentInstruction.Type!)",
+        "source_line": 79,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Description = paymentInstruction.Description",
+        "source_line": 80,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "RequestDate = paymentInstruction.RequestDate",
+        "source_line": 81,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ValueDate = paymentInstruction.ValueDate",
+        "source_line": 82,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BatchId = x.BatchId",
+        "source_line": 88,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Status = Enum.Parse<Status>(x.State)",
+        "source_line": 89,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "StatusDate = x.Date",
+        "source_line": 90,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PaymentInstruction = graphqlPaymentInstruction",
+        "source_line": 96,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Statuses = graphqlPaymentInstructionStatuses",
+        "source_line": 97,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Api/Queries/Mapping/CreditCardTransactionMapper.cs",
+    "assignments": [
+      {
+        "expression": "Id = key",
+        "source_line": 38,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionId = key.ToString()",
+        "source_line": 39,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "MaskedCardNumber = x.MaskedCardNumber",
+        "source_line": 40,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountId = accountId",
+        "source_line": 41,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumber = x.MaskedCardNumber.ToAccountNumber()",
+        "source_line": 42,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumberDisplay = x.MaskedCardNumber.ToAccountNumberDisplay()",
+        "source_line": 43,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionDescription = x.TransactionDescription",
+        "source_line": 44,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditDebitIndicator = x.TransactionAmount < 0\n                        ? CreditDebitIndicator.Credit\n                        : CreditDebitIndicator.Debit",
+        "source_line": 45,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Status = x.PostedDate == null ? Status.Pending : Status.Executed",
+        "source_line": 48,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "FinancialTransactionAmount = new Money\n                    {\n                        Value = x.TransactionAmount.ToString(CultureInfo.InvariantCulture),\n                        Currency = Currency.NZD\n                    }",
+        "source_line": 49,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value = x.TransactionAmount.ToString(CultureInfo.InvariantCulture)",
+        "source_line": 51,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Currency = Currency.NZD",
+        "source_line": 52,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ValueDateTime = valueDateTime",
+        "source_line": 54,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BookingDateTime = string.IsNullOrWhiteSpace(x.PostedDate)\n                        ? null\n                        : ConvertToNzt(x.PostedDate)",
+        "source_line": 55,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OriginalAmountDetails = x.OriginalAmountDetails",
+        "source_line": 58,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InsertionDateTime = valueDateTime",
+        "source_line": 61,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Api/Queries/Mapping/TmvTransactionMapper.cs",
+    "assignments": [
+      {
+        "expression": "Id = x.Id",
+        "source_line": 28,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionId = x.Id.ToString()",
+        "source_line": 29,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InitiationInstructionId = x.InitiationInstructionId",
+        "source_line": 30,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountId = x.AccountId",
+        "source_line": 31,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PaymentId = x.PaymentId",
+        "source_line": 32,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumber = x.AccountNumber.ToAccountNumber()",
+        "source_line": 33,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumberDisplay = x.AccountNumber.ToAccountNumberDisplay()",
+        "source_line": 34,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionDescription = x.TransactionDescription",
+        "source_line": 35,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "IsoTransactionCode = new IsoTransactionCode\n            {\n                Domain = x.IsoTransactionCode.Domain,\n                Family = x.IsoTransactionCode.Family,\n                SubFamily = x.IsoTransactionCode.SubFamily\n            }",
+        "source_line": 36,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Domain = x.IsoTransactionCode.Domain",
+        "source_line": 38,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Family = x.IsoTransactionCode.Family",
+        "source_line": 39,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "SubFamily = x.IsoTransactionCode.SubFamily",
+        "source_line": 40,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "FinancialTransactionAmount = new Money\n            {\n                Value = x.FinancialTransactionAmount.ToString(CultureInfo.InvariantCulture),\n                Currency = GetCurrency(x.FinancialTransactionCurrencyCode)\n            }",
+        "source_line": 42,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value = x.FinancialTransactionAmount.ToString(CultureInfo.InvariantCulture)",
+        "source_line": 44,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Currency = GetCurrency(x.FinancialTransactionCurrencyCode)",
+        "source_line": 45,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Status = Enum.Parse<Status>(x.Status, true)",
+        "source_line": 47,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditDebitIndicator =\n                    Enum.Parse<CreditDebitIndicator>(x.CreditDebitIndicator, true)",
+        "source_line": 48,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ValueDateTime = x.ValueDateTime",
+        "source_line": 50,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BookingDateTime = x.BookingDateTime",
+        "source_line": 51,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyName = x.OtherPartyName",
+        "source_line": 52,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyAccount = x.OtherPartyAccount != null\n                    ? new PartyAccount\n                    {\n                        AccountIdentification = x.OtherPartyAccount.AccountIdentification.ToAccountNumber(),\n                        AccountIdentificationDisplay = x.OtherPartyAccount.AccountIdentification.ToAccountNumberDisplay(),\n                        AccountIdentificationType = x.OtherPartyAccount.AccountIdentificationType\n                    }\n                    : null",
+        "source_line": 53,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountIdentification = x.OtherPartyAccount.AccountIdentification.ToAccountNumber()",
+        "source_line": 56,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountIdentificationDisplay = x.OtherPartyAccount.AccountIdentification.ToAccountNumberDisplay()",
+        "source_line": 57,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountIdentificationType = x.OtherPartyAccount.AccountIdentificationType",
+        "source_line": 58,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyReference = x.OtherPartyReference != null\n                    ? new PartyReference\n                    {\n                        Particulars = x.OtherPartyReference.Particulars,\n                        Code = x.OtherPartyReference.Code,\n                        Reference = x.OtherPartyReference.Reference\n                    }\n                    : null",
+        "source_line": 61,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Particulars = x.OtherPartyReference.Particulars",
+        "source_line": 64,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Code = x.OtherPartyReference.Code",
+        "source_line": 65,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Reference = x.OtherPartyReference.Reference",
+        "source_line": 66,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ThisPartyReference = x.ThisPartyReference != null\n                    ? new PartyReference\n                    {\n                        Particulars = x.ThisPartyReference.Particulars,\n                        Code = x.ThisPartyReference.Code,\n                        Reference = x.ThisPartyReference.Reference\n                    }\n                    : null",
+        "source_line": 69,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Particulars = x.ThisPartyReference.Particulars",
+        "source_line": 72,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Code = x.ThisPartyReference.Code",
+        "source_line": 73,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Reference = x.ThisPartyReference.Reference",
+        "source_line": 74,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountBalanceInterimBooked =\n                    x.AccountBalanceInterimBookedAmount != null &&\n                    x.AccountBalanceInterimBookedCurrencyCode != null\n                        ? new Money\n                        {\n                            Value = x.AccountBalanceInterimBookedAmount.ToString() ?? \"0\",\n                            Currency = GetCurrency(x.AccountBalanceInterimBookedCurrencyCode)\n                        }\n                        : null",
+        "source_line": 77,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value = x.AccountBalanceInterimBookedAmount.ToString() ?? \"0\"",
+        "source_line": 82,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Currency = GetCurrency(x.AccountBalanceInterimBookedCurrencyCode)",
+        "source_line": 83,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PaymentInstructionCategory = x.PaymentInstructionCategory",
+        "source_line": 86,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionCode = x.TransactionCode",
+        "source_line": 87,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TaxDeduction = x.TaxDeduction != null ? new TaxDeduction\n            {\n                DomesticTaxType = x.TaxDeduction.DomesticTaxType != null ? GetDomesticTaxType(x.TaxDeduction.DomesticTaxType) : null,\n                TaxRateValue = x.TaxDeduction.TaxRateValue,\n                NominatedTaxPartyId = x.TaxDeduction.NominatedTaxPartyId,\n                NonResidentWithholdingTaxCountryAlpha3Code = x.TaxDeduction.NonResidentWithholdingTaxCountryAlpha3Code\n            } : null",
+        "source_line": 88,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "DomesticTaxType = x.TaxDeduction.DomesticTaxType != null ? GetDomesticTaxType(x.TaxDeduction.DomesticTaxType) : null",
+        "source_line": 90,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TaxRateValue = x.TaxDeduction.TaxRateValue",
+        "source_line": 91,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "NominatedTaxPartyId = x.TaxDeduction.NominatedTaxPartyId",
+        "source_line": 92,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "NonResidentWithholdingTaxCountryAlpha3Code = x.TaxDeduction.NonResidentWithholdingTaxCountryAlpha3Code",
+        "source_line": 93,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Index = x.BatchInstructionIndex",
+        "source_line": 95,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "IndustryTransactionCode = x.IndustryTransactionCode",
+        "source_line": 96,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InputSourceCode = x.InputSourceCode",
+        "source_line": 97,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OriginatingBank = x.OriginatingBank",
+        "source_line": 98,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OriginatingBranch = x.OriginatingBranch",
+        "source_line": 99,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BatchNumber = x.BatchNumber",
+        "source_line": 100,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AuthorisationCode = x.AuthorisationCode",
+        "source_line": 101,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Branch = x.Branch",
+        "source_line": 102,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Operator = x.Operator",
+        "source_line": 103,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "LegacyCoreTransactionId = x.LegacyCoreTransactionId",
+        "source_line": 104,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InsertionDateTime = x.InsertionDateTime",
+        "source_line": 105,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Api/Queries/Mapping/UltracsAuthorisationTransactionMapper.cs",
+    "assignments": [
+      {
+        "expression": "Id = key",
+        "source_line": 43,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Index = GetPendingId(x.Description1)",
+        "source_line": 44,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionId = key.ToString()",
+        "source_line": 45,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "MaskedCardNumber = x.CardNumber",
+        "source_line": 46,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountId = accountId",
+        "source_line": 47,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumber = x.AccountNumber",
+        "source_line": 48,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumberDisplay = x.AccountNumber",
+        "source_line": 49,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionDescription = x.Description1",
+        "source_line": 50,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionDescription2 = x.Description2",
+        "source_line": 51,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "FinancialTransactionAmount = new Money\n                    {\n                        Value = x.SettledAmount.ToString(CultureInfo.InvariantCulture),\n                        Currency = Currency.NZD\n                    }",
+        "source_line": 52,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value = x.SettledAmount.ToString(CultureInfo.InvariantCulture)",
+        "source_line": 54,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Currency = Currency.NZD",
+        "source_line": 55,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OutstandingAmount = new Money\n                    {\n                        Value = x.OutstandingAmount.ToString(CultureInfo.InvariantCulture),\n                        Currency = Currency.NZD\n                    }",
+        "source_line": 57,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value = x.OutstandingAmount.ToString(CultureInfo.InvariantCulture)",
+        "source_line": 59,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Currency = Currency.NZD",
+        "source_line": 60,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditDebitIndicator = x.OutstandingAmount < 0 ? CreditDebitIndicator.Credit : CreditDebitIndicator.Debit",
+        "source_line": 62,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Branch = x.Branch",
+        "source_line": 63,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Operator = x.Operator",
+        "source_line": 64,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "SupInf = x.SupInf",
+        "source_line": 65,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Cheque = x.Cheque",
+        "source_line": 66,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BookingDateTime = x.EffectiveDate.HasValue ? new DateTimeOffset(x.EffectiveDate.Value, TimeZoneInfo.FindSystemTimeZoneById(TimeZoneIds.NewZealandStandardTime).GetUtcOffset(x.EffectiveDate.Value)) : x.EffectiveDate",
+        "source_line": 67,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ValueDateTime = valueDateTime",
+        "source_line": 68,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionCode = x.TransactionCode",
+        "source_line": 69,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "DeclineCode = x.DeclineCode",
+        "source_line": 70,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Status = GetStatus(x)",
+        "source_line": 71,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InsertionDateTime = valueDateTime",
+        "source_line": 74,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Api/Queries/Mapping/UltracsTransactionMapper.cs",
+    "assignments": [
+      {
+        "expression": "Id = key",
+        "source_line": 45,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Index = count - index",
+        "source_line": 46,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionId = x.TransactionId",
+        "source_line": 47,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountId = accountId",
+        "source_line": 48,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumber = x.AccountNumber.ToAccountNumber()",
+        "source_line": 49,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumberDisplay = x.AccountNumber.ToAccountNumberDisplay()",
+        "source_line": 50,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "MaskedCardNumber = GetCardNumber(x.NonValueTransactionItems)",
+        "source_line": 51,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionDescription = x.Description",
+        "source_line": 52,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "FinancialTransactionAmount = new Money\n                    {\n                        Value = (x.DebitAmount > 0 ? x.DebitAmount : x.CreditAmount).ToString(CultureInfo.InvariantCulture),\n                        Currency = Currency.NZD\n                    }",
+        "source_line": 53,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value = (x.DebitAmount > 0 ? x.DebitAmount : x.CreditAmount).ToString(CultureInfo.InvariantCulture)",
+        "source_line": 55,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Currency = Currency.NZD",
+        "source_line": 56,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BookingDateTime = new DateTimeOffset(x.EffectiveDate, TimeZoneInfo.FindSystemTimeZoneById(TimeZoneIds.NewZealandStandardTime).GetUtcOffset(x.EffectiveDate))",
+        "source_line": 58,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ValueDateTime = valueDateTime",
+        "source_line": 59,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionCode = x.TransactionCode",
+        "source_line": 60,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Status = Status.Executed",
+        "source_line": 61,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditDebitIndicator = x.DebitAmount > 0 ? CreditDebitIndicator.Debit : CreditDebitIndicator.Credit",
+        "source_line": 62,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Branch = x.Branch",
+        "source_line": 63,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Operator = x.Operator",
+        "source_line": 64,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Cheque = x.Cheque",
+        "source_line": 65,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyName = isInternalSuspenseAccount ? null : x.OtherPayeeName",
+        "source_line": 66,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyAccount = !string.IsNullOrEmpty(x.OtherPayeeAccountNumber) && !isInternalSuspenseAccount ? new PartyAccount\n                    {\n                        AccountIdentification = x.OtherPayeeAccountNumber.ToAccountNumber(),\n                        AccountIdentificationDisplay = x.OtherPayeeAccountNumber.ToAccountNumberDisplay(),\n                        AccountIdentificationType = string.Empty\n                    } : null",
+        "source_line": 67,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountIdentification = x.OtherPayeeAccountNumber.ToAccountNumber()",
+        "source_line": 69,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountIdentificationDisplay = x.OtherPayeeAccountNumber.ToAccountNumberDisplay()",
+        "source_line": 70,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountIdentificationType = string.Empty",
+        "source_line": 71,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyReference = !string.IsNullOrWhiteSpace(x.OtherPayeePart) || !string.IsNullOrWhiteSpace(x.OtherPayeeCode) || !string.IsNullOrWhiteSpace(x.OtherPayeeRef) ? new PartyReference\n                    {\n                        Particulars = x.OtherPayeePart,\n                        Code = x.OtherPayeeCode,\n                        Reference = x.OtherPayeeRef\n                    } : null",
+        "source_line": 73,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Particulars = x.OtherPayeePart",
+        "source_line": 75,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Code = x.OtherPayeeCode",
+        "source_line": 76,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Reference = x.OtherPayeeRef",
+        "source_line": 77,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ThisPartyReference = !string.IsNullOrWhiteSpace(x.ThisPayeePart) || !string.IsNullOrWhiteSpace(x.ThisPayeeCode) || !string.IsNullOrWhiteSpace(x.ThisPayeeRef) ? new PartyReference\n                    {\n                        Particulars = x.ThisPayeePart,\n                        Code = x.ThisPayeeCode,\n                        Reference = x.ThisPayeeRef\n                    } : null",
+        "source_line": 79,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Particulars = x.ThisPayeePart",
+        "source_line": 81,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Code = x.ThisPayeeCode",
+        "source_line": 82,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Reference = x.ThisPayeeRef",
+        "source_line": 83,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountBalanceInterimBooked = new Money\n                    {\n                        Value = x.Balance.ToString(CultureInfo.InvariantCulture),\n                        Currency = Currency.NZD\n                    }",
+        "source_line": 85,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value = x.Balance.ToString(CultureInfo.InvariantCulture)",
+        "source_line": 87,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Currency = Currency.NZD",
+        "source_line": 88,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ReferenceId = GetReferenceId(x.NonValueTransactionItems)",
+        "source_line": 90,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "UltracsNonValueTransactions = x.NonValueTransactionItems.Select(y => new UltracsNonValueTransaction\n                    {\n                        TransactionId = y.NonValueTransactionId,\n                        Code = y.NonValueTransactionCode,\n                        Description = y.NonValueTransactionDescription\n                    }).ToList()",
+        "source_line": 91,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionId = y.NonValueTransactionId",
+        "source_line": 93,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Code = y.NonValueTransactionCode",
+        "source_line": 94,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Description = y.NonValueTransactionDescription",
+        "source_line": 95,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InsertionDateTime = valueDateTime",
+        "source_line": 99,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Balance.Api/Mappers/PostingInstructionBatchMapper.cs",
+    "assignments": [
+      {
+        "expression": "Posting_instruction_batch = new PostingInstructionBatchEvent\n            {\n                Id = batch.Id,\n                Create_request_id = batch.CreateRequestId,\n                Client_id = batch.ClientId,\n                Client_batch_id = batch.ClientBatchId,\n                Status = batch.Status,\n                Value_timestamp = ToDateTimeOffset(batch.ValueTimestamp),\n                Booking_timestamp = ToDateTimeOffset(batch.BookingTimestamp),\n                Insertion_timestamp = ToDateTimeOffset(batch.InsertionTimestamp) ?? default,\n                Dry_run = batch.DryRun,\n                Batch_details = ToBatchDetails(batch.BatchDetails),\n                Posting_instructions = batch.PostingInstructions\n                    .Select(ToPostingInstruction)\n                    .ToList()\n            }",
+        "source_line": 43,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Id = batch.Id",
+        "source_line": 45,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Create_request_id = batch.CreateRequestId",
+        "source_line": 46,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Client_id = batch.ClientId",
+        "source_line": 47,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Client_batch_id = batch.ClientBatchId",
+        "source_line": 48,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Status = batch.Status",
+        "source_line": 49,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value_timestamp = ToDateTimeOffset(batch.ValueTimestamp)",
+        "source_line": 50,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Booking_timestamp = ToDateTimeOffset(batch.BookingTimestamp)",
+        "source_line": 51,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Insertion_timestamp = ToDateTimeOffset(batch.InsertionTimestamp) ?? default",
+        "source_line": 52,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Dry_run = batch.DryRun",
+        "source_line": 53,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Batch_details = ToBatchDetails(batch.BatchDetails)",
+        "source_line": 54,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Posting_instructions = batch.PostingInstructions\n                    .Select(ToPostingInstruction)\n                    .ToList()",
+        "source_line": 55,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Balances = request.Balances.Select(ToLiveBalance).ToList()",
+        "source_line": 59,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "additionalProperties[PaymentIdKey] = batchDetails.PaymentId",
+        "source_line": 73,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "additionalProperties[ChannelIdKey] = batchDetails.ChannelId",
+        "source_line": 77,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AdditionalProperties = additionalProperties",
+        "source_line": 81,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Id = instruction.Id",
+        "source_line": 88,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Client_transaction_id = instruction.ClientTransactionId",
+        "source_line": 89,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Instruction_details = ToInstructionDetails(instruction.InstructionDetails)",
+        "source_line": 90,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Transaction_code = ToTransactionCode(instruction.TransactionCode)",
+        "source_line": 91,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Committed_postings = instruction.CommittedPostings?.Select(ToPosting).ToList() ?? []",
+        "source_line": 92,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value_timestamp = instruction.ValueTimestamp",
+        "source_line": 93,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Booking_timestamp = instruction.BookingTimestamp",
+        "source_line": 94,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Insertion_timestamp = instruction.InsertionTimestamp",
+        "source_line": 95,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PaymentInstruction_id = instructionDetails?.PaymentInstructionId",
+        "source_line": 103,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PaymentInstruction_category = instructionDetails?.PaymentInstructionCategory",
+        "source_line": 104,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionDescription = instructionDetails?.TransactionDescription",
+        "source_line": 105,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionTransaction_code = instructionDetails?.TransactionCode",
+        "source_line": 106,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "DebtorAccount_number = instructionDetails?.DebtorAccountNumber",
+        "source_line": 107,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "DebtorParty_name = instructionDetails?.DebtorPartyName",
+        "source_line": 108,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "DebtorParticulars = instructionDetails?.DebtorParticulars",
+        "source_line": 109,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "DebtorCode = instructionDetails?.DebtorCode",
+        "source_line": 110,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "DebtorReference = instructionDetails?.DebtorReference",
+        "source_line": 111,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditorAccount_number = instructionDetails?.CreditorAccountNumber",
+        "source_line": 112,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditorParty_name = instructionDetails?.CreditorPartyName",
+        "source_line": 113,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditorParticulars = instructionDetails?.CreditorParticulars",
+        "source_line": 114,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditorCode = instructionDetails?.CreditorCode",
+        "source_line": 115,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditorReference = instructionDetails?.CreditorReference",
+        "source_line": 116,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Domain = transactionCode.Domain",
+        "source_line": 126,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Family = transactionCode.Family",
+        "source_line": 127,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Subfamily = transactionCode.SubFamily",
+        "source_line": 128,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Credit = posting.Credit",
+        "source_line": 136,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Amount = ToDecimal(posting.Amount)",
+        "source_line": 137,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Denomination = posting.Denomination",
+        "source_line": 138,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Account_id = posting.AccountId",
+        "source_line": 139,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Account_address = posting.AccountAddress",
+        "source_line": 140,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Asset = posting.Asset",
+        "source_line": 141,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Phase = ToPostingPhase(posting.Phase)",
+        "source_line": 142,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Id = balance.Id",
+        "source_line": 150,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Account_id = balance.AccountId",
+        "source_line": 151,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Account_address = balance.AccountAddress",
+        "source_line": 152,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Amount = balance.Amount",
+        "source_line": 153,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Asset = balance.Asset",
+        "source_line": 154,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Denomination = balance.Denomination",
+        "source_line": 155,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Phase = ToLiveBalancePhase(balance.Phase)",
+        "source_line": 156,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Total_debit = balance.TotalDebit",
+        "source_line": 157,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Total_credit = balance.TotalCredit",
+        "source_line": 158,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Posting_instruction_batch_id = balance.PostingInstructionBatchId",
+        "source_line": 159,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Value_time = ToDateTimeOffset(balance.ValueTime)",
+        "source_line": 160,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Mappers/AfterStateMapper.cs",
+    "assignments": [
+      {
+        "expression": "AccountId = ledgerBalances.First().Account_id",
+        "source_line": 20,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountTSide = Enum.Parse<AsyncAPI.AfterStateAccountTSide>(tSide)",
+        "source_line": 21,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountAddressBalances = ledgerBalances.Select(x =>\n                    new AsyncAPI.AccountAddressBalances\n                    {\n                        TotalDebit = x.Total_debit,\n                        TotalCredit = x.Total_credit,\n                        NetBalance = x.Amount,\n                        AccountAssetType = x.Asset,\n                        AccountAddressName = x.Account_address,\n                        AccountAddressBalanceDateTime = accountBalanceDateTime,\n                        AccountAddressBalanceCurrencyCode = x.Denomination,\n                        AccountAddressBalancePhase =\n                            x.Phase.ToAccountAddressBalancesAccountBalancePhase()\n                    })\n                .ToList()",
+        "source_line": 22,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TotalDebit = x.Total_debit",
+        "source_line": 25,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TotalCredit = x.Total_credit",
+        "source_line": 26,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "NetBalance = x.Amount",
+        "source_line": 27,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountAssetType = x.Asset",
+        "source_line": 28,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountAddressName = x.Account_address",
+        "source_line": 29,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountAddressBalanceDateTime = accountBalanceDateTime",
+        "source_line": 30,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountAddressBalanceCurrencyCode = x.Denomination",
+        "source_line": 31,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountAddressBalancePhase =\n                            x.Phase.ToAccountAddressBalancesAccountBalancePhase()",
+        "source_line": 32,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/BalanceCalculation/Mappers/AccountBalanceMapper.cs",
+    "assignments": [
+      {
+        "expression": "AccountId = entry.AccountId",
+        "source_line": 21,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BatchId = entry.BatchId",
+        "source_line": 22,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PostingInstructionId = entry.PostingInstructionId",
+        "source_line": 23,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BalanceSpecificationId = entry.BalanceSpecificationId",
+        "source_line": 24,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PreviousAmount = entry.OpeningBalance",
+        "source_line": 25,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Amount = entry.ClosingBalance",
+        "source_line": 26,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BalanceType = entry.BalanceType",
+        "source_line": 27,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BalanceDateTime = entry.ValueDateTime",
+        "source_line": 28,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InsertionDateTime = entry.InsertionDateTime",
+        "source_line": 29,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BatchInstructionIndex = entry.Order",
+        "source_line": 30,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Asset = \"COMMERCIAL_BANK_MONEY\"",
+        "source_line": 31,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Currency = CurrencyCode.Nzd",
+        "source_line": 32,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "IsCachedBalance = isCachedBalance",
+        "source_line": 33,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Mappers/AccountTransactionMapper.cs",
+    "assignments": [
+      {
+        "expression": "Id = Guid.CreateVersion7()",
+        "source_line": 23,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountId = balanceEntry.AccountId",
+        "source_line": 24,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PaymentId = balanceEntry.PaymentId",
+        "source_line": 25,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountNumber = isCredit\n                ? balanceEntry.InstructionDetails.CreditorAccountNumber\n                : balanceEntry.InstructionDetails.DebtorAccountNumber",
+        "source_line": 26,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionDescription = balanceEntry.InstructionDetails.TransactionDescription",
+        "source_line": 29,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InitiationInstructionId = balanceEntry.InstructionDetails.PaymentInstructionId",
+        "source_line": 30,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyName = isCredit\n                ? balanceEntry.InstructionDetails.DebtorPartyName\n                : balanceEntry.InstructionDetails.CreditorPartyName",
+        "source_line": 31,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Status = balanceEntry.TransactionStatus.GetTransactionStatus()",
+        "source_line": 34,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "CreditDebitIndicator =\n                isCredit ? nameof(TransactionType.Credit) : nameof(TransactionType.Debit)",
+        "source_line": 35,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ValueDateTime = balanceEntry.ValueDateTime",
+        "source_line": 37,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BookingDateTime = balanceEntry.BookingDateTime",
+        "source_line": 38,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "FinancialTransactionAmount = Math.Abs(balanceEntry.TransactionAmount)",
+        "source_line": 39,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "FinancialTransactionCurrencyCode = CurrencyCode.Nzd",
+        "source_line": 40,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountBalanceInterimBookedAmount = balanceEntry.ClosingBalance",
+        "source_line": 41,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountBalanceInterimBookedCurrencyCode = CurrencyCode.Nzd",
+        "source_line": 42,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TransactionCode = balanceEntry.InstructionDetails.TransactionCode",
+        "source_line": 43,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PaymentInstructionCategory = balanceEntry.InstructionDetails.PaymentInstructionCategory",
+        "source_line": 44,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "IsoTransactionCode = new IsoTransactionCode\n            {\n                Domain = balanceEntry.TransactionCode.Domain,\n                Family = balanceEntry.TransactionCode.Family,\n                SubFamily = balanceEntry.TransactionCode.SubFamily\n            }",
+        "source_line": 45,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Domain = balanceEntry.TransactionCode.Domain",
+        "source_line": 47,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Family = balanceEntry.TransactionCode.Family",
+        "source_line": 48,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "SubFamily = balanceEntry.TransactionCode.SubFamily",
+        "source_line": 49,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "ThisPartyReference = new PartyReference\n            {\n                Particulars = isCredit\n                    ? balanceEntry.InstructionDetails.CreditorParticular\n                    : balanceEntry.InstructionDetails.DebtorParticular,\n                Code = isCredit\n                    ? balanceEntry.InstructionDetails.CreditorCode\n                    : balanceEntry.InstructionDetails.DebtorCode,\n                Reference = isCredit\n                    ? balanceEntry.InstructionDetails.CreditorReference\n                    : balanceEntry.InstructionDetails.DebtorReference\n            }",
+        "source_line": 51,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Particulars = isCredit\n                    ? balanceEntry.InstructionDetails.CreditorParticular\n                    : balanceEntry.InstructionDetails.DebtorParticular",
+        "source_line": 53,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Code = isCredit\n                    ? balanceEntry.InstructionDetails.CreditorCode\n                    : balanceEntry.InstructionDetails.DebtorCode",
+        "source_line": 56,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Reference = isCredit\n                    ? balanceEntry.InstructionDetails.CreditorReference\n                    : balanceEntry.InstructionDetails.DebtorReference",
+        "source_line": 59,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyReference = new PartyReference\n            {\n                Particulars = isCredit\n                    ? balanceEntry.InstructionDetails.DebtorParticular\n                    : balanceEntry.InstructionDetails.CreditorParticular,\n                Code = isCredit\n                    ? balanceEntry.InstructionDetails.DebtorCode\n                    : balanceEntry.InstructionDetails.CreditorCode,\n                Reference = isCredit\n                    ? balanceEntry.InstructionDetails.DebtorReference\n                    : balanceEntry.InstructionDetails.CreditorReference\n            }",
+        "source_line": 63,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Particulars = isCredit\n                    ? balanceEntry.InstructionDetails.DebtorParticular\n                    : balanceEntry.InstructionDetails.CreditorParticular",
+        "source_line": 65,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Code = isCredit\n                    ? balanceEntry.InstructionDetails.DebtorCode\n                    : balanceEntry.InstructionDetails.CreditorCode",
+        "source_line": 68,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "Reference = isCredit\n                    ? balanceEntry.InstructionDetails.DebtorReference\n                    : balanceEntry.InstructionDetails.CreditorReference",
+        "source_line": 71,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OtherPartyAccount = GetPartyAccount(isCredit, balanceEntry.InstructionDetails)",
+        "source_line": 75,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TaxDeduction = GetTaxDeduction(balanceEntry.BatchId, balanceEntry.InstructionDetails)",
+        "source_line": 76,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BatchInstructionIndex = balanceEntry.Order",
+        "source_line": 77,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InputSourceCode = balanceEntry.InstructionDetails.InputSourceCode",
+        "source_line": 78,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "IndustryTransactionCode = GetIndustryTransactionCode(balanceEntry.InstructionDetails.IndustryTransactionCode)",
+        "source_line": 79,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OriginatingBank = balanceEntry.InstructionDetails.OriginatingBank",
+        "source_line": 80,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "OriginatingBranch = balanceEntry.InstructionDetails.OriginatingBranch",
+        "source_line": 81,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "BatchNumber = balanceEntry.InstructionDetails.BatchNumber",
+        "source_line": 82,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AuthorisationCode = balanceEntry.InstructionDetails.AuthorisationCode",
+        "source_line": 83,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "InsertionDateTime = balanceEntry.InsertionDateTime",
+        "source_line": 84,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "LegacyCoreTransactionId = balanceEntry.InstructionDetails.LegacyCoreTransactionId",
+        "source_line": 85,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PostingInstructionBatchId = balanceEntry.BatchId",
+        "source_line": 86,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "PostingInstructionId = balanceEntry.PostingInstructionId",
+        "source_line": 87,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountIdentification = accountIdentification",
+        "source_line": 131,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "AccountIdentificationType = nameof(AccountIdentificationType.NewZealandBankAccount)",
+        "source_line": 132,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "DomesticTaxType = string.IsNullOrWhiteSpace(instructionDetails.TaxDeduction.TaxType) ? null : instructionDetails.TaxDeduction.TaxType.GetTaxType(batchId).ToString()",
+        "source_line": 153,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "TaxRateValue = string.IsNullOrWhiteSpace(instructionDetails.TaxDeduction.TaxRate) ? null : GetTaxRateIn2DecimalPlaces(batchId, instructionDetails.TaxDeduction.TaxRate)",
+        "source_line": 154,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "NominatedTaxPartyId = string.IsNullOrWhiteSpace(instructionDetails.TaxDeduction.TaxNominatedPartyId) ? null : instructionDetails.TaxDeduction.TaxNominatedPartyId",
+        "source_line": 155,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      },
+      {
+        "expression": "NonResidentWithholdingTaxCountryAlpha3Code =\n                string.IsNullOrWhiteSpace(instructionDetails.TaxDeduction.TaxNonResidentCountryCode) ? null : instructionDetails.TaxDeduction.TaxNonResidentCountryCode",
+        "source_line": 156,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Mappers/TransactionHistoryMapper.cs",
+    "assignments": [
+      {
+        "expression": "postInstruction.Insertion_timestamp = postInstruction.Source_insertion_timestamp.Value",
+        "source_line": 21,
+        "binding_status": "not_resolved_to_database_or_cross_repository_fields"
+      }
+    ]
+  }
+]

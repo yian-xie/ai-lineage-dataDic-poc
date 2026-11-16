@@ -316,7 +316,7 @@ def _add_product_node(
     return node.id
 
 
-def parse(repo_path: str | Path) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def parse(repo_path: str | Path, products=None, *, namespace="protect") -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     """Parse schema-defined Protect entities and edges without executing source files."""
     root = Path(repo_path).resolve()
     products_root = root / "products" if (root / "products").is_dir() else root
@@ -327,6 +327,8 @@ def parse(repo_path: str | Path) -> tuple[list[dict[str, Any]], list[dict[str, A
     edges: dict[tuple[str, str, str], dict[str, Any]] = {}
     for product_path in sorted(path for path in products_root.iterdir() if path.is_dir()):
         product_name = product_path.name
+        if products is not None and product_name not in products:
+            continue
         product_id = _add_product_node(product_path, root, nodes)
         project_file = product_path / "dbt" / "dbt_project.yml"
         if project_file.is_file():
@@ -392,4 +394,11 @@ def parse(repo_path: str | Path) -> tuple[list[dict[str, Any]], list[dict[str, A
     dangling = [record for record in edge_records if record["source"] not in node_ids or record["target"] not in node_ids]
     if dangling:
         raise ValueError(f"Parser produced {len(dangling)} edges with missing endpoints")
+    if namespace != "protect":
+        identities = {node["id"]: node["id"].replace(":protect:", ":" + namespace + ":") for node in node_records}
+        for node in node_records:
+            node["id"] = identities[node["id"]]
+        for edge in edge_records:
+            edge["source"] = identities[edge["source"]]
+            edge["target"] = identities[edge["target"]]
     return node_records, edge_records

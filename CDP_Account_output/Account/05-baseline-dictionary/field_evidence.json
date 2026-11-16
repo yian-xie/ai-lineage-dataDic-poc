@@ -1,0 +1,2874 @@
+{
+  "tmv-field:ad17c1fc70cb80df1d34dd7f": [
+    {
+      "mapping_id": "tmv-column:01288ddeee15730dfd035af1",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(ac.value, 'accountCurrency') AS VARCHAR) AS ACCOUNTCURRENCY",
+      "original_record_pointer": "/0"
+    },
+    {
+      "mapping_id": "tmv-column:68b4cd6921821069a0de9a2d",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(ac.value, 'accountCurrencyType') AS VARCHAR) AS ACCOUNTCURRENCYTYPE",
+      "original_record_pointer": "/1"
+    },
+    {
+      "mapping_id": "tmv-column:9f56a331c5ba5a69788f2d13",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/2"
+    },
+    {
+      "mapping_id": "tmv-column:8a8a1b284a83c349bfbe4653",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/3"
+    },
+    {
+      "mapping_id": "tmv-column:e7429882c05be24ca03edd01",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(ai.value, 'accountIdentification') AS VARCHAR) AS ACCOUNTIDENTIFICATION",
+      "original_record_pointer": "/4"
+    },
+    {
+      "mapping_id": "tmv-column:65654f0d5f743a14a1a955e3",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(ai.value, 'accountIdentificationType') AS VARCHAR) AS ACCOUNTIDENTIFICATIONTYPE",
+      "original_record_pointer": "/5"
+    },
+    {
+      "mapping_id": "tmv-column:9d58a5b9d001436d4d53027f",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/6"
+    },
+    {
+      "mapping_id": "tmv-column:ff1776c76d037f5a3afa955d",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.bankingRelationship.bankingRelationshipId') AS VARCHAR) AS BANKINGRELATIONSHIPID",
+      "original_record_pointer": "/7"
+    },
+    {
+      "mapping_id": "tmv-column:c9fd8350fda82baf622e99ca",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.bankingRelationship.nominatedTaxPartyId') AS VARCHAR) AS NOMINATEDTAXPARTYID",
+      "original_record_pointer": "/8"
+    },
+    {
+      "mapping_id": "tmv-column:04ed0166dbd2d7327506a381",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/9"
+    },
+    {
+      "mapping_id": "tmv-column:e1882d745d21fc5515ff9e89",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.countryAlpha3Code') AS VARCHAR) AS COUNTRYALPHA3CODE",
+      "original_record_pointer": "/10"
+    },
+    {
+      "mapping_id": "tmv-column:6042751b00cb4361e7922b4f",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.domesticTaxType') AS VARCHAR) AS DOMESTICTAXTYPE",
+      "original_record_pointer": "/11"
+    },
+    {
+      "mapping_id": "tmv-column:e4430f18e499d5e1b52bd6d6",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.rateValue') AS VARCHAR) AS RATEVALUE",
+      "original_record_pointer": "/12"
+    },
+    {
+      "mapping_id": "tmv-column:0510f57af3c70c0ad054121d",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/13"
+    },
+    {
+      "mapping_id": "tmv-column:2a5af02b052d1cb570762c82",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductCode') AS VARCHAR) AS BANKINGPRODUCTCODE",
+      "original_record_pointer": "/14"
+    },
+    {
+      "mapping_id": "tmv-column:9d02dce256a8325fbe436a66",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductId') AS VARCHAR) AS BANKINGPRODUCTID",
+      "original_record_pointer": "/15"
+    },
+    {
+      "mapping_id": "tmv-column:03e0e9ab896a66702911869a",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductVersionId') AS VARCHAR) AS BANKINGPRODUCTVERSIONID",
+      "original_record_pointer": "/16"
+    },
+    {
+      "mapping_id": "tmv-column:d7f2d800d7a5edbb9f1589f2",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.rate') AS VARCHAR) AS INTEREST_ARRANGEMENT_RATE",
+      "original_record_pointer": "/17"
+    },
+    {
+      "mapping_id": "tmv-column:ee432a87fe7401e977e9e555",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.ratePlanChangeId') AS VARCHAR) AS INTEREST_ARRANGEMENT_RATE_PLAN_CHANGE_ID",
+      "original_record_pointer": "/18"
+    },
+    {
+      "mapping_id": "tmv-column:d91b64b32adec227f306d5bb",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.validFrom') AS TIMESTAMPTZ) AS INTEREST_ARRANGEMENT_VALID_FROM",
+      "original_record_pointer": "/19"
+    },
+    {
+      "mapping_id": "tmv-column:f016fb2e46c9f09edd0da51f",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.productFacilityId') AS VARCHAR) AS PRODUCTFACILITYID",
+      "original_record_pointer": "/20"
+    },
+    {
+      "mapping_id": "tmv-column:48f3abf7416bfc91b7b0df52",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountClosedDateTime') AS TIMESTAMPTZ) AS ACCOUNTCLOSEDDATETIME",
+      "original_record_pointer": "/21"
+    },
+    {
+      "mapping_id": "tmv-column:e1e9e1b4aed73cb6e105351d",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountClosureReason') AS VARCHAR) AS ACCOUNTCLOSUREREASON",
+      "original_record_pointer": "/22"
+    },
+    {
+      "mapping_id": "tmv-column:14514044954b625769ef09ca",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountCreatedDateTime') AS TIMESTAMPTZ) AS ACCOUNTCREATEDDATETIME",
+      "original_record_pointer": "/23"
+    },
+    {
+      "mapping_id": "tmv-column:15e21a3964790eecf4876ff0",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountCreatedUserId') AS VARCHAR) AS ACCOUNTCREATEDUSERID",
+      "original_record_pointer": "/24"
+    },
+    {
+      "mapping_id": "tmv-column:04e7cbbaa90910053593996a",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountFreezeDescription') AS VARCHAR) AS ACCOUNTFREEZEDESCRIPTION",
+      "original_record_pointer": "/25"
+    },
+    {
+      "mapping_id": "tmv-column:8c03de1ae127a15604b45efa",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountFreezeType') AS VARCHAR) AS ACCOUNTFREEZETYPE",
+      "original_record_pointer": "/26"
+    },
+    {
+      "mapping_id": "tmv-column:e60711c009d39f57f3a3b1f3",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountFrozenDateTime') AS TIMESTAMPTZ) AS ACCOUNTFROZENDATETIME",
+      "original_record_pointer": "/27"
+    },
+    {
+      "mapping_id": "tmv-column:54f3f33075061d07ed61fa1e",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/28"
+    },
+    {
+      "mapping_id": "tmv-column:798be29db6009ab41162ede3",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountName') AS VARCHAR) AS ACCOUNTNAME",
+      "original_record_pointer": "/29"
+    },
+    {
+      "mapping_id": "tmv-column:5030e903dbb5fd3747f7c771",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountOpenedDateTime') AS TIMESTAMPTZ) AS ACCOUNTOPENEDDATETIME",
+      "original_record_pointer": "/30"
+    },
+    {
+      "mapping_id": "tmv-column:835ecfb414ebb8f7b142770c",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountOrganisationUnitId') AS VARCHAR) AS ACCOUNTORGANISATIONUNITID",
+      "original_record_pointer": "/31"
+    },
+    {
+      "mapping_id": "tmv-column:e7de44054cbc64d3b2c494e0",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountStatus') AS VARCHAR) AS ACCOUNTSTATUS",
+      "original_record_pointer": "/32"
+    },
+    {
+      "mapping_id": "tmv-column:29a15b50515bb748de39fb10",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountTSide') AS VARCHAR) AS ACCOUNTTSIDE",
+      "original_record_pointer": "/33"
+    },
+    {
+      "mapping_id": "tmv-column:9d7963177836d08c51116e08",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.alternateAccountName') AS VARCHAR) AS ALTERNATEACCOUNTNAME",
+      "original_record_pointer": "/34"
+    },
+    {
+      "mapping_id": "tmv-column:cf2bdbe1072ee4db73c20fa3",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.minimumNumberOfAuthoriser') AS VARCHAR) AS MINIMUMNUMBEROFAUTHORISER",
+      "original_record_pointer": "/35"
+    }
+  ],
+  "tmv-field:00d1f9e0774d2d02830ce6cc": [
+    {
+      "mapping_id": "tmv-column:01288ddeee15730dfd035af1",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "column": "ACCOUNTCURRENCY",
+      "expression": "CAST(GET_PATH(ac.value, 'accountCurrency') AS VARCHAR) AS ACCOUNTCURRENCY",
+      "original_record_pointer": "/0"
+    }
+  ],
+  "tmv-field:d4feba52c3b479ca8845c423": [
+    {
+      "mapping_id": "tmv-column:68b4cd6921821069a0de9a2d",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "column": "ACCOUNTCURRENCYTYPE",
+      "expression": "CAST(GET_PATH(ac.value, 'accountCurrencyType') AS VARCHAR) AS ACCOUNTCURRENCYTYPE",
+      "original_record_pointer": "/1"
+    }
+  ],
+  "tmv-field:2d32b160c01bf04b128e3f81": [
+    {
+      "mapping_id": "tmv-column:9f56a331c5ba5a69788f2d13",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "column": "ACCOUNTID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/2"
+    }
+  ],
+  "tmv-field:400774bb7ccbaacad03d2048": [
+    {
+      "mapping_id": "tmv-column:8a8a1b284a83c349bfbe4653",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "column": "ACCOUNTID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/3"
+    }
+  ],
+  "tmv-field:eb18cb6ceab71867b38e098e": [
+    {
+      "mapping_id": "tmv-column:e7429882c05be24ca03edd01",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "column": "ACCOUNTIDENTIFICATION",
+      "expression": "CAST(GET_PATH(ai.value, 'accountIdentification') AS VARCHAR) AS ACCOUNTIDENTIFICATION",
+      "original_record_pointer": "/4"
+    }
+  ],
+  "tmv-field:c3be3ec8d7cac5a68492e2bc": [
+    {
+      "mapping_id": "tmv-column:65654f0d5f743a14a1a955e3",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "column": "ACCOUNTIDENTIFICATIONTYPE",
+      "expression": "CAST(GET_PATH(ai.value, 'accountIdentificationType') AS VARCHAR) AS ACCOUNTIDENTIFICATIONTYPE",
+      "original_record_pointer": "/5"
+    }
+  ],
+  "tmv-field:53215230cae5008ed52ed321": [
+    {
+      "mapping_id": "tmv-column:9d58a5b9d001436d4d53027f",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "column": "ACCOUNTID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/6"
+    }
+  ],
+  "tmv-field:a71d7d69cbca3615f231ffca": [
+    {
+      "mapping_id": "tmv-column:ff1776c76d037f5a3afa955d",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "column": "BANKINGRELATIONSHIPID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.bankingRelationship.bankingRelationshipId') AS VARCHAR) AS BANKINGRELATIONSHIPID",
+      "original_record_pointer": "/7"
+    }
+  ],
+  "tmv-field:e6c39b664ee8880ef2cfc7c5": [
+    {
+      "mapping_id": "tmv-column:c9fd8350fda82baf622e99ca",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "column": "NOMINATEDTAXPARTYID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.bankingRelationship.nominatedTaxPartyId') AS VARCHAR) AS NOMINATEDTAXPARTYID",
+      "original_record_pointer": "/8"
+    }
+  ],
+  "tmv-field:dffa2cb80df0444d79267b2d": [
+    {
+      "mapping_id": "tmv-column:04ed0166dbd2d7327506a381",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "column": "ACCOUNTID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/9"
+    }
+  ],
+  "tmv-field:0a5bd718dec8792f22eecb83": [
+    {
+      "mapping_id": "tmv-column:e1882d745d21fc5515ff9e89",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "column": "COUNTRYALPHA3CODE",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.countryAlpha3Code') AS VARCHAR) AS COUNTRYALPHA3CODE",
+      "original_record_pointer": "/10"
+    }
+  ],
+  "tmv-field:b7451a6b142a5de9c28201ba": [
+    {
+      "mapping_id": "tmv-column:6042751b00cb4361e7922b4f",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "column": "DOMESTICTAXTYPE",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.domesticTaxType') AS VARCHAR) AS DOMESTICTAXTYPE",
+      "original_record_pointer": "/11"
+    }
+  ],
+  "tmv-field:1134699b311cee275e813a26": [
+    {
+      "mapping_id": "tmv-column:e4430f18e499d5e1b52bd6d6",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "column": "RATEVALUE",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.rateValue') AS VARCHAR) AS RATEVALUE",
+      "original_record_pointer": "/12"
+    }
+  ],
+  "tmv-field:7f6c2d84e2b4cdfbcc56b0fb": [
+    {
+      "mapping_id": "tmv-column:0510f57af3c70c0ad054121d",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "ACCOUNTID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/13"
+    }
+  ],
+  "tmv-field:d3176d449960b3d377237226": [
+    {
+      "mapping_id": "tmv-column:2a5af02b052d1cb570762c82",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "BANKINGPRODUCTCODE",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductCode') AS VARCHAR) AS BANKINGPRODUCTCODE",
+      "original_record_pointer": "/14"
+    }
+  ],
+  "tmv-field:39fbd203324eb9e65b32be1e": [
+    {
+      "mapping_id": "tmv-column:9d02dce256a8325fbe436a66",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "BANKINGPRODUCTID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductId') AS VARCHAR) AS BANKINGPRODUCTID",
+      "original_record_pointer": "/15"
+    }
+  ],
+  "tmv-field:b9d77ddfaea310be7aa97bae": [
+    {
+      "mapping_id": "tmv-column:03e0e9ab896a66702911869a",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "BANKINGPRODUCTVERSIONID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductVersionId') AS VARCHAR) AS BANKINGPRODUCTVERSIONID",
+      "original_record_pointer": "/16"
+    }
+  ],
+  "tmv-field:8825170198c9ebf0562ce80b": [
+    {
+      "mapping_id": "tmv-column:d7f2d800d7a5edbb9f1589f2",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "INTEREST_ARRANGEMENT_RATE",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.rate') AS VARCHAR) AS INTEREST_ARRANGEMENT_RATE",
+      "original_record_pointer": "/17"
+    }
+  ],
+  "tmv-field:087eb4e128eeabe1f037e187": [
+    {
+      "mapping_id": "tmv-column:ee432a87fe7401e977e9e555",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "INTEREST_ARRANGEMENT_RATE_PLAN_CHANGE_ID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.ratePlanChangeId') AS VARCHAR) AS INTEREST_ARRANGEMENT_RATE_PLAN_CHANGE_ID",
+      "original_record_pointer": "/18"
+    }
+  ],
+  "tmv-field:928716a8ca40db908533ea8d": [
+    {
+      "mapping_id": "tmv-column:d91b64b32adec227f306d5bb",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "INTEREST_ARRANGEMENT_VALID_FROM",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.validFrom') AS TIMESTAMPTZ) AS INTEREST_ARRANGEMENT_VALID_FROM",
+      "original_record_pointer": "/19"
+    }
+  ],
+  "tmv-field:fd56b179475aba87ec645365": [
+    {
+      "mapping_id": "tmv-column:f016fb2e46c9f09edd0da51f",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "column": "PRODUCTFACILITYID",
+      "expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.productFacilityId') AS VARCHAR) AS PRODUCTFACILITYID",
+      "original_record_pointer": "/20"
+    }
+  ],
+  "tmv-field:edfb8e7aae05ffd9b4b088c6": [
+    {
+      "mapping_id": "tmv-column:48f3abf7416bfc91b7b0df52",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTCLOSEDDATETIME",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountClosedDateTime') AS TIMESTAMPTZ) AS ACCOUNTCLOSEDDATETIME",
+      "original_record_pointer": "/21"
+    }
+  ],
+  "tmv-field:05c9028783ec4ab19beb2ae1": [
+    {
+      "mapping_id": "tmv-column:e1e9e1b4aed73cb6e105351d",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTCLOSUREREASON",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountClosureReason') AS VARCHAR) AS ACCOUNTCLOSUREREASON",
+      "original_record_pointer": "/22"
+    }
+  ],
+  "tmv-field:b7c7dbf99d276d88e307bbef": [
+    {
+      "mapping_id": "tmv-column:14514044954b625769ef09ca",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTCREATEDDATETIME",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountCreatedDateTime') AS TIMESTAMPTZ) AS ACCOUNTCREATEDDATETIME",
+      "original_record_pointer": "/23"
+    }
+  ],
+  "tmv-field:4a5a1e37c0914ed120f8c691": [
+    {
+      "mapping_id": "tmv-column:15e21a3964790eecf4876ff0",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTCREATEDUSERID",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountCreatedUserId') AS VARCHAR) AS ACCOUNTCREATEDUSERID",
+      "original_record_pointer": "/24"
+    }
+  ],
+  "tmv-field:16d86656396657eb368eb75c": [
+    {
+      "mapping_id": "tmv-column:04e7cbbaa90910053593996a",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTFREEZEDESCRIPTION",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountFreezeDescription') AS VARCHAR) AS ACCOUNTFREEZEDESCRIPTION",
+      "original_record_pointer": "/25"
+    }
+  ],
+  "tmv-field:72e38382c6032d1c15411950": [
+    {
+      "mapping_id": "tmv-column:8c03de1ae127a15604b45efa",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTFREEZETYPE",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountFreezeType') AS VARCHAR) AS ACCOUNTFREEZETYPE",
+      "original_record_pointer": "/26"
+    }
+  ],
+  "tmv-field:6a173a0da1ae8feed7bdabfb": [
+    {
+      "mapping_id": "tmv-column:e60711c009d39f57f3a3b1f3",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTFROZENDATETIME",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountFrozenDateTime') AS TIMESTAMPTZ) AS ACCOUNTFROZENDATETIME",
+      "original_record_pointer": "/27"
+    }
+  ],
+  "tmv-field:6020c892a5fc0649f2719ab5": [
+    {
+      "mapping_id": "tmv-column:54f3f33075061d07ed61fa1e",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTID",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "original_record_pointer": "/28"
+    }
+  ],
+  "tmv-field:f4d08d19322ee8216e8c7bbc": [
+    {
+      "mapping_id": "tmv-column:798be29db6009ab41162ede3",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTNAME",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountName') AS VARCHAR) AS ACCOUNTNAME",
+      "original_record_pointer": "/29"
+    }
+  ],
+  "tmv-field:23f030958c236c22157e9350": [
+    {
+      "mapping_id": "tmv-column:5030e903dbb5fd3747f7c771",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTOPENEDDATETIME",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountOpenedDateTime') AS TIMESTAMPTZ) AS ACCOUNTOPENEDDATETIME",
+      "original_record_pointer": "/30"
+    }
+  ],
+  "tmv-field:b1cedfd97dcf02019d627d0f": [
+    {
+      "mapping_id": "tmv-column:835ecfb414ebb8f7b142770c",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTORGANISATIONUNITID",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountOrganisationUnitId') AS VARCHAR) AS ACCOUNTORGANISATIONUNITID",
+      "original_record_pointer": "/31"
+    }
+  ],
+  "tmv-field:e473f81bad155763ca50ff11": [
+    {
+      "mapping_id": "tmv-column:e7de44054cbc64d3b2c494e0",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTSTATUS",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountStatus') AS VARCHAR) AS ACCOUNTSTATUS",
+      "original_record_pointer": "/32"
+    }
+  ],
+  "tmv-field:3d7e2d2a9082cd96d2112734": [
+    {
+      "mapping_id": "tmv-column:29a15b50515bb748de39fb10",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ACCOUNTTSIDE",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.accountTSide') AS VARCHAR) AS ACCOUNTTSIDE",
+      "original_record_pointer": "/33"
+    }
+  ],
+  "tmv-field:c8b0cf10ac89e9df68e1f22a": [
+    {
+      "mapping_id": "tmv-column:9d7963177836d08c51116e08",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "ALTERNATEACCOUNTNAME",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.alternateAccountName') AS VARCHAR) AS ALTERNATEACCOUNTNAME",
+      "original_record_pointer": "/34"
+    }
+  ],
+  "tmv-field:40f7b11564958924c6f6fcc2": [
+    {
+      "mapping_id": "tmv-column:cf2bdbe1072ee4db73c20fa3",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "column": "MINIMUMNUMBEROFAUTHORISER",
+      "expression": "CAST(GET_PATH(data, 'data.afterState.minimumNumberOfAuthoriser') AS VARCHAR) AS MINIMUMNUMBEROFAUTHORISER",
+      "original_record_pointer": "/35"
+    }
+  ],
+  "tmv-field:b38e97d872deb992b3b01198": [
+    {
+      "mapping_id": "tmv-column:765edf8d1ead56214e92be85",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/ads-eod-customeraccount-topic-v1/dbt/models/internal/v_ads_eod_customeraccount_topic_v1__accountBalance_v1/v_ads_eod_customeraccount_topic_v1__accountBalance_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(aab.value, 'accountBalanceCurrencyCode') AS VARCHAR) AS ACCOUNTBALANCECURRENCYCODE",
+      "original_record_pointer": "/36"
+    },
+    {
+      "mapping_id": "tmv-column:a39d4ba2b441190aac9464da",
+      "role": "source",
+      "source_path": "kb-cdp-tenant-account/products/ads-eod-customeraccount-topic-v1/dbt/models/internal/v_ads_eod_customeraccount_topic_v1__accountBalance_v1/v_ads_eod_customeraccount_topic_v1__accountBalance_v1.sql",
+      "column": "DATA",
+      "expression": "CAST(GET_PATH(aab.value, 'accountBalanceValue') AS VARCHAR) AS ACCOUNTBALANCEVALUE",
+      "original_record_pointer": "/37"
+    }
+  ],
+  "tmv-field:d2bd3e877812c282ee825f03": [
+    {
+      "mapping_id": "tmv-column:765edf8d1ead56214e92be85",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/ads-eod-customeraccount-topic-v1/dbt/models/internal/v_ads_eod_customeraccount_topic_v1__accountBalance_v1/v_ads_eod_customeraccount_topic_v1__accountBalance_v1.sql",
+      "column": "ACCOUNTBALANCECURRENCYCODE",
+      "expression": "CAST(GET_PATH(aab.value, 'accountBalanceCurrencyCode') AS VARCHAR) AS ACCOUNTBALANCECURRENCYCODE",
+      "original_record_pointer": "/36"
+    }
+  ],
+  "tmv-field:95479202903e1b47ed2550a0": [
+    {
+      "mapping_id": "tmv-column:a39d4ba2b441190aac9464da",
+      "role": "target",
+      "source_path": "kb-cdp-tenant-account/products/ads-eod-customeraccount-topic-v1/dbt/models/internal/v_ads_eod_customeraccount_topic_v1__accountBalance_v1/v_ads_eod_customeraccount_topic_v1__accountBalance_v1.sql",
+      "column": "ACCOUNTBALANCEVALUE",
+      "expression": "CAST(GET_PATH(aab.value, 'accountBalanceValue') AS VARCHAR) AS ACCOUNTBALANCEVALUE",
+      "original_record_pointer": "/37"
+    }
+  ],
+  "tmv-field:1aecff7d0880b8b0809154db": [
+    {
+      "mapping_id": "ef-column:37c293c0ca9c4076120799dd",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "RowId",
+      "expression": "b.Property<Guid>(\"RowId\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"row_id\")",
+      "original_record_pointer": "/38"
+    }
+  ],
+  "tmv-field:c8a3df0ff5381550f009bb26": [
+    {
+      "mapping_id": "ef-column:37c293c0ca9c4076120799dd",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "row_id",
+      "expression": "b.Property<Guid>(\"RowId\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"row_id\")",
+      "original_record_pointer": "/38"
+    }
+  ],
+  "tmv-field:00035d31f5f4e60629a23265": [
+    {
+      "mapping_id": "ef-column:c0a6a6f5f114b611f1cfce0e",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Currency",
+      "expression": "b.Property<string>(\"Currency\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"currency\")",
+      "original_record_pointer": "/39"
+    },
+    {
+      "mapping_id": "csharp-event:fd6973d0d21f10e002f8c17d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "Currency",
+      "expression": "AccountCurrencies = accountProfile.AccountCurrencies.Select(accountCurrency =>\n                    new AsyncAPI.AccountCurrencies\n                    {\n                        AccountCurrency = GetAccountCurrency(accountCurrency.Currency),\n                        AccountCurrencyType = GetAccountCurrencyType(accountCurrency.CurrencyType)\n                    })\n                .ToList()",
+      "original_record_pointer": "/127"
+    },
+    {
+      "mapping_id": "csharp-event:fa2b0b1a13739b534fbbe52b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "Currency",
+      "expression": "AccountCurrency = GetAccountCurrency(accountCurrency.Currency)",
+      "original_record_pointer": "/150"
+    }
+  ],
+  "tmv-field:5e1b33af627e82465daaec1b": [
+    {
+      "mapping_id": "ef-column:c0a6a6f5f114b611f1cfce0e",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "currency",
+      "expression": "b.Property<string>(\"Currency\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"currency\")",
+      "original_record_pointer": "/39"
+    }
+  ],
+  "tmv-field:ec649dc44525a124e860d408": [
+    {
+      "mapping_id": "ef-column:72f97e6f8235792b7a7cbaf7",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "CurrencyType",
+      "expression": "b.Property<string>(\"CurrencyType\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"currency_type\")",
+      "original_record_pointer": "/40"
+    },
+    {
+      "mapping_id": "csharp-event:bb4656cd6d8a0b9d91a7da5d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "CurrencyType",
+      "expression": "AccountCurrencies = accountProfile.AccountCurrencies.Select(accountCurrency =>\n                    new AsyncAPI.AccountCurrencies\n                    {\n                        AccountCurrency = GetAccountCurrency(accountCurrency.Currency),\n                        AccountCurrencyType = GetAccountCurrencyType(accountCurrency.CurrencyType)\n                    })\n                .ToList()",
+      "original_record_pointer": "/128"
+    },
+    {
+      "mapping_id": "csharp-event:599184a12245f2d258a6885b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "CurrencyType",
+      "expression": "AccountCurrencyType = GetAccountCurrencyType(accountCurrency.CurrencyType)",
+      "original_record_pointer": "/151"
+    }
+  ],
+  "tmv-field:60e038256d18d46979a4d4d6": [
+    {
+      "mapping_id": "ef-column:72f97e6f8235792b7a7cbaf7",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "currency_type",
+      "expression": "b.Property<string>(\"CurrencyType\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"currency_type\")",
+      "original_record_pointer": "/40"
+    }
+  ],
+  "tmv-field:f80c906fa2adee2800323ccf": [
+    {
+      "mapping_id": "ef-column:c3f15ccbd27e1680afb1931b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProfileAccountId",
+      "expression": "b.Property<string>(\"ProfileAccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"profile_account_id\")",
+      "original_record_pointer": "/41"
+    }
+  ],
+  "tmv-field:c317ef9ec4fee757607bc0a2": [
+    {
+      "mapping_id": "ef-column:c3f15ccbd27e1680afb1931b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "profile_account_id",
+      "expression": "b.Property<string>(\"ProfileAccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"profile_account_id\")",
+      "original_record_pointer": "/41"
+    }
+  ],
+  "tmv-field:d4e4cc2188c4a82071f9406a": [
+    {
+      "mapping_id": "ef-column:5f7627bbd1448ed67c067906",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Version",
+      "expression": "b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\")",
+      "original_record_pointer": "/42"
+    }
+  ],
+  "tmv-field:2b1256fff7e953f73c9ce265": [
+    {
+      "mapping_id": "ef-column:5f7627bbd1448ed67c067906",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "xmin",
+      "expression": "b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\")",
+      "original_record_pointer": "/42"
+    }
+  ],
+  "tmv-field:9001f4310005d485e303be96": [
+    {
+      "mapping_id": "ef-column:9e34351eb044510e0508a0ad",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountId",
+      "expression": "b.Property<string>(\"AccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_id\")",
+      "original_record_pointer": "/43"
+    },
+    {
+      "mapping_id": "csharp-event:ee152ccaa4b63df6a7dbc6b0",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountId",
+      "expression": "AccountId = accountProfile.AccountId",
+      "original_record_pointer": "/100"
+    }
+  ],
+  "tmv-field:8fc7531298ce96c3d551c96c": [
+    {
+      "mapping_id": "ef-column:9e34351eb044510e0508a0ad",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_id",
+      "expression": "b.Property<string>(\"AccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_id\")",
+      "original_record_pointer": "/43"
+    }
+  ],
+  "tmv-field:8106ff15627727756b700ccd": [
+    {
+      "mapping_id": "ef-column:2d7040c0846b11ce63997203",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountClosureReason",
+      "expression": "b.Property<string>(\"AccountClosureReason\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_closure_reason\")",
+      "original_record_pointer": "/44"
+    },
+    {
+      "mapping_id": "csharp-event:0ce2e472fcb39aa219c13c7f",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountClosureReason",
+      "expression": "AccountClosureReason = accountProfile.AccountClosureReason",
+      "original_record_pointer": "/113"
+    }
+  ],
+  "tmv-field:144520d703e9bcd986137dd2": [
+    {
+      "mapping_id": "ef-column:2d7040c0846b11ce63997203",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_closure_reason",
+      "expression": "b.Property<string>(\"AccountClosureReason\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_closure_reason\")",
+      "original_record_pointer": "/44"
+    }
+  ],
+  "tmv-field:06bf2c86c7c8a5a41a4c013f": [
+    {
+      "mapping_id": "ef-column:bc8a43a49031195e04d9ed6a",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountCreatedUserId",
+      "expression": "b.Property<string>(\"AccountCreatedUserId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_created_user_id\")",
+      "original_record_pointer": "/45"
+    },
+    {
+      "mapping_id": "csharp-event:4733e4698fb9ce73601224f1",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountCreatedUserId",
+      "expression": "AccountCreatedUserId = accountProfile.AccountCreatedUserId",
+      "original_record_pointer": "/101"
+    }
+  ],
+  "tmv-field:fabe1c2cafb30de4ea183382": [
+    {
+      "mapping_id": "ef-column:bc8a43a49031195e04d9ed6a",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_created_user_id",
+      "expression": "b.Property<string>(\"AccountCreatedUserId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_created_user_id\")",
+      "original_record_pointer": "/45"
+    }
+  ],
+  "tmv-field:49360bf4ac171fd39a1fbd0b": [
+    {
+      "mapping_id": "ef-column:86366f6c1660f8f0bb6935e6",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountOrganisationUnitId",
+      "expression": "b.Property<string>(\"AccountOrganisationUnitId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_organisation_unit_id\")",
+      "original_record_pointer": "/46"
+    },
+    {
+      "mapping_id": "csharp-event:cebe0e3f1ba180c87ecbb86f",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountOrganisationUnitId",
+      "expression": "AccountOrganisationUnitId = accountProfile.AccountOrganisationUnitId ?? string.Empty",
+      "original_record_pointer": "/102"
+    }
+  ],
+  "tmv-field:d767eca3f238e3496145175e": [
+    {
+      "mapping_id": "ef-column:86366f6c1660f8f0bb6935e6",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_organisation_unit_id",
+      "expression": "b.Property<string>(\"AccountOrganisationUnitId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_organisation_unit_id\")",
+      "original_record_pointer": "/46"
+    }
+  ],
+  "tmv-field:b4ceeac701822fc04af6d582": [
+    {
+      "mapping_id": "ef-column:b7aaf463cf8be6c6889b1409",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AlternateName",
+      "expression": "b.Property<string>(\"AlternateName\")\n                        .HasMaxLength(130)\n                        .HasColumnType(\"character varying(130)\")\n                        .HasColumnName(\"alternate_name\")",
+      "original_record_pointer": "/47"
+    },
+    {
+      "mapping_id": "csharp-event:ea1522497677e2b999cfc1cb",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AlternateName",
+      "expression": "AlternateAccountName = accountProfile.AlternateName",
+      "original_record_pointer": "/104"
+    }
+  ],
+  "tmv-field:7f0bd1c2b0d0f69eeb6d2ba3": [
+    {
+      "mapping_id": "ef-column:b7aaf463cf8be6c6889b1409",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "alternate_name",
+      "expression": "b.Property<string>(\"AlternateName\")\n                        .HasMaxLength(130)\n                        .HasColumnType(\"character varying(130)\")\n                        .HasColumnName(\"alternate_name\")",
+      "original_record_pointer": "/47"
+    }
+  ],
+  "tmv-field:8a010f854c697f45d21cf515": [
+    {
+      "mapping_id": "ef-column:7eb051d0fbcd7bf827d7398a",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ChangeId",
+      "expression": "b.Property<long>(\"ChangeId\")\n                        .HasColumnType(\"bigint\")\n                        .HasColumnName(\"change_id\")",
+      "original_record_pointer": "/48"
+    }
+  ],
+  "tmv-field:596d1556341093ecb6ad641b": [
+    {
+      "mapping_id": "ef-column:7eb051d0fbcd7bf827d7398a",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "change_id",
+      "expression": "b.Property<long>(\"ChangeId\")\n                        .HasColumnType(\"bigint\")\n                        .HasColumnName(\"change_id\")",
+      "original_record_pointer": "/48"
+    }
+  ],
+  "tmv-field:5c85814fab9b55558281ea28": [
+    {
+      "mapping_id": "ef-column:73a2c1f9dcbec1b4ae5d8ced",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Closed",
+      "expression": "b.Property<DateTimeOffset?>(\"Closed\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"closed\")",
+      "original_record_pointer": "/49"
+    },
+    {
+      "mapping_id": "csharp-event:9dc2a9810c4659adf16caca8",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "Closed",
+      "expression": "AccountClosedDateTime = accountProfile.Closed",
+      "original_record_pointer": "/112"
+    }
+  ],
+  "tmv-field:f29159d13d3849fbe4cc5d7a": [
+    {
+      "mapping_id": "ef-column:73a2c1f9dcbec1b4ae5d8ced",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "closed",
+      "expression": "b.Property<DateTimeOffset?>(\"Closed\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"closed\")",
+      "original_record_pointer": "/49"
+    }
+  ],
+  "tmv-field:98b5ee798a804291f492b5ad": [
+    {
+      "mapping_id": "ef-column:e1ce97af5262ecd9cd17d06a",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "CorrelationId",
+      "expression": "b.Property<Guid>(\"CorrelationId\")\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"correlation_id\")",
+      "original_record_pointer": "/50"
+    }
+  ],
+  "tmv-field:448510c4bbfb566215a0ca82": [
+    {
+      "mapping_id": "ef-column:e1ce97af5262ecd9cd17d06a",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "correlation_id",
+      "expression": "b.Property<Guid>(\"CorrelationId\")\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"correlation_id\")",
+      "original_record_pointer": "/50"
+    }
+  ],
+  "tmv-field:6c39e52f0eb3c5c208805301": [
+    {
+      "mapping_id": "ef-column:73bfb309982a3d0a8964c39e",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Created",
+      "expression": "b.Property<DateTimeOffset?>(\"Created\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created\")",
+      "original_record_pointer": "/51"
+    },
+    {
+      "mapping_id": "csharp-event:d562bdf384b7624d29beeb47",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "Created",
+      "expression": "AccountCreatedDateTime = accountProfile.Created ??\n                throw new ArgumentNullException($\"Source Created time is empty for account {accountProfile.AccountId}\")",
+      "original_record_pointer": "/110"
+    }
+  ],
+  "tmv-field:47e1235d99d498496fc68327": [
+    {
+      "mapping_id": "ef-column:73bfb309982a3d0a8964c39e",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "created",
+      "expression": "b.Property<DateTimeOffset?>(\"Created\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created\")",
+      "original_record_pointer": "/51"
+    }
+  ],
+  "tmv-field:888262fdb842814b024f8445": [
+    {
+      "mapping_id": "ef-column:124c7dd6aace5b9fdeceb29d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "MinimumNumberOfAuthoriser",
+      "expression": "b.Property<string>(\"MinimumNumberOfAuthoriser\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"minimum_number_of_authoriser\")",
+      "original_record_pointer": "/52"
+    },
+    {
+      "mapping_id": "csharp-event:d99b8c0efbfb67ab92fa18f1",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "MinimumNumberOfAuthoriser",
+      "expression": "MinimumNumberOfAuthoriser = accountProfile.MinimumNumberOfAuthoriser ?? string.Empty",
+      "original_record_pointer": "/109"
+    }
+  ],
+  "tmv-field:f70abd2f4f0684da107b93c3": [
+    {
+      "mapping_id": "ef-column:124c7dd6aace5b9fdeceb29d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "minimum_number_of_authoriser",
+      "expression": "b.Property<string>(\"MinimumNumberOfAuthoriser\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"minimum_number_of_authoriser\")",
+      "original_record_pointer": "/52"
+    }
+  ],
+  "tmv-field:abcacd6bf681b183c92f83f8": [
+    {
+      "mapping_id": "ef-column:5cacbfa7f18b6a706fb5c1ca",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Name",
+      "expression": "b.Property<string>(\"Name\")\n                        .IsRequired()\n                        .HasMaxLength(130)\n                        .HasColumnType(\"character varying(130)\")\n                        .HasColumnName(\"name\")",
+      "original_record_pointer": "/53"
+    },
+    {
+      "mapping_id": "csharp-event:9a8ccff0d324e4cb528488ed",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "Name",
+      "expression": "AccountName = accountProfile.Name",
+      "original_record_pointer": "/103"
+    }
+  ],
+  "tmv-field:ca066a6625d7b0b8b30a5122": [
+    {
+      "mapping_id": "ef-column:5cacbfa7f18b6a706fb5c1ca",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "name",
+      "expression": "b.Property<string>(\"Name\")\n                        .IsRequired()\n                        .HasMaxLength(130)\n                        .HasColumnType(\"character varying(130)\")\n                        .HasColumnName(\"name\")",
+      "original_record_pointer": "/53"
+    }
+  ],
+  "tmv-field:dc0eaa45c6e57700d8c5f111": [
+    {
+      "mapping_id": "ef-column:40848b11ca9a8a02c5c7c7aa",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Opened",
+      "expression": "b.Property<DateTimeOffset?>(\"Opened\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"opened\")",
+      "original_record_pointer": "/54"
+    },
+    {
+      "mapping_id": "csharp-event:d081dd6c27001496ed4736ce",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "Opened",
+      "expression": "AccountOpenedDateTime = accountProfile.Opened",
+      "original_record_pointer": "/111"
+    }
+  ],
+  "tmv-field:dba35ea5b3c42399031af637": [
+    {
+      "mapping_id": "ef-column:40848b11ca9a8a02c5c7c7aa",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "opened",
+      "expression": "b.Property<DateTimeOffset?>(\"Opened\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"opened\")",
+      "original_record_pointer": "/54"
+    }
+  ],
+  "tmv-field:35d87f328f3ec2c92f41f7c6": [
+    {
+      "mapping_id": "ef-column:78e65e7a0bc3242ee2f6aca8",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Status",
+      "expression": "b.Property<string>(\"Status\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"status\")",
+      "original_record_pointer": "/55"
+    },
+    {
+      "mapping_id": "csharp-event:24e7d23b36699b714509b32b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "Status",
+      "expression": "AccountStatus = AccountStatusHelper.AccountStatusFromString(accountProfile.Status)",
+      "original_record_pointer": "/107"
+    }
+  ],
+  "tmv-field:b21012b582468e8f864318c8": [
+    {
+      "mapping_id": "ef-column:78e65e7a0bc3242ee2f6aca8",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "status",
+      "expression": "b.Property<string>(\"Status\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"status\")",
+      "original_record_pointer": "/55"
+    }
+  ],
+  "tmv-field:5db58453eb4ee8fb85687fd9": [
+    {
+      "mapping_id": "ef-column:e79cd3e18dc53200da6c697a",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "TSide",
+      "expression": "b.Property<string>(\"TSide\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"t_side\")",
+      "original_record_pointer": "/56"
+    },
+    {
+      "mapping_id": "csharp-event:d86673fb79e8fd30f5ff2589",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "TSide",
+      "expression": "AccountTSide = GetAccountTSide(accountProfile.TSide)",
+      "original_record_pointer": "/108"
+    }
+  ],
+  "tmv-field:7409775367d65d783126afee": [
+    {
+      "mapping_id": "ef-column:e79cd3e18dc53200da6c697a",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "t_side",
+      "expression": "b.Property<string>(\"TSide\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"t_side\")",
+      "original_record_pointer": "/56"
+    }
+  ],
+  "tmv-field:3e3610bdae51e8054cf7bb7e": [
+    {
+      "mapping_id": "ef-column:d41b8867809635c6994a40a2",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "TmvStatus",
+      "expression": "b.Property<string>(\"TmvStatus\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"tmv_status\")",
+      "original_record_pointer": "/57"
+    }
+  ],
+  "tmv-field:df0b3ea05684277a526ac1e4": [
+    {
+      "mapping_id": "ef-column:d41b8867809635c6994a40a2",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "tmv_status",
+      "expression": "b.Property<string>(\"TmvStatus\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"tmv_status\")",
+      "original_record_pointer": "/57"
+    }
+  ],
+  "tmv-field:1859dd44249b185b2674842e": [
+    {
+      "mapping_id": "ef-column:ddb3be4b53dc92c54c5533e5",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Version",
+      "expression": "b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\")",
+      "original_record_pointer": "/58"
+    }
+  ],
+  "tmv-field:b5ca9bbb73838e26d14fa093": [
+    {
+      "mapping_id": "ef-column:ddb3be4b53dc92c54c5533e5",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "xmin",
+      "expression": "b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\")",
+      "original_record_pointer": "/58"
+    }
+  ],
+  "tmv-field:33cc6376a5f093f793c30b9f": [
+    {
+      "mapping_id": "ef-column:73f910016376f2495a0d76b9",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountFreezeDetails.ChangeId",
+      "expression": "b1.Property<long?>(\"ChangeId\")\n                                .HasColumnType(\"bigint\")\n                                .HasColumnName(\"account_freeze_details_change_id\")",
+      "original_record_pointer": "/59"
+    }
+  ],
+  "tmv-field:08981b5300838967d909509b": [
+    {
+      "mapping_id": "ef-column:73f910016376f2495a0d76b9",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_freeze_details_change_id",
+      "expression": "b1.Property<long?>(\"ChangeId\")\n                                .HasColumnType(\"bigint\")\n                                .HasColumnName(\"account_freeze_details_change_id\")",
+      "original_record_pointer": "/59"
+    }
+  ],
+  "tmv-field:fea7d85cfcdc9d420f5fa1f2": [
+    {
+      "mapping_id": "ef-column:4f8def38c8bc7aace2f4135b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountFreezeDetails.Effective",
+      "expression": "b1.Property<DateTimeOffset?>(\"Effective\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"account_freeze_details_effective\")",
+      "original_record_pointer": "/60"
+    },
+    {
+      "mapping_id": "csharp-event:1675ff912bdc514baf3d229d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountFreezeDetails.Effective",
+      "expression": "AccountFrozenDateTime = accountProfile.AccountFreezeDetails.Effective",
+      "original_record_pointer": "/131"
+    }
+  ],
+  "tmv-field:c71b321170d846c3381ee02e": [
+    {
+      "mapping_id": "ef-column:4f8def38c8bc7aace2f4135b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_freeze_details_effective",
+      "expression": "b1.Property<DateTimeOffset?>(\"Effective\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"account_freeze_details_effective\")",
+      "original_record_pointer": "/60"
+    }
+  ],
+  "tmv-field:5a01d2abfa06e45fe0905cb3": [
+    {
+      "mapping_id": "ef-column:7a1e6efd45cb1c78d1cf9ebb",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountFreezeDetails.Expiration",
+      "expression": "b1.Property<DateTimeOffset?>(\"Expiration\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"account_freeze_details_expiration\")",
+      "original_record_pointer": "/61"
+    }
+  ],
+  "tmv-field:95749be8206ee112699bc096": [
+    {
+      "mapping_id": "ef-column:7a1e6efd45cb1c78d1cf9ebb",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_freeze_details_expiration",
+      "expression": "b1.Property<DateTimeOffset?>(\"Expiration\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"account_freeze_details_expiration\")",
+      "original_record_pointer": "/61"
+    }
+  ],
+  "tmv-field:ea5b3fd99747278d56e4011d": [
+    {
+      "mapping_id": "ef-column:6d4e231a81b406245128579d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountFreezeDetails.FreezeDescription",
+      "expression": "b1.Property<string>(\"FreezeDescription\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_freeze_description\")",
+      "original_record_pointer": "/62"
+    },
+    {
+      "mapping_id": "csharp-event:5a398ae27398819ec5932c2b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountFreezeDetails.FreezeDescription",
+      "expression": "AccountFreezeDescription = accountProfile.AccountFreezeDetails.FreezeDescription",
+      "original_record_pointer": "/129"
+    }
+  ],
+  "tmv-field:7a2ef7f10a4aeaebc0b94c92": [
+    {
+      "mapping_id": "ef-column:6d4e231a81b406245128579d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_freeze_details_freeze_description",
+      "expression": "b1.Property<string>(\"FreezeDescription\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_freeze_description\")",
+      "original_record_pointer": "/62"
+    }
+  ],
+  "tmv-field:bcea7e5afea51901f52e9d4c": [
+    {
+      "mapping_id": "ef-column:37857cafacab6d07fdc428c4",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountFreezeDetails.FreezeType",
+      "expression": "b1.Property<string>(\"FreezeType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_freeze_type\")",
+      "original_record_pointer": "/63"
+    },
+    {
+      "mapping_id": "csharp-event:1445273a4d8fb6eff226cccd",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountFreezeDetails.FreezeType",
+      "expression": "AccountFreezeType = accountProfile.AccountFreezeDetails.FreezeType",
+      "original_record_pointer": "/130"
+    }
+  ],
+  "tmv-field:984814fcaca57f5024e7581a": [
+    {
+      "mapping_id": "ef-column:37857cafacab6d07fdc428c4",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_freeze_details_freeze_type",
+      "expression": "b1.Property<string>(\"FreezeType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_freeze_type\")",
+      "original_record_pointer": "/63"
+    }
+  ],
+  "tmv-field:db5a947849ae71ebf5f13f66": [
+    {
+      "mapping_id": "ef-column:82768b68022248a3e41bcdbd",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountFreezeDetails.RestrictionSetId",
+      "expression": "b1.Property<string>(\"RestrictionSetId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_restriction_set_id\")",
+      "original_record_pointer": "/64"
+    }
+  ],
+  "tmv-field:3744d0ed85cfd6855e3383f4": [
+    {
+      "mapping_id": "ef-column:82768b68022248a3e41bcdbd",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_freeze_details_restriction_set_id",
+      "expression": "b1.Property<string>(\"RestrictionSetId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_restriction_set_id\")",
+      "original_record_pointer": "/64"
+    }
+  ],
+  "tmv-field:d9a94d414b03cc3b29960cc2": [
+    {
+      "mapping_id": "ef-column:ca56b5d006f8596add0fabd0",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "BankingRelationship.BankingRelationshipId",
+      "expression": "b1.Property<string>(\"BankingRelationshipId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_banking_relationship_id\")",
+      "original_record_pointer": "/65"
+    },
+    {
+      "mapping_id": "csharp-event:61dae1b683aeb673648d5d3d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship.BankingRelationshipId",
+      "expression": "BankingRelationship = new AsyncAPI.BankingRelationship\n            {\n                BankingRelationshipId = accountProfile.BankingRelationship.BankingRelationshipId ??\n                    string.Empty,\n                BankingRelationshipType =\n                    AsyncAPI.BankingRelationshipType.PersonalCustomerRelationship,\n                NominatedTaxPartyId = accountProfile.BankingRelationship.NominatedTaxPartyId,\n                PartyIds = accountProfile.BankingRelationship.PartyIds\n            }",
+      "original_record_pointer": "/114"
+    },
+    {
+      "mapping_id": "csharp-event:242fd776c2e35cf91159e655",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship.BankingRelationshipId",
+      "expression": "BankingRelationshipId = accountProfile.BankingRelationship.BankingRelationshipId ??\n                    string.Empty",
+      "original_record_pointer": "/134"
+    }
+  ],
+  "tmv-field:ac27367d80fbf259afb8ffb0": [
+    {
+      "mapping_id": "ef-column:ca56b5d006f8596add0fabd0",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "banking_relationship_banking_relationship_id",
+      "expression": "b1.Property<string>(\"BankingRelationshipId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_banking_relationship_id\")",
+      "original_record_pointer": "/65"
+    }
+  ],
+  "tmv-field:50452e9ba45713191b231a55": [
+    {
+      "mapping_id": "ef-column:931d9db18e6d04e57c4097aa",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "BankingRelationship.BankingRelationshipType",
+      "expression": "b1.Property<string>(\"BankingRelationshipType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_banking_relationship_type\")",
+      "original_record_pointer": "/66"
+    }
+  ],
+  "tmv-field:3013ddec8ab35e34c9c0a918": [
+    {
+      "mapping_id": "ef-column:931d9db18e6d04e57c4097aa",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "banking_relationship_banking_relationship_type",
+      "expression": "b1.Property<string>(\"BankingRelationshipType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_banking_relationship_type\")",
+      "original_record_pointer": "/66"
+    }
+  ],
+  "tmv-field:c91e518bc3c908fa33357222": [
+    {
+      "mapping_id": "ef-column:69d713fdc6a253d5db20531e",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "BankingRelationship.NominatedTaxPartyId",
+      "expression": "b1.Property<string>(\"NominatedTaxPartyId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_nominated_tax_party_id\")",
+      "original_record_pointer": "/67"
+    },
+    {
+      "mapping_id": "csharp-event:cfd77f09300f5b790590f4c2",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship.NominatedTaxPartyId",
+      "expression": "BankingRelationship = new AsyncAPI.BankingRelationship\n            {\n                BankingRelationshipId = accountProfile.BankingRelationship.BankingRelationshipId ??\n                    string.Empty,\n                BankingRelationshipType =\n                    AsyncAPI.BankingRelationshipType.PersonalCustomerRelationship,\n                NominatedTaxPartyId = accountProfile.BankingRelationship.NominatedTaxPartyId,\n                PartyIds = accountProfile.BankingRelationship.PartyIds\n            }",
+      "original_record_pointer": "/115"
+    },
+    {
+      "mapping_id": "csharp-event:65ad0034f5469a6bc1c61ddf",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship.NominatedTaxPartyId",
+      "expression": "NominatedTaxPartyId = accountProfile.BankingRelationship.NominatedTaxPartyId",
+      "original_record_pointer": "/135"
+    }
+  ],
+  "tmv-field:0a62ad3c56304fd6e5359524": [
+    {
+      "mapping_id": "ef-column:69d713fdc6a253d5db20531e",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "banking_relationship_nominated_tax_party_id",
+      "expression": "b1.Property<string>(\"NominatedTaxPartyId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_nominated_tax_party_id\")",
+      "original_record_pointer": "/67"
+    }
+  ],
+  "tmv-field:497440fec2f5876f1f054219": [
+    {
+      "mapping_id": "ef-column:6b88ddb9812005924e8ddd1b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "BankingRelationship.PartyIds",
+      "expression": "b1.PrimitiveCollection<string[]>(\"PartyIds\")\n                                .HasColumnType(\"text[]\")\n                                .HasColumnName(\"banking_relationship_party_ids\")",
+      "original_record_pointer": "/68"
+    },
+    {
+      "mapping_id": "csharp-event:16330ee2933a2a6cb0a998e6",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship.PartyIds",
+      "expression": "BankingRelationship = new AsyncAPI.BankingRelationship\n            {\n                BankingRelationshipId = accountProfile.BankingRelationship.BankingRelationshipId ??\n                    string.Empty,\n                BankingRelationshipType =\n                    AsyncAPI.BankingRelationshipType.PersonalCustomerRelationship,\n                NominatedTaxPartyId = accountProfile.BankingRelationship.NominatedTaxPartyId,\n                PartyIds = accountProfile.BankingRelationship.PartyIds\n            }",
+      "original_record_pointer": "/116"
+    },
+    {
+      "mapping_id": "csharp-event:2fd3d9c59c4640f6e60fe7e0",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship.PartyIds",
+      "expression": "PartyIds = accountProfile.BankingRelationship.PartyIds",
+      "original_record_pointer": "/136"
+    }
+  ],
+  "tmv-field:f0897ebffa4c07c74a747f79": [
+    {
+      "mapping_id": "ef-column:6b88ddb9812005924e8ddd1b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "banking_relationship_party_ids",
+      "expression": "b1.PrimitiveCollection<string[]>(\"PartyIds\")\n                                .HasColumnType(\"text[]\")\n                                .HasColumnName(\"banking_relationship_party_ids\")",
+      "original_record_pointer": "/68"
+    }
+  ],
+  "tmv-field:8cc05a876acc364bca2b0a66": [
+    {
+      "mapping_id": "ef-column:2208a7d49b5ea07b966f4c0d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "DomesticTaxRate.CountryAlpha3Code",
+      "expression": "b1.Property<string>(\"CountryAlpha3Code\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_country_alpha3code\")",
+      "original_record_pointer": "/69"
+    },
+    {
+      "mapping_id": "csharp-event:d9bdda11dd255d02b6976f54",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate.CountryAlpha3Code",
+      "expression": "DomesticTaxRate = new AsyncAPI.DomesticTaxRate\n            {\n                DomesticTaxType = string.IsNullOrEmpty(accountProfile.DomesticTaxRate.DomesticTaxType) ? null : GetDomesticTaxType(accountProfile.DomesticTaxRate.DomesticTaxType),\n                RateValue = accountProfile.DomesticTaxRate.RateValue,\n                CountryAlpha3Code = accountProfile.DomesticTaxRate.CountryAlpha3Code\n            }",
+      "original_record_pointer": "/126"
+    },
+    {
+      "mapping_id": "csharp-event:42a9b5600cf5fa9c9510800f",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate.CountryAlpha3Code",
+      "expression": "CountryAlpha3Code = accountProfile.DomesticTaxRate.CountryAlpha3Code",
+      "original_record_pointer": "/149"
+    }
+  ],
+  "tmv-field:9dd10d517aa2144fd2f30c4c": [
+    {
+      "mapping_id": "ef-column:2208a7d49b5ea07b966f4c0d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "domestic_tax_rate_country_alpha3code",
+      "expression": "b1.Property<string>(\"CountryAlpha3Code\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_country_alpha3code\")",
+      "original_record_pointer": "/69"
+    }
+  ],
+  "tmv-field:111b0b4e41e1ec59862f5048": [
+    {
+      "mapping_id": "ef-column:43f9565cf4fc12e4adece2d9",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "DomesticTaxRate.DomesticTaxType",
+      "expression": "b1.Property<string>(\"DomesticTaxType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_domestic_tax_type\")",
+      "original_record_pointer": "/70"
+    },
+    {
+      "mapping_id": "csharp-event:51cab37f4dfddc92d3de959b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate.DomesticTaxType",
+      "expression": "DomesticTaxRate = new AsyncAPI.DomesticTaxRate\n            {\n                DomesticTaxType = string.IsNullOrEmpty(accountProfile.DomesticTaxRate.DomesticTaxType) ? null : GetDomesticTaxType(accountProfile.DomesticTaxRate.DomesticTaxType),\n                RateValue = accountProfile.DomesticTaxRate.RateValue,\n                CountryAlpha3Code = accountProfile.DomesticTaxRate.CountryAlpha3Code\n            }",
+      "original_record_pointer": "/124"
+    },
+    {
+      "mapping_id": "csharp-event:49012d02d3f3069aa00d3c7c",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate.DomesticTaxType",
+      "expression": "DomesticTaxType = string.IsNullOrEmpty(accountProfile.DomesticTaxRate.DomesticTaxType) ? null : GetDomesticTaxType(accountProfile.DomesticTaxRate.DomesticTaxType)",
+      "original_record_pointer": "/147"
+    }
+  ],
+  "tmv-field:6fda28d6382c42e24c7296f3": [
+    {
+      "mapping_id": "ef-column:43f9565cf4fc12e4adece2d9",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "domestic_tax_rate_domestic_tax_type",
+      "expression": "b1.Property<string>(\"DomesticTaxType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_domestic_tax_type\")",
+      "original_record_pointer": "/70"
+    }
+  ],
+  "tmv-field:0b9b6c8ae99c67f3dd4e08f5": [
+    {
+      "mapping_id": "ef-column:355c468a2eea286c8094357d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "DomesticTaxRate.RateValue",
+      "expression": "b1.Property<string>(\"RateValue\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_rate_value\")",
+      "original_record_pointer": "/71"
+    },
+    {
+      "mapping_id": "csharp-event:4211ffedcad02e8367a9dc06",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate.RateValue",
+      "expression": "DomesticTaxRate = new AsyncAPI.DomesticTaxRate\n            {\n                DomesticTaxType = string.IsNullOrEmpty(accountProfile.DomesticTaxRate.DomesticTaxType) ? null : GetDomesticTaxType(accountProfile.DomesticTaxRate.DomesticTaxType),\n                RateValue = accountProfile.DomesticTaxRate.RateValue,\n                CountryAlpha3Code = accountProfile.DomesticTaxRate.CountryAlpha3Code\n            }",
+      "original_record_pointer": "/125"
+    },
+    {
+      "mapping_id": "csharp-event:d41bac7c46e86331eb7c88d3",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate.RateValue",
+      "expression": "RateValue = accountProfile.DomesticTaxRate.RateValue",
+      "original_record_pointer": "/148"
+    }
+  ],
+  "tmv-field:09db5e0c9a365cc498f1020a": [
+    {
+      "mapping_id": "ef-column:355c468a2eea286c8094357d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "domestic_tax_rate_rate_value",
+      "expression": "b1.Property<string>(\"RateValue\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_rate_value\")",
+      "original_record_pointer": "/71"
+    }
+  ],
+  "tmv-field:5b1b8f47a290744d944fa219": [
+    {
+      "mapping_id": "ef-column:3308606150da93ca22282ef4",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProductFacility.BankingProductCode",
+      "expression": "b1.Property<string>(\"BankingProductCode\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_code\")",
+      "original_record_pointer": "/72"
+    },
+    {
+      "mapping_id": "csharp-event:05d313778f8416694b722d8c",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.BankingProductCode",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/120"
+    },
+    {
+      "mapping_id": "csharp-event:accb51199d076c1e297491a9",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.BankingProductCode",
+      "expression": "BankingProductCode = accountProfile.ProductFacility.BankingProductCode",
+      "original_record_pointer": "/140"
+    }
+  ],
+  "tmv-field:507032d6eafe57ac0fbe3e72": [
+    {
+      "mapping_id": "ef-column:3308606150da93ca22282ef4",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "product_facility_banking_product_code",
+      "expression": "b1.Property<string>(\"BankingProductCode\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_code\")",
+      "original_record_pointer": "/72"
+    }
+  ],
+  "tmv-field:31e58bad2325b18ad58d07a5": [
+    {
+      "mapping_id": "ef-column:5235f6dcd9d4e4fb33d8d718",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProductFacility.BankingProductId",
+      "expression": "b1.Property<string>(\"BankingProductId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_id\")",
+      "original_record_pointer": "/73"
+    },
+    {
+      "mapping_id": "csharp-event:7d359e3df21fef9360679970",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.BankingProductId",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/118"
+    },
+    {
+      "mapping_id": "csharp-event:a5548e165f5f0277d88293b0",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.BankingProductId",
+      "expression": "BankingProductId = accountProfile.ProductFacility.BankingProductId",
+      "original_record_pointer": "/138"
+    }
+  ],
+  "tmv-field:78fffc5a9bec5dda3968b0d3": [
+    {
+      "mapping_id": "ef-column:5235f6dcd9d4e4fb33d8d718",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "product_facility_banking_product_id",
+      "expression": "b1.Property<string>(\"BankingProductId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_id\")",
+      "original_record_pointer": "/73"
+    }
+  ],
+  "tmv-field:ea680825cb87bbfeb0d1c83b": [
+    {
+      "mapping_id": "ef-column:e50070b03b75debc6a270adb",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProductFacility.BankingProductVersionId",
+      "expression": "b1.Property<string>(\"BankingProductVersionId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_version_id\")",
+      "original_record_pointer": "/74"
+    },
+    {
+      "mapping_id": "csharp-event:58b84beba9c970850750bf60",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.BankingProductVersionId",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/119"
+    },
+    {
+      "mapping_id": "csharp-event:4c71b5be91b53169e36cfed0",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.BankingProductVersionId",
+      "expression": "BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId",
+      "original_record_pointer": "/139"
+    }
+  ],
+  "tmv-field:976384ef7a333868c510eef0": [
+    {
+      "mapping_id": "ef-column:e50070b03b75debc6a270adb",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "product_facility_banking_product_version_id",
+      "expression": "b1.Property<string>(\"BankingProductVersionId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_version_id\")",
+      "original_record_pointer": "/74"
+    }
+  ],
+  "tmv-field:23c899bb62313c20f2af5a77": [
+    {
+      "mapping_id": "ef-column:130d299ddb473adda998eb99",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProductFacility.InterestRate",
+      "expression": "b1.Property<string>(\"InterestRate\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_interest_rate\")",
+      "original_record_pointer": "/75"
+    },
+    {
+      "mapping_id": "csharp-event:3cdd1d8d0e7c281f73448bf3",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRate",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/121"
+    },
+    {
+      "mapping_id": "csharp-event:ba71296ba5f08dac57e7072c",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRate",
+      "expression": "InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }",
+      "original_record_pointer": "/141"
+    },
+    {
+      "mapping_id": "csharp-event:6e2fb7e72c0350e0f5c29142",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRate",
+      "expression": "Rate = accountProfile.ProductFacility.InterestRate",
+      "original_record_pointer": "/144"
+    }
+  ],
+  "tmv-field:414661c5c6dc1e88ae1110f2": [
+    {
+      "mapping_id": "ef-column:130d299ddb473adda998eb99",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "product_facility_interest_rate",
+      "expression": "b1.Property<string>(\"InterestRate\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_interest_rate\")",
+      "original_record_pointer": "/75"
+    }
+  ],
+  "tmv-field:2eb6158f9a95dfbc21e59320": [
+    {
+      "mapping_id": "ef-column:2ce7644624251bfae82c39b5",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProductFacility.InterestRatePlanChangeId",
+      "expression": "b1.Property<string>(\"InterestRatePlanChangeId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_interest_rate_plan_change_id\")",
+      "original_record_pointer": "/76"
+    },
+    {
+      "mapping_id": "csharp-event:aa0750f60efd7f2702119bd7",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRatePlanChangeId",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/123"
+    },
+    {
+      "mapping_id": "csharp-event:716594021f89d532d331c22e",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRatePlanChangeId",
+      "expression": "InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }",
+      "original_record_pointer": "/143"
+    },
+    {
+      "mapping_id": "csharp-event:6bddd96be06e06bb632bcc04",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRatePlanChangeId",
+      "expression": "RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId",
+      "original_record_pointer": "/146"
+    }
+  ],
+  "tmv-field:4451520d2f5e1b11102c242d": [
+    {
+      "mapping_id": "ef-column:2ce7644624251bfae82c39b5",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "product_facility_interest_rate_plan_change_id",
+      "expression": "b1.Property<string>(\"InterestRatePlanChangeId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_interest_rate_plan_change_id\")",
+      "original_record_pointer": "/76"
+    }
+  ],
+  "tmv-field:feede29d212f0b3df017fca0": [
+    {
+      "mapping_id": "ef-column:5038626fae6775c278ab929f",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProductFacility.InterestRateValidFrom",
+      "expression": "b1.Property<DateTimeOffset?>(\"InterestRateValidFrom\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"product_facility_interest_rate_valid_from\")",
+      "original_record_pointer": "/77"
+    },
+    {
+      "mapping_id": "csharp-event:a0dca4ca4f581830e723305b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRateValidFrom",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/122"
+    },
+    {
+      "mapping_id": "csharp-event:039e9ba64c13ea0aa8c21a45",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRateValidFrom",
+      "expression": "InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }",
+      "original_record_pointer": "/142"
+    },
+    {
+      "mapping_id": "csharp-event:3846fdded131dde03c7001b1",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.InterestRateValidFrom",
+      "expression": "ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom",
+      "original_record_pointer": "/145"
+    }
+  ],
+  "tmv-field:cec363abe4fe02e583cc539e": [
+    {
+      "mapping_id": "ef-column:5038626fae6775c278ab929f",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "product_facility_interest_rate_valid_from",
+      "expression": "b1.Property<DateTimeOffset?>(\"InterestRateValidFrom\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"product_facility_interest_rate_valid_from\")",
+      "original_record_pointer": "/77"
+    }
+  ],
+  "tmv-field:d1a0a818a91ed82a3088d0a1": [
+    {
+      "mapping_id": "ef-column:926ec8900a190e706a4973fe",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProductFacility.ProductFacilityId",
+      "expression": "b1.Property<string>(\"ProductFacilityId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_product_facility_id\")",
+      "original_record_pointer": "/78"
+    },
+    {
+      "mapping_id": "csharp-event:25c5c1e13aecb7282cf2126d",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.ProductFacilityId",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/117"
+    },
+    {
+      "mapping_id": "csharp-event:cfd367ffe74d42004fbc9f46",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility.ProductFacilityId",
+      "expression": "ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId",
+      "original_record_pointer": "/137"
+    }
+  ],
+  "tmv-field:7f2fabc58695352ca0d719d2": [
+    {
+      "mapping_id": "ef-column:926ec8900a190e706a4973fe",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "product_facility_product_facility_id",
+      "expression": "b1.Property<string>(\"ProductFacilityId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_product_facility_id\")",
+      "original_record_pointer": "/78"
+    }
+  ],
+  "tmv-field:8fa63394126eb0199da4f084": [
+    {
+      "mapping_id": "ef-column:3b390960f95201a84f0c7dc1",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "RowId",
+      "expression": "b.Property<Guid>(\"RowId\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"row_id\")",
+      "original_record_pointer": "/79"
+    }
+  ],
+  "tmv-field:1af06cedfec8c884fc77b412": [
+    {
+      "mapping_id": "ef-column:3b390960f95201a84f0c7dc1",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "row_id",
+      "expression": "b.Property<Guid>(\"RowId\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"row_id\")",
+      "original_record_pointer": "/79"
+    }
+  ],
+  "tmv-field:57bf80f83ec771ddede72713": [
+    {
+      "mapping_id": "ef-column:71712e34a0dd7d7d9df3a822",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountIdentification",
+      "expression": "b.Property<string>(\"AccountIdentification\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_identification\")",
+      "original_record_pointer": "/80"
+    },
+    {
+      "mapping_id": "csharp-event:008e7c9e96df47511bc7bdc9",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountIdentification",
+      "expression": "AccountIdentifications = accountProfile.Identifiers\n                .Where(identifier =>\n                    identifier.AccountIdentificationType is not ProfileKeys.Details\n                        .BaseAccountNumber)\n                .Select(identifier =>\n                    new AsyncAPI.AccountIdentifications\n                    {\n                        AccountIdentificationType =\n                            GetAccountIdentificationType(identifier.AccountIdentificationType),\n                        AccountIdentification = identifier.AccountIdentification\n                    })\n                .ToList()",
+      "original_record_pointer": "/106"
+    },
+    {
+      "mapping_id": "csharp-event:da2fdbae072b736f93dd3a3b",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountIdentification",
+      "expression": "AccountIdentification = identifier.AccountIdentification",
+      "original_record_pointer": "/133"
+    }
+  ],
+  "tmv-field:022ed7dd6b7f557a643bca20": [
+    {
+      "mapping_id": "ef-column:71712e34a0dd7d7d9df3a822",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_identification",
+      "expression": "b.Property<string>(\"AccountIdentification\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_identification\")",
+      "original_record_pointer": "/80"
+    }
+  ],
+  "tmv-field:8379019abc18b0e64aab4831": [
+    {
+      "mapping_id": "ef-column:97cb2d8f5c57dcaed5410525",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "AccountIdentificationType",
+      "expression": "b.Property<string>(\"AccountIdentificationType\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_identification_type\")",
+      "original_record_pointer": "/81"
+    },
+    {
+      "mapping_id": "csharp-event:b782b26f88df65f0ea021988",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountIdentificationType",
+      "expression": "AccountIdentifications = accountProfile.Identifiers\n                .Where(identifier =>\n                    identifier.AccountIdentificationType is not ProfileKeys.Details\n                        .BaseAccountNumber)\n                .Select(identifier =>\n                    new AsyncAPI.AccountIdentifications\n                    {\n                        AccountIdentificationType =\n                            GetAccountIdentificationType(identifier.AccountIdentificationType),\n                        AccountIdentification = identifier.AccountIdentification\n                    })\n                .ToList()",
+      "original_record_pointer": "/105"
+    },
+    {
+      "mapping_id": "csharp-event:effc655b344bee252aead01e",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountIdentificationType",
+      "expression": "AccountIdentificationType =\n                            GetAccountIdentificationType(identifier.AccountIdentificationType)",
+      "original_record_pointer": "/132"
+    }
+  ],
+  "tmv-field:28359a122b26e73a49888494": [
+    {
+      "mapping_id": "ef-column:97cb2d8f5c57dcaed5410525",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "account_identification_type",
+      "expression": "b.Property<string>(\"AccountIdentificationType\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_identification_type\")",
+      "original_record_pointer": "/81"
+    }
+  ],
+  "tmv-field:92f00d88d4e17e280ce70950": [
+    {
+      "mapping_id": "ef-column:6d64cf16bc01f1e0985b52fa",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "ProfileAccountId",
+      "expression": "b.Property<string>(\"ProfileAccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"profile_account_id\")",
+      "original_record_pointer": "/82"
+    }
+  ],
+  "tmv-field:56150f76142c6b44140c5173": [
+    {
+      "mapping_id": "ef-column:6d64cf16bc01f1e0985b52fa",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "profile_account_id",
+      "expression": "b.Property<string>(\"ProfileAccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"profile_account_id\")",
+      "original_record_pointer": "/82"
+    }
+  ],
+  "tmv-field:9c4ebd33c32dc8e5a575d566": [
+    {
+      "mapping_id": "ef-column:dfad4897a0f98730cc0a54d9",
+      "role": "source",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "Version",
+      "expression": "b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\")",
+      "original_record_pointer": "/83"
+    }
+  ],
+  "tmv-field:eedd6dbe71d63909053a3871": [
+    {
+      "mapping_id": "ef-column:dfad4897a0f98730cc0a54d9",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+      "column": "xmin",
+      "expression": "b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\")",
+      "original_record_pointer": "/83"
+    }
+  ],
+  "tmv-field:ebd5c378c995e69eaffddc8e": [
+    {
+      "mapping_id": "ef-column:1178b0bb255ddf6426eefad9",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "Id",
+      "expression": "b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")",
+      "original_record_pointer": "/84"
+    }
+  ],
+  "tmv-field:93ac7b8fed98f9f1362ef710": [
+    {
+      "mapping_id": "ef-column:1178b0bb255ddf6426eefad9",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "id",
+      "expression": "b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")",
+      "original_record_pointer": "/84"
+    }
+  ],
+  "tmv-field:7e38c2f3592d64316ae11868": [
+    {
+      "mapping_id": "ef-column:6acc5820a0b81b4218e7f214",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "AccountId",
+      "expression": "b.Property<string>(\"AccountId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"account_id\")",
+      "original_record_pointer": "/85"
+    }
+  ],
+  "tmv-field:a7b662a825a17564b23694e3": [
+    {
+      "mapping_id": "ef-column:6acc5820a0b81b4218e7f214",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "account_id",
+      "expression": "b.Property<string>(\"AccountId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"account_id\")",
+      "original_record_pointer": "/85"
+    }
+  ],
+  "tmv-field:d9b9ba4c7ad58cbd962973f3": [
+    {
+      "mapping_id": "ef-column:a84da18394cad6130a11b65f",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "Amount",
+      "expression": "b.Property<decimal>(\"Amount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"amount\")",
+      "original_record_pointer": "/86"
+    },
+    {
+      "mapping_id": "csharp-event:5ccc4d88931f55323ddd7e0f",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+      "column": "Amount",
+      "expression": "AccountBalanceValue = balance.Amount.ToString(CultureInfo.InvariantCulture)",
+      "original_record_pointer": "/152"
+    }
+  ],
+  "tmv-field:2b6c4a57c353e27242aaa48c": [
+    {
+      "mapping_id": "ef-column:a84da18394cad6130a11b65f",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "amount",
+      "expression": "b.Property<decimal>(\"Amount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"amount\")",
+      "original_record_pointer": "/86"
+    }
+  ],
+  "tmv-field:b18baa54cedff9996c444f58": [
+    {
+      "mapping_id": "ef-column:754ebabe0c5a0e2abf825a29",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "Asset",
+      "expression": "b.Property<string>(\"Asset\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"asset\")",
+      "original_record_pointer": "/87"
+    }
+  ],
+  "tmv-field:cf345d2b61ef68b7ccdffae4": [
+    {
+      "mapping_id": "ef-column:754ebabe0c5a0e2abf825a29",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "asset",
+      "expression": "b.Property<string>(\"Asset\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"asset\")",
+      "original_record_pointer": "/87"
+    }
+  ],
+  "tmv-field:58a5293e41f74988cb05948e": [
+    {
+      "mapping_id": "ef-column:df2fe078f51d9512110e96b9",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "BalanceDateTime",
+      "expression": "b.Property<DateTimeOffset>(\"BalanceDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"balance_date_time\")",
+      "original_record_pointer": "/88"
+    }
+  ],
+  "tmv-field:d793856965d24183386d7ffc": [
+    {
+      "mapping_id": "ef-column:df2fe078f51d9512110e96b9",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "balance_date_time",
+      "expression": "b.Property<DateTimeOffset>(\"BalanceDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"balance_date_time\")",
+      "original_record_pointer": "/88"
+    }
+  ],
+  "tmv-field:6a40b1f553007b8900f6f921": [
+    {
+      "mapping_id": "ef-column:def8c60191523a0f7e31149f",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "BalanceSpecificationId",
+      "expression": "b.Property<string>(\"BalanceSpecificationId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"balance_specification_id\")",
+      "original_record_pointer": "/89"
+    }
+  ],
+  "tmv-field:5345070bca0ae2aca48903c9": [
+    {
+      "mapping_id": "ef-column:def8c60191523a0f7e31149f",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "balance_specification_id",
+      "expression": "b.Property<string>(\"BalanceSpecificationId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"balance_specification_id\")",
+      "original_record_pointer": "/89"
+    }
+  ],
+  "tmv-field:1fcf47937084f705aa90f709": [
+    {
+      "mapping_id": "ef-column:655765be760a915ec906051f",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "BalanceType",
+      "expression": "b.Property<string>(\"BalanceType\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"balance_type\")",
+      "original_record_pointer": "/90"
+    }
+  ],
+  "tmv-field:d59de0c9c2495e7656292c2e": [
+    {
+      "mapping_id": "ef-column:655765be760a915ec906051f",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "balance_type",
+      "expression": "b.Property<string>(\"BalanceType\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"balance_type\")",
+      "original_record_pointer": "/90"
+    }
+  ],
+  "tmv-field:0f0a6f8184c4d5d066d5eb5f": [
+    {
+      "mapping_id": "ef-column:2ccc669b7a72035848b90d7e",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "BatchId",
+      "expression": "b.Property<string>(\"BatchId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"batch_id\")",
+      "original_record_pointer": "/91"
+    }
+  ],
+  "tmv-field:e0774e3783d848bde73d2549": [
+    {
+      "mapping_id": "ef-column:2ccc669b7a72035848b90d7e",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "batch_id",
+      "expression": "b.Property<string>(\"BatchId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"batch_id\")",
+      "original_record_pointer": "/91"
+    }
+  ],
+  "tmv-field:702e4ce364dd1dbbd0e9b1fa": [
+    {
+      "mapping_id": "ef-column:99c85d6ea1e67b174a4d8165",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "BatchInstructionIndex",
+      "expression": "b.Property<int>(\"BatchInstructionIndex\")\n                        .HasColumnType(\"integer\")\n                        .HasColumnName(\"batch_instruction_index\")",
+      "original_record_pointer": "/92"
+    }
+  ],
+  "tmv-field:ad14b8dc75db39fdd44be1ba": [
+    {
+      "mapping_id": "ef-column:99c85d6ea1e67b174a4d8165",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "batch_instruction_index",
+      "expression": "b.Property<int>(\"BatchInstructionIndex\")\n                        .HasColumnType(\"integer\")\n                        .HasColumnName(\"batch_instruction_index\")",
+      "original_record_pointer": "/92"
+    }
+  ],
+  "tmv-field:ed5c0bd0255c8c638ab8f714": [
+    {
+      "mapping_id": "ef-column:81458a007768fad2c477ba24",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "CreatedAt",
+      "expression": "b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\")",
+      "original_record_pointer": "/93"
+    }
+  ],
+  "tmv-field:8f3adf1cc8b0215d6e94932b": [
+    {
+      "mapping_id": "ef-column:81458a007768fad2c477ba24",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "created_at",
+      "expression": "b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\")",
+      "original_record_pointer": "/93"
+    }
+  ],
+  "tmv-field:8391d1ff2e6dfe9f02c94f0c": [
+    {
+      "mapping_id": "ef-column:cf28c911668747d44f3df5cf",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "Currency",
+      "expression": "b.Property<string>(\"Currency\")\n                        .IsRequired()\n                        .HasMaxLength(3)\n                        .HasColumnType(\"character varying(3)\")\n                        .HasColumnName(\"currency\")",
+      "original_record_pointer": "/94"
+    },
+    {
+      "mapping_id": "csharp-event:ea2a9df47c3595f39a8738aa",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+      "column": "Currency",
+      "expression": "AccountBalanceCurrencyCode = balance.Currency",
+      "original_record_pointer": "/153"
+    }
+  ],
+  "tmv-field:40ba4a026b98bbcc673fa137": [
+    {
+      "mapping_id": "ef-column:cf28c911668747d44f3df5cf",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "currency",
+      "expression": "b.Property<string>(\"Currency\")\n                        .IsRequired()\n                        .HasMaxLength(3)\n                        .HasColumnType(\"character varying(3)\")\n                        .HasColumnName(\"currency\")",
+      "original_record_pointer": "/94"
+    }
+  ],
+  "tmv-field:f7e25410599ff01b3a88651b": [
+    {
+      "mapping_id": "ef-column:18f9578926be316e1816eea2",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "InsertionDateTime",
+      "expression": "b.Property<DateTimeOffset>(\"InsertionDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"insertion_date_time\")",
+      "original_record_pointer": "/95"
+    }
+  ],
+  "tmv-field:b581821f297bab316e40d064": [
+    {
+      "mapping_id": "ef-column:18f9578926be316e1816eea2",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "insertion_date_time",
+      "expression": "b.Property<DateTimeOffset>(\"InsertionDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"insertion_date_time\")",
+      "original_record_pointer": "/95"
+    }
+  ],
+  "tmv-field:6d5755c5f3f735f9684b2c81": [
+    {
+      "mapping_id": "ef-column:9e1c0432361afe397b31fe84",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "IsCachedBalance",
+      "expression": "b.Property<bool>(\"IsCachedBalance\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"boolean\")\n                        .HasDefaultValue(false)\n                        .HasColumnName(\"is_cached_balance\")",
+      "original_record_pointer": "/96"
+    }
+  ],
+  "tmv-field:7507019d76cef81e653cd79a": [
+    {
+      "mapping_id": "ef-column:9e1c0432361afe397b31fe84",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "is_cached_balance",
+      "expression": "b.Property<bool>(\"IsCachedBalance\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"boolean\")\n                        .HasDefaultValue(false)\n                        .HasColumnName(\"is_cached_balance\")",
+      "original_record_pointer": "/96"
+    }
+  ],
+  "tmv-field:fbd5fa6e5065422f7bbad07b": [
+    {
+      "mapping_id": "ef-column:84d9955921993df61c474954",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "ModifiedAt",
+      "expression": "b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\")",
+      "original_record_pointer": "/97"
+    }
+  ],
+  "tmv-field:fc39741c6739f45b2edf8d3d": [
+    {
+      "mapping_id": "ef-column:84d9955921993df61c474954",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "modified_at",
+      "expression": "b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\")",
+      "original_record_pointer": "/97"
+    }
+  ],
+  "tmv-field:bbffb1cd310c738fd3f910e9": [
+    {
+      "mapping_id": "ef-column:14b0bcc1a5e2263391418c24",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "PostingInstructionId",
+      "expression": "b.Property<string>(\"PostingInstructionId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"posting_instruction_id\")",
+      "original_record_pointer": "/98"
+    }
+  ],
+  "tmv-field:28fdde9a2170bc5956e64965": [
+    {
+      "mapping_id": "ef-column:14b0bcc1a5e2263391418c24",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "posting_instruction_id",
+      "expression": "b.Property<string>(\"PostingInstructionId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"posting_instruction_id\")",
+      "original_record_pointer": "/98"
+    }
+  ],
+  "tmv-field:2567d418467fd41ccb5d8515": [
+    {
+      "mapping_id": "ef-column:9e61659f21c12510bd57165d",
+      "role": "source",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "PreviousAmount",
+      "expression": "b.Property<decimal>(\"PreviousAmount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"previous_amount\")",
+      "original_record_pointer": "/99"
+    }
+  ],
+  "tmv-field:d5bf013adfd33e9d86a6f665": [
+    {
+      "mapping_id": "ef-column:9e61659f21c12510bd57165d",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+      "column": "previous_amount",
+      "expression": "b.Property<decimal>(\"PreviousAmount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"previous_amount\")",
+      "original_record_pointer": "/99"
+    }
+  ],
+  "tmv-field:94fe510107a98a6ad4b5395c": [
+    {
+      "mapping_id": "csharp-event:ee152ccaa4b63df6a7dbc6b0",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountId",
+      "expression": "AccountId = accountProfile.AccountId",
+      "original_record_pointer": "/100"
+    }
+  ],
+  "tmv-field:b8cb77d4945ac153c7dbca67": [
+    {
+      "mapping_id": "csharp-event:4733e4698fb9ce73601224f1",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountCreatedUserId",
+      "expression": "AccountCreatedUserId = accountProfile.AccountCreatedUserId",
+      "original_record_pointer": "/101"
+    }
+  ],
+  "tmv-field:fc713904a23ca053546d7da5": [
+    {
+      "mapping_id": "csharp-event:cebe0e3f1ba180c87ecbb86f",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountOrganisationUnitId",
+      "expression": "AccountOrganisationUnitId = accountProfile.AccountOrganisationUnitId ?? string.Empty",
+      "original_record_pointer": "/102"
+    }
+  ],
+  "tmv-field:28d636a06ba2e27fc3e0b5ba": [
+    {
+      "mapping_id": "csharp-event:9a8ccff0d324e4cb528488ed",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountName",
+      "expression": "AccountName = accountProfile.Name",
+      "original_record_pointer": "/103"
+    }
+  ],
+  "tmv-field:1d697f0be48cd7030ac037c9": [
+    {
+      "mapping_id": "csharp-event:ea1522497677e2b999cfc1cb",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AlternateAccountName",
+      "expression": "AlternateAccountName = accountProfile.AlternateName",
+      "original_record_pointer": "/104"
+    }
+  ],
+  "tmv-field:1d0c5c9ae92804aa99f0153a": [
+    {
+      "mapping_id": "csharp-event:b782b26f88df65f0ea021988",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountIdentifications",
+      "expression": "AccountIdentifications = accountProfile.Identifiers\n                .Where(identifier =>\n                    identifier.AccountIdentificationType is not ProfileKeys.Details\n                        .BaseAccountNumber)\n                .Select(identifier =>\n                    new AsyncAPI.AccountIdentifications\n                    {\n                        AccountIdentificationType =\n                            GetAccountIdentificationType(identifier.AccountIdentificationType),\n                        AccountIdentification = identifier.AccountIdentification\n                    })\n                .ToList()",
+      "original_record_pointer": "/105"
+    },
+    {
+      "mapping_id": "csharp-event:008e7c9e96df47511bc7bdc9",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountIdentifications",
+      "expression": "AccountIdentifications = accountProfile.Identifiers\n                .Where(identifier =>\n                    identifier.AccountIdentificationType is not ProfileKeys.Details\n                        .BaseAccountNumber)\n                .Select(identifier =>\n                    new AsyncAPI.AccountIdentifications\n                    {\n                        AccountIdentificationType =\n                            GetAccountIdentificationType(identifier.AccountIdentificationType),\n                        AccountIdentification = identifier.AccountIdentification\n                    })\n                .ToList()",
+      "original_record_pointer": "/106"
+    }
+  ],
+  "tmv-field:1e666e193930839e977d6c79": [
+    {
+      "mapping_id": "csharp-event:24e7d23b36699b714509b32b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountStatus",
+      "expression": "AccountStatus = AccountStatusHelper.AccountStatusFromString(accountProfile.Status)",
+      "original_record_pointer": "/107"
+    }
+  ],
+  "tmv-field:adfa5ac545f481b5b47b0554": [
+    {
+      "mapping_id": "csharp-event:d86673fb79e8fd30f5ff2589",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountTSide",
+      "expression": "AccountTSide = GetAccountTSide(accountProfile.TSide)",
+      "original_record_pointer": "/108"
+    }
+  ],
+  "tmv-field:abb887d4496f80b88fc739eb": [
+    {
+      "mapping_id": "csharp-event:d99b8c0efbfb67ab92fa18f1",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "MinimumNumberOfAuthoriser",
+      "expression": "MinimumNumberOfAuthoriser = accountProfile.MinimumNumberOfAuthoriser ?? string.Empty",
+      "original_record_pointer": "/109"
+    }
+  ],
+  "tmv-field:9d4f7445658214b3309325da": [
+    {
+      "mapping_id": "csharp-event:d562bdf384b7624d29beeb47",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountCreatedDateTime",
+      "expression": "AccountCreatedDateTime = accountProfile.Created ??\n                throw new ArgumentNullException($\"Source Created time is empty for account {accountProfile.AccountId}\")",
+      "original_record_pointer": "/110"
+    }
+  ],
+  "tmv-field:43917afcd95a9b9f5ba29ad3": [
+    {
+      "mapping_id": "csharp-event:d081dd6c27001496ed4736ce",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountOpenedDateTime",
+      "expression": "AccountOpenedDateTime = accountProfile.Opened",
+      "original_record_pointer": "/111"
+    }
+  ],
+  "tmv-field:54c10d7d679de80a88505a4d": [
+    {
+      "mapping_id": "csharp-event:9dc2a9810c4659adf16caca8",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountClosedDateTime",
+      "expression": "AccountClosedDateTime = accountProfile.Closed",
+      "original_record_pointer": "/112"
+    }
+  ],
+  "tmv-field:f43c84b45ecf81e5de06b59a": [
+    {
+      "mapping_id": "csharp-event:0ce2e472fcb39aa219c13c7f",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountClosureReason",
+      "expression": "AccountClosureReason = accountProfile.AccountClosureReason",
+      "original_record_pointer": "/113"
+    }
+  ],
+  "tmv-field:6bea0da77f907e9cb620aeb7": [
+    {
+      "mapping_id": "csharp-event:61dae1b683aeb673648d5d3d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship",
+      "expression": "BankingRelationship = new AsyncAPI.BankingRelationship\n            {\n                BankingRelationshipId = accountProfile.BankingRelationship.BankingRelationshipId ??\n                    string.Empty,\n                BankingRelationshipType =\n                    AsyncAPI.BankingRelationshipType.PersonalCustomerRelationship,\n                NominatedTaxPartyId = accountProfile.BankingRelationship.NominatedTaxPartyId,\n                PartyIds = accountProfile.BankingRelationship.PartyIds\n            }",
+      "original_record_pointer": "/114"
+    },
+    {
+      "mapping_id": "csharp-event:cfd77f09300f5b790590f4c2",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship",
+      "expression": "BankingRelationship = new AsyncAPI.BankingRelationship\n            {\n                BankingRelationshipId = accountProfile.BankingRelationship.BankingRelationshipId ??\n                    string.Empty,\n                BankingRelationshipType =\n                    AsyncAPI.BankingRelationshipType.PersonalCustomerRelationship,\n                NominatedTaxPartyId = accountProfile.BankingRelationship.NominatedTaxPartyId,\n                PartyIds = accountProfile.BankingRelationship.PartyIds\n            }",
+      "original_record_pointer": "/115"
+    },
+    {
+      "mapping_id": "csharp-event:16330ee2933a2a6cb0a998e6",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationship",
+      "expression": "BankingRelationship = new AsyncAPI.BankingRelationship\n            {\n                BankingRelationshipId = accountProfile.BankingRelationship.BankingRelationshipId ??\n                    string.Empty,\n                BankingRelationshipType =\n                    AsyncAPI.BankingRelationshipType.PersonalCustomerRelationship,\n                NominatedTaxPartyId = accountProfile.BankingRelationship.NominatedTaxPartyId,\n                PartyIds = accountProfile.BankingRelationship.PartyIds\n            }",
+      "original_record_pointer": "/116"
+    }
+  ],
+  "tmv-field:5c43323894833e1c96133aab": [
+    {
+      "mapping_id": "csharp-event:25c5c1e13aecb7282cf2126d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/117"
+    },
+    {
+      "mapping_id": "csharp-event:7d359e3df21fef9360679970",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/118"
+    },
+    {
+      "mapping_id": "csharp-event:58b84beba9c970850750bf60",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/119"
+    },
+    {
+      "mapping_id": "csharp-event:05d313778f8416694b722d8c",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/120"
+    },
+    {
+      "mapping_id": "csharp-event:3cdd1d8d0e7c281f73448bf3",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/121"
+    },
+    {
+      "mapping_id": "csharp-event:a0dca4ca4f581830e723305b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/122"
+    },
+    {
+      "mapping_id": "csharp-event:aa0750f60efd7f2702119bd7",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacility",
+      "expression": "ProductFacility = new AsyncAPI.ProductFacility\n            {\n                ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId,\n                BankingProductId = accountProfile.ProductFacility.BankingProductId,\n                BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId,\n                BankingProductCode = accountProfile.ProductFacility.BankingProductCode,\n                LimitArrangements = [],\n                InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }\n            }",
+      "original_record_pointer": "/123"
+    }
+  ],
+  "tmv-field:03f11f38ea948a420d148b69": [
+    {
+      "mapping_id": "csharp-event:51cab37f4dfddc92d3de959b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate",
+      "expression": "DomesticTaxRate = new AsyncAPI.DomesticTaxRate\n            {\n                DomesticTaxType = string.IsNullOrEmpty(accountProfile.DomesticTaxRate.DomesticTaxType) ? null : GetDomesticTaxType(accountProfile.DomesticTaxRate.DomesticTaxType),\n                RateValue = accountProfile.DomesticTaxRate.RateValue,\n                CountryAlpha3Code = accountProfile.DomesticTaxRate.CountryAlpha3Code\n            }",
+      "original_record_pointer": "/124"
+    },
+    {
+      "mapping_id": "csharp-event:4211ffedcad02e8367a9dc06",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate",
+      "expression": "DomesticTaxRate = new AsyncAPI.DomesticTaxRate\n            {\n                DomesticTaxType = string.IsNullOrEmpty(accountProfile.DomesticTaxRate.DomesticTaxType) ? null : GetDomesticTaxType(accountProfile.DomesticTaxRate.DomesticTaxType),\n                RateValue = accountProfile.DomesticTaxRate.RateValue,\n                CountryAlpha3Code = accountProfile.DomesticTaxRate.CountryAlpha3Code\n            }",
+      "original_record_pointer": "/125"
+    },
+    {
+      "mapping_id": "csharp-event:d9bdda11dd255d02b6976f54",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxRate",
+      "expression": "DomesticTaxRate = new AsyncAPI.DomesticTaxRate\n            {\n                DomesticTaxType = string.IsNullOrEmpty(accountProfile.DomesticTaxRate.DomesticTaxType) ? null : GetDomesticTaxType(accountProfile.DomesticTaxRate.DomesticTaxType),\n                RateValue = accountProfile.DomesticTaxRate.RateValue,\n                CountryAlpha3Code = accountProfile.DomesticTaxRate.CountryAlpha3Code\n            }",
+      "original_record_pointer": "/126"
+    }
+  ],
+  "tmv-field:b16af9baf6efb5027b010215": [
+    {
+      "mapping_id": "csharp-event:fd6973d0d21f10e002f8c17d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountCurrencies",
+      "expression": "AccountCurrencies = accountProfile.AccountCurrencies.Select(accountCurrency =>\n                    new AsyncAPI.AccountCurrencies\n                    {\n                        AccountCurrency = GetAccountCurrency(accountCurrency.Currency),\n                        AccountCurrencyType = GetAccountCurrencyType(accountCurrency.CurrencyType)\n                    })\n                .ToList()",
+      "original_record_pointer": "/127"
+    },
+    {
+      "mapping_id": "csharp-event:bb4656cd6d8a0b9d91a7da5d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountCurrencies",
+      "expression": "AccountCurrencies = accountProfile.AccountCurrencies.Select(accountCurrency =>\n                    new AsyncAPI.AccountCurrencies\n                    {\n                        AccountCurrency = GetAccountCurrency(accountCurrency.Currency),\n                        AccountCurrencyType = GetAccountCurrencyType(accountCurrency.CurrencyType)\n                    })\n                .ToList()",
+      "original_record_pointer": "/128"
+    }
+  ],
+  "tmv-field:1058ec9dbc153ecd818b222d": [
+    {
+      "mapping_id": "csharp-event:5a398ae27398819ec5932c2b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountFreezeDescription",
+      "expression": "AccountFreezeDescription = accountProfile.AccountFreezeDetails.FreezeDescription",
+      "original_record_pointer": "/129"
+    }
+  ],
+  "tmv-field:28072056d338d2b4526cd3d7": [
+    {
+      "mapping_id": "csharp-event:1445273a4d8fb6eff226cccd",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountFreezeType",
+      "expression": "AccountFreezeType = accountProfile.AccountFreezeDetails.FreezeType",
+      "original_record_pointer": "/130"
+    }
+  ],
+  "tmv-field:6ba68aef6a67cb9efe4accf4": [
+    {
+      "mapping_id": "csharp-event:1675ff912bdc514baf3d229d",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountFrozenDateTime",
+      "expression": "AccountFrozenDateTime = accountProfile.AccountFreezeDetails.Effective",
+      "original_record_pointer": "/131"
+    }
+  ],
+  "tmv-field:3d3152fd967c06c2138251d9": [
+    {
+      "mapping_id": "csharp-event:effc655b344bee252aead01e",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountIdentificationType",
+      "expression": "AccountIdentificationType =\n                            GetAccountIdentificationType(identifier.AccountIdentificationType)",
+      "original_record_pointer": "/132"
+    }
+  ],
+  "tmv-field:d40eb7598fba165c4bbfc092": [
+    {
+      "mapping_id": "csharp-event:da2fdbae072b736f93dd3a3b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountIdentification",
+      "expression": "AccountIdentification = identifier.AccountIdentification",
+      "original_record_pointer": "/133"
+    }
+  ],
+  "tmv-field:0ee40df0f1031e45d9d85a08": [
+    {
+      "mapping_id": "csharp-event:242fd776c2e35cf91159e655",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingRelationshipId",
+      "expression": "BankingRelationshipId = accountProfile.BankingRelationship.BankingRelationshipId ??\n                    string.Empty",
+      "original_record_pointer": "/134"
+    }
+  ],
+  "tmv-field:57b9f313928903dc9adea9f4": [
+    {
+      "mapping_id": "csharp-event:65ad0034f5469a6bc1c61ddf",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "NominatedTaxPartyId",
+      "expression": "NominatedTaxPartyId = accountProfile.BankingRelationship.NominatedTaxPartyId",
+      "original_record_pointer": "/135"
+    }
+  ],
+  "tmv-field:9e2ae99b03edde274955b23f": [
+    {
+      "mapping_id": "csharp-event:2fd3d9c59c4640f6e60fe7e0",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "PartyIds",
+      "expression": "PartyIds = accountProfile.BankingRelationship.PartyIds",
+      "original_record_pointer": "/136"
+    }
+  ],
+  "tmv-field:c38332a1675eb37c76662808": [
+    {
+      "mapping_id": "csharp-event:cfd367ffe74d42004fbc9f46",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ProductFacilityId",
+      "expression": "ProductFacilityId = accountProfile.ProductFacility.ProductFacilityId",
+      "original_record_pointer": "/137"
+    }
+  ],
+  "tmv-field:8e954efb9c6785fe85e2904a": [
+    {
+      "mapping_id": "csharp-event:a5548e165f5f0277d88293b0",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingProductId",
+      "expression": "BankingProductId = accountProfile.ProductFacility.BankingProductId",
+      "original_record_pointer": "/138"
+    }
+  ],
+  "tmv-field:cc278c50301fe44d7cf61716": [
+    {
+      "mapping_id": "csharp-event:4c71b5be91b53169e36cfed0",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingProductVersionId",
+      "expression": "BankingProductVersionId = accountProfile.ProductFacility.BankingProductVersionId",
+      "original_record_pointer": "/139"
+    }
+  ],
+  "tmv-field:d81f943f1df8cdf55e757ad0": [
+    {
+      "mapping_id": "csharp-event:accb51199d076c1e297491a9",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "BankingProductCode",
+      "expression": "BankingProductCode = accountProfile.ProductFacility.BankingProductCode",
+      "original_record_pointer": "/140"
+    }
+  ],
+  "tmv-field:eb616232b3acf4a9c418ed78": [
+    {
+      "mapping_id": "csharp-event:ba71296ba5f08dac57e7072c",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "InterestArrangement",
+      "expression": "InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }",
+      "original_record_pointer": "/141"
+    },
+    {
+      "mapping_id": "csharp-event:039e9ba64c13ea0aa8c21a45",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "InterestArrangement",
+      "expression": "InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }",
+      "original_record_pointer": "/142"
+    },
+    {
+      "mapping_id": "csharp-event:716594021f89d532d331c22e",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "InterestArrangement",
+      "expression": "InterestArrangement = new AsyncAPI.InterestArrangement\n                {\n                    Rate = accountProfile.ProductFacility.InterestRate,\n                    ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom,\n                    RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId\n                }",
+      "original_record_pointer": "/143"
+    }
+  ],
+  "tmv-field:b4494b9d1cbe556f92e93ed7": [
+    {
+      "mapping_id": "csharp-event:6e2fb7e72c0350e0f5c29142",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "Rate",
+      "expression": "Rate = accountProfile.ProductFacility.InterestRate",
+      "original_record_pointer": "/144"
+    }
+  ],
+  "tmv-field:f6adf7413099e852d180b6fd": [
+    {
+      "mapping_id": "csharp-event:3846fdded131dde03c7001b1",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "ValidFrom",
+      "expression": "ValidFrom = accountProfile.ProductFacility.InterestRateValidFrom",
+      "original_record_pointer": "/145"
+    }
+  ],
+  "tmv-field:551bd0f4477f2c18784ebe9b": [
+    {
+      "mapping_id": "csharp-event:6bddd96be06e06bb632bcc04",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "RatePlanChangeId",
+      "expression": "RatePlanChangeId = accountProfile.ProductFacility.InterestRatePlanChangeId",
+      "original_record_pointer": "/146"
+    }
+  ],
+  "tmv-field:0f5914d626db13ee9076d911": [
+    {
+      "mapping_id": "csharp-event:49012d02d3f3069aa00d3c7c",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "DomesticTaxType",
+      "expression": "DomesticTaxType = string.IsNullOrEmpty(accountProfile.DomesticTaxRate.DomesticTaxType) ? null : GetDomesticTaxType(accountProfile.DomesticTaxRate.DomesticTaxType)",
+      "original_record_pointer": "/147"
+    }
+  ],
+  "tmv-field:b013b29bb90cc06b5cf41929": [
+    {
+      "mapping_id": "csharp-event:d41bac7c46e86331eb7c88d3",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "RateValue",
+      "expression": "RateValue = accountProfile.DomesticTaxRate.RateValue",
+      "original_record_pointer": "/148"
+    }
+  ],
+  "tmv-field:244c80cf0a27f4ecc448ab1d": [
+    {
+      "mapping_id": "csharp-event:42a9b5600cf5fa9c9510800f",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "CountryAlpha3Code",
+      "expression": "CountryAlpha3Code = accountProfile.DomesticTaxRate.CountryAlpha3Code",
+      "original_record_pointer": "/149"
+    }
+  ],
+  "tmv-field:73b4081ae5252e96b1b99aa4": [
+    {
+      "mapping_id": "csharp-event:fa2b0b1a13739b534fbbe52b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountCurrency",
+      "expression": "AccountCurrency = GetAccountCurrency(accountCurrency.Currency)",
+      "original_record_pointer": "/150"
+    }
+  ],
+  "tmv-field:706f69dc067824ef69389371": [
+    {
+      "mapping_id": "csharp-event:599184a12245f2d258a6885b",
+      "role": "target",
+      "source_path": "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+      "column": "AccountCurrencyType",
+      "expression": "AccountCurrencyType = GetAccountCurrencyType(accountCurrency.CurrencyType)",
+      "original_record_pointer": "/151"
+    }
+  ],
+  "tmv-field:8f499fac578104f033e70d0b": [
+    {
+      "mapping_id": "csharp-event:5ccc4d88931f55323ddd7e0f",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+      "column": "AccountBalanceValue",
+      "expression": "AccountBalanceValue = balance.Amount.ToString(CultureInfo.InvariantCulture)",
+      "original_record_pointer": "/152"
+    }
+  ],
+  "tmv-field:166682b4c066af0a2abdd348": [
+    {
+      "mapping_id": "csharp-event:ea2a9df47c3595f39a8738aa",
+      "role": "target",
+      "source_path": "kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+      "column": "AccountBalanceCurrencyCode",
+      "expression": "AccountBalanceCurrencyCode = balance.Currency",
+      "original_record_pointer": "/153"
+    }
+  ]
+}

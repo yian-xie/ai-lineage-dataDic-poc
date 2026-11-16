@@ -1,0 +1,85 @@
+{
+  "schema_version": 2,
+  "run_id": "current",
+  "stage": "04-column-lineage",
+  "attempt": "attempt-001",
+  "attempt_number": 1,
+  "status": "passed",
+  "started_at": "2026-11-13T01:06:59.159454+00:00",
+  "package_version": "0.1.0",
+  "runtime": {
+    "python": "3.13.14",
+    "platform": "win32"
+  },
+  "parameters": {
+    "scope": "account-profile-and-eod-balance"
+  },
+  "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\04-column-lineage.json",
+  "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\04-column-lineage.log",
+  "output_root": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account",
+  "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\04-column-lineage",
+  "inputs": [
+    {
+      "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\column_lineage.json",
+      "kind": "file",
+      "bytes": 5199669,
+      "sha256": "7419540c89948c42e80c2de7266772a3cdad13dcc024bb86719e624313bf3ccf"
+    },
+    {
+      "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\column_lineage_gaps.json",
+      "kind": "file",
+      "bytes": 209557,
+      "sha256": "695cff0ed585016d1a3352df45945694f6e713f6d34e6b478a8eeccbb8b89849"
+    },
+    {
+      "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\cross_repository_field_lineage.json",
+      "kind": "file",
+      "bytes": 357912,
+      "sha256": "ce49f4322327f9ab139dadc3b2657fddf2d88756b3189b64fea94dd1ee168e7a"
+    }
+  ],
+  "implementation": {
+    "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\src\\lineage_poc",
+    "kind": "directory",
+    "sha256": "1808592f7f4e5129feb9f87beee8211f2615892c94a04573dac25594cf3ca099",
+    "file_count": 99
+  },
+  "summary": {
+    "status": "passed",
+    "column_records": 154,
+    "gaps": 65,
+    "field_mappings": 38,
+    "table_mappings": 9,
+    "unresolved": 21,
+    "candidate_routes": 1
+  },
+  "outputs": {
+    "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\04-column-lineage",
+    "kind": "directory",
+    "files": [
+      {
+        "path": "column_lineage.json",
+        "bytes": 305403,
+        "sha256": "c81c8dd09705a77d7442bb87d7bf0a86ea3407c84e43169ae4896943ad41a879"
+      },
+      {
+        "path": "column_lineage_gaps.json",
+        "bytes": 42041,
+        "sha256": "8d5a4fcfbde8c36e68a47c0c1e0f7c953400e25052eba3f2639e915ed0c30573"
+      },
+      {
+        "path": "cross_repository_field_lineage.json",
+        "bytes": 118155,
+        "sha256": "b2dffc7bf47df05b38ae68721a6c883f32b1f183a0a793be807fb9145ab55cc5"
+      },
+      {
+        "path": "manifest.json",
+        "bytes": 489,
+        "sha256": "ca2985e46ab00994c814cd19facdbfe50302ad5cea62223e167cab71139eb83e"
+      }
+    ],
+    "sha256": "9d09d69c34b72c78635e13216f2cc87a556aa4def8be8bd7476fa9a3c6b0e42a"
+  },
+  "completed_at": "2026-11-13T01:06:59.507329+00:00",
+  "duration_seconds": 0.317
+}

@@ -1,0 +1,1967 @@
+{
+  "scope": "Account Profile and End-of-Day Account Balance field crosswalk",
+  "runtime_verified": false,
+  "mappings": [
+    {
+      "mapping_id": "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:9f56a331c5ba5a69788f2d13",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountId",
+      "event_json_path": "data.afterState.accountId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "raw_column": "ACCOUNTID",
+      "raw_sql_mapping_id": "tmv-column:9f56a331c5ba5a69788f2d13",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+          "column": "ACCOUNTID",
+          "path": [
+            "tmv-column:3f2c443ba82a25eda9229bd5"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:8a8a1b284a83c349bfbe4653",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountId",
+      "event_json_path": "data.afterState.accountId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "raw_column": "ACCOUNTID",
+      "raw_sql_mapping_id": "tmv-column:8a8a1b284a83c349bfbe4653",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+          "column": "ACCOUNTID",
+          "path": [
+            "tmv-column:c53f2fec895343e74895e2b5"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:9d58a5b9d001436d4d53027f",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountId",
+      "event_json_path": "data.afterState.accountId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+      "raw_column": "ACCOUNTID",
+      "raw_sql_mapping_id": "tmv-column:9d58a5b9d001436d4d53027f",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+          "column": "ACCOUNTID",
+          "path": [
+            "tmv-column:206cfe5559e880a00170cad5"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:04ed0166dbd2d7327506a381",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountId",
+      "event_json_path": "data.afterState.accountId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_column": "ACCOUNTID",
+      "raw_sql_mapping_id": "tmv-column:04ed0166dbd2d7327506a381",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+          "column": "ACCOUNTID",
+          "path": [
+            "tmv-column:4ffaa8bca053665acaf0091e"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:0510f57af3c70c0ad054121d",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountId",
+      "event_json_path": "data.afterState.accountId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_column": "ACCOUNTID",
+      "raw_sql_mapping_id": "tmv-column:0510f57af3c70c0ad054121d",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+          "column": "ACCOUNTID",
+          "path": [
+            "tmv-column:1ab066029bf8a5610a7f9d85"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:54f3f33075061d07ed61fa1e",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountId",
+      "event_json_path": "data.afterState.accountId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTID",
+      "raw_sql_mapping_id": "tmv-column:54f3f33075061d07ed61fa1e",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountId') AS VARCHAR) AS ACCOUNTID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTID",
+          "path": [
+            "tmv-column:c7bf646a0e1c65370065a148"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:4733e4698fb9ce73601224f1:tmv-column:15e21a3964790eecf4876ff0",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountCreatedUserId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_created_user_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_created_user_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountCreatedUserId",
+      "event_json_path": "data.afterState.accountCreatedUserId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTCREATEDUSERID",
+      "raw_sql_mapping_id": "tmv-column:15e21a3964790eecf4876ff0",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountCreatedUserId') AS VARCHAR) AS ACCOUNTCREATEDUSERID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTCREATEDUSERID",
+          "path": [
+            "tmv-column:bdc3347673fea34ece364243"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:cebe0e3f1ba180c87ecbb86f:tmv-column:835ecfb414ebb8f7b142770c",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountOrganisationUnitId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_organisation_unit_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_organisation_unit_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountOrganisationUnitId",
+      "event_json_path": "data.afterState.accountOrganisationUnitId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTORGANISATIONUNITID",
+      "raw_sql_mapping_id": "tmv-column:835ecfb414ebb8f7b142770c",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountOrganisationUnitId') AS VARCHAR) AS ACCOUNTORGANISATIONUNITID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTORGANISATIONUNITID",
+          "path": [
+            "tmv-column:6d2b16bc9d84a24dbf06a307"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:9a8ccff0d324e4cb528488ed:tmv-column:798be29db6009ab41162ede3",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "Name",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "name",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "name"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountName",
+      "event_json_path": "data.afterState.accountName",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTNAME",
+      "raw_sql_mapping_id": "tmv-column:798be29db6009ab41162ede3",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountName') AS VARCHAR) AS ACCOUNTNAME",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTNAME",
+          "path": [
+            "tmv-column:e813a02194fdf24cea081108"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:ea1522497677e2b999cfc1cb:tmv-column:9d7963177836d08c51116e08",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AlternateName",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "alternate_name",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "alternate_name"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AlternateAccountName",
+      "event_json_path": "data.afterState.alternateAccountName",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ALTERNATEACCOUNTNAME",
+      "raw_sql_mapping_id": "tmv-column:9d7963177836d08c51116e08",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.alternateAccountName') AS VARCHAR) AS ALTERNATEACCOUNTNAME",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ALTERNATEACCOUNTNAME",
+          "path": [
+            "tmv-column:20d69611329fe8e69168debd"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:24e7d23b36699b714509b32b:tmv-column:e7de44054cbc64d3b2c494e0",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "Status",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "status",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "status"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountStatus",
+      "event_json_path": "data.afterState.accountStatus",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTSTATUS",
+      "raw_sql_mapping_id": "tmv-column:e7de44054cbc64d3b2c494e0",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountStatus') AS VARCHAR) AS ACCOUNTSTATUS",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTSTATUS",
+          "path": [
+            "tmv-column:747fa34e6f874a227e18e845"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:d86673fb79e8fd30f5ff2589:tmv-column:29a15b50515bb748de39fb10",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "TSide",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "t_side",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "t_side"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountTSide",
+      "event_json_path": "data.afterState.accountTSide",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTTSIDE",
+      "raw_sql_mapping_id": "tmv-column:29a15b50515bb748de39fb10",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountTSide') AS VARCHAR) AS ACCOUNTTSIDE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTTSIDE",
+          "path": [
+            "tmv-column:dbe244eac789df626c50d667"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:d99b8c0efbfb67ab92fa18f1:tmv-column:cf2bdbe1072ee4db73c20fa3",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "MinimumNumberOfAuthoriser",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "minimum_number_of_authoriser",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "minimum_number_of_authoriser"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "MinimumNumberOfAuthoriser",
+      "event_json_path": "data.afterState.minimumNumberOfAuthoriser",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "MINIMUMNUMBEROFAUTHORISER",
+      "raw_sql_mapping_id": "tmv-column:cf2bdbe1072ee4db73c20fa3",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.minimumNumberOfAuthoriser') AS VARCHAR) AS MINIMUMNUMBEROFAUTHORISER",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "MINIMUMNUMBEROFAUTHORISER",
+          "path": [
+            "tmv-column:5839f7d90885e4a117da60a9"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:d562bdf384b7624d29beeb47:tmv-column:14514044954b625769ef09ca",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "Created",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "created",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "created"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountCreatedDateTime",
+      "event_json_path": "data.afterState.accountCreatedDateTime",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTCREATEDDATETIME",
+      "raw_sql_mapping_id": "tmv-column:14514044954b625769ef09ca",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountCreatedDateTime') AS TIMESTAMPTZ) AS ACCOUNTCREATEDDATETIME",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTCREATEDDATETIME",
+          "path": [
+            "tmv-column:e7fac300ceddb2164470c0a1"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:d081dd6c27001496ed4736ce:tmv-column:5030e903dbb5fd3747f7c771",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "Opened",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "opened",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "opened"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountOpenedDateTime",
+      "event_json_path": "data.afterState.accountOpenedDateTime",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTOPENEDDATETIME",
+      "raw_sql_mapping_id": "tmv-column:5030e903dbb5fd3747f7c771",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountOpenedDateTime') AS TIMESTAMPTZ) AS ACCOUNTOPENEDDATETIME",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTOPENEDDATETIME",
+          "path": [
+            "tmv-column:1ca2b47e3cf96f911725c127"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:9dc2a9810c4659adf16caca8:tmv-column:48f3abf7416bfc91b7b0df52",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "Closed",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "closed",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "closed"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountClosedDateTime",
+      "event_json_path": "data.afterState.accountClosedDateTime",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTCLOSEDDATETIME",
+      "raw_sql_mapping_id": "tmv-column:48f3abf7416bfc91b7b0df52",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountClosedDateTime') AS TIMESTAMPTZ) AS ACCOUNTCLOSEDDATETIME",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTCLOSEDDATETIME",
+          "path": [
+            "tmv-column:b9a523ae06c04316ecd09307"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:0ce2e472fcb39aa219c13c7f:tmv-column:e1e9e1b4aed73cb6e105351d",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountClosureReason",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_closure_reason",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_closure_reason"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountClosureReason",
+      "event_json_path": "data.afterState.accountClosureReason",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTCLOSUREREASON",
+      "raw_sql_mapping_id": "tmv-column:e1e9e1b4aed73cb6e105351d",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountClosureReason') AS VARCHAR) AS ACCOUNTCLOSUREREASON",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTCLOSUREREASON",
+          "path": [
+            "tmv-column:847690ab4d13544264bd614f"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:5a398ae27398819ec5932c2b:tmv-column:04e7cbbaa90910053593996a",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountFreezeDetails.FreezeDescription",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_freeze_details_freeze_description",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_freeze_details_freeze_description"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountFreezeDescription",
+      "event_json_path": "data.afterState.accountFreezeDescription",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTFREEZEDESCRIPTION",
+      "raw_sql_mapping_id": "tmv-column:04e7cbbaa90910053593996a",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountFreezeDescription') AS VARCHAR) AS ACCOUNTFREEZEDESCRIPTION",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTFREEZEDESCRIPTION",
+          "path": [
+            "tmv-column:990ed6f4f7a052f2af28c5d9"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:1445273a4d8fb6eff226cccd:tmv-column:8c03de1ae127a15604b45efa",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountFreezeDetails.FreezeType",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_freeze_details_freeze_type",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_freeze_details_freeze_type"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountFreezeType",
+      "event_json_path": "data.afterState.accountFreezeType",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTFREEZETYPE",
+      "raw_sql_mapping_id": "tmv-column:8c03de1ae127a15604b45efa",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountFreezeType') AS VARCHAR) AS ACCOUNTFREEZETYPE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTFREEZETYPE",
+          "path": [
+            "tmv-column:0a80403452b36db5a43eff68"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:1675ff912bdc514baf3d229d:tmv-column:e60711c009d39f57f3a3b1f3",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "AccountFreezeDetails.Effective",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "account_freeze_details_effective",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "account_freeze_details_effective"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountFrozenDateTime",
+      "event_json_path": "data.afterState.accountFrozenDateTime",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_column": "ACCOUNTFROZENDATETIME",
+      "raw_sql_mapping_id": "tmv-column:e60711c009d39f57f3a3b1f3",
+      "raw_sql_expression": "CAST(GET_PATH(data, 'data.afterState.accountFrozenDateTime') AS TIMESTAMPTZ) AS ACCOUNTFROZENDATETIME",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+          "column": "ACCOUNTFROZENDATETIME",
+          "path": [
+            "tmv-column:82aada45b42e372af6a36e33"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__profile_v1/v_account_profile_topic_v1__profile_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:effc655b344bee252aead01e:tmv-column:65654f0d5f743a14a1a955e3",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfileIdentifier",
+      "source_property": "AccountIdentificationType",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+      "source_database_relation": "profile.account_profile_identifier",
+      "source_database_column": "account_identification_type",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+        "account_identification_type"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentifications",
+      "event_property": "AccountIdentificationType",
+      "event_json_path": "data.afterState.accountIdentifications.[].accountIdentificationType",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "raw_column": "ACCOUNTIDENTIFICATIONTYPE",
+      "raw_sql_mapping_id": "tmv-column:65654f0d5f743a14a1a955e3",
+      "raw_sql_expression": "CAST(GET_PATH(ai.value, 'accountIdentificationType') AS VARCHAR) AS ACCOUNTIDENTIFICATIONTYPE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+          "column": "ACCOUNTIDENTIFICATIONTYPE",
+          "path": [
+            "tmv-column:0738b45d559b8a286a714b50"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:da2fdbae072b736f93dd3a3b:tmv-column:e7429882c05be24ca03edd01",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfileIdentifier",
+      "source_property": "AccountIdentification",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+      "source_database_relation": "profile.account_profile_identifier",
+      "source_database_column": "account_identification",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+        "account_identification"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentifications",
+      "event_property": "AccountIdentification",
+      "event_json_path": "data.afterState.accountIdentifications.[].accountIdentification",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "raw_column": "ACCOUNTIDENTIFICATION",
+      "raw_sql_mapping_id": "tmv-column:e7429882c05be24ca03edd01",
+      "raw_sql_expression": "CAST(GET_PATH(ai.value, 'accountIdentification') AS VARCHAR) AS ACCOUNTIDENTIFICATION",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+          "column": "ACCOUNTIDENTIFICATION",
+          "path": [
+            "tmv-column:c5409530c2572054ecffd6b6"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountIdentification_v1/v_account_profile_topic_v1__accountIdentification_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:242fd776c2e35cf91159e655:tmv-column:ff1776c76d037f5a3afa955d",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "BankingRelationship.BankingRelationshipId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "banking_relationship_banking_relationship_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "banking_relationship_banking_relationship_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.BankingRelationship",
+      "event_property": "BankingRelationshipId",
+      "event_json_path": "data.afterState.bankingRelationship.bankingRelationshipId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+      "raw_column": "BANKINGRELATIONSHIPID",
+      "raw_sql_mapping_id": "tmv-column:ff1776c76d037f5a3afa955d",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.bankingRelationship.bankingRelationshipId') AS VARCHAR) AS BANKINGRELATIONSHIPID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+          "column": "BANKINGRELATIONSHIPID",
+          "path": [
+            "tmv-column:ee10b688ca43a2b5b19b58f8"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:65ad0034f5469a6bc1c61ddf:tmv-column:c9fd8350fda82baf622e99ca",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "BankingRelationship.NominatedTaxPartyId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "banking_relationship_nominated_tax_party_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "banking_relationship_nominated_tax_party_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.BankingRelationship",
+      "event_property": "NominatedTaxPartyId",
+      "event_json_path": "data.afterState.bankingRelationship.nominatedTaxPartyId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+      "raw_column": "NOMINATEDTAXPARTYID",
+      "raw_sql_mapping_id": "tmv-column:c9fd8350fda82baf622e99ca",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.bankingRelationship.nominatedTaxPartyId') AS VARCHAR) AS NOMINATEDTAXPARTYID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+          "column": "NOMINATEDTAXPARTYID",
+          "path": [
+            "tmv-column:758d37195df7f4ea40a5b269"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__bankingRelationship_v1/v_account_profile_topic_v1__bankingRelationship_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:cfd367ffe74d42004fbc9f46:tmv-column:f016fb2e46c9f09edd0da51f",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "ProductFacility.ProductFacilityId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "product_facility_product_facility_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "product_facility_product_facility_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "event_property": "ProductFacilityId",
+      "event_json_path": "data.afterState.productFacility.productFacilityId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_column": "PRODUCTFACILITYID",
+      "raw_sql_mapping_id": "tmv-column:f016fb2e46c9f09edd0da51f",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.productFacilityId') AS VARCHAR) AS PRODUCTFACILITYID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+          "column": "PRODUCTFACILITYID",
+          "path": [
+            "tmv-column:7b94f46ea071130d4cba944a"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:a5548e165f5f0277d88293b0:tmv-column:9d02dce256a8325fbe436a66",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "ProductFacility.BankingProductId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "product_facility_banking_product_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "product_facility_banking_product_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "event_property": "BankingProductId",
+      "event_json_path": "data.afterState.productFacility.bankingProductId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_column": "BANKINGPRODUCTID",
+      "raw_sql_mapping_id": "tmv-column:9d02dce256a8325fbe436a66",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductId') AS VARCHAR) AS BANKINGPRODUCTID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+          "column": "BANKINGPRODUCTID",
+          "path": [
+            "tmv-column:17895404a3380be8953cc1f3"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:4c71b5be91b53169e36cfed0:tmv-column:03e0e9ab896a66702911869a",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "ProductFacility.BankingProductVersionId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "product_facility_banking_product_version_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "product_facility_banking_product_version_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "event_property": "BankingProductVersionId",
+      "event_json_path": "data.afterState.productFacility.bankingProductVersionId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_column": "BANKINGPRODUCTVERSIONID",
+      "raw_sql_mapping_id": "tmv-column:03e0e9ab896a66702911869a",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductVersionId') AS VARCHAR) AS BANKINGPRODUCTVERSIONID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+          "column": "BANKINGPRODUCTVERSIONID",
+          "path": [
+            "tmv-column:ad7120e83a0e1077f36ca471"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:accb51199d076c1e297491a9:tmv-column:2a5af02b052d1cb570762c82",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "ProductFacility.BankingProductCode",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "product_facility_banking_product_code",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "product_facility_banking_product_code"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "event_property": "BankingProductCode",
+      "event_json_path": "data.afterState.productFacility.bankingProductCode",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_column": "BANKINGPRODUCTCODE",
+      "raw_sql_mapping_id": "tmv-column:2a5af02b052d1cb570762c82",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.bankingProductCode') AS VARCHAR) AS BANKINGPRODUCTCODE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+          "column": "BANKINGPRODUCTCODE",
+          "path": [
+            "tmv-column:5437d15dabab9b6de313c6dc"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:6e2fb7e72c0350e0f5c29142:tmv-column:d7f2d800d7a5edbb9f1589f2",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "ProductFacility.InterestRate",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "product_facility_interest_rate",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "product_facility_interest_rate"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.InterestArrangement",
+      "event_property": "Rate",
+      "event_json_path": "data.afterState.productFacility.interestArrangement.rate",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_column": "INTEREST_ARRANGEMENT_RATE",
+      "raw_sql_mapping_id": "tmv-column:d7f2d800d7a5edbb9f1589f2",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.rate') AS VARCHAR) AS INTEREST_ARRANGEMENT_RATE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+          "column": "INTEREST_ARRANGEMENT_RATE",
+          "path": [
+            "tmv-column:d8e035f33edb86ffc398b6a6"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:3846fdded131dde03c7001b1:tmv-column:d91b64b32adec227f306d5bb",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "ProductFacility.InterestRateValidFrom",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "product_facility_interest_rate_valid_from",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "product_facility_interest_rate_valid_from"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.InterestArrangement",
+      "event_property": "ValidFrom",
+      "event_json_path": "data.afterState.productFacility.interestArrangement.validFrom",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_column": "INTEREST_ARRANGEMENT_VALID_FROM",
+      "raw_sql_mapping_id": "tmv-column:d91b64b32adec227f306d5bb",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.validFrom') AS TIMESTAMPTZ) AS INTEREST_ARRANGEMENT_VALID_FROM",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+          "column": "INTEREST_ARRANGEMENT_VALID_FROM",
+          "path": [
+            "tmv-column:b6603bb6cdc781e313e625c4"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:6bddd96be06e06bb632bcc04:tmv-column:ee432a87fe7401e977e9e555",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "ProductFacility.InterestRatePlanChangeId",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "product_facility_interest_rate_plan_change_id",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "product_facility_interest_rate_plan_change_id"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.InterestArrangement",
+      "event_property": "RatePlanChangeId",
+      "event_json_path": "data.afterState.productFacility.interestArrangement.ratePlanChangeId",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_column": "INTEREST_ARRANGEMENT_RATE_PLAN_CHANGE_ID",
+      "raw_sql_mapping_id": "tmv-column:ee432a87fe7401e977e9e555",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.productFacility.interestArrangement.ratePlanChangeId') AS VARCHAR) AS INTEREST_ARRANGEMENT_RATE_PLAN_CHANGE_ID",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+          "column": "INTEREST_ARRANGEMENT_RATE_PLAN_CHANGE_ID",
+          "path": [
+            "tmv-column:22bb6722b1d94354fd517a3a"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:49012d02d3f3069aa00d3c7c:tmv-column:6042751b00cb4361e7922b4f",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "DomesticTaxRate.DomesticTaxType",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "domestic_tax_rate_domestic_tax_type",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "domestic_tax_rate_domestic_tax_type"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.DomesticTaxRate",
+      "event_property": "DomesticTaxType",
+      "event_json_path": "data.afterState.domesticTaxRate.domesticTaxType",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_column": "DOMESTICTAXTYPE",
+      "raw_sql_mapping_id": "tmv-column:6042751b00cb4361e7922b4f",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.domesticTaxType') AS VARCHAR) AS DOMESTICTAXTYPE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+          "column": "DOMESTICTAXTYPE",
+          "path": [
+            "tmv-column:cac7bbef261d15eecbaa608a"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:d41bac7c46e86331eb7c88d3:tmv-column:e4430f18e499d5e1b52bd6d6",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "DomesticTaxRate.RateValue",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "domestic_tax_rate_rate_value",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "domestic_tax_rate_rate_value"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.DomesticTaxRate",
+      "event_property": "RateValue",
+      "event_json_path": "data.afterState.domesticTaxRate.rateValue",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_column": "RATEVALUE",
+      "raw_sql_mapping_id": "tmv-column:e4430f18e499d5e1b52bd6d6",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.rateValue') AS VARCHAR) AS RATEVALUE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+          "column": "RATEVALUE",
+          "path": [
+            "tmv-column:5dd080a0d8fba2fd43e7d4ae"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:42a9b5600cf5fa9c9510800f:tmv-column:e1882d745d21fc5515ff9e89",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "source_entity": "Account.Profile.Shared.Entities.AccountProfile",
+      "source_property": "DomesticTaxRate.CountryAlpha3Code",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_database_relation": "profile.account_profile",
+      "source_database_column": "domestic_tax_rate_country_alpha3code",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+        "domestic_tax_rate_country_alpha3code"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.DomesticTaxRate",
+      "event_property": "CountryAlpha3Code",
+      "event_json_path": "data.afterState.domesticTaxRate.countryAlpha3Code",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_column": "COUNTRYALPHA3CODE",
+      "raw_sql_mapping_id": "tmv-column:e1882d745d21fc5515ff9e89",
+      "raw_sql_expression": "CAST(GET_PATH(src.data, 'data.afterState.domesticTaxRate.countryAlpha3Code') AS VARCHAR) AS COUNTRYALPHA3CODE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+          "column": "COUNTRYALPHA3CODE",
+          "path": [
+            "tmv-column:d6aa7c049428d3bf4b58e3cd"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__domesticTaxRate_v1/v_account_profile_topic_v1__domesticTaxRate_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:fa2b0b1a13739b534fbbe52b:tmv-column:01288ddeee15730dfd035af1",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+      "source_entity": "Account.Profile.Shared.Entities.AccountCurrency",
+      "source_property": "Currency",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+      "source_database_relation": "profile.account_currency",
+      "source_database_column": "currency",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+        "currency"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrencies",
+      "event_property": "AccountCurrency",
+      "event_json_path": "data.afterState.accountCurrencies.[].accountCurrency",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "raw_column": "ACCOUNTCURRENCY",
+      "raw_sql_mapping_id": "tmv-column:01288ddeee15730dfd035af1",
+      "raw_sql_expression": "CAST(GET_PATH(ac.value, 'accountCurrency') AS VARCHAR) AS ACCOUNTCURRENCY",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+          "column": "ACCOUNTCURRENCY",
+          "path": [
+            "tmv-column:51f30b2fec180e7cc57a79ea"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:599184a12245f2d258a6885b:tmv-column:68b4cd6921821069a0de9a2d",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+      "source_entity": "Account.Profile.Shared.Entities.AccountCurrency",
+      "source_property": "CurrencyType",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+      "source_database_relation": "profile.account_currency",
+      "source_database_column": "currency_type",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+        "currency_type"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrencies",
+      "event_property": "AccountCurrencyType",
+      "event_json_path": "data.afterState.accountCurrencies.[].accountCurrencyType",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "raw_column": "ACCOUNTCURRENCYTYPE",
+      "raw_sql_mapping_id": "tmv-column:68b4cd6921821069a0de9a2d",
+      "raw_sql_expression": "CAST(GET_PATH(ac.value, 'accountCurrencyType') AS VARCHAR) AS ACCOUNTCURRENCYTYPE",
+      "raw_sql_source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+          "column": "ACCOUNTCURRENCYTYPE",
+          "path": [
+            "tmv-column:c5cf829553961d3b3d56cd75"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__accountCurrency_v1/v_account_profile_topic_v1__accountCurrency_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:5ccc4d88931f55323ddd7e0f:tmv-column:a39d4ba2b441190aac9464da",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+      "source_entity": "Account.Transaction.Shared.Entities.AccountBalance",
+      "source_property": "Amount",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+      "source_database_relation": "transaction.account_balance",
+      "source_database_column": "amount",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+        "amount"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalances",
+      "event_property": "AccountBalanceValue",
+      "event_json_path": "data.afterState.accountBalances.[].accountBalanceValue",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "ads-eod-customeraccount-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ADS_EOD_CUSTOMERACCOUNT_TOPIC_V1__ACCOUNTBALANCE_V1",
+      "raw_relation": "INTERNAL.V_ADS_EOD_CUSTOMERACCOUNT_TOPIC_V1__ACCOUNTBALANCE_V1",
+      "raw_column": "ACCOUNTBALANCEVALUE",
+      "raw_sql_mapping_id": "tmv-column:a39d4ba2b441190aac9464da",
+      "raw_sql_expression": "CAST(GET_PATH(aab.value, 'accountBalanceValue') AS VARCHAR) AS ACCOUNTBALANCEVALUE",
+      "raw_sql_source_path": "products/ads-eod-customeraccount-topic-v1/dbt/models/internal/v_ads_eod_customeraccount_topic_v1__accountBalance_v1/v_ads_eod_customeraccount_topic_v1__accountBalance_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ADS_EOD_CUSTOMERACCOUNT_TOPIC_V1__ACCOUNTBALANCE_V1",
+          "column": "ACCOUNTBALANCEVALUE",
+          "path": [
+            "tmv-column:84554ac0cb522b88d8753ca0"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountBalanceEndOfDayCustomerAccount.g.json",
+        "products/ads-eod-customeraccount-topic-v1/dbt/models/internal/v_ads_eod_customeraccount_topic_v1__accountBalance_v1/v_ads_eod_customeraccount_topic_v1__accountBalance_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    },
+    {
+      "mapping_id": "cross-repo:csharp-event:ea2a9df47c3595f39a8738aa:tmv-column:765edf8d1ead56214e92be85",
+      "source_repository": "kb-accounts",
+      "source_entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+      "source_entity": "Account.Transaction.Shared.Entities.AccountBalance",
+      "source_property": "Currency",
+      "source_database_relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+      "source_database_relation": "transaction.account_balance",
+      "source_database_column": "currency",
+      "source_database_column_id": [
+        "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+        "currency"
+      ],
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalances",
+      "event_property": "AccountBalanceCurrencyCode",
+      "event_json_path": "data.afterState.accountBalances.[].accountBalanceCurrencyCode",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "ads-eod-customeraccount-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ADS_EOD_CUSTOMERACCOUNT_TOPIC_V1__ACCOUNTBALANCE_V1",
+      "raw_relation": "INTERNAL.V_ADS_EOD_CUSTOMERACCOUNT_TOPIC_V1__ACCOUNTBALANCE_V1",
+      "raw_column": "ACCOUNTBALANCECURRENCYCODE",
+      "raw_sql_mapping_id": "tmv-column:765edf8d1ead56214e92be85",
+      "raw_sql_expression": "CAST(GET_PATH(aab.value, 'accountBalanceCurrencyCode') AS VARCHAR) AS ACCOUNTBALANCECURRENCYCODE",
+      "raw_sql_source_path": "products/ads-eod-customeraccount-topic-v1/dbt/models/internal/v_ads_eod_customeraccount_topic_v1__accountBalance_v1/v_ads_eod_customeraccount_topic_v1__accountBalance_v1.sql",
+      "downstream_targets": [
+        {
+          "relation_id": "snowflake:relation:PUBLIC.VW_ADS_EOD_CUSTOMERACCOUNT_TOPIC_V1__ACCOUNTBALANCE_V1",
+          "column": "ACCOUNTBALANCECURRENCYCODE",
+          "path": [
+            "tmv-column:8e0d6ef82b3f825798656e12"
+          ]
+        }
+      ],
+      "evidence_paths": [
+        "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountBalanceEndOfDayCustomerAccount.g.json",
+        "products/ads-eod-customeraccount-topic-v1/dbt/models/internal/v_ads_eod_customeraccount_topic_v1__accountBalance_v1/v_ads_eod_customeraccount_topic_v1__accountBalance_v1.sql"
+      ],
+      "field_link_status": "event_schema_and_json_path_match",
+      "transport_status": "unverified_secret_backed_kafka_topic",
+      "confidence": "explicit_static_declarations_not_runtime_verified"
+    }
+  ],
+  "table_mappings": [
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_table": "profile.account_profile",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:9f56a331c5ba5a69788f2d13"
+      ]
+    },
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_table": "profile.account_profile",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:8a8a1b284a83c349bfbe4653"
+      ]
+    },
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_table": "profile.account_profile",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__BANKINGRELATIONSHIP_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:9d58a5b9d001436d4d53027f",
+        "cross-repo:csharp-event:242fd776c2e35cf91159e655:tmv-column:ff1776c76d037f5a3afa955d",
+        "cross-repo:csharp-event:65ad0034f5469a6bc1c61ddf:tmv-column:c9fd8350fda82baf622e99ca"
+      ]
+    },
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_table": "profile.account_profile",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__DOMESTICTAXRATE_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:04ed0166dbd2d7327506a381",
+        "cross-repo:csharp-event:49012d02d3f3069aa00d3c7c:tmv-column:6042751b00cb4361e7922b4f",
+        "cross-repo:csharp-event:d41bac7c46e86331eb7c88d3:tmv-column:e4430f18e499d5e1b52bd6d6",
+        "cross-repo:csharp-event:42a9b5600cf5fa9c9510800f:tmv-column:e1882d745d21fc5515ff9e89"
+      ]
+    },
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_table": "profile.account_profile",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PRODUCTFACILITY_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:0510f57af3c70c0ad054121d",
+        "cross-repo:csharp-event:cfd367ffe74d42004fbc9f46:tmv-column:f016fb2e46c9f09edd0da51f",
+        "cross-repo:csharp-event:a5548e165f5f0277d88293b0:tmv-column:9d02dce256a8325fbe436a66",
+        "cross-repo:csharp-event:4c71b5be91b53169e36cfed0:tmv-column:03e0e9ab896a66702911869a",
+        "cross-repo:csharp-event:accb51199d076c1e297491a9:tmv-column:2a5af02b052d1cb570762c82",
+        "cross-repo:csharp-event:6e2fb7e72c0350e0f5c29142:tmv-column:d7f2d800d7a5edbb9f1589f2",
+        "cross-repo:csharp-event:3846fdded131dde03c7001b1:tmv-column:d91b64b32adec227f306d5bb",
+        "cross-repo:csharp-event:6bddd96be06e06bb632bcc04:tmv-column:ee432a87fe7401e977e9e555"
+      ]
+    },
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "source_table": "profile.account_profile",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__PROFILE_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:ee152ccaa4b63df6a7dbc6b0:tmv-column:54f3f33075061d07ed61fa1e",
+        "cross-repo:csharp-event:4733e4698fb9ce73601224f1:tmv-column:15e21a3964790eecf4876ff0",
+        "cross-repo:csharp-event:cebe0e3f1ba180c87ecbb86f:tmv-column:835ecfb414ebb8f7b142770c",
+        "cross-repo:csharp-event:9a8ccff0d324e4cb528488ed:tmv-column:798be29db6009ab41162ede3",
+        "cross-repo:csharp-event:ea1522497677e2b999cfc1cb:tmv-column:9d7963177836d08c51116e08",
+        "cross-repo:csharp-event:24e7d23b36699b714509b32b:tmv-column:e7de44054cbc64d3b2c494e0",
+        "cross-repo:csharp-event:d86673fb79e8fd30f5ff2589:tmv-column:29a15b50515bb748de39fb10",
+        "cross-repo:csharp-event:d99b8c0efbfb67ab92fa18f1:tmv-column:cf2bdbe1072ee4db73c20fa3",
+        "cross-repo:csharp-event:d562bdf384b7624d29beeb47:tmv-column:14514044954b625769ef09ca",
+        "cross-repo:csharp-event:d081dd6c27001496ed4736ce:tmv-column:5030e903dbb5fd3747f7c771",
+        "cross-repo:csharp-event:9dc2a9810c4659adf16caca8:tmv-column:48f3abf7416bfc91b7b0df52",
+        "cross-repo:csharp-event:0ce2e472fcb39aa219c13c7f:tmv-column:e1e9e1b4aed73cb6e105351d",
+        "cross-repo:csharp-event:5a398ae27398819ec5932c2b:tmv-column:04e7cbbaa90910053593996a",
+        "cross-repo:csharp-event:1445273a4d8fb6eff226cccd:tmv-column:8c03de1ae127a15604b45efa",
+        "cross-repo:csharp-event:1675ff912bdc514baf3d229d:tmv-column:e60711c009d39f57f3a3b1f3"
+      ]
+    },
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+      "source_table": "profile.account_profile_identifier",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTIDENTIFICATION_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:effc655b344bee252aead01e:tmv-column:65654f0d5f743a14a1a955e3",
+        "cross-repo:csharp-event:da2fdbae072b736f93dd3a3b:tmv-column:e7429882c05be24ca03edd01"
+      ]
+    },
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+      "source_table": "profile.account_currency",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "account-profile-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "raw_relation": "INTERNAL.V_ACCOUNT_PROFILE_TOPIC_V1__ACCOUNTCURRENCY_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:fa2b0b1a13739b534fbbe52b:tmv-column:01288ddeee15730dfd035af1",
+        "cross-repo:csharp-event:599184a12245f2d258a6885b:tmv-column:68b4cd6921821069a0de9a2d"
+      ]
+    },
+    {
+      "source_repository": "kb-accounts",
+      "source_table_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+      "source_table": "transaction.account_balance",
+      "consumer_repository": "kb-cdp-tenant-account",
+      "consumer_product": "ads-eod-customeraccount-topic-v1",
+      "raw_relation_id": "snowflake:relation:INTERNAL.V_ADS_EOD_CUSTOMERACCOUNT_TOPIC_V1__ACCOUNTBALANCE_V1",
+      "raw_relation": "INTERNAL.V_ADS_EOD_CUSTOMERACCOUNT_TOPIC_V1__ACCOUNTBALANCE_V1",
+      "mapping_ids": [
+        "cross-repo:csharp-event:5ccc4d88931f55323ddd7e0f:tmv-column:a39d4ba2b441190aac9464da",
+        "cross-repo:csharp-event:ea2a9df47c3595f39a8738aa:tmv-column:765edf8d1ead56214e92be85"
+      ]
+    }
+  ],
+  "candidate_routes": [
+    {
+      "source_table": "origination.account_opening",
+      "source_column": "account_id",
+      "source_entity": "Account.Origination.Shared.Entities.AccountOpening",
+      "source_property": "AccountId",
+      "hops": [
+        {
+          "kind": "api_request",
+          "target": "TMV Account API accountId",
+          "status": "source_declared",
+          "evidence": [
+            "kb-accounts/src/origination/Account.Origination.Job/Services/TmvAccountAction.cs",
+            "kb-accounts/src/origination/Account.Origination.Job/TMVClient/Factories/OnlineCallAccountRequestFactory.cs"
+          ],
+          "detail": "Origination passes AccountOpening.AccountId into account get/create/open request IDs."
+        },
+        {
+          "kind": "async_service_event",
+          "target": "TMV AccountEvent.Account.Id -> AccountProfile.AccountId",
+          "status": "external_service_continuity_unverified",
+          "evidence": [
+            "kb-accounts/catalog/processors-workers.yaml",
+            "kb-accounts/src/profile/Account.Profile.Processor/Subscribers/TmvAccountEventSubscriber.cs",
+            "kb-accounts/src/profile/Account.Profile.Processor/Services/AccountProfileChangeSetCreator.cs"
+          ],
+          "detail": "The processor consumes TMV Account events and copies AccountEvent.Account.Id to the Profile change set; service-level identity continuity is not runtime verified."
+        },
+        {
+          "kind": "profile_topic_consumer",
+          "target": "account-profile-topic-v1 / RAW.ACCOUNT_PROFILE_TOPIC_V1__RAW",
+          "status": "topic_secret_binding_unverified",
+          "evidence": [
+            "kb-accounts/catalog/kafka-events.yaml",
+            "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+            "kb-cdp-tenant-account/products/account-profile-topic-v1/airflow/account_profile_topic_v1/src/dags/account_profile_topic_ingestion_v1.py",
+            "kb-cdp-tenant-account/products/account-profile-topic-v1/README.md"
+          ],
+          "detail": "The producer event contract and consumer product correspond by schema/product evidence, but the consumer topic is supplied by Secret Manager and its runtime value is absent from the source snapshot."
+        }
+      ],
+      "status": "candidate_path_with_explicit_external_boundaries"
+    }
+  ],
+  "unresolved": [
+    {
+      "mapping_id": "csharp-event:b782b26f88df65f0ea021988",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountIdentifications",
+      "event_json_path": "data.afterState.accountIdentifications",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:008e7c9e96df47511bc7bdc9",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountIdentifications",
+      "event_json_path": "data.afterState.accountIdentifications",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:61dae1b683aeb673648d5d3d",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "BankingRelationship",
+      "event_json_path": "data.afterState.bankingRelationship",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:cfd77f09300f5b790590f4c2",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "BankingRelationship",
+      "event_json_path": "data.afterState.bankingRelationship",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:16330ee2933a2a6cb0a998e6",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "BankingRelationship",
+      "event_json_path": "data.afterState.bankingRelationship",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:25c5c1e13aecb7282cf2126d",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "ProductFacility",
+      "event_json_path": "data.afterState.productFacility",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:7d359e3df21fef9360679970",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "ProductFacility",
+      "event_json_path": "data.afterState.productFacility",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:58b84beba9c970850750bf60",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "ProductFacility",
+      "event_json_path": "data.afterState.productFacility",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:05d313778f8416694b722d8c",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "ProductFacility",
+      "event_json_path": "data.afterState.productFacility",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:3cdd1d8d0e7c281f73448bf3",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "ProductFacility",
+      "event_json_path": "data.afterState.productFacility",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:a0dca4ca4f581830e723305b",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "ProductFacility",
+      "event_json_path": "data.afterState.productFacility",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:aa0750f60efd7f2702119bd7",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "ProductFacility",
+      "event_json_path": "data.afterState.productFacility",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:51cab37f4dfddc92d3de959b",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "DomesticTaxRate",
+      "event_json_path": "data.afterState.domesticTaxRate",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:4211ffedcad02e8367a9dc06",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "DomesticTaxRate",
+      "event_json_path": "data.afterState.domesticTaxRate",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:d9bdda11dd255d02b6976f54",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "DomesticTaxRate",
+      "event_json_path": "data.afterState.domesticTaxRate",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:fd6973d0d21f10e002f8c17d",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountCurrencies",
+      "event_json_path": "data.afterState.accountCurrencies",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:bb4656cd6d8a0b9d91a7da5d",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "event_property": "AccountCurrencies",
+      "event_json_path": "data.afterState.accountCurrencies",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:2fd3d9c59c4640f6e60fe7e0",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.BankingRelationship",
+      "event_property": "PartyIds",
+      "event_json_path": "data.afterState.bankingRelationship.partyIds",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:ba71296ba5f08dac57e7072c",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "event_property": "InterestArrangement",
+      "event_json_path": "data.afterState.productFacility.interestArrangement",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:039e9ba64c13ea0aa8c21a45",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "event_property": "InterestArrangement",
+      "event_json_path": "data.afterState.productFacility.interestArrangement",
+      "consumer_product": "account-profile-topic-v1"
+    },
+    {
+      "mapping_id": "csharp-event:716594021f89d532d331c22e",
+      "reason": "event_schema_path_not_extracted_by_selected_raw_sql",
+      "event_contract": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "event_property": "InterestArrangement",
+      "event_json_path": "data.afterState.productFacility.interestArrangement",
+      "consumer_product": "account-profile-topic-v1"
+    }
+  ],
+  "counts": {
+    "field_mappings": 38,
+    "table_mappings": 9,
+    "unresolved": 21,
+    "candidate_routes": 1,
+    "column_records": 154
+  },
+  "limitations": [
+    "Kafka topic names/consumer secret values are not in the repository snapshot; producer-consumer continuity is not runtime verified.",
+    "Only event schema JSON paths exactly matched to SQL extraction expressions are linked.",
+    "AccountOpening-to-TMV AccountEvent identity continuity crosses an external API/event service and remains unverified."
+  ]
+}

@@ -1,0 +1,2598 @@
+[
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "AccountId",
+    "database_column": "account_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "AccountName",
+    "database_column": "account_name",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "AccountNumber",
+    "database_column": "account_number",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "AlternateAccountName",
+    "database_column": "alternate_account_name",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "BankingProductId",
+    "database_column": "banking_product_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "BankingProductVersionId",
+    "database_column": "banking_product_version_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "BankingRelationshipId",
+    "database_column": "banking_relationship_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "CorrelationId",
+    "database_column": "correlation_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "Created",
+    "database_column": "created",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "EventId",
+    "database_column": "event_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "Failed",
+    "database_column": "failed",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "LastRetry",
+    "database_column": "last_retry",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "Opened",
+    "database_column": "opened",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "PartyId",
+    "database_column": "party_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "PartyRoleIds",
+    "database_column": "party_role_ids",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "ProductCode",
+    "database_column": "product_code",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "ProductFacilityId",
+    "database_column": "product_facility_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "ProductPropositionId",
+    "database_column": "product_proposition_id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "RetryCount",
+    "database_column": "retry_count",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "ScheduledOpen",
+    "database_column": "scheduled_open",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "State",
+    "database_column": "state",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "TraceContext",
+    "database_column": "trace_context",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+    "property": "ValidUntil",
+    "database_column": "valid_until",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Headers",
+    "database_column": "headers",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Key",
+    "database_column": "key",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "LastRetry",
+    "database_column": "last_retry",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Payload",
+    "database_column": "payload",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "RetryCount",
+    "database_column": "retry_count",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Timestamp",
+    "database_column": "timestamp",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Topic",
+    "database_column": "topic",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Type",
+    "database_column": "type",
+    "relation_id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "ClientId",
+    "database_column": "client_id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "ClientBatchId",
+    "database_column": "client_batch_id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "AdditionalInformation",
+    "database_column": "additional_information",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "Description",
+    "database_column": "description",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "Lifecycle",
+    "database_column": "lifecycle",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "RequestDate",
+    "database_column": "request_date",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "RequestId",
+    "database_column": "request_id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "TransactionId",
+    "database_column": "transaction_id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "Type",
+    "database_column": "type",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+    "property": "ValueDate",
+    "database_column": "value_date",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+    "property": "BatchId",
+    "database_column": "batch_id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+    "property": "ClientBatchId",
+    "database_column": "client_batch_id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+    "property": "ClientId",
+    "database_column": "client_id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+    "property": "Date",
+    "database_column": "date",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+    "property": "State",
+    "database_column": "state",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+    "property": "TraceContext",
+    "database_column": "trace_context",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Headers",
+    "database_column": "headers",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Key",
+    "database_column": "key",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "LastRetry",
+    "database_column": "last_retry",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Payload",
+    "database_column": "payload",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "RetryCount",
+    "database_column": "retry_count",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Timestamp",
+    "database_column": "timestamp",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Topic",
+    "database_column": "topic",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Type",
+    "database_column": "type",
+    "relation_id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Account.Posting.Shared.Entities.TmvPostingBatch",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:posting.tmv_positing_batch",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Account.Posting.Shared.Entities.TmvPostingBatch",
+    "property": "CreatedAt",
+    "database_column": "created_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:posting.tmv_positing_batch",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Account.Posting.Shared.Entities.TmvPostingBatch",
+    "property": "ModifiedAt",
+    "database_column": "modified_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:posting.tmv_positing_batch",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Account.Posting.Shared.Entities.TmvPostingBatch",
+    "property": "PostingBatchEventPayload",
+    "database_column": "posting_batch_event_payload",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:posting.tmv_positing_batch",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Headers",
+    "database_column": "headers",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Key",
+    "database_column": "key",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "LastRetry",
+    "database_column": "last_retry",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Payload",
+    "database_column": "payload",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "RetryCount",
+    "database_column": "retry_count",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Timestamp",
+    "database_column": "timestamp",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Topic",
+    "database_column": "topic",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Type",
+    "database_column": "type",
+    "relation_id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "property": "RowId",
+    "database_column": "row_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "property": "Currency",
+    "database_column": "currency",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:fa2b0b1a13739b534fbbe52b",
+      "csharp-event:fd6973d0d21f10e002f8c17d"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "property": "CurrencyType",
+    "database_column": "currency_type",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:599184a12245f2d258a6885b",
+      "csharp-event:bb4656cd6d8a0b9d91a7da5d"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "property": "ProfileAccountId",
+    "database_column": "profile_account_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "property": "Version",
+    "database_column": "xmin",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountId",
+    "database_column": "account_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:ee152ccaa4b63df6a7dbc6b0"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountClosureReason",
+    "database_column": "account_closure_reason",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:0ce2e472fcb39aa219c13c7f"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountCreatedUserId",
+    "database_column": "account_created_user_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:4733e4698fb9ce73601224f1"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountOrganisationUnitId",
+    "database_column": "account_organisation_unit_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:cebe0e3f1ba180c87ecbb86f"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AlternateName",
+    "database_column": "alternate_name",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:ea1522497677e2b999cfc1cb"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "ChangeId",
+    "database_column": "change_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "Closed",
+    "database_column": "closed",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:9dc2a9810c4659adf16caca8"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "CorrelationId",
+    "database_column": "correlation_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:6979e259492fdb825e84c09a",
+      "csharp-event:fce1845a03f76f7f94bd64e4"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "Created",
+    "database_column": "created",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:d562bdf384b7624d29beeb47"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "MinimumNumberOfAuthoriser",
+    "database_column": "minimum_number_of_authoriser",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:d99b8c0efbfb67ab92fa18f1"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "Name",
+    "database_column": "name",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:9a8ccff0d324e4cb528488ed"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "Opened",
+    "database_column": "opened",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:d081dd6c27001496ed4736ce"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "Status",
+    "database_column": "status",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:24e7d23b36699b714509b32b"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "TSide",
+    "database_column": "t_side",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:d86673fb79e8fd30f5ff2589"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "TmvStatus",
+    "database_column": "tmv_status",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "Version",
+    "database_column": "xmin",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountFreezeDetails.ChangeId",
+    "database_column": "account_freeze_details_change_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountFreezeDetails.Effective",
+    "database_column": "account_freeze_details_effective",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:1675ff912bdc514baf3d229d"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountFreezeDetails.Expiration",
+    "database_column": "account_freeze_details_expiration",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountFreezeDetails.FreezeDescription",
+    "database_column": "account_freeze_details_freeze_description",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:5a398ae27398819ec5932c2b"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountFreezeDetails.FreezeType",
+    "database_column": "account_freeze_details_freeze_type",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:1445273a4d8fb6eff226cccd"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "AccountFreezeDetails.RestrictionSetId",
+    "database_column": "account_freeze_details_restriction_set_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "BankingRelationship.BankingRelationshipId",
+    "database_column": "banking_relationship_banking_relationship_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:242fd776c2e35cf91159e655",
+      "csharp-event:61dae1b683aeb673648d5d3d"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "BankingRelationship.BankingRelationshipType",
+    "database_column": "banking_relationship_banking_relationship_type",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "BankingRelationship.NominatedTaxPartyId",
+    "database_column": "banking_relationship_nominated_tax_party_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:65ad0034f5469a6bc1c61ddf",
+      "csharp-event:cfd77f09300f5b790590f4c2"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "BankingRelationship.PartyIds",
+    "database_column": "banking_relationship_party_ids",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:16330ee2933a2a6cb0a998e6",
+      "csharp-event:2fd3d9c59c4640f6e60fe7e0"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "DomesticTaxRate.CountryAlpha3Code",
+    "database_column": "domestic_tax_rate_country_alpha3code",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:42a9b5600cf5fa9c9510800f",
+      "csharp-event:d9bdda11dd255d02b6976f54"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "DomesticTaxRate.DomesticTaxType",
+    "database_column": "domestic_tax_rate_domestic_tax_type",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:49012d02d3f3069aa00d3c7c",
+      "csharp-event:51cab37f4dfddc92d3de959b"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "DomesticTaxRate.RateValue",
+    "database_column": "domestic_tax_rate_rate_value",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:4211ffedcad02e8367a9dc06",
+      "csharp-event:d41bac7c46e86331eb7c88d3"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "ProductFacility.BankingProductCode",
+    "database_column": "product_facility_banking_product_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:05d313778f8416694b722d8c",
+      "csharp-event:accb51199d076c1e297491a9"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "ProductFacility.BankingProductId",
+    "database_column": "product_facility_banking_product_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:7d359e3df21fef9360679970",
+      "csharp-event:a5548e165f5f0277d88293b0"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "ProductFacility.BankingProductVersionId",
+    "database_column": "product_facility_banking_product_version_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:4c71b5be91b53169e36cfed0",
+      "csharp-event:58b84beba9c970850750bf60"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "ProductFacility.InterestRate",
+    "database_column": "product_facility_interest_rate",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:3cdd1d8d0e7c281f73448bf3",
+      "csharp-event:6e2fb7e72c0350e0f5c29142",
+      "csharp-event:ba71296ba5f08dac57e7072c"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "ProductFacility.InterestRatePlanChangeId",
+    "database_column": "product_facility_interest_rate_plan_change_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:6bddd96be06e06bb632bcc04",
+      "csharp-event:716594021f89d532d331c22e",
+      "csharp-event:aa0750f60efd7f2702119bd7"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "ProductFacility.InterestRateValidFrom",
+    "database_column": "product_facility_interest_rate_valid_from",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:039e9ba64c13ea0aa8c21a45",
+      "csharp-event:3846fdded131dde03c7001b1",
+      "csharp-event:a0dca4ca4f581830e723305b"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "property": "ProductFacility.ProductFacilityId",
+    "database_column": "product_facility_product_facility_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:25c5c1e13aecb7282cf2126d",
+      "csharp-event:cfd367ffe74d42004fbc9f46"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "property": "RowId",
+    "database_column": "row_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "property": "AccountIdentification",
+    "database_column": "account_identification",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:008e7c9e96df47511bc7bdc9",
+      "csharp-event:da2fdbae072b736f93dd3a3b"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "property": "AccountIdentificationType",
+    "database_column": "account_identification_type",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:b782b26f88df65f0ea021988",
+      "csharp-event:effc655b344bee252aead01e"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "property": "ProfileAccountId",
+    "database_column": "profile_account_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "property": "Version",
+    "database_column": "xmin",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "ChangeId",
+    "database_column": "change_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "CreatedAt",
+    "database_column": "created_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "Description",
+    "database_column": "description",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "EffectiveAt",
+    "database_column": "effective_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "EventId",
+    "database_column": "event_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "ExpiryAt",
+    "database_column": "expiry_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "IsActive",
+    "database_column": "is_active",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "ModifiedAt",
+    "database_column": "modified_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "ProcessingAt",
+    "database_column": "processing_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "ProfileAccountId",
+    "database_column": "profile_account_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "RestrictionSetEventPayload",
+    "database_column": "restriction_set_event_payload",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "RestrictionSetId",
+    "database_column": "restriction_set_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+    "property": "Type",
+    "database_column": "type",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Headers",
+    "database_column": "headers",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Key",
+    "database_column": "key",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "LastRetry",
+    "database_column": "last_retry",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Payload",
+    "database_column": "payload",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "RetryCount",
+    "database_column": "retry_count",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Timestamp",
+    "database_column": "timestamp",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Topic",
+    "database_column": "topic",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Type",
+    "database_column": "type",
+    "relation_id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "AccountId",
+    "database_column": "account_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "Amount",
+    "database_column": "amount",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:05926837e45ac6559aaa367c",
+      "csharp-event:5ccc4d88931f55323ddd7e0f"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "Asset",
+    "database_column": "asset",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "BalanceDateTime",
+    "database_column": "balance_date_time",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "BalanceSpecificationId",
+    "database_column": "balance_specification_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "BalanceType",
+    "database_column": "balance_type",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:9b4296f89e1e14207c96cc0a"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "BatchId",
+    "database_column": "batch_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:321787a6788f3b2a547116d2",
+      "csharp-event:fc855eba17261cb107fa74d6"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "BatchInstructionIndex",
+    "database_column": "batch_instruction_index",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:100adc46e8d91b6bfeae19b7",
+      "csharp-event:5dbbaaa2bf351821ca66b369"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "CreatedAt",
+    "database_column": "created_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "Currency",
+    "database_column": "currency",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:3784433b328406f4b9ef9e16",
+      "csharp-event:ea2a9df47c3595f39a8738aa"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "InsertionDateTime",
+    "database_column": "insertion_date_time",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:271b2121818c1f4f2a5d0510"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "IsCachedBalance",
+    "database_column": "is_cached_balance",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "ModifiedAt",
+    "database_column": "modified_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "PostingInstructionId",
+    "database_column": "posting_instruction_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:6b5b1b7896c309879a54087e",
+      "csharp-event:969ff9ad3e8554025c79f5ef"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "property": "PreviousAmount",
+    "database_column": "previous_amount",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+    "property": "AccountId",
+    "database_column": "account_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance_specification_lookup",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+    "property": "BalanceSpecificationId",
+    "database_column": "balance_specification_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance_specification_lookup",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+    "property": "CreatedAt",
+    "database_column": "created_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance_specification_lookup",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+    "property": "EffectiveAt",
+    "database_column": "effective_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance_specification_lookup",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance_specification_lookup",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+    "property": "ModifiedAt",
+    "database_column": "modified_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance_specification_lookup",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:78d6d73a9c8c8efb77c54b0f"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "AccountBalanceInterimBookedAmount",
+    "database_column": "account_balance_interim_booked_amount",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:d3d1e9a1de4ce70bf94d7ae6",
+      "csharp-event:df300e9e30a3def114ef2aab"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "AccountBalanceInterimBookedCurrencyCode",
+    "database_column": "account_balance_interim_booked_currency_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "AccountId",
+    "database_column": "account_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:7f39cdee258e6253ec7f68cf"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "AccountNumber",
+    "database_column": "account_number",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:9b2cf1c7fd1511ef9b523f7a"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "AuthorisationCode",
+    "database_column": "authorisation_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:f8ca00096b208ef156902518"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "BatchInstructionIndex",
+    "database_column": "batch_instruction_index",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "BatchNumber",
+    "database_column": "batch_number",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:b2aca1c531aed28aae200d70"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "BookingDateTime",
+    "database_column": "booking_date_time",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:8a17b5e55a1892ab743112e4"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "Branch",
+    "database_column": "branch",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:c8f21e957da6988e10a9c9b2"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "CreatedAt",
+    "database_column": "created_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "CreditDebitIndicator",
+    "database_column": "credit_debit_indicator",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:d4418d75e19e04aea253e78a"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "FinancialTransactionAmount",
+    "database_column": "financial_transaction_amount",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:3c437778634c7303f563c828",
+      "csharp-event:4dfb7c2effe4f00ddc579e8d"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "FinancialTransactionCurrencyCode",
+    "database_column": "financial_transaction_currency_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:9c6719c9113c5ecb839fb247",
+      "csharp-event:fdd9032bcfea23fe93a542bb"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "IndustryTransactionCode",
+    "database_column": "industry_transaction_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:485928add722034fab27b7bb"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "InitiationInstructionId",
+    "database_column": "initiation_instruction_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:060ed76f263c643559aa0acd"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "InputSourceCode",
+    "database_column": "input_source_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:22a8c4a982201a1e32564f22"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "InsertionDateTime",
+    "database_column": "insertion_date_time",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:472122080dc0b0af254ce138"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "LegacyCoreTransactionId",
+    "database_column": "legacy_core_transaction_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:424a3ad47c4b0ce4789eac81"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "ModifiedAt",
+    "database_column": "modified_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "Operator",
+    "database_column": "operator",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:60208bb1e24c1747f9fb4ee7"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "OriginatingBank",
+    "database_column": "originating_bank",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:b7580949234c86154fe9fcc8"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "OriginatingBranch",
+    "database_column": "originating_branch",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:e787d0562857874ef37acdfb"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "OtherPartyName",
+    "database_column": "other_party_name",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:258c2dcc9a1247dfa3a581d5"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "PaymentId",
+    "database_column": "payment_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:a98620ff4212e41f0b075ad6"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "PaymentInstructionCategory",
+    "database_column": "payment_instruction_category",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:f3e66c91c5b250f8853e4aea"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "PostingInstructionBatchId",
+    "database_column": "posting_instruction_batch_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:e0cfd2fc63d5300887c2fb77"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "PostingInstructionId",
+    "database_column": "posting_instruction_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:a2edc23f9b16ff6bbfdc1fbe"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "Status",
+    "database_column": "status",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:d2df261b48a7ac588d207a14"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "TransactionCode",
+    "database_column": "transaction_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:84daea101d1799d88a2df686"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "TransactionDescription",
+    "database_column": "transaction_description",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:c2682dca0a7bfc43a3f1b569"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "ValueDateTime",
+    "database_column": "value_date_time",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:a280ab5fb7cdfdee6073741d"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.BalanceSpecification",
+    "property": "BalanceSpecificationId",
+    "database_column": "balance_specification_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.balance_specification",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.BalanceSpecification",
+    "property": "CreatedAt",
+    "database_column": "created_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.balance_specification",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.BalanceSpecification",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.balance_specification",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.BalanceSpecification",
+    "property": "ModifiedAt",
+    "database_column": "modified_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.balance_specification",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.BalanceSpecification",
+    "property": "Payload",
+    "database_column": "payload",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.balance_specification",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.BalanceSpecification",
+    "property": "Version",
+    "database_column": "version",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.balance_specification",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "AccountId",
+    "database_column": "account_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "Alive",
+    "database_column": "alive",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "ApiFailureReportedAt",
+    "database_column": "api_failure_reported_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "CompletedRunTimestamp",
+    "database_column": "completed_run_timestamp",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "CreatedAt",
+    "database_column": "created_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "FailedAt",
+    "database_column": "failed_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "LastRetry",
+    "database_column": "last_retry",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "ModifiedAt",
+    "database_column": "modified_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "RetryCount",
+    "database_column": "retry_count",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "ScheduledAt",
+    "database_column": "scheduled_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+    "property": "TSide",
+    "database_column": "t_side",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "BatchId",
+    "database_column": "batch_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "CreatedAt",
+    "database_column": "created_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "InsertionTimestamp",
+    "database_column": "insertion_timestamp",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "LastAlertRaisedAt",
+    "database_column": "last_alert_raised_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "ModifiedAt",
+    "database_column": "modified_at",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "PostingBatchEventPayload",
+    "database_column": "posting_batch_event_payload",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "ProcessedSuccessfully",
+    "database_column": "processed_successfully",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "Status",
+    "database_column": "status",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+    "property": "TotalAmount",
+    "database_column": "total_amount",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Id",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Headers",
+    "database_column": "headers",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Key",
+    "database_column": "key",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "LastRetry",
+    "database_column": "last_retry",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Payload",
+    "database_column": "payload",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "RetryCount",
+    "database_column": "retry_count",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Timestamp",
+    "database_column": "timestamp",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Topic",
+    "database_column": "topic",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+    "property": "Type",
+    "database_column": "type",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "OtherPartyReference",
+    "database_column": "other_party_reference",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:09e0b5c6a9c7df4a9ec12e7d",
+      "csharp-event:0e317b84b819b2d91e47f356",
+      "csharp-event:c09eb314f1743d85d222c14c",
+      "csharp-event:d3927e3f66cb72fab523cd86"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "ThisPartyReference",
+    "database_column": "this_party_reference",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:0492a87b4f6774eb827a8ddc",
+      "csharp-event:1f9c5ee6bd988785901611d6",
+      "csharp-event:95bc9e61620be649137a96e8",
+      "csharp-event:e1ce744998dbfc66de35cc21"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "IsoTransactionCode",
+    "database_column": "iso_transaction_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:109988a027adbd6af1373550",
+      "csharp-event:2cd5772bafc624598576ae94",
+      "csharp-event:a58a17baa95e93cafd962173",
+      "csharp-event:bcb6414bf015ebdd5cc936ec"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "OtherPartyAccount",
+    "database_column": "other_party_account",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:d23e255729bcab8a62f8df20",
+      "csharp-event:d394cbf3ec0b5a475808513d",
+      "csharp-event:dbf4a88baaac2dce63570ed4"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "TaxDeduction.AccountTransactionId",
+    "database_column": "id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [],
+    "status": "unresolved",
+    "reason": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "TaxDeduction.DomesticTaxType",
+    "database_column": "domestic_tax_type",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:3bbc530201486d1b7f072964",
+      "csharp-event:ebfbb95a9d051348646c7010"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "TaxDeduction.NominatedTaxPartyId",
+    "database_column": "nominated_tax_party_id",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:12c58a909712d2da353a9c17",
+      "csharp-event:54e9467cd2e58286f33d3b07"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "TaxDeduction.NonResidentWithholdingTaxCountryAlpha3Code",
+    "database_column": "non_resident_withholding_tax_country_alpha_3_code",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:b40e666eaff020a6442fbb0f",
+      "csharp-event:ff3738555f12fb7ea582fa54"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  },
+  {
+    "entity_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+    "property": "TaxDeduction.TaxRateValue",
+    "database_column": "tax_rate_value",
+    "relation_id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "related_mapping_ids": [
+      "csharp-event:72f1226eb28f82f0ca870942",
+      "csharp-event:7b8d8163f3b3a0a04435cb54"
+    ],
+    "status": "source_assignment_supported_transport_unresolved",
+    "reason": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified."
+  }
+]

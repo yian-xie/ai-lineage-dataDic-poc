@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "run_id": "current",
+  "stage": "04-column-lineage",
+  "attempt": "attempt-004",
+  "attempt_number": 4,
+  "status": "passed",
+  "started_at": "2026-11-13T00:29:58.993597+00:00",
+  "package_version": "0.1.0",
+  "runtime": {
+    "python": "3.13.14",
+    "platform": "win32"
+  },
+  "parameters": {
+    "feed": "TMV",
+    "mode": "build"
+  },
+  "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\logs\\04-column-lineage.json",
+  "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\logs\\04-column-lineage.log",
+  "output_root": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output",
+  "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage",
+  "inputs": [
+    {
+      "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\02-parsing",
+      "kind": "directory",
+      "files": [
+        {
+          "path": "manifest.json",
+          "bytes": 488033,
+          "sha256": "ada9864a6c04e443638e256b55f28a741d24f3835cd8927a6fb891b97371d53a"
+        },
+        {
+          "path": "source-snapshot.zip",
+          "bytes": 1948729,
+          "sha256": "ed7f0a8fa8adecd4796ad237e22eeb3265bf4157821dfd345cdaa89028dcebbf"
+        },
+        {
+          "path": "fragments\\cdp_account.json",
+          "bytes": 1059928,
+          "sha256": "18263df6254b9c8060f9b6654a1f00d42b366c055d6b83cb6802aad63e604e08"
+        },
+        {
+          "path": "fragments\\kb_accounts.json",
+          "bytes": 134559,
+          "sha256": "40687f39c4300daa2470cde6a1284ea010f0bcb1235e33eccb4505dc8458165a"
+        },
+        {
+          "path": "fragments\\kb_accounts_data.json",
+          "bytes": 1641687,
+          "sha256": "dbc03ebd80d58730c1a1b4b5b7aa9a8f4274f6bd91a80e8126d909ee4d019544"
+        }
+      ],
+      "sha256": "fdc4fa607ac990bf2fc9c71870c0800166ad1c9cc83ec2fa3d974d52179186ae"
+    },
+    {
+      "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\03-lineage-graphs",
+      "kind": "directory",
+      "files": [
+        {
+          "path": "account_tenant_lineage.json",
+          "bytes": 1059928,
+          "sha256": "18263df6254b9c8060f9b6654a1f00d42b366c055d6b83cb6802aad63e604e08"
+        },
+        {
+          "path": "all_repositories_lineage.json",
+          "bytes": 1326883,
+          "sha256": "a88490c7e49a3d8a1d2f81c64bffb476e85497ac9ea25f6975762ffa74188ee1"
+        },
+        {
+          "path": "kb_accounts_data_lineage.json",
+          "bytes": 155442,
+          "sha256": "c19237ad2657711b4e9760e8c23ac7bc7aec2bd6e6c03e58ef5ecbb7ed399d04"
+        },
+        {
+          "path": "kb_accounts_project_lineage.json",
+          "bytes": 134559,
+          "sha256": "40687f39c4300daa2470cde6a1284ea010f0bcb1235e33eccb4505dc8458165a"
+        },
+        {
+          "path": "manifest.json",
+          "bytes": 1618,
+          "sha256": "534fffef46a3bb9a368d80c958c6b32ea620c70633233f7034c6f0fd345c0fe8"
+        },
+        {
+          "path": "table_lineage.json",
+          "bytes": 1210781,
+          "sha256": "9c426dc2e35caa208c69049209111c440b5961803d472856bd12a47e02545c8a"
+        }
+      ],
+      "sha256": "03e1e311fb3b1eb93822c4832480b5631b131768f8845cd28cefdbe20d901aea"
+    }
+  ],
+  "implementation": {
+    "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\src\\lineage_poc",
+    "kind": "directory",
+    "sha256": "c161dc01df6650843d857abe3770f914a8212600f3060cadef9b70be3d1236f0",
+    "file_count": 98
+  },
+  "summary": {
+    "stage": "build-columns",
+    "destination": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage",
+    "outputs": {
+      "kb_accounts_schema_inventory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\kb_accounts_schema_inventory.json",
+      "kb_accounts_migration_evidence": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\kb_accounts_migration_evidence.json",
+      "kb_accounts_assignment_evidence": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\kb_accounts_assignment_evidence.json",
+      "kb_accounts_field_relationship_assessments": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\kb_accounts_field_relationship_assessments.json",
+      "cross_repository_field_lineage": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\cross_repository_field_lineage.json",
+      "TMV_gaps": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\column_lineage_gaps.json",
+      "TMV": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\column_lineage.json"
+    },
+    "feed": "TMV",
+    "parse_manifest_sha256": "ada9864a6c04e443638e256b55f28a741d24f3835cd8927a6fb891b97371d53a",
+    "counts": {
+      "TMV": {
+        "records": 3332,
+        "resolved_column_mappings": 3332,
+        "unresolved_gaps": 376
+      }
+    }
+  },
+  "outputs": {
+    "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage",
+    "kind": "directory",
+    "files": [
+      {
+        "path": "column_lineage.json",
+        "bytes": 5199669,
+        "sha256": "7419540c89948c42e80c2de7266772a3cdad13dcc024bb86719e624313bf3ccf"
+      },
+      {
+        "path": "column_lineage_gaps.json",
+        "bytes": 209557,
+        "sha256": "695cff0ed585016d1a3352df45945694f6e713f6d34e6b478a8eeccbb8b89849"
+      },
+      {
+        "path": "cross_repository_field_lineage.json",
+        "bytes": 357912,
+        "sha256": "ce49f4322327f9ab139dadc3b2657fddf2d88756b3189b64fea94dd1ee168e7a"
+      },
+      {
+        "path": "kb_accounts_assignment_evidence.json",
+        "bytes": 67553,
+        "sha256": "c5d676ca8ab313e0b1ce3936d6bdb96d4d4628e65c0791d76b9dfc153090be70"
+      },
+      {
+        "path": "kb_accounts_field_relationship_assessments.json",
+        "bytes": 163244,
+        "sha256": "8f1340786f13fd6df5807e029d40bb3da85195f4c3e3e9b227d41db8a65e7998"
+      },
+      {
+        "path": "kb_accounts_migration_evidence.json",
+        "bytes": 175332,
+        "sha256": "1e839d595578274d0dd78174f0be3d583e30a7b1a52a032761ac53209cad60ca"
+      },
+      {
+        "path": "kb_accounts_schema_inventory.json",
+        "bytes": 288799,
+        "sha256": "c59a4217cc45ef765b09c5faa2a63bd595b2015a017198f20358c03fa1f617d0"
+      },
+      {
+        "path": "manifest.json",
+        "bytes": 1748,
+        "sha256": "227d5876853206af01930b9927a9fb7b92ccde6de1c492a2b09a26a4dc289ed7"
+      }
+    ],
+    "sha256": "657efdc53f40fe59b3bc53dd690377900a21f672ad63554f550be2f022b34470"
+  },
+  "completed_at": "2026-11-13T00:32:20.360856+00:00",
+  "duration_seconds": 141.338
+}

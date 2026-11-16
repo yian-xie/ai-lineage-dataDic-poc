@@ -1,0 +1,22 @@
+{
+  "stage": "build-columns",
+  "destination": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage",
+  "outputs": {
+    "kb_accounts_schema_inventory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\kb_accounts_schema_inventory.json",
+    "kb_accounts_migration_evidence": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\kb_accounts_migration_evidence.json",
+    "kb_accounts_assignment_evidence": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\kb_accounts_assignment_evidence.json",
+    "kb_accounts_field_relationship_assessments": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\kb_accounts_field_relationship_assessments.json",
+    "cross_repository_field_lineage": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\cross_repository_field_lineage.json",
+    "TMV_gaps": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\column_lineage_gaps.json",
+    "TMV": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\04-column-lineage\\column_lineage.json"
+  },
+  "feed": "TMV",
+  "parse_manifest_sha256": "ada9864a6c04e443638e256b55f28a741d24f3835cd8927a6fb891b97371d53a",
+  "counts": {
+    "TMV": {
+      "records": 3332,
+      "resolved_column_mappings": 3332,
+      "unresolved_gaps": 376
+    }
+  }
+}

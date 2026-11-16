@@ -100,6 +100,23 @@ python -B -m lineage_poc dictionary --input .\output\04-column-lineage\column_li
 python -B -m lineage_poc enrichment prepare --input .\output\05-baseline-dictionary
 ```
 
+When their checkouts are present, `parse --parser all` also snapshots Landing,
+Protect-downstream, and `kb-accounts`. `graphs --scope all` writes their
+standalone snapshots as `landing_tenant_lineage.json`,
+`protect_downstream_lineage.json`, and `kb_accounts_project_lineage.json` under
+`03-lineage-graphs`. Keep the .NET project-reference graph separate from the
+canonical data graph. These repository graphs do not create column mappings;
+`04-column-lineage` remains evidence-based column inventory output.
+
+For a selected-only run containing exactly those three repositories, use
+`parse --parser tmv` and `graphs --scope tmv` with a source configuration listing
+only those repositories. This scope emits no core `table_lineage.json`. Do not
+run DWACC dictionary/enrichment/combined-HTML stages for it unless supported
+column-mapping evidence is separately supplied.
+
+Use `--output-dir PATH` on each command to keep a complete run under an
+alternate root, such as `TMV_output`, without writing into the default `output`.
+
 Clone only configured missing repositories. Never pull, reset or overwrite
 existing checkout work automatically. Missing access must remain an explicit
 blocker. A first run does not require existing generated CSVs or draft files.

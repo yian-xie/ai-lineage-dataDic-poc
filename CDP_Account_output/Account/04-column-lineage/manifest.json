@@ -1,0 +1,22 @@
+{
+  "profile": "cdp-account",
+  "scope": "Account Profile and End-of-Day Account Balance",
+  "source_products": [
+    "account-profile-topic-v1",
+    "ads-eod-customeraccount-topic-v1"
+  ],
+  "mapping_kinds": [
+    "sql_projection",
+    "ef_property_binding",
+    "ef_json_document_binding",
+    "csharp_event_assignment"
+  ],
+  "counts": {
+    "column_records": 154,
+    "gaps": 65,
+    "field_mappings": 38,
+    "table_mappings": 9,
+    "unresolved": 21,
+    "candidate_routes": 1
+  }
+}

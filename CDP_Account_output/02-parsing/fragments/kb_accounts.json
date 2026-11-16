@@ -1,0 +1,2509 @@
+{
+  "nodes": [
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Job",
+        "source_path": "src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Job/Account.Origination.Job.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job.IntegrationTests/Account.Origination.Job.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Job.IntegrationTests",
+        "source_path": "src/origination/Account.Origination.Job.IntegrationTests/Account.Origination.Job.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Job.IntegrationTests/Account.Origination.Job.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job.UnitTests/Account.Origination.Job.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Job.UnitTests",
+        "source_path": "src/origination/Account.Origination.Job.UnitTests/Account.Origination.Job.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Job.UnitTests/Account.Origination.Job.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Processor",
+        "source_path": "src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Processor.IntegrationTests/Account.Origination.Processor.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Processor.IntegrationTests",
+        "source_path": "src/origination/Account.Origination.Processor.IntegrationTests/Account.Origination.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Processor.IntegrationTests/Account.Origination.Processor.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Processor.UnitTests/Account.Origination.Processor.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Processor.UnitTests",
+        "source_path": "src/origination/Account.Origination.Processor.UnitTests/Account.Origination.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Processor.UnitTests/Account.Origination.Processor.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Public/Account.Origination.Public.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Public",
+        "source_path": "src/origination/Account.Origination.Public/Account.Origination.Public.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Public/Account.Origination.Public.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Public.UnitTests/Account.Origination.Public.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Public.UnitTests",
+        "source_path": "src/origination/Account.Origination.Public.UnitTests/Account.Origination.Public.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Public.UnitTests/Account.Origination.Public.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/origination/Account.Origination.Shared/Account.Origination.Shared.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Origination.Shared",
+        "source_path": "src/origination/Account.Origination.Shared/Account.Origination.Shared.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Shared/Account.Origination.Shared.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.PaymentInstruction.Api",
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.PaymentInstruction.Api.IntegrationTests",
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api.UnitTests/Account.PaymentInstruction.Api.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.PaymentInstruction.Api.UnitTests",
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.UnitTests/Account.PaymentInstruction.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.UnitTests/Account.PaymentInstruction.Api.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.PaymentInstruction.Shared",
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.PaymentInstruction.Tmv.Processor",
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.PaymentInstruction.Tmv.Processor.IntegrationTests",
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.UnitTests/Account.PaymentInstruction.Tmv.Processor.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.PaymentInstruction.Tmv.Processor.UnitTests",
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.UnitTests/Account.PaymentInstruction.Tmv.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.UnitTests/Account.PaymentInstruction.Tmv.Processor.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Posting.Processor",
+        "source_path": "src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/posting/Account.Posting.Processor.IntegrationTests/Account.Posting.Processor.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Posting.Processor.IntegrationTests",
+        "source_path": "src/posting/Account.Posting.Processor.IntegrationTests/Account.Posting.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/posting/Account.Posting.Processor.IntegrationTests/Account.Posting.Processor.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/posting/Account.Posting.Processor.UnitTests/Account.Posting.Processor.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Posting.Processor.UnitTests",
+        "source_path": "src/posting/Account.Posting.Processor.UnitTests/Account.Posting.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/posting/Account.Posting.Processor.UnitTests/Account.Posting.Processor.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/posting/Account.Posting.Shared/Account.Posting.Shared.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Posting.Shared",
+        "source_path": "src/posting/Account.Posting.Shared/Account.Posting.Shared.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/posting/Account.Posting.Shared/Account.Posting.Shared.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.Api",
+        "source_path": "src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Api/Account.Profile.Api.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api.IntegrationTests/Account.Profile.Api.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.Api.IntegrationTests",
+        "source_path": "src/profile/Account.Profile.Api.IntegrationTests/Account.Profile.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Api.IntegrationTests/Account.Profile.Api.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api.UnitTests/Account.Profile.Api.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.Api.UnitTests",
+        "source_path": "src/profile/Account.Profile.Api.UnitTests/Account.Profile.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Api.UnitTests/Account.Profile.Api.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.Processor",
+        "source_path": "src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.Processor.IntegrationTests/Account.Profile.Processor.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.Processor.IntegrationTests",
+        "source_path": "src/profile/Account.Profile.Processor.IntegrationTests/Account.Profile.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Processor.IntegrationTests/Account.Profile.Processor.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.Processor.UnitTests/Account.Profile.Processor.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.Processor.UnitTests",
+        "source_path": "src/profile/Account.Profile.Processor.UnitTests/Account.Profile.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Processor.UnitTests/Account.Profile.Processor.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.Shared/Account.Profile.Shared.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.Shared",
+        "source_path": "src/profile/Account.Profile.Shared/Account.Profile.Shared.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Shared/Account.Profile.Shared.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.Shared.UnitTests/Account.Profile.Shared.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.Shared.UnitTests",
+        "source_path": "src/profile/Account.Profile.Shared.UnitTests/Account.Profile.Shared.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Shared.UnitTests/Account.Profile.Shared.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/profile/Account.Profile.SystemIntegrationTests/Account.Profile.SystemIntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Profile.SystemIntegrationTests",
+        "source_path": "src/profile/Account.Profile.SystemIntegrationTests/Account.Profile.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.SystemIntegrationTests/Account.Profile.SystemIntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/shared/Account.Shared/Account.Shared.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Shared",
+        "source_path": "src/shared/Account.Shared/Account.Shared.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/shared/Account.Shared/Account.Shared.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Shared.Testing.Integration",
+        "source_path": "src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/shared/Account.Shared.UnitTests/Account.Shared.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Shared.UnitTests",
+        "source_path": "src/shared/Account.Shared.UnitTests/Account.Shared.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/shared/Account.Shared.UnitTests/Account.Shared.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.SystemIntegrationTests",
+        "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/spud/Account.Spud.Api/Account.Spud.Api.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Spud.Api",
+        "source_path": "src/spud/Account.Spud.Api/Account.Spud.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/spud/Account.Spud.Api/Account.Spud.Api.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/spud/Account.Spud.Api.IntegrationTests/Account.Spud.Api.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Spud.Api.IntegrationTests",
+        "source_path": "src/spud/Account.Spud.Api.IntegrationTests/Account.Spud.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/spud/Account.Spud.Api.IntegrationTests/Account.Spud.Api.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/spud/Account.Spud.Api.UnitTests/Account.Spud.Api.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Spud.Api.UnitTests",
+        "source_path": "src/spud/Account.Spud.Api.UnitTests/Account.Spud.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/spud/Account.Spud.Api.UnitTests/Account.Spud.Api.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/topiclogger/Account.TopicLogger.Processor/Account.TopicLogger.Processor.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.TopicLogger.Processor",
+        "source_path": "src/topiclogger/Account.TopicLogger.Processor/Account.TopicLogger.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/topiclogger/Account.TopicLogger.Processor/Account.TopicLogger.Processor.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/topiclogger/Account.TopicLogger.Processor.IntegrationTests/Account.TopicLogger.Processor.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.TopicLogger.Processor.IntegrationTests",
+        "source_path": "src/topiclogger/Account.TopicLogger.Processor.IntegrationTests/Account.TopicLogger.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/topiclogger/Account.TopicLogger.Processor.IntegrationTests/Account.TopicLogger.Processor.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/topiclogger/Account.TopicLogger.Processor.UnitTests/Account.TopicLogger.Processor.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.TopicLogger.Processor.UnitTests",
+        "source_path": "src/topiclogger/Account.TopicLogger.Processor.UnitTests/Account.TopicLogger.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/topiclogger/Account.TopicLogger.Processor.UnitTests/Account.TopicLogger.Processor.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Api",
+        "source_path": "src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api.IntegrationTests/Account.Transaction.Api.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Api.IntegrationTests",
+        "source_path": "src/transaction/Account.Transaction.Api.IntegrationTests/Account.Transaction.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Api.IntegrationTests/Account.Transaction.Api.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api.UnitTests/Account.Transaction.Api.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Api.UnitTests",
+        "source_path": "src/transaction/Account.Transaction.Api.UnitTests/Account.Transaction.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Api.UnitTests/Account.Transaction.Api.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Balance.Api",
+        "source_path": "src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api.IntegrationTests/Account.Transaction.Balance.Api.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Balance.Api.IntegrationTests",
+        "source_path": "src/transaction/Account.Transaction.Balance.Api.IntegrationTests/Account.Transaction.Balance.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Balance.Api.IntegrationTests/Account.Transaction.Balance.Api.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api.UnitTests/Account.Transaction.Balance.Api.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Balance.Api.UnitTests",
+        "source_path": "src/transaction/Account.Transaction.Balance.Api.UnitTests/Account.Transaction.Balance.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Balance.Api.UnitTests/Account.Transaction.Balance.Api.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Shared",
+        "source_path": "src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Tmv.Processor",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Tmv.Processor.IntegrationTests/Account.Transaction.Tmv.Processor.IntegrationTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Tmv.Processor.IntegrationTests",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor.IntegrationTests/Account.Transaction.Tmv.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Tmv.Processor.IntegrationTests/Account.Transaction.Tmv.Processor.IntegrationTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Tmv.Processor.UnitTests/Account.Transaction.Tmv.Processor.UnitTests.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "Account.Transaction.Tmv.Processor.UnitTests",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor.UnitTests/Account.Transaction.Tmv.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Tmv.Processor.UnitTests/Account.Transaction.Tmv.Processor.UnitTests.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/utils/ExtractSchemas/ExtractSchemas.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "ExtractSchemas",
+        "source_path": "src/utils/ExtractSchemas/ExtractSchemas.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/utils/ExtractSchemas/ExtractSchemas.csproj"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dotnet:project:kb-accounts/src/utils/ExtractSchemas.Core/ExtractSchemas.Core.csproj",
+      "type": "DOTNET_PROJECT",
+      "properties": {
+        "name": "ExtractSchemas.Core",
+        "source_path": "src/utils/ExtractSchemas.Core/ExtractSchemas.Core.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "Declared by a captured .NET project file.",
+        "runtime_verified": false,
+        "evidence": [
+          {
+            "source_path": "src/utils/ExtractSchemas.Core/ExtractSchemas.Core.csproj"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Shared/Account.Origination.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Origination.Shared\\Account.Origination.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Public/Account.Origination.Public.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Origination.Public\\Account.Origination.Public.csproj",
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job.IntegrationTests/Account.Origination.Job.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Job.IntegrationTests/Account.Origination.Job.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Origination.Job\\Account.Origination.Job.csproj",
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Job.IntegrationTests/Account.Origination.Job.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job.UnitTests/Account.Origination.Job.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Job.UnitTests/Account.Origination.Job.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Origination.Job\\Account.Origination.Job.csproj",
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Job.UnitTests/Account.Origination.Job.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Shared/Account.Origination.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Origination.Shared\\Account.Origination.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/origination/Account.Origination.Processor.IntegrationTests/Account.Origination.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Processor.IntegrationTests/Account.Origination.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Origination.Processor\\Account.Origination.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Processor.IntegrationTests/Account.Origination.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/origination/Account.Origination.Processor.UnitTests/Account.Origination.Processor.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Processor.UnitTests/Account.Origination.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Origination.Processor\\Account.Origination.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Processor.UnitTests/Account.Origination.Processor.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/origination/Account.Origination.Public.UnitTests/Account.Origination.Public.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Public/Account.Origination.Public.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Public.UnitTests/Account.Origination.Public.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Origination.Public\\Account.Origination.Public.csproj",
+        "evidence": [
+          {
+            "source_path": "src/origination/Account.Origination.Public.UnitTests/Account.Origination.Public.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+      "target": "dotnet:project:kb-accounts/src/shared/Account.Shared/Account.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\shared\\Account.Shared\\Account.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.PaymentInstruction.Shared\\Account.PaymentInstruction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\shared\\Account.Shared.Testing.Integration\\Account.Shared.Testing.Integration.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/utils/ExtractSchemas.Core/ExtractSchemas.Core.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\utils\\ExtractSchemas.Core\\ExtractSchemas.Core.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.PaymentInstruction.Api\\Account.PaymentInstruction.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.PaymentInstruction.Shared\\Account.PaymentInstruction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api.UnitTests/Account.PaymentInstruction.Api.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.UnitTests/Account.PaymentInstruction.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.PaymentInstruction.Api\\Account.PaymentInstruction.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.UnitTests/Account.PaymentInstruction.Api.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+      "target": "dotnet:project:kb-accounts/src/shared/Account.Shared/Account.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\shared\\Account.Shared\\Account.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+      "target": "dotnet:project:kb-accounts/src/shared/Account.Shared/Account.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\shared\\Account.Shared\\Account.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.PaymentInstruction.Shared\\Account.PaymentInstruction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\shared\\Account.Shared.Testing.Integration\\Account.Shared.Testing.Integration.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/utils/ExtractSchemas.Core/ExtractSchemas.Core.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\utils\\ExtractSchemas.Core\\ExtractSchemas.Core.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.PaymentInstruction.Shared\\Account.PaymentInstruction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.PaymentInstruction.Tmv.Processor\\Account.PaymentInstruction.Tmv.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.UnitTests/Account.PaymentInstruction.Tmv.Processor.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.UnitTests/Account.PaymentInstruction.Tmv.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.PaymentInstruction.Tmv.Processor\\Account.PaymentInstruction.Tmv.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.UnitTests/Account.PaymentInstruction.Tmv.Processor.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj",
+      "target": "dotnet:project:kb-accounts/src/posting/Account.Posting.Shared/Account.Posting.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Posting.Shared\\Account.Posting.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/posting/Account.Posting.Processor.IntegrationTests/Account.Posting.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Processor.IntegrationTests/Account.Posting.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Posting.Processor\\Account.Posting.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/posting/Account.Posting.Processor.IntegrationTests/Account.Posting.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/posting/Account.Posting.Processor.UnitTests/Account.Posting.Processor.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Processor.UnitTests/Account.Posting.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Posting.Processor\\Account.Posting.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/posting/Account.Posting.Processor.UnitTests/Account.Posting.Processor.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Shared/Account.Profile.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Profile.Shared\\Account.Profile.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api.IntegrationTests/Account.Profile.Api.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Api.IntegrationTests/Account.Profile.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Profile.Api\\Account.Profile.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Api.IntegrationTests/Account.Profile.Api.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api.UnitTests/Account.Profile.Api.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Api.UnitTests/Account.Profile.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Profile.Api\\Account.Profile.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Api.UnitTests/Account.Profile.Api.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Shared/Account.Profile.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Profile.Shared\\Account.Profile.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/profile/Account.Profile.Processor.IntegrationTests/Account.Profile.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor.IntegrationTests/Account.Profile.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Profile.Processor\\Account.Profile.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Processor.IntegrationTests/Account.Profile.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/profile/Account.Profile.Processor.UnitTests/Account.Profile.Processor.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor.UnitTests/Account.Profile.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Profile.Processor\\Account.Profile.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Processor.UnitTests/Account.Profile.Processor.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/profile/Account.Profile.Shared.UnitTests/Account.Profile.Shared.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Shared/Account.Profile.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared.UnitTests/Account.Profile.Shared.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Profile.Shared\\Account.Profile.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.Shared.UnitTests/Account.Profile.Shared.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/profile/Account.Profile.SystemIntegrationTests/Account.Profile.SystemIntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.SystemIntegrationTests/Account.Profile.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\profile\\Account.Profile.Api\\Account.Profile.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/profile/Account.Profile.SystemIntegrationTests/Account.Profile.SystemIntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj",
+      "target": "dotnet:project:kb-accounts/src/shared/Account.Shared/Account.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Shared\\Account.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/shared/Account.Shared.UnitTests/Account.Shared.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/shared/Account.Shared/Account.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/shared/Account.Shared.UnitTests/Account.Shared.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Shared\\Account.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/shared/Account.Shared.UnitTests/Account.Shared.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/origination/Account.Origination.Shared/Account.Origination.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\origination\\Account.Origination.Shared\\Account.Origination.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\paymentinstruction\\Account.PaymentInstruction.Api\\Account.PaymentInstruction.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\profile\\Account.Profile.Api\\Account.Profile.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/spud/Account.Spud.Api/Account.Spud.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\spud\\Account.Spud.Api\\Account.Spud.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\transaction\\Account.Transaction.Api\\Account.Transaction.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\..\\transaction\\Account.Transaction.Balance.Api\\Account.Transaction.Balance.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/spud/Account.Spud.Api.IntegrationTests/Account.Spud.Api.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/spud/Account.Spud.Api/Account.Spud.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/spud/Account.Spud.Api.IntegrationTests/Account.Spud.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Spud.Api\\Account.Spud.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/spud/Account.Spud.Api.IntegrationTests/Account.Spud.Api.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/spud/Account.Spud.Api.UnitTests/Account.Spud.Api.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/spud/Account.Spud.Api/Account.Spud.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/spud/Account.Spud.Api.UnitTests/Account.Spud.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Spud.Api\\Account.Spud.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/spud/Account.Spud.Api.UnitTests/Account.Spud.Api.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/topiclogger/Account.TopicLogger.Processor.IntegrationTests/Account.TopicLogger.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/topiclogger/Account.TopicLogger.Processor/Account.TopicLogger.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/topiclogger/Account.TopicLogger.Processor.IntegrationTests/Account.TopicLogger.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.TopicLogger.Processor\\Account.TopicLogger.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/topiclogger/Account.TopicLogger.Processor.IntegrationTests/Account.TopicLogger.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/topiclogger/Account.TopicLogger.Processor.UnitTests/Account.TopicLogger.Processor.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/topiclogger/Account.TopicLogger.Processor/Account.TopicLogger.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/topiclogger/Account.TopicLogger.Processor.UnitTests/Account.TopicLogger.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.TopicLogger.Processor\\Account.TopicLogger.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/topiclogger/Account.TopicLogger.Processor.UnitTests/Account.TopicLogger.Processor.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Shared\\Account.Transaction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api.IntegrationTests/Account.Transaction.Api.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Api.IntegrationTests/Account.Transaction.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Api\\Account.Transaction.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Api.IntegrationTests/Account.Transaction.Api.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api.UnitTests/Account.Transaction.Api.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Api.UnitTests/Account.Transaction.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Api\\Account.Transaction.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Api.UnitTests/Account.Transaction.Api.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Shared\\Account.Transaction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api.IntegrationTests/Account.Transaction.Balance.Api.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Balance.Api.IntegrationTests/Account.Transaction.Balance.Api.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Balance.Api\\Account.Transaction.Balance.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Balance.Api.IntegrationTests/Account.Transaction.Balance.Api.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api.UnitTests/Account.Transaction.Balance.Api.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Balance.Api.UnitTests/Account.Transaction.Balance.Api.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Balance.Api\\Account.Transaction.Balance.Api.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Balance.Api.UnitTests/Account.Transaction.Balance.Api.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Shared\\Account.Transaction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor\\Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor\\Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Shared\\Account.Transaction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor\\Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor\\Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Shared\\Account.Transaction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker\\Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker\\Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Shared\\Account.Transaction.Shared.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Tmv.Processor.IntegrationTests/Account.Transaction.Tmv.Processor.IntegrationTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor.IntegrationTests/Account.Transaction.Tmv.Processor.IntegrationTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Tmv.Processor\\Account.Transaction.Tmv.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Tmv.Processor.IntegrationTests/Account.Transaction.Tmv.Processor.IntegrationTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Tmv.Processor.UnitTests/Account.Transaction.Tmv.Processor.UnitTests.csproj",
+      "target": "dotnet:project:kb-accounts/src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor.UnitTests/Account.Transaction.Tmv.Processor.UnitTests.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\Account.Transaction.Tmv.Processor\\Account.Transaction.Tmv.Processor.csproj",
+        "evidence": [
+          {
+            "source_path": "src/transaction/Account.Transaction.Tmv.Processor.UnitTests/Account.Transaction.Tmv.Processor.UnitTests.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dotnet:project:kb-accounts/src/utils/ExtractSchemas/ExtractSchemas.csproj",
+      "target": "dotnet:project:kb-accounts/src/utils/ExtractSchemas.Core/ExtractSchemas.Core.csproj",
+      "type": "REFERENCES_PROJECT",
+      "properties": {
+        "source_path": "src/utils/ExtractSchemas/ExtractSchemas.csproj",
+        "confidence": "explicit",
+        "confidence_reason": "A literal unconditional ProjectReference Include resolves to a captured project in this checkout.",
+        "status": "literal_unconditional_declaration",
+        "operation": "Include",
+        "declared_path": "..\\ExtractSchemas.Core\\ExtractSchemas.Core.csproj",
+        "evidence": [
+          {
+            "source_path": "src/utils/ExtractSchemas/ExtractSchemas.csproj",
+            "status": "literal_unconditional_declaration"
+          }
+        ]
+      }
+    }
+  ],
+  "unresolved": [
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Job/Account.Origination.Job.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Job.IntegrationTests/Account.Origination.Job.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Job.UnitTests/Account.Origination.Job.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Processor/Account.Origination.Processor.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Processor.IntegrationTests/Account.Origination.Processor.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Processor.UnitTests/Account.Origination.Processor.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Public/Account.Origination.Public.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Public.UnitTests/Account.Origination.Public.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/origination/Account.Origination.Shared/Account.Origination.Shared.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Account.PaymentInstruction.Api.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.IntegrationTests/Account.PaymentInstruction.Api.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api.UnitTests/Account.PaymentInstruction.Api.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Account.PaymentInstruction.Shared.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor/Account.PaymentInstruction.Tmv.Processor.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.IntegrationTests/Account.PaymentInstruction.Tmv.Processor.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/paymentinstruction/Account.PaymentInstruction.Tmv.Processor.UnitTests/Account.PaymentInstruction.Tmv.Processor.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/posting/Account.Posting.Processor/Account.Posting.Processor.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/posting/Account.Posting.Processor.IntegrationTests/Account.Posting.Processor.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/posting/Account.Posting.Processor.UnitTests/Account.Posting.Processor.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/posting/Account.Posting.Shared/Account.Posting.Shared.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.Api/Account.Profile.Api.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.Api.IntegrationTests/Account.Profile.Api.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.Api.UnitTests/Account.Profile.Api.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.Processor/Account.Profile.Processor.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.Processor.IntegrationTests/Account.Profile.Processor.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.Processor.UnitTests/Account.Profile.Processor.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.Shared/Account.Profile.Shared.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.Shared.UnitTests/Account.Profile.Shared.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/profile/Account.Profile.SystemIntegrationTests/Account.Profile.SystemIntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/shared/Account.Shared/Account.Shared.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/shared/Account.Shared.Testing.Integration/Account.Shared.Testing.Integration.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/shared/Account.Shared.UnitTests/Account.Shared.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/sit/Account.SystemIntegrationTests/Account.SystemIntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/spud/Account.Spud.Api/Account.Spud.Api.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/spud/Account.Spud.Api.IntegrationTests/Account.Spud.Api.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/spud/Account.Spud.Api.UnitTests/Account.Spud.Api.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/topiclogger/Account.TopicLogger.Processor/Account.TopicLogger.Processor.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/topiclogger/Account.TopicLogger.Processor.IntegrationTests/Account.TopicLogger.Processor.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/topiclogger/Account.TopicLogger.Processor.UnitTests/Account.TopicLogger.Processor.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Api/Account.Transaction.Api.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Api.IntegrationTests/Account.Transaction.Api.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Api.UnitTests/Account.Transaction.Api.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Balance.Api/Account.Transaction.Balance.Api.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Balance.Api.IntegrationTests/Account.Transaction.Balance.Api.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Balance.Api.UnitTests/Account.Transaction.Balance.Api.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Processor.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Shared/Account.Transaction.Shared.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Account.Transaction.Tmv.Processor.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Tmv.Processor.IntegrationTests/Account.Transaction.Tmv.Processor.IntegrationTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/transaction/Account.Transaction.Tmv.Processor.UnitTests/Account.Transaction.Tmv.Processor.UnitTests.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/utils/ExtractSchemas/ExtractSchemas.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    },
+    {
+      "reason": "dotnet_msbuild_evaluation_not_performed",
+      "source_path": "src/utils/ExtractSchemas.Core/ExtractSchemas.Core.csproj",
+      "detail": "SDK/imported properties, conditional items, generated files and restore are not evaluated."
+    }
+  ],
+  "coverage": {
+    "scope": "captured .NET project declarations and resolved local project references",
+    "runtime_verified": false,
+    "msbuild_evaluation_performed": false,
+    "cross_repository_rules_applied": false
+  }
+}

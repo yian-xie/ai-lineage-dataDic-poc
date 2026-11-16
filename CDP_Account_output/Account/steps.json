@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "steps": {
+    "04-column-lineage": {
+      "status": "passed",
+      "attempt": "attempt-001",
+      "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\04-column-lineage",
+      "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\04-column-lineage.json",
+      "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\04-column-lineage.log"
+    },
+    "05-baseline-dictionary": {
+      "status": "passed",
+      "attempt": "attempt-001",
+      "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\05-baseline-dictionary",
+      "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\05-baseline-dictionary.json",
+      "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\05-baseline-dictionary.log"
+    },
+    "06a-enrichment-context": {
+      "status": "passed",
+      "attempt": "attempt-001",
+      "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\06a-enrichment-context",
+      "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\06a-enrichment-context.json",
+      "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\06a-enrichment-context.log"
+    },
+    "06b-ai-drafts": {
+      "status": "passed",
+      "attempt": "attempt-001",
+      "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\06b-ai-drafts",
+      "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\06b-ai-drafts.json",
+      "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\06b-ai-drafts.log"
+    },
+    "06c-ai-enrichment": {
+      "status": "passed",
+      "attempt": "attempt-001",
+      "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\06c-ai-enrichment",
+      "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\06c-ai-enrichment.json",
+      "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\06c-ai-enrichment.log"
+    },
+    "08-html-account": {
+      "status": "passed",
+      "attempt": "attempt-002",
+      "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\08-html-account",
+      "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\08-html-account.json",
+      "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\Account\\logs\\08-html-account.log"
+    }
+  },
+  "updated_at": "2026-11-13T01:16:17.070308+00:00"
+}

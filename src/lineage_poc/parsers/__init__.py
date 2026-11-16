@@ -3,6 +3,7 @@
 from .airflow import parse_airflow_dag
 from .basic import parse_basic_file
 from .dbt import parse_dbt_project
+from .dotnet_projects import parse_kb_accounts
 from .hvr import parse_hvr_config, parse_hvr_param
 from .landing import parse_landing_tenant
 from .landing_parser import parse as parse_landing_repo
@@ -14,6 +15,7 @@ __all__ = [
     "parse_airflow_dag",
     "parse_basic_file",
     "parse_dbt_project",
+    "parse_kb_accounts",
     "parse_hvr_config",
     "parse_hvr_param",
     "parse_landing_tenant",

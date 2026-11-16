@@ -1,0 +1,58 @@
+{
+  "contract_version": "tmv-dictionary-v1",
+  "graph_id": "tmv_dictionary",
+  "snapshot_id": "sha256:7419540c89948c42e80c2de7266772a3cdad13dcc024bb86719e624313bf3ccf",
+  "input_sha256": "7419540c89948c42e80c2de7266772a3cdad13dcc024bb86719e624313bf3ccf",
+  "repositories": [
+    "kb-accounts",
+    "kb-cdp-tenant-account"
+  ],
+  "original_records_sha256": "7419540c89948c42e80c2de7266772a3cdad13dcc024bb86719e624313bf3ccf",
+  "dictionary_contract": "tmv-dictionary-v1",
+  "field_evidence_sha256": "9344c131edf2dce7ef182fd0accd6676675dbc25574fba637ef7379c926ab11c",
+  "run_profile": "cdp-account",
+  "account_scope": {
+    "scope": "Account",
+    "profile": "cdp-account",
+    "repositories": [
+      "kb-accounts",
+      "kb-cdp-tenant-account"
+    ],
+    "account_products": [
+      "account-balance-topic-v1",
+      "account-notification-topic-v1",
+      "account-observability-v1",
+      "account-profile-topic-v1",
+      "account-relationship-v1",
+      "accounts-v1",
+      "ads-audit-topic-v1",
+      "ads-audit-topic-v2",
+      "ads-eod-customeraccount-topic-v1",
+      "ads-eod-internalaccount-topic-v1",
+      "ads-posting-topic-v1",
+      "ads-transaction-topic-v1",
+      "arg-account-v1",
+      "arg-transaction-v1",
+      "balance-v1",
+      "eod-balance-v1",
+      "p1c-account-v1",
+      "sys-accmig-recon-v1",
+      "transactions-v1",
+      "ult-account-fees-v1",
+      "ult-account-payment-v1",
+      "ult-account-tax-v1",
+      "ult-atm-v1",
+      "ult-broker-v1",
+      "ult-contingent-liability-v1",
+      "ult-customer-activity-v1",
+      "ult-general-ledger-v1",
+      "ult-loan-v1",
+      "ult-product-v1",
+      "ult-reference-v1",
+      "ult-system-v1"
+    ],
+    "selection_rule": "All product directories in kb-cdp-tenant-account plus all production kb-accounts projects, EF snapshots, and event schemas captured; no source checkout outside the two-repository allowlist.",
+    "software_scope": "kb-accounts project references are retained separately from its data/event lineage.",
+    "field_scope": "Explicit EF property bindings, C# entity-to-event assignments, and SQL projections; unresolved transformations and transport remain visible."
+  }
+}

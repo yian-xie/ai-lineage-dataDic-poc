@@ -6,7 +6,54 @@ from zipfile import ZipFile, ZipInfo
 import pytest
 
 from lineage_poc.lineage_workflow import parse_sources
-from lineage_poc.parsers.snapshot import load_snapshot, read_json, write_json
+from lineage_poc.parsers.snapshot import TMV_REPOSITORIES, discover_sources, load_snapshot, read_json, write_json
+
+
+def test_account_domain_discovery_is_four_repository_account_only(tmp_path):
+    from lineage_poc.parsers.snapshot import ACCOUNT_DOMAIN_REPOSITORIES
+    for repository in ACCOUNT_DOMAIN_REPOSITORIES:
+        (tmp_path / repository).mkdir()
+    selected = [
+        "kb-accounts/src/Account/Account.csproj",
+        "kb-cdp-tenant-account/products/accounts-v1/dbt/models/account.sql",
+        "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/account.sql",
+        "kb-cdp-tenant-enterprise/products/int-account-v1/dbt/models/account.sql",
+        "kb-cdp-tenant-protect-downstream/products/sys_pds_account_v1/dbt/models/account.sql",
+    ]
+    excluded = [
+        "kb-cdp-tenant-account/products/customer-v1/dbt/models/customer.sql",
+        "kb-cdp-tenant-enterprise/products/int-customer-v1/dbt/models/customer.sql",
+        "kb-cdp-tenant-landing/products/ultracs-v1/dbt/models/accounts.sql",
+    ]
+    for name in selected + excluded:
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("static fixture", encoding="utf-8")
+    assert [path.relative_to(tmp_path).as_posix() for path in discover_sources(tmp_path, "account-domain")] == sorted(selected)
+
+
+def test_cdp_account_discovery_is_exactly_two_repositories_and_captures_event_schemas(tmp_path):
+    from lineage_poc.parsers.snapshot import CDP_ACCOUNT_REPOSITORIES
+    for repository in CDP_ACCOUNT_REPOSITORIES:
+        (tmp_path / repository).mkdir()
+    selected = [
+        "kb-accounts/src/profile/Account.Profile.Shared/Entities/AccountProfile.cs",
+        "kb-accounts/src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "kb-accounts/src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "kb-accounts/topic-definitions/schemas/AccountProfile.g.json",
+        "kb-accounts/catalog/kafka-events.yaml",
+        "kb-cdp-tenant-account/products/account-profile-topic-v1/dbt/models/profile.sql",
+        "kb-cdp-tenant-account/products/account-profile-topic-v1/airflow/profile.py",
+    ]
+    excluded = [
+        "kb-accounts/src/profile/Account.Profile.Processor.UnitTests/BuilderTests.cs",
+        "kb-cdp-tenant-enterprise/products/int-account-v1/dbt/models/account.sql",
+    ]
+    for name in selected + excluded:
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("source fixture", encoding="utf-8")
+    assert [path.relative_to(tmp_path).as_posix() for path in discover_sources(tmp_path, "cdp-account")] == sorted(selected)
 
 
 def rewrite_archive(parsed, extra_name=None, *, symbolic=False, duplicate=False, change_bytes=False):
@@ -134,3 +181,38 @@ def test_parse_replay_archive_is_deterministic_and_immutable(source_factory, tmp
     with pytest.raises(FileExistsError, match="Immutable parse evidence differs"):
         parse_sources(source, parsed)
     assert (parsed / "source-snapshot.zip").read_bytes() == before
+
+
+def test_all_parser_discovers_optional_landing_protect_and_dotnet_sources(source_factory):
+    source = source_factory()
+    optional_files = {
+        "kb-cdp-tenant-landing": "products/ultracs-v1/model.sql",
+        "kb-cdp-tenant-protect-downstream": "products/sys-pds-account-v1/model.sql",
+        "kb-accounts": "src/App/App.csproj",
+    }
+    for repository, relative_path in optional_files.items():
+        path = source / repository / relative_path
+        path.parent.mkdir(parents=True)
+        path.write_text("evidence", encoding="utf-8")
+
+    discovered = {path.relative_to(source).as_posix() for path in discover_sources(source, "all")}
+
+    assert {f"{repository}/{relative_path}" for repository, relative_path in optional_files.items()} <= discovered
+
+
+def test_tmv_parser_discovers_only_the_three_selected_repositories(source_factory):
+    source = source_factory()
+    optional_files = {
+        "kb-cdp-tenant-landing": "products/ultracs-v1/dbt/dbt_project.yml",
+        "kb-cdp-tenant-protect-downstream": "products/protect-v1/dbt/dbt_project.yml",
+        "kb-accounts": "src/App/App.csproj",
+    }
+    for repository, relative_path in optional_files.items():
+        path = source / repository / relative_path
+        path.parent.mkdir(parents=True)
+        path.write_text("<Project />" if path.suffix == ".csproj" else "name: fixture", encoding="utf-8")
+
+    discovered = {path.relative_to(source).as_posix() for path in discover_sources(source, "tmv")}
+
+    assert {path.split("/")[0] for path in discovered} == set(TMV_REPOSITORIES)
+    assert all(f"{repository}/{relative_path}" in discovered for repository, relative_path in optional_files.items())

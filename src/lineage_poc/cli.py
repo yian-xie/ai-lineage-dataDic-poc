@@ -18,7 +18,7 @@ STAGES = {
     "sources": "01-sources", "parse": "02-parsing", "graphs": "03-lineage-graphs",
     "columns": "04-column-lineage", "dictionary": "05-baseline-dictionary",
     "prepare": "06a-enrichment-context", "record": "06b-ai-drafts", "apply": "06c-ai-enrichment",
-    "validate": "07-validation", "html": "08-html",
+    "validate": "07-validation", "html": "08-html", "tmv-html": "08-html",
 }
 
 
@@ -34,6 +34,31 @@ def _dictionary(args: argparse.Namespace) -> dict:
     return _record(args, "dictionary", [args.input],
                    lambda output: generate_bundle(args.input, output, args.graph_id),
                    {"graph_id": args.graph_id})
+
+
+def _tmv_dictionary(args: argparse.Namespace) -> dict:
+    from .dictionary.tmv import generate
+    return _record(args, "dictionary", [args.input, args.parsed, args.graphs],
+                   lambda output: generate(args.input, args.parsed, args.graphs, output),
+                   {"dictionary_contract": "tmv-dictionary-v1"})
+
+
+def _tmv_validate(args: argparse.Namespace) -> dict:
+    from .dictionary.tmv import validate
+    def operation(output):
+        result = validate(args.input, args.baseline)
+        write_json(output / "validation.json", result)
+        return result
+    return _record(args, "validate", [args.input] + ([args.baseline] if args.baseline else []), operation)
+
+
+def _tmv_enrichment(args: argparse.Namespace) -> dict:
+    from .enrichment.tmv import prepare, record, apply
+    if args.action == "prepare":
+        return _record(args, "prepare", [args.input], lambda output: prepare(args.input, output))
+    operation = record if args.action == "record" else apply
+    inputs = [args.input] if args.action == "record" else [args.input, args.drafts]
+    return _record(args, args.action, inputs, lambda output: operation(args.input, args.drafts, output))
 
 
 def _enrichment(args: argparse.Namespace) -> dict:
@@ -101,6 +126,45 @@ def _html(args: argparse.Namespace) -> dict:
     return _record(args, stage, inputs, operation, {"selectors": selectors})
 
 
+def _tmv_html(args: argparse.Namespace) -> dict:
+    from .viewers.graph.tmv import build, selector_names
+
+    selectors = selector_names(getattr(args, "selector", None))
+    stage = "tmv-html"
+    if selectors:
+        import re
+        keys = sorted(selector.casefold() for selector in selectors)
+        slug = "-".join(re.sub(r"[^a-z0-9]+", "-", key).strip("-") or "column" for key in keys)
+        digest = hashlib.sha256(json.dumps(keys).encode("utf-8")).hexdigest()[:10]
+        stage = "08-html-tmv-" + slug[:48] + "-" + digest
+    report_name = getattr(args, "report_name", None)
+    if report_name is not None:
+        if not selectors:
+            raise ValueError("--report-name requires one or more --selector values.")
+        stage = "08-html-" + validate_identifier(report_name, "focused report name")
+        validate_identifier(stage, "focused report folder")
+
+    inputs = [args.graphs]
+    if args.columns:
+        inputs.append(args.columns)
+    if args.gaps:
+        inputs.append(args.gaps)
+    if args.columns and (args.columns.parent / "cross_repository_field_lineage.json").is_file():
+        inputs.append(args.columns.parent / "cross_repository_field_lineage.json")
+    if getattr(args, "dictionary", None):
+        inputs.append(args.dictionary)
+    if getattr(args, "baseline", None):
+        inputs.append(args.baseline)
+    return _record(
+        args,
+        stage,
+        inputs,
+        lambda output: build(args.graphs, output, args.columns, args.gaps,
+                     getattr(args, "dictionary", None), getattr(args, "baseline", None), selectors),
+        {"graph_scope": read_json(args.graphs / "manifest.json").get("scope", "tmv"), "column_inventory": str(args.columns) if args.columns else None, "selectors": selectors},
+    )
+
+
 def _sources(args: argparse.Namespace) -> dict:
     from .sources import configured_root, prepare_sources
 
@@ -116,21 +180,44 @@ def _sources(args: argparse.Namespace) -> dict:
 
 def _parse(args: argparse.Namespace) -> dict:
     from .lineage_workflow import parse_sources
+    from .parsers.snapshot import TMV_REPOSITORIES, ACCOUNT_DOMAIN_REPOSITORIES, CDP_ACCOUNT_REPOSITORIES
     from .sources import configured_root
 
     def operation(output: Path) -> dict:
         root = configured_root(args.config, args.source_root)
-        before = inventory(root)
+        repositories = CDP_ACCOUNT_REPOSITORIES if args.parser == "cdp-account" else ACCOUNT_DOMAIN_REPOSITORIES if args.parser == "account-domain" else TMV_REPOSITORIES
+        selected = args.parser in {"tmv", "tmv-account", "account-domain", "cdp-account"}
+        if args.parser == "account-domain" and {item["name"] for item in read_json(args.config)["repositories"]} != set(repositories):
+            raise ValueError("Account-domain configuration must list exactly the four selected repositories.")
+        if args.parser == "cdp-account" and {item["name"] for item in read_json(args.config)["repositories"]} != set(repositories):
+            raise ValueError("CDP Account configuration must list exactly kb-accounts and kb-cdp-tenant-account.")
+        before = (
+            {name: inventory(root / name) for name in repositories}
+            if selected else inventory(root)
+        )
         result = parse_sources(root, output, args.parser)
-        if inventory(root) != before:
+        after = (
+            {name: inventory(root / name) for name in repositories}
+            if selected else inventory(root)
+        )
+        if after != before:
             raise ValueError("Source files changed during parsing; the attempt was not accepted.")
-        result["source_inputs"] = {
-            "path": before["path"], "sha256": before["sha256"],
-            "file_count": len(before.get("files", [])),
-        }
+        if selected:
+            result["source_inputs"] = {
+                name: {
+                    "path": item["path"], "sha256": item["sha256"],
+                    "file_count": len(item.get("files", [])),
+                }
+                for name, item in before.items()
+            }
+        else:
+            result["source_inputs"] = {
+                "path": before["path"], "sha256": before["sha256"],
+                "file_count": len(before.get("files", [])),
+            }
         return result
 
-    step = "parse" if args.parser == "all" else "02-parsing-" + args.parser
+    step = "parse" if args.parser in {"all", "tmv", "tmv-account", "account-domain", "cdp-account"} else "02-parsing-" + args.parser
     return _record(args, step, [args.config], operation,
                    {"parser": args.parser,
                     "source_root_override": str(args.source_root) if args.source_root else None})
@@ -211,23 +298,42 @@ def build_parser() -> argparse.ArgumentParser:
     command = subcommands.add_parser("parse", parents=[recorded, source_options],
                                      help="Record parser results and immutable source evidence")
     command.add_argument("--parser", default="all",
-                         choices=["all", "basic", "hvr", "airflow", "dbt", "schemachange"])
+                         choices=["all", "basic", "hvr", "airflow", "dbt", "schemachange",
+                                  "landing", "protect_downstream", "accounts", "tmv", "tmv-account", "account-domain", "cdp-account"])
     command.set_defaults(handler=_parse)
     command = subcommands.add_parser("graphs", parents=[recorded], help="Build graphs from a recorded parse")
     command.add_argument("--parsed", type=Path, required=True)
-    command.add_argument("--scope", default="all", choices=["all", "account", "enterprise"])
+    command.add_argument("--scope", default="all",
+                         choices=["all", "account", "enterprise", "landing", "protect_downstream", "accounts", "tmv", "account-domain", "cdp-account"])
     command.set_defaults(handler=_graphs)
     command = subcommands.add_parser("columns", parents=[recorded], help="Build or explicitly import column inventories")
     source = command.add_mutually_exclusive_group(required=True)
     source.add_argument("--parsed", type=Path)
     source.add_argument("--input", type=Path, help="Import a supplied inventory without pretending to parse sources")
     command.add_argument("--graphs", type=Path)
-    command.add_argument("--feed", default="DWACC", help="DWACC, DWREL, a supported feed, or all")
+    command.add_argument("--feed", default="DWACC", help="DWACC, DWREL, TMV, a supported feed, or all")
     command.set_defaults(handler=_columns)
     command = subcommands.add_parser("dictionary", parents=[recorded], help="Generate only the three baseline CSVs")
     command.add_argument("--input", type=Path, required=True)
     command.add_argument("--graph-id")
     command.set_defaults(handler=_dictionary)
+    command = subcommands.add_parser("tmv-dictionary", parents=[recorded], help="Project TMV relation/column mappings into three scoped CSVs")
+    command.add_argument("--input", type=Path, required=True)
+    command.add_argument("--parsed", type=Path, required=True)
+    command.add_argument("--graphs", type=Path, required=True)
+    command.set_defaults(handler=_tmv_dictionary)
+    command = subcommands.add_parser("tmv-validate", parents=[recorded], help="Validate the explicit TMV dictionary contract")
+    command.add_argument("--input", type=Path, required=True)
+    command.add_argument("--baseline", type=Path)
+    command.set_defaults(handler=_tmv_validate)
+    tmv_enrichment = subcommands.add_parser("tmv-enrichment", help="Assistant-only description decisions for the TMV dictionary contract")
+    tmv_actions = tmv_enrichment.add_subparsers(dest="action", required=True)
+    for action in ("prepare", "record", "apply"):
+        command = tmv_actions.add_parser(action, parents=[recorded])
+        command.add_argument("--input", type=Path, required=True)
+        if action != "prepare":
+            command.add_argument("--drafts", type=Path, required=True)
+        command.set_defaults(handler=_tmv_enrichment)
     enrichment = subcommands.add_parser("enrichment", help="Prepare context, record assistant drafts, or apply them")
     actions = enrichment.add_subparsers(dest="action", required=True)
     for action in ("prepare", "record", "apply"):
@@ -251,6 +357,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="One or more columns for a separate focused report; keep the main report unchanged",
     )
     command.set_defaults(handler=_html)
+    command = subcommands.add_parser("tmv-html", parents=[recorded],
+                                     help="Build graph-only HTML for the three selected TMV repositories")
+    command.add_argument("--graphs", type=Path, required=True)
+    command.add_argument("--columns", type=Path, help="Optional TMV column_lineage.json inventory")
+    command.add_argument("--gaps", type=Path, help="Optional TMV column_lineage_gaps.json")
+    command.add_argument("--dictionary", type=Path, help="Validated tmv-dictionary-v1 CSV bundle")
+    command.add_argument("--baseline", type=Path, help="Exact TMV dictionary baseline for preservation validation")
+    command.add_argument("--selector", nargs="+", help="Exact TMV column names, mapping IDs, model.column, or relation.column; write a separate focused report")
+    command.add_argument("--report-name", help="Focused output folder suffix, for example accountid creates 08-html-accountid")
+    command.set_defaults(handler=_tmv_html)
     command = subcommands.add_parser("query", help="Read-only search, trace, path and column queries")
     command.add_argument("--graph", type=Path)
     command.add_argument("--columns", type=Path)

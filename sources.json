@@ -24,6 +24,10 @@
     {
       "name": "kb-cdp-tenant-landing",
       "url": "https://github.com/Kiwibank/kb-cdp-tenant-landing.git"
+    },    
+    {
+      "name": "kb-accounts",
+      "url": "https://github.com/Kiwibank/kb-accounts.git"
     }
   ]
 }

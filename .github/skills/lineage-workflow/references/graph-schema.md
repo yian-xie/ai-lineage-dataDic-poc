@@ -132,3 +132,12 @@ Airflow task ordering and dbt model dependencies are different relationships. Do
 ## Provenance and Confidence
 
 All parser-produced nodes and edges should include `source_path`. Prefer the exact repository-relative file path, especially for extensionless BASIC programs. Attach configuration details or matched expressions as evidence metadata where useful. Use `confidence=explicit` for direct declarations and `confidence=inferred` (with a short reason) for filename-pattern or naming-based associations. Do not infer that a configured location is a concrete table or S3 prefix unless the relevant config/action supplies that mapping.
+
+## Supplemental Software Dependency Graph
+
+The standalone `kb_accounts_project_lineage.json` snapshot uses `DOTNET_PROJECT`
+nodes and `REFERENCES_PROJECT` edges. The edge direction is declaring project to
+referenced project. These types describe static `.csproj` declarations, not
+data assets, transformations, or field lineage. Keep this graph separate from
+the canonical data graph; MSBuild evaluation and runtime behavior are not
+verified.

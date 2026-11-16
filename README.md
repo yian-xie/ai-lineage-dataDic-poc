@@ -21,6 +21,9 @@ source-repos\                Local Git checkouts (ignored by this repository)
   kb-cdp-tenant-enterprise\
   kb-cdp-tenant-protect-downstream\
   kb-cdp-tenant-landing\
+  kb-accounts\
+  kb-cdp-tenant-protect-downstream\
+  kb-cdp-tenant-landing\
 repo-understanding\          Source repository roles, evidence and integration notes
 .github\skills\              Lineage, dictionary and AI-description instructions
 src\lineage_poc\              Working parsers, builders and viewer code
@@ -34,11 +37,11 @@ entire folder is excluded from the application's Git tracking. Their URLs and
 location are configured in [sources.json](./sources.json). No production
 credentials are required.
 
-The configuration now includes six repositories. The additional Landing and
-Protect-downstream checkouts are documented in the
-[repository understanding report](./repo-understanding/README.md).
-Downloading them does not automatically connect their metadata to the main
-lineage graph; the report explains existing support and remaining integration.
+The configuration includes seven repositories. Landing and Protect-downstream
+are parsed into separate graph snapshots. `kb-accounts` contributes a separate
+.NET project-reference graph; it is not data lineage and is not merged into the
+canonical data graph. The [repository understanding report](./repo-understanding/README.md)
+documents the evidence boundaries between these sources.
 
 The configured location is relative to that configuration file, not to the
 terminal's working directory. `--source-root` or `LINEAGE_SOURCE_ROOT` can still
@@ -144,10 +147,128 @@ Reads BASIC, HVR, Airflow, dbt and migration files without executing them.
 Saves parser results and a compact source-evidence archive for replay/debugging.
 Result: `output\02-parsing`.
 
-Individual parsers can also be tested/run with `--parser hvr`, `--parser basic`,
-and the other choices shown by `parse --help`.
+Individual parsers can also be run with `--parser basic`, `--parser landing`,
+`--parser protect_downstream`, or `--parser accounts`; check `parse --help` for
+the full set. `--parser all` includes the configured optional repositories when
+their checkouts are present.
+
+For exactly Landing, Protect-downstream and `kb-accounts`, use the dedicated
+`tmv` parser with a configuration containing only those repositories, then
+build with `graphs --scope tmv`. This writes their three standalone graphs,
+`table_lineage.json` (the Landing + Protect data-graph union), and
+`all_repositories_lineage.json` (the same data graph plus a separate .NET
+project component), without capturing the core Ultracs/HVR/Account/Enterprise
+repositories. The graph unions add no unsupported bridge edges.
+
+For the Account-only slice of those three repositories, use `parse --parser
+tmv-account` instead. It captures Landing Account public-model roots and their
+dependencies within `ultracs-v1`, six Protect Account products with unused
+source declarations pruned, and the separate `kb-accounts` software component.
+The explicit seed list and dependency rules are saved as `account_scope` in the
+parse and dictionary manifests. Joined customer/reference fields remain
+dependency context, not independently selected products.
+
+`columns --feed TMV` writes a SQL-derived `04-column-lineage\column_lineage.json`
+and `column_lineage_gaps.json`. It records mappings only when SQLGlot resolves
+the source column to a relation in the same repository graph. It does not infer
+cross-repository column links or make this custom TMV inventory a valid input to
+the legacy three-CSV dictionary. Use `tmv-html --graphs ... --columns ... --gaps ...`
+to render the graph pages and column mapping view under `08-html`.
+
+TMV dictionary generation uses the separate `tmv-dictionary-v1` adapter, not
+the Ultracs adapter. Run `tmv-dictionary`, `tmv-enrichment prepare/record/apply`,
+and `tmv-validate`, with `--output-dir .\TMV_output` on every stage. Only blank,
+mapped TMV target-field descriptions without metadata conflicts are eligible
+for assistant-authored technical drafts. Existing descriptions are preserved.
+The `.NET` project component does not receive invented dataset/field entries.
+Use `tmv-html --dictionary .\TMV_output\06c-ai-enrichment --baseline
+.\TMV_output\05-baseline-dictionary` along with the matching graph/column paths
+to embed the validated three-CSV bundle in the single HTML report. The TMV CSVs
+have their own declared contract and are not compatible with the legacy V3
+importer. Full instructions are in `../new_skill/tmv-description-enrichment/SKILL.md`.
 
 ### 3. Build the lineage graph and column inventory
+
+### Four-Repository Account Domain
+
+The `account-domain` profile selects `kb-accounts`, `kb-cdp-tenant-account`,
+`kb-cdp-tenant-enterprise`, and `kb-cdp-tenant-protect-downstream`. It excludes
+Landing, HVR, and Ultracs BASIC checkouts. Account and Enterprise Account product
+lists come from `parsers/snapshot.py`; Protect uses the six Account products in
+`parsers/tmv_account.py`. Product models and their referenced source/physical
+dependencies are retained; unused source declarations are excluded. Joined
+customer/reference fields are dependency context, not independently selected
+domains. Source/configuration files are archived unchanged and are not executed.
+
+Use the separate `Account_Domain_output/sources.json` configuration. All stages
+keep their usual recorded integrity and rollback behavior, starting at parsing:
+
+```powershell
+python -B -m lineage_poc parse --parser account-domain --config .\Account_Domain_output\sources.json --source-root .\source-repos --output-dir .\Account_Domain_output
+python -B -m lineage_poc graphs --parsed .\Account_Domain_output\02-parsing --scope account-domain --output-dir .\Account_Domain_output
+python -B -m lineage_poc columns --parsed .\Account_Domain_output\02-parsing --graphs .\Account_Domain_output\03-lineage-graphs --feed TMV --output-dir .\Account_Domain_output
+python -B -m lineage_poc tmv-dictionary --input .\Account_Domain_output\04-column-lineage\column_lineage.json --parsed .\Account_Domain_output\02-parsing --graphs .\Account_Domain_output\03-lineage-graphs --output-dir .\Account_Domain_output
+python -B -m lineage_poc tmv-enrichment prepare --input .\Account_Domain_output\05-baseline-dictionary --output-dir .\Account_Domain_output
+```
+
+The `tmv-*` commands reuse the strict SQL dictionary contract with explicit
+`run_profile=account-domain` and a four-repository allowlist. They do not apply
+the legacy Ultracs dictionary adapter or broaden its enrichment eligibility.
+The current assistant authors or explicitly revalidates exact-match technical
+drafts, then records/applies them with `tmv-enrichment record/apply`. Reuse must
+retain `reused_from`, current context/CSV hashes, and the original attribution;
+it is not newly generated prose. Existing descriptions remain unchanged.
+
+```powershell
+python -B -m lineage_poc tmv-validate --input .\Account_Domain_output\06c-ai-enrichment --baseline .\Account_Domain_output\05-baseline-dictionary --output-dir .\Account_Domain_output
+python -B -m lineage_poc tmv-html --graphs .\Account_Domain_output\03-lineage-graphs --columns .\Account_Domain_output\04-column-lineage\column_lineage.json --gaps .\Account_Domain_output\04-column-lineage\column_lineage_gaps.json --dictionary .\Account_Domain_output\06c-ai-enrichment --baseline .\Account_Domain_output\05-baseline-dictionary --output-dir .\Account_Domain_output
+```
+
+The final `Account_Domain_output/08-html/index.html` embeds the complete dictionary
+using the reference template and application scripts through the SQL adapter.
+The .NET project component remains software lineage. The Account-domain profile
+also captures production C# entities, configurations, migrations and EF model
+snapshots. `kb_accounts_data_lineage.json` records distinct CLR entities and
+repository-declared PostgreSQL relations; explicit property/column bindings,
+flattened complex properties and named JSON document columns appear in the
+dictionary and column view without being relabeled as SQL transformations.
+Database/context identities and null schemas remain unverified or unspecified.
+The column stage also writes `kb_accounts_schema_inventory.json`,
+`kb_accounts_migration_evidence.json` (historical `Up` operations, not executed),
+and `kb_accounts_assignment_evidence.json` (unbound mapper assignments, not graph
+edges). C# runtime semantics, imported/conditional configuration, unsupported
+syntax and cross-repository service/data bindings remain explicit gaps.
+Property XML summaries are preserved with their original documentation evidence.
+The parser uses Tree-sitter C# syntax trees; it does not execute C#, EF or MSBuild.
+
+The Account-domain product allowlist also includes the Account profile,
+posting/transaction/EOD topic products and Account migration reconciliation.
+Namespace-resolved C# assignments add `ASSIGNS_TO_EVENT` relationships with exact
+field-mapping IDs; declared event wrapping and typed outbox calls add
+`WRAPPED_IN_EVENT` and `PUBLISHED_VIA`. These are CLR contract relationships,
+not inferred JSON-wire or cross-repository field equivalence. Publication stops
+at explicit unresolved topic boundaries. Diagnostic exception-message references
+are not treated as value dependencies.
+
+Every extracted `kb-accounts` EF field has a record in
+`04-column-lineage/kb_accounts_field_relationship_assessments.json`, including
+unmapped fields and unresolved transport. These gaps are also retained in
+`column_lineage_gaps.json`; successful parsing does not establish full connectivity.
+
+For the focused report, reuse the accepted stages rather than parsing again:
+
+```powershell
+python -B -m lineage_poc tmv-html --graphs .\Account_Domain_output\03-lineage-graphs --columns .\Account_Domain_output\04-column-lineage\column_lineage.json --gaps .\Account_Domain_output\04-column-lineage\column_lineage_gaps.json --dictionary .\Account_Domain_output\06c-ai-enrichment --baseline .\Account_Domain_output\05-baseline-dictionary --selector Account_ID ACCOUNTID --report-name accountid --output-dir .\Account_Domain_output
+```
+
+This selector also matches case-insensitive EF `AccountId`/`account_id` names,
+without treating every matching name as the same business or physical identity.
+Graph unions do not invent cross-repository bridges; unresolved SQL, deployment,
+and business-meaning questions remain explicit. Prior `output` and `TMV_output`
+artifacts are not modified. Static/Node checks are not browser or live-system
+verification.
+
+### Default Graph and Column Commands
 
 ```powershell
 python -B -m lineage_poc graphs --parsed .\output\02-parsing
@@ -155,8 +276,15 @@ python -B -m lineage_poc columns --parsed .\output\02-parsing --graphs .\output\
 ```
 
 Results: `output\03-lineage-graphs` and
-`output\04-column-lineage\column_lineage.json`.
-The column JSON is the input to the data dictionary, not the final HTML.
+`output\04-column-lineage\column_lineage.json`. When present, stage 3 also
+contains separate `landing_tenant_lineage.json`,
+`protect_downstream_lineage.json`, and `kb_accounts_project_lineage.json`
+snapshots. The .NET project graph remains supplemental. The column JSON is the
+input to the data dictionary, not the final HTML; repository graph snapshots do
+not create column mappings by themselves.
+
+To keep a run separate from the default outputs, pass a different output root
+to each stage, for example `--output-dir .\TMV_output`.
 
 ### 4. Generate the three baseline CSVs
 

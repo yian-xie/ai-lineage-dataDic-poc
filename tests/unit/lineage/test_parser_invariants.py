@@ -2,7 +2,35 @@ from pathlib import Path
 
 from lineage_poc.columns.dwacc import _dbt_data_projections, _dwacc_output_fields, _selected_sql_projections
 from lineage_poc.parsers import parse_dbt_project, parse_hvr_config, parse_hvr_param
+from lineage_poc.parsers import parse_kb_accounts
 from lineage_poc.parsers.ultracs_basic import parse_ultracs_basic_file, parse_ultracs_record
+
+
+def test_kb_accounts_parser_resolves_only_literal_local_project_references(tmp_path):
+    shared = tmp_path / "src" / "Shared" / "Shared.csproj"
+    app = tmp_path / "src" / "App" / "App.csproj"
+    shared.parent.mkdir(parents=True)
+    app.parent.mkdir(parents=True)
+    shared.write_text("<Project />", encoding="utf-8")
+    app.write_text(
+        "<Project><ItemGroup>"
+        "<ProjectReference Include='..\\Shared\\Shared.csproj' />"
+        "<ProjectReference Include='$(ExternalProject)' />"
+        "</ItemGroup></Project>",
+        encoding="utf-8",
+    )
+
+    graph = parse_kb_accounts(tmp_path)
+
+    assert len(graph["nodes"]) == 2
+    assert len(graph["edges"]) == 1
+    assert graph["edges"][0]["type"] == "REFERENCES_PROJECT"
+    assert graph["edges"][0]["target"].endswith("src/Shared/Shared.csproj")
+    assert any(
+        item["reason"] == "dotnet_reference_not_resolved"
+        for item in graph["unresolved"]
+    )
+    assert graph["coverage"]["runtime_verified"] is False
 
 FIXTURES = Path(__file__).parent / "fixtures"
 

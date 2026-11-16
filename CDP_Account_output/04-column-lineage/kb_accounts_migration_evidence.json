@@ -1,0 +1,3422 @@
+[
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20230928010147_InitialCreate.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_opening\",\n                columns: table => new\n                {\n                    account_id = table.Column<string>(type: \"text\", nullable: false),\n                    event_id = table.Column<Guid>(type: \"uuid\", nullable: false),\n                    correlation_id = table.Column<Guid>(type: \"uuid\", nullable: false),\n                    party_role_ids = table.Column<string[]>(type: \"text[]\", nullable: false),\n                    created = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    failed = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    scheduled_open = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    opened = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    valid_until = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    last_retry = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    retry_count = table.Column<int>(type: \"integer\", nullable: false),\n                    product_application_event = table.Column<string>(type: \"text\", nullable: false),\n                    trace_context = table.Column<string>(type: \"text\", nullable: true)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_account_opening\", x => x.account_id);\n                })",
+        "source_line": 18,
+        "literal_arguments": [
+          "account_opening",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"outbox\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false, defaultValueSql: \"uuid_generate_v4()\"),\n                    timestamp = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    payload = table.Column<byte[]>(type: \"bytea\", nullable: false),\n                    topic = table.Column<string>(type: \"text\", nullable: false),\n                    type = table.Column<string>(type: \"text\", nullable: false),\n                    retry_count = table.Column<int>(type: \"integer\", nullable: false),\n                    headers = table.Column<string>(type: \"text\", nullable: false),\n                    last_retry = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    key = table.Column<string>(type: \"text\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_outbox\", x => x.id);\n                })",
+        "source_line": 41,
+        "literal_arguments": [
+          "outbox",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20231015225855_Update schema.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "RenameTable",
+        "expression": "migrationBuilder.RenameTable(\n                name: \"account_opening\",\n                newName: \"account_opening\",\n                newSchema: \"origination\")",
+        "source_line": 16,
+        "literal_arguments": [
+          "account_opening",
+          "account_opening",
+          "origination"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20241029230813_RemoveProductApplicationEventColumn.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropColumn",
+        "expression": "migrationBuilder.DropColumn(\n                name: \"product_application_event\",\n                schema: \"origination\",\n                table: \"account_opening\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "product_application_event",
+          "origination",
+          "account_opening"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20250909000710_AddAccountNumberNameProduct.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"account_name\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "account_name",
+          "origination",
+          "account_opening",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"account_number\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 20,
+        "literal_arguments": [
+          "account_number",
+          "origination",
+          "account_opening",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"banking_relationship_id\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 27,
+        "literal_arguments": [
+          "banking_relationship_id",
+          "origination",
+          "account_opening",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"product_code\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 34,
+        "literal_arguments": [
+          "product_code",
+          "origination",
+          "account_opening",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_opening_product_code\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                column: \"product_code\")",
+        "source_line": 41,
+        "literal_arguments": [
+          "ix_account_opening_product_code",
+          "origination",
+          "account_opening",
+          "product_code"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20250909225410_AddOutboxItemIndex.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"idx_outbox_retry_last_retry\",\n                table: \"outbox\",\n                columns: new[] { \"retry_count\", \"last_retry\", \"id\" })",
+        "source_line": 13,
+        "literal_arguments": [
+          "idx_outbox_retry_last_retry",
+          "outbox",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20250914223251_AddProductPropositionId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"product_proposition_id\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "product_proposition_id",
+          "origination",
+          "account_opening",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20251013011708_AddPartyId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"party_id\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"uuid\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "party_id",
+          "origination",
+          "account_opening",
+          "uuid",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20251028213922_AddAlternateAccountNameAndBankingProductId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"alternate_account_name\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "alternate_account_name",
+          "origination",
+          "account_opening",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"banking_product_id\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"uuid\",\n                nullable: true)",
+        "source_line": 22,
+        "literal_arguments": [
+          "banking_product_id",
+          "origination",
+          "account_opening",
+          "uuid",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"banking_product_version_id\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"uuid\",\n                nullable: true)",
+        "source_line": 29,
+        "literal_arguments": [
+          "banking_product_version_id",
+          "origination",
+          "account_opening",
+          "uuid",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20251114040424_AddProductFacilityId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(\"ALTER TABLE origination.account_opening ALTER COLUMN product_proposition_id TYPE uuid USING product_proposition_id::uuid;\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "ALTER TABLE origination.account_opening ALTER COLUMN product_proposition_id TYPE uuid USING product_proposition_id::uuid;"
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(\"ALTER TABLE origination.account_opening ALTER COLUMN banking_relationship_id TYPE uuid USING banking_relationship_id::uuid;\")",
+        "source_line": 16,
+        "literal_arguments": [
+          "ALTER TABLE origination.account_opening ALTER COLUMN banking_relationship_id TYPE uuid USING banking_relationship_id::uuid;"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"product_facility_id\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"uuid\",\n                nullable: true)",
+        "source_line": 18,
+        "literal_arguments": [
+          "product_facility_id",
+          "origination",
+          "account_opening",
+          "uuid",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/20260220003534_AddStateColumnToAccountOpening.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"state\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"varchar(50)\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "state",
+          "origination",
+          "account_opening",
+          "varchar(50)",
+          null
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                UPDATE origination.account_opening\n                SET state = CASE\n                    WHEN failed IS NOT NULL THEN 'Failed'\n                    WHEN opened IS NOT NULL THEN 'Opened'\n                    WHEN created IS NOT NULL THEN 'Created'\n                    ELSE 'Initial'\n                END\n                WHERE state IS NULL;\n            \")",
+        "source_line": 20,
+        "literal_arguments": [
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<string>(\n                name: \"state\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                type: \"varchar(50)\",\n                nullable: false,\n                oldClrType: typeof(string),\n                oldType: \"varchar(50)\",\n                oldNullable: true)",
+        "source_line": 31,
+        "literal_arguments": [
+          "state",
+          "origination",
+          "account_opening",
+          "varchar(50)",
+          null,
+          null,
+          "varchar(50)",
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_opening_state\",\n                schema: \"origination\",\n                table: \"account_opening\",\n                columns: new[] { \"state\", \"retry_count\", \"last_retry\" })",
+        "source_line": 40,
+        "literal_arguments": [
+          "ix_account_opening_state",
+          "origination",
+          "account_opening",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/20240414222940_InitialCreate.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"outbox\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false, defaultValueSql: \"uuid_generate_v4()\"),\n                    timestamp = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    payload = table.Column<byte[]>(type: \"bytea\", nullable: false),\n                    topic = table.Column<string>(type: \"text\", nullable: false),\n                    type = table.Column<string>(type: \"text\", nullable: false),\n                    retry_count = table.Column<int>(type: \"integer\", nullable: false),\n                    headers = table.Column<string>(type: \"text\", nullable: false),\n                    last_retry = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    key = table.Column<string>(type: \"text\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_outbox\", x => x.id);\n                })",
+        "source_line": 21,
+        "literal_arguments": [
+          "outbox",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"payment_instruction\",\n                schema: \"paymentinstruction\",\n                columns: table => new\n                {\n                    client_id = table.Column<string>(type: \"text\", nullable: false),\n                    batch_id = table.Column<string>(type: \"text\", nullable: false),\n                    request_id = table.Column<string>(type: \"text\", nullable: true),\n                    transaction_id = table.Column<string>(type: \"text\", nullable: true),\n                    type = table.Column<string>(type: \"text\", nullable: true),\n                    request_date = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    value_date = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    description = table.Column<string>(type: \"text\", nullable: true),\n                    lifecycle = table.Column<string>(type: \"text\", nullable: true),\n                    additional_information = table.Column<string>(type: \"text\", nullable: true),\n                    trace_context = table.Column<string>(type: \"text\", nullable: true)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_payment_instruction\", x => new { x.client_id, x.batch_id });\n                })",
+        "source_line": 40,
+        "literal_arguments": [
+          "payment_instruction",
+          "paymentinstruction",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"payment_instruction_status\",\n                schema: \"paymentinstruction\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false),\n                    client_id = table.Column<string>(type: \"text\", nullable: true),\n                    batch_id = table.Column<string>(type: \"text\", nullable: true),\n                    state = table.Column<string>(type: \"text\", nullable: true),\n                    date = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    trace_context = table.Column<string>(type: \"text\", nullable: true)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_payment_instruction_status\", x => x.id);\n                })",
+        "source_line": 62,
+        "literal_arguments": [
+          "payment_instruction_status",
+          "paymentinstruction",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/20240611020734_ClientBatchId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropColumn",
+        "expression": "migrationBuilder.DropColumn(\n                name: \"trace_context\",\n                schema: \"paymentinstruction\",\n                table: \"payment_instruction\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "trace_context",
+          "paymentinstruction",
+          "payment_instruction"
+        ]
+      },
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"batch_id\",\n                schema: \"paymentinstruction\",\n                table: \"payment_instruction\",\n                newName: \"client_batch_id\")",
+        "source_line": 18,
+        "literal_arguments": [
+          "batch_id",
+          "paymentinstruction",
+          "payment_instruction",
+          "client_batch_id"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"client_batch_id\",\n                schema: \"paymentinstruction\",\n                table: \"payment_instruction_status\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 24,
+        "literal_arguments": [
+          "client_batch_id",
+          "paymentinstruction",
+          "payment_instruction_status",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/20250909225443_AddOutboxItemIndex.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"idx_outbox_retry_last_retry\",\n                table: \"outbox\",\n                columns: new[] { \"retry_count\", \"last_retry\", \"id\" })",
+        "source_line": 13,
+        "literal_arguments": [
+          "idx_outbox_retry_last_retry",
+          "outbox",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/20240423005149_InitialCreate.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_posting\",\n                schema: \"posting\",\n                columns: table => new\n                {\n                    id = table.Column<string>(type: \"text\", nullable: false),\n                    row_index = table.Column<int>(type: \"integer\", nullable: false),\n                    account_id = table.Column<string>(type: \"text\", nullable: false),\n                    client_id = table.Column<string>(type: \"text\", nullable: false),\n                    batch_id = table.Column<string>(type: \"text\", nullable: false),\n                    amount = table.Column<decimal>(type: \"numeric\", nullable: false),\n                    address = table.Column<string>(type: \"text\", nullable: false),\n                    asset = table.Column<string>(type: \"text\", nullable: false),\n                    phase = table.Column<string>(type: \"text\", nullable: false),\n                    denomination = table.Column<string>(type: \"text\", nullable: false),\n                    trace_context = table.Column<string>(type: \"text\", nullable: true)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_account_posting\", x => new { x.id, x.row_index });\n                })",
+        "source_line": 21,
+        "literal_arguments": [
+          "account_posting",
+          "posting",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"outbox\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false, defaultValueSql: \"uuid_generate_v4()\"),\n                    timestamp = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    payload = table.Column<byte[]>(type: \"bytea\", nullable: false),\n                    topic = table.Column<string>(type: \"text\", nullable: false),\n                    type = table.Column<string>(type: \"text\", nullable: false),\n                    retry_count = table.Column<int>(type: \"integer\", nullable: false),\n                    headers = table.Column<string>(type: \"text\", nullable: false),\n                    last_retry = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    key = table.Column<string>(type: \"text\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_outbox\", x => x.id);\n                })",
+        "source_line": 43,
+        "literal_arguments": [
+          "outbox",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/20240502000212_AddTransactionCodeCol.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"transaction_code\",\n                schema: \"posting\",\n                table: \"account_posting\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "transaction_code",
+          "posting",
+          "account_posting",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/20240522035723_AddCreditCol.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<bool>(\n                name: \"credit\",\n                schema: \"posting\",\n                table: \"account_posting\",\n                type: \"boolean\",\n                nullable: false,\n                defaultValue: false)",
+        "source_line": 13,
+        "literal_arguments": [
+          "credit",
+          "posting",
+          "account_posting",
+          "boolean",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/20250714053127_AddTmvPostingBatch.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropTable",
+        "expression": "migrationBuilder.DropTable(\n                name: \"account_posting\",\n                schema: \"posting\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "account_posting",
+          "posting"
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"tmv_positing_batch\",\n                schema: \"posting\",\n                columns: table => new\n                {\n                    id = table.Column<string>(type: \"text\", nullable: false),\n                    posting_batch_event_payload = table.Column<byte[]>(type: \"bytea\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_tmv_positing_batch\", x => x.id);\n                })",
+        "source_line": 17,
+        "literal_arguments": [
+          "tmv_positing_batch",
+          "posting",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/20250909225117_AddOutboxItemIndex.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"idx_outbox_retry_last_retry\",\n                table: \"outbox\",\n                columns: new[] { \"retry_count\", \"last_retry\", \"id\" })",
+        "source_line": 13,
+        "literal_arguments": [
+          "idx_outbox_retry_last_retry",
+          "outbox",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/20251007194544_AddBaseColumnsToPostingTable.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"posting\",\n                table: \"tmv_positing_batch\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "created_at",
+          "posting",
+          "tmv_positing_batch",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"posting\",\n                table: \"tmv_positing_batch\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 23,
+        "literal_arguments": [
+          "modified_at",
+          "posting",
+          "tmv_positing_batch",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/20251008011426_AddMissingMigration.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"posting\",\n                table: \"tmv_positing_batch\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true,\n                oldDefaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "created_at",
+          "posting",
+          "tmv_positing_batch",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20240312013823_InitialCreate.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_profile\",\n                schema: \"profile\",\n                columns: table => new\n                {\n                    account_id = table.Column<string>(type: \"text\", nullable: false),\n                    status = table.Column<string>(type: \"text\", nullable: true),\n                    party_role_ids = table.Column<string[]>(type: \"text[]\", nullable: true),\n                    change_id = table.Column<long>(type: \"bigint\", nullable: false),\n                    created = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    opened = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    closed = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    trace_context = table.Column<string>(type: \"text\", nullable: true)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_account_profile\", x => x.account_id);\n                })",
+        "source_line": 21,
+        "literal_arguments": [
+          "account_profile",
+          "profile",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"outbox\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false, defaultValueSql: \"uuid_generate_v4()\"),\n                    timestamp = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    payload = table.Column<byte[]>(type: \"bytea\", nullable: false),\n                    topic = table.Column<string>(type: \"text\", nullable: false),\n                    type = table.Column<string>(type: \"text\", nullable: false),\n                    retry_count = table.Column<int>(type: \"integer\", nullable: false),\n                    headers = table.Column<string>(type: \"text\", nullable: false),\n                    last_retry = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    key = table.Column<string>(type: \"text\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_outbox\", x => x.id);\n                })",
+        "source_line": 40,
+        "literal_arguments": [
+          "outbox",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20240613031528_AddTSideColWithDefaultValue.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"t_side\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: false,\n                defaultValue: \"Unknown\"\n                )",
+        "source_line": 13,
+        "literal_arguments": [
+          "t_side",
+          "profile",
+          "account_profile",
+          "text",
+          null,
+          "Unknown"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20241016061956_ProfileToGraphql.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"trace_context\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                newName: \"withholding_tax_withholding_tax_type\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "trace_context",
+          "profile",
+          "account_profile",
+          "withholding_tax_withholding_tax_type"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"product_facility_banking_product_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 21,
+        "literal_arguments": [
+          "product_facility_banking_product_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"product_facility_banking_product_version_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 28,
+        "literal_arguments": [
+          "product_facility_banking_product_version_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"withholding_tax_withholding_tax_rate\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 35,
+        "literal_arguments": [
+          "withholding_tax_withholding_tax_rate",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_profile_identifier\",\n                schema: \"profile\",\n                columns: table => new\n                {\n                    row_id = table.Column<Guid>(type: \"uuid\", nullable: false),\n                    account_identification = table.Column<string>(type: \"text\", nullable: true),\n                    account_identification_type = table.Column<string>(type: \"text\", nullable: true),\n                    account_profile_account_id = table.Column<string>(type: \"text\", nullable: true)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_account_profile_identifier\", x => x.row_id);\n                    table.ForeignKey(\n                        name: \"fk_account_profile_identifier_account_profile_account_profile_\",\n                        column: x => x.account_profile_account_id,\n                        principalSchema: \"profile\",\n                        principalTable: \"account_profile\",\n                        principalColumn: \"account_id\");\n                })",
+        "source_line": 42,
+        "literal_arguments": [
+          "account_profile_identifier",
+          "profile",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_profile_identifier_account_profile_account_id\",\n                schema: \"profile\",\n                table: \"account_profile_identifier\",\n                column: \"account_profile_account_id\")",
+        "source_line": 63,
+        "literal_arguments": [
+          "ix_account_profile_identifier_account_profile_account_id",
+          "profile",
+          "account_profile_identifier",
+          "account_profile_account_id"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20241021042829_CascadeDeleteIdentifier.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropForeignKey",
+        "expression": "migrationBuilder.DropForeignKey(\n                name: \"fk_account_profile_identifier_account_profile_account_profile_\",\n                schema: \"profile\",\n                table: \"account_profile_identifier\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "fk_account_profile_identifier_account_profile_account_profile_",
+          "profile",
+          "account_profile_identifier"
+        ]
+      },
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"account_profile_account_id\",\n                schema: \"profile\",\n                table: \"account_profile_identifier\",\n                newName: \"profile_account_id\")",
+        "source_line": 18,
+        "literal_arguments": [
+          "account_profile_account_id",
+          "profile",
+          "account_profile_identifier",
+          "profile_account_id"
+        ]
+      },
+      {
+        "operation": "AddForeignKey",
+        "expression": "migrationBuilder.AddForeignKey(\n                name: \"fk_account_profile_identifier_account_profile_profile_account_\",\n                schema: \"profile\",\n                table: \"account_profile_identifier\",\n                column: \"profile_account_id\",\n                principalSchema: \"profile\",\n                principalTable: \"account_profile\",\n                principalColumn: \"account_id\",\n                onDelete: ReferentialAction.Cascade)",
+        "source_line": 30,
+        "literal_arguments": [
+          "fk_account_profile_identifier_account_profile_profile_account_",
+          "profile",
+          "account_profile_identifier",
+          "profile_account_id",
+          "profile",
+          "account_profile",
+          "account_id",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20241104044900_AddConcurrencyToken.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<uint>(\n                name: \"xmin\",\n                schema: \"profile\",\n                table: \"account_profile_identifier\",\n                type: \"xid\",\n                rowVersion: true,\n                nullable: false,\n                defaultValue: 0u)",
+        "source_line": 13,
+        "literal_arguments": [
+          "xmin",
+          "profile",
+          "account_profile_identifier",
+          "xid",
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<uint>(\n                name: \"xmin\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"xid\",\n                rowVersion: true,\n                nullable: false,\n                defaultValue: 0u)",
+        "source_line": 22,
+        "literal_arguments": [
+          "xmin",
+          "profile",
+          "account_profile",
+          "xid",
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20241105004824_AddAlternateNameColumn.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"alternate_name\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"character varying(130)\",\n                maxLength: 130,\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "alternate_name",
+          "profile",
+          "account_profile",
+          "character varying(130)",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20241105221826_AddNameColumn.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"name\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"character varying(130)\",\n                maxLength: 130,\n                nullable: false,\n                defaultValue: \"\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "name",
+          "profile",
+          "account_profile",
+          "character varying(130)",
+          null,
+          null,
+          ""
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20241217225224_AddAccountCurrency.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_currency\",\n                schema: \"profile\",\n                columns: table => new\n                {\n                    row_id = table.Column<Guid>(type: \"uuid\", nullable: false),\n                    currency = table.Column<string>(type: \"text\", nullable: true),\n                    currency_type = table.Column<string>(type: \"text\", nullable: true),\n                    profile_account_id = table.Column<string>(type: \"text\", nullable: true),\n                    xmin = table.Column<uint>(type: \"xid\", rowVersion: true, nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_account_currency\", x => x.row_id);\n                    table.ForeignKey(\n                        name: \"fk_account_currency_account_profile_profile_account_id\",\n                        column: x => x.profile_account_id,\n                        principalSchema: \"profile\",\n                        principalTable: \"account_profile\",\n                        principalColumn: \"account_id\",\n                        onDelete: ReferentialAction.Cascade);\n                })",
+        "source_line": 15,
+        "literal_arguments": [
+          "account_currency",
+          "profile",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_currency_profile_account_id\",\n                schema: \"profile\",\n                table: \"account_currency\",\n                column: \"profile_account_id\")",
+        "source_line": 38,
+        "literal_arguments": [
+          "ix_account_currency_profile_account_id",
+          "profile",
+          "account_currency",
+          "profile_account_id"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20250108040142_AddNewColumnsToAccountProfile.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"product_facility_banking_product_code\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "product_facility_banking_product_code",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"banking_relationship_banking_relationship_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 20,
+        "literal_arguments": [
+          "banking_relationship_banking_relationship_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"banking_relationship_banking_relationship_type\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 27,
+        "literal_arguments": [
+          "banking_relationship_banking_relationship_type",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"banking_relationship_party_ids\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text[]\",\n                nullable: true)",
+        "source_line": 33,
+        "literal_arguments": [
+          "banking_relationship_party_ids",
+          "profile",
+          "account_profile",
+          "text[]",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20250114024507_AssignDefaultValuesToNewColumns.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                UPDATE profile.account_profile\n                SET\n                    product_facility_banking_product_code = product_facility_banking_product_id,\n                    banking_relationship_banking_relationship_id = '',\n                    banking_relationship_banking_relationship_type = '',\n                    banking_relationship_party_ids = party_role_ids\n                WHERE\n                    product_facility_banking_product_code = ''\n                    OR product_facility_banking_product_code IS NULL\n                    OR banking_relationship_banking_relationship_id IS NULL\n                    OR banking_relationship_banking_relationship_type IS NULL\n                    OR banking_relationship_party_ids IS NULL\n                    OR banking_relationship_party_ids = ARRAY[]::text[];\n            \")",
+        "source_line": 13,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20250325005603_AddProductFacilityId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"product_facility_product_facility_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "product_facility_product_facility_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20250708230452_RemovePartyRoleIds.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropColumn",
+        "expression": "migrationBuilder.DropColumn(\n                name: \"party_role_ids\",\n                schema: \"profile\",\n                table: \"account_profile\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "party_role_ids",
+          "profile",
+          "account_profile"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20250909225328_AddOutboxItemIndex.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"idx_outbox_retry_last_retry\",\n                table: \"outbox\",\n                columns: new[] { \"retry_count\", \"last_retry\", \"id\" })",
+        "source_line": 13,
+        "literal_arguments": [
+          "idx_outbox_retry_last_retry",
+          "outbox",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20251029215043_AddProfileProcessingFailuresTable.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"profile_processing_failure\",\n                schema: \"profile\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false),\n                    account_id = table.Column<string>(type: \"text\", nullable: true),\n                    event_id = table.Column<string>(type: \"text\", nullable: true),\n                    event_name = table.Column<string>(type: \"text\", nullable: true),\n                    failed_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    last_retry = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    failure_reported_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    retry_count = table.Column<int>(type: \"integer\", nullable: false),\n                    remarks = table.Column<string>(type: \"text\", nullable: true),\n                    created_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false, defaultValueSql: \"CURRENT_TIMESTAMP\"),\n                    modified_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true, defaultValueSql: \"CURRENT_TIMESTAMP\")\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_profile_processing_failure\", x => x.id);\n                })",
+        "source_line": 15,
+        "literal_arguments": [
+          "profile_processing_failure",
+          "profile",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_profile_processing_failure_account_id\",\n                schema: \"profile\",\n                table: \"profile_processing_failure\",\n                column: \"account_id\")",
+        "source_line": 37,
+        "literal_arguments": [
+          "ix_profile_processing_failure_account_id",
+          "profile",
+          "profile_processing_failure",
+          "account_id"
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_profile_processing_failure_event_id\",\n                schema: \"profile\",\n                table: \"profile_processing_failure\",\n                column: \"event_id\")",
+        "source_line": 43,
+        "literal_arguments": [
+          "ix_profile_processing_failure_event_id",
+          "profile",
+          "profile_processing_failure",
+          "event_id"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20251102214433_RemoveProfileProcessingFailuresTable.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropTable",
+        "expression": "migrationBuilder.DropTable(\n                name: \"profile_processing_failure\",\n                schema: \"profile\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "profile_processing_failure",
+          "profile"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20251208031049_AddNewAttributesToMatchSchemaChange.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"withholding_tax_withholding_tax_type\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                newName: \"domestic_tax_rate_domestic_tax_type\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "withholding_tax_withholding_tax_type",
+          "profile",
+          "account_profile",
+          "domestic_tax_rate_domestic_tax_type"
+        ]
+      },
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"withholding_tax_withholding_tax_rate\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                newName: \"domestic_tax_rate_rate_value\")",
+        "source_line": 19,
+        "literal_arguments": [
+          "withholding_tax_withholding_tax_rate",
+          "profile",
+          "account_profile",
+          "domestic_tax_rate_rate_value"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"account_create_user_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 25,
+        "literal_arguments": [
+          "account_create_user_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"account_organisation_unit_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 32,
+        "literal_arguments": [
+          "account_organisation_unit_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"banking_relationship_nominated_tax_party_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 39,
+        "literal_arguments": [
+          "banking_relationship_nominated_tax_party_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"domestic_tax_rate_country_alpha3code\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 46,
+        "literal_arguments": [
+          "domestic_tax_rate_country_alpha3code",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"minimum_number_of_authoriser\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 53,
+        "literal_arguments": [
+          "minimum_number_of_authoriser",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260116015256_RenameAccountCreateUserIdToAccountCreatedUserId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"account_create_user_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                newName: \"account_created_user_id\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "account_create_user_id",
+          "profile",
+          "account_profile",
+          "account_created_user_id"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260215221640_AddInterestRate.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"product_facility_interest_rate\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "product_facility_interest_rate",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"product_facility_interest_rate_plan_change_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 22,
+        "literal_arguments": [
+          "product_facility_interest_rate_plan_change_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"product_facility_interest_rate_valid_from\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 29,
+        "literal_arguments": [
+          "product_facility_interest_rate_valid_from",
+          "profile",
+          "account_profile",
+          "timestamp with time zone",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260305213409_AddAccountClosureReasonToAccountProfile.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"account_closure_reason\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "account_closure_reason",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260415031445_AddAccountFreezeDetails.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<long>(\n                name: \"account_freeze_details_change_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"bigint\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "account_freeze_details_change_id",
+          "profile",
+          "account_profile",
+          "bigint",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"account_freeze_details_freeze_description\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 20,
+        "literal_arguments": [
+          "account_freeze_details_freeze_description",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"account_freeze_details_freeze_type\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 27,
+        "literal_arguments": [
+          "account_freeze_details_freeze_type",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260428205515_AddAccountFreezeDateTimeAndRestrictionSetId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"account_freeze_details_effective\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "account_freeze_details_effective",
+          "profile",
+          "account_profile",
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"account_freeze_details_expiration\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 22,
+        "literal_arguments": [
+          "account_freeze_details_expiration",
+          "profile",
+          "account_profile",
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"account_freeze_details_restriction_set_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 29,
+        "literal_arguments": [
+          "account_freeze_details_restriction_set_id",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260525070953_AddTmvStatus.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"tmv_status\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "tmv_status",
+          "profile",
+          "account_profile",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260528174600_AddTmvStatus_conversion.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                UPDATE profile.account_profile\n                SET\n                    tmv_status = status,\n                    status = CASE\n                        WHEN status = 'ACCOUNT_STATUS_CANCELLED' THEN 'Cancelled'\n                        WHEN status = 'ACCOUNT_STATUS_CLOSED' THEN 'Closed'\n                        WHEN status = 'ACCOUNT_STATUS_CLOSING' THEN 'Closing'\n                        WHEN status = 'ACCOUNT_STATUS_PENDING' THEN 'Pending'\n                        WHEN status = 'ACCOUNT_STATUS_OPEN' THEN CASE\n                            WHEN account_freeze_details_restriction_set_id is not null THEN 'Frozen'\n                            ELSE 'Opened'\n                        END\n                        WHEN status = 'ACCOUNT_STATUS_OPENING' THEN 'Opening'\n                        WHEN status = 'ACCOUNT_STATUS_PENDING_OPENING' THEN 'PendingOpening'\n                        WHEN status = 'ACCOUNT_STATUS_PENDING_CLOSURE' THEN 'PendingClosure'\n                        ELSE 'Unknown'\n                    END\n                WHERE status is not null\n                  AND tmv_status is null;\n            \")",
+        "source_line": 13,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260603225825_AddAccountRestriction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_restriction\",\n                schema: \"profile\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false),\n                    event_id = table.Column<string>(type: \"text\", nullable: false),\n                    restriction_set_id = table.Column<string>(type: \"text\", nullable: false),\n                    change_id = table.Column<long>(type: \"bigint\", nullable: true),\n                    effective_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    expiry_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    processing_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    type = table.Column<string>(type: \"text\", nullable: true),\n                    description = table.Column<string>(type: \"text\", nullable: true),\n                    is_active = table.Column<bool>(type: \"boolean\", nullable: false),\n                    restriction_set_event_payload = table.Column<byte[]>(type: \"bytea\", nullable: true),\n                    profile_account_id = table.Column<string>(type: \"text\", nullable: false),\n                    created_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false, defaultValueSql: \"CURRENT_TIMESTAMP\"),\n                    modified_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_account_restriction\", x => x.id);\n                    table.ForeignKey(\n                        name: \"fk_account_restriction_account_profile_profile_account_id\",\n                        column: x => x.profile_account_id,\n                        principalSchema: \"profile\",\n                        principalTable: \"account_profile\",\n                        principalColumn: \"account_id\",\n                        onDelete: ReferentialAction.Cascade);\n                })",
+        "source_line": 15,
+        "literal_arguments": [
+          "account_restriction",
+          "profile",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_restriction_effective_at_change_id_processing_at\",\n                schema: \"profile\",\n                table: \"account_restriction\",\n                columns: new[] { \"effective_at\", \"change_id\", \"processing_at\" },\n                descending: new bool[0])",
+        "source_line": 47,
+        "literal_arguments": [
+          "ix_account_restriction_effective_at_change_id_processing_at",
+          "profile",
+          "account_restriction",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_restriction_event_id\",\n                schema: \"profile\",\n                table: \"account_restriction\",\n                column: \"event_id\",\n                unique: true)",
+        "source_line": 54,
+        "literal_arguments": [
+          "ix_account_restriction_event_id",
+          "profile",
+          "account_restriction",
+          "event_id",
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_restriction_profile_account_id\",\n                schema: \"profile\",\n                table: \"account_restriction\",\n                column: \"profile_account_id\")",
+        "source_line": 61,
+        "literal_arguments": [
+          "ix_account_restriction_profile_account_id",
+          "profile",
+          "account_restriction",
+          "profile_account_id"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260608223115_MapFreezeTypeEdmValues.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n            DO $$\n            BEGIN\n                IF EXISTS (\n                    SELECT 1\n                    FROM profile.account_profile\n                    WHERE account_freeze_details_freeze_type IS NOT NULL\n                      AND account_freeze_details_freeze_type NOT IN (\n                        'Account_DebitAndCreditFreeze',\n                        'Account_DebitFreeze'\n                      )\n                ) THEN\n                    RAISE EXCEPTION 'Unexpected account_freeze_details_freeze_type present in profile.account_profile';\n                END IF;\n\n                UPDATE profile.account_profile\n                SET account_freeze_details_freeze_type = CASE\n                    WHEN account_freeze_details_freeze_type = 'Account_DebitAndCreditFreeze' THEN 'PreventDebitAndCredit'\n                    WHEN account_freeze_details_freeze_type = 'Account_DebitFreeze' THEN 'PreventDebit'\n                    ELSE account_freeze_details_freeze_type\n                END;\n            END\n            $$;\n        \")",
+        "source_line": 13,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260617025854_MigrateAccountFreezeToAccountRestriction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(\n                $@\"INSERT INTO profile.account_restriction (id,\n                event_id,\n                restriction_set_id,\n                change_id,\n                effective_at,\n                expiry_at,\n                processing_at,\n                type,\n                description,\n                is_active,\n                restriction_set_event_payload,\n                profile_account_id,\n                created_at,\n                modified_at)\n                SELECT gen_random_uuid(),\n                gen_random_uuid()::text,\n                account_freeze_details_restriction_set_id,\n                account_freeze_details_change_id,\n                account_freeze_details_effective,\n                account_freeze_details_expiration,\n                NOW(),\n                account_freeze_details_freeze_type,\n                account_freeze_details_freeze_description,\n                true,\n                NULL,\n                account_id,\n                NOW(),\n                NULL\n                FROM profile.account_profile\n                WHERE account_freeze_details_restriction_set_id IS NOT NULL;\")",
+        "source_line": 14,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/20260918000700_AddCorrelationId.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"correlation_id\",\n                schema: \"profile\",\n                table: \"account_profile\",\n                type: \"uuid\",\n                nullable: false,\n                defaultValue: new Guid(\"00000000-0000-0000-0000-000000000000\"))",
+        "source_line": 15,
+        "literal_arguments": [
+          "correlation_id",
+          "profile",
+          "account_profile",
+          "uuid",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240718035513_InitialCreate.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_balance\",\n                schema: DatabaseSchemaName.Transaction,\n                columns: table => new\n                {\n                    batch_id = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    posting_instruction_id = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    account_id = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    asset = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    balance_type = table.Column<string>(type: \"text\", nullable: false),\n                    currency = table.Column<string>(type: \"character varying(3)\", maxLength: 3, nullable: false),\n                    opening_amount = table.Column<decimal>(type: \"numeric\", nullable: false),\n                    closing_amount = table.Column<decimal>(type: \"numeric\", nullable: false),\n                    balance_date_time = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    balance_specification_id = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false)\n                },\n                constraints: table =>\n                {\n                })",
+        "source_line": 19,
+        "literal_arguments": [
+          "account_balance",
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"outbox\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false, defaultValueSql: \"uuid_generate_v4()\"),\n                    timestamp = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    payload = table.Column<byte[]>(type: \"bytea\", nullable: false),\n                    topic = table.Column<string>(type: \"text\", nullable: false),\n                    type = table.Column<string>(type: \"text\", nullable: false),\n                    retry_count = table.Column<int>(type: \"integer\", nullable: false),\n                    headers = table.Column<string>(type: \"text\", nullable: false),\n                    last_retry = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    key = table.Column<string>(type: \"text\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_outbox\", x => x.id);\n                })",
+        "source_line": 39,
+        "literal_arguments": [
+          "outbox",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"posting_instruction_batch\",\n                schema: DatabaseSchemaName.Transaction,\n                columns: table => new\n                {\n                    batch_id = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    payload = table.Column<string>(type: \"text\", nullable: false),\n                    version = table.Column<string>(type: \"character varying(10)\", maxLength: 10, nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_posting_instruction_batch\", x => x.batch_id);\n                })",
+        "source_line": 58,
+        "literal_arguments": [
+          "posting_instruction_batch",
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240726025536_IX_Account_Id_Ascending.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(indexName, tableName, columnName,\n                DatabaseSchemaName.Transaction, false)",
+        "source_line": 17,
+        "literal_arguments": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240726025539_AccountBalanceAddGuid.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"id\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"account_balance\",\n                type: \"uuid\",\n                nullable: false,\n                defaultValue: new Guid(\"00000000-0000-0000-0000-000000000000\"))",
+        "source_line": 15,
+        "literal_arguments": [
+          "id",
+          null,
+          "account_balance",
+          "uuid",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240726025637_IX_Balance_Date_Time_Ascending.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(indexName, tableName, columnName,\n                DatabaseSchemaName.Transaction, false)",
+        "source_line": 19,
+        "literal_arguments": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240729234052_AlterVersionColumnLength.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<string>(\n                name: \"version\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"posting_instruction_batch\",\n                type: \"character varying(100)\",\n                maxLength: 100,\n                nullable: false,\n                oldClrType: typeof(string),\n                oldType: \"character varying(10)\",\n                oldMaxLength: 10)",
+        "source_line": 14,
+        "literal_arguments": [
+          "version",
+          null,
+          "posting_instruction_batch",
+          "character varying(100)",
+          null,
+          null,
+          null,
+          "character varying(10)",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240814215123_BalanceSpecificationTable.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"balance_specification\",\n                schema: DatabaseSchemaName.Transaction,\n                columns: table => new\n                {\n                    balance_specification_id = table.Column<string>(type: \"text\", nullable: false),\n                    created = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    payload = table.Column<string>(type: \"text\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_balance_specification\", x => x.balance_specification_id);\n                })",
+        "source_line": 15,
+        "literal_arguments": [
+          "balance_specification",
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240814220846_AccountBalanceSpecificationLookup.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_balance_specification_lookup\",\n                schema: DatabaseSchemaName.Transaction,\n                columns: table => new\n                {\n                    account_id = table.Column<string>(type: \"text\", nullable: false),\n                    balance_specification_id = table.Column<string>(type: \"text\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_account_balance_specification_lookup\", x => new { x.account_id, x.balance_specification_id });\n                })",
+        "source_line": 15,
+        "literal_arguments": [
+          "account_balance_specification_lookup",
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240821023210_AccountBalanceSpecificationLookupAddCreated.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"created\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"account_balance_specification_lookup\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)))",
+        "source_line": 15,
+        "literal_arguments": [
+          "created",
+          null,
+          "account_balance_specification_lookup",
+          "timestamp with time zone",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240924214747_RenamingAmountColumns.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"opening_amount\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"account_balance\",\n                newName: \"previous_amount\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "opening_amount",
+          null,
+          "account_balance",
+          "previous_amount"
+        ]
+      },
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"closing_amount\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"account_balance\",\n                newName: \"amount\")",
+        "source_line": 21,
+        "literal_arguments": [
+          "closing_amount",
+          null,
+          "account_balance",
+          "amount"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240924225851_AddBatchInstructionIndexColumn.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<int>(\n                name: \"batch_instruction_index\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"account_balance\",\n                type: \"integer\",\n                nullable: false,\n                defaultValue: 0)",
+        "source_line": 15,
+        "literal_arguments": [
+          "batch_instruction_index",
+          null,
+          "account_balance",
+          "integer",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20240925051307_RemovingPayloadAndVersionColumns.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropColumn",
+        "expression": "migrationBuilder.DropColumn(\n                name: \"payload\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"posting_instruction_batch\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "payload",
+          null,
+          "posting_instruction_batch"
+        ]
+      },
+      {
+        "operation": "DropColumn",
+        "expression": "migrationBuilder.DropColumn(\n                name: \"version\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"posting_instruction_batch\")",
+        "source_line": 20,
+        "literal_arguments": [
+          "version",
+          null,
+          "posting_instruction_batch"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20241014212433_AccountBalanceGeneratedId.cs",
+    "direction": "Up",
+    "operations": [],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20241015213248_AddBalanceSpecificationVersionColumn.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"version\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"balance_specification\",\n                type: \"text\",\n                nullable: false,\n                defaultValue: \"\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "version",
+          null,
+          "balance_specification",
+          "text",
+          null,
+          ""
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20241016215825_SetBalanceSpecificationVersionV21.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "UpdateData",
+        "expression": "migrationBuilder.UpdateData(\n                schema: DatabaseSchemaName.Transaction,\n                table: \"balance_specification\",\n                keyColumn: \"version\",\n                keyValue: \"\",\n                column: \"version\",\n                value: \"2.1\")",
+        "source_line": 15,
+        "literal_arguments": [
+          null,
+          "balance_specification",
+          "version",
+          "",
+          "version",
+          "2.1"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250218225537_AddInternalAccountEodBalanceJob.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"internal_account_eod_balance_job\",\n                schema: DatabaseSchemaName.Transaction,\n                columns: table => new\n                {\n                    id = table.Column<string>(type: \"text\", nullable: false),\n                    account_id = table.Column<string>(type: \"text\", nullable: false),\n                    scheduled_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    failed_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    last_retry = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    retry_count = table.Column<int>(type: \"integer\", nullable: false)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_internal_account_eod_balance_job\", x => x.id);\n                })",
+        "source_line": 15,
+        "literal_arguments": [
+          "internal_account_eod_balance_job",
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_internal_account_eod_balance_job_last_retry\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"internal_account_eod_balance_job\",\n                column: \"last_retry\")",
+        "source_line": 32,
+        "literal_arguments": [
+          "ix_internal_account_eod_balance_job_last_retry",
+          null,
+          "internal_account_eod_balance_job",
+          "last_retry"
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_internal_account_eod_balance_job_scheduled_at\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"internal_account_eod_balance_job\",\n                column: \"scheduled_at\")",
+        "source_line": 38,
+        "literal_arguments": [
+          "ix_internal_account_eod_balance_job_scheduled_at",
+          null,
+          "internal_account_eod_balance_job",
+          "scheduled_at"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250224021026_UpdateInternalAccountEodBalanceJob.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"completed_run_timestamp\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"internal_account_eod_balance_job\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValue: DateTimeOffset.UtcNow)",
+        "source_line": 15,
+        "literal_arguments": [
+          "completed_run_timestamp",
+          null,
+          "internal_account_eod_balance_job",
+          "timestamp with time zone",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250225024616_AddTSideToInternalAccountEodBalanceJob.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"t_side\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"internal_account_eod_balance_job\",\n                type: \"text\",\n                nullable: false,\n                defaultValue: string.Empty)",
+        "source_line": 15,
+        "literal_arguments": [
+          "t_side",
+          null,
+          "internal_account_eod_balance_job",
+          "text",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250305202940_CleanupEodJobTable.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql($@\"\n                DELETE FROM transaction.internal_account_eod_balance_job\n                WHERE completed_run_timestamp < '{DateTimeOffset.UtcNow:yyyy-MM-dd}';\")",
+        "source_line": 13,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250325005702_AddAliveToInternalAccountEodBalanceJob.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<bool>(\n                name: \"alive\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"internal_account_eod_balance_job\",\n                type: \"boolean\",\n                nullable: false,\n                defaultValue: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "alive",
+          null,
+          "internal_account_eod_balance_job",
+          "boolean",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250407022242_AddApiFailureTrackingToInternalAccountJonEntryDataModel.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"api_failure_reported_at\",\n                schema: DatabaseSchemaName.Transaction,\n                table: \"internal_account_eod_balance_job\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "api_failure_reported_at",
+          null,
+          "internal_account_eod_balance_job",
+          "timestamp with time zone",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250505220724_AddAccountTransactionTable.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateTable",
+        "expression": "migrationBuilder.CreateTable(\n                name: \"account_transaction\",\n                schema: \"transaction\",\n                columns: table => new\n                {\n                    id = table.Column<Guid>(type: \"uuid\", nullable: false),\n                    account_id = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    account_number = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    transaction_id = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    transaction_code = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: false),\n                    transaction_description = table.Column<string>(type: \"character varying(255)\", maxLength: 255, nullable: false),\n                    initiation_instruction_id = table.Column<string>(type: \"character varying(40)\", maxLength: 40, nullable: true),\n                    other_party_name = table.Column<string>(type: \"text\", nullable: true),\n                    status = table.Column<string>(type: \"character varying(20)\", maxLength: 20, nullable: false),\n                    credit_debit_indicator = table.Column<string>(type: \"character varying(10)\", maxLength: 10, nullable: false),\n                    booking_date_time = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    value_date_time = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: false),\n                    financial_transaction_amount = table.Column<string>(type: \"text\", nullable: false),\n                    financial_transaction_currency_code = table.Column<string>(type: \"character varying(3)\", maxLength: 3, nullable: false),\n                    account_balance_interim_booked_amount = table.Column<string>(type: \"text\", nullable: true),\n                    account_balance_interim_booked_currency_code = table.Column<string>(type: \"character varying(3)\", maxLength: 3, nullable: true),\n                    created_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    modified_at = table.Column<DateTimeOffset>(type: \"timestamp with time zone\", nullable: true),\n                    other_party_account = table.Column<string>(type: \"jsonb\", nullable: true),\n                    other_party_reference = table.Column<string>(type: \"jsonb\", nullable: true),\n                    this_party_reference = table.Column<string>(type: \"jsonb\", nullable: true)\n                },\n                constraints: table =>\n                {\n                    table.PrimaryKey(\"pk_account_transaction\", x => x.id);\n                })",
+        "source_line": 15,
+        "literal_arguments": [
+          "account_transaction",
+          "transaction",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_transaction_account_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                column: \"account_id\")",
+        "source_line": 47,
+        "literal_arguments": [
+          "ix_account_transaction_account_id",
+          "transaction",
+          "account_transaction",
+          "account_id"
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_transaction_account_id_transaction_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                columns: new[] { \"account_id\", \"transaction_id\" },\n                unique: true)",
+        "source_line": 53,
+        "literal_arguments": [
+          "ix_account_transaction_account_id_transaction_id",
+          "transaction",
+          "account_transaction",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_transaction_booking_date_time\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                column: \"booking_date_time\")",
+        "source_line": 60,
+        "literal_arguments": [
+          "ix_account_transaction_booking_date_time",
+          "transaction",
+          "account_transaction",
+          "booking_date_time"
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_transaction_value_date_time\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                column: \"value_date_time\")",
+        "source_line": 66,
+        "literal_arguments": [
+          "ix_account_transaction_value_date_time",
+          "transaction",
+          "account_transaction",
+          "value_date_time"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250519233856_AddLastAlertRaisedAtToPostingInstructionBatch.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"last_alert_raised_at\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "last_alert_raised_at",
+          "transaction",
+          "posting_instruction_batch",
+          "timestamp with time zone",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250527235430_AddAccountBalanceSpecificationLookupRelationshipToBalanceSpecification.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_balance_specification_lookup_balance_specification_\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                column: \"balance_specification_id\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "ix_account_balance_specification_lookup_balance_specification_",
+          "transaction",
+          "account_balance_specification_lookup",
+          "balance_specification_id"
+        ]
+      },
+      {
+        "operation": "AddForeignKey",
+        "expression": "migrationBuilder.AddForeignKey(\n                name: \"fk_account_balance_specification_lookup_balance_specifications\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                column: \"balance_specification_id\",\n                principalSchema: \"transaction\",\n                principalTable: \"balance_specification\",\n                principalColumn: \"balance_specification_id\",\n                onDelete: ReferentialAction.Cascade)",
+        "source_line": 19,
+        "literal_arguments": [
+          "fk_account_balance_specification_lookup_balance_specifications",
+          "transaction",
+          "account_balance_specification_lookup",
+          "balance_specification_id",
+          "transaction",
+          "balance_specification",
+          "balance_specification_id",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250604224704_IX_Account_Transaction_Account_Id_Ascending_Value_Date_Time_Descending_Id_Ascending.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_transaction_account_id_value_date_time_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                columns: new[] { \"account_id\", \"value_date_time\", \"id\" },\n                descending: new[] { false, true, false })",
+        "source_line": 13,
+        "literal_arguments": [
+          "ix_account_transaction_account_id_value_date_time_id",
+          "transaction",
+          "account_transaction",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250612020818_UpdateAccountTransaction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropIndex",
+        "expression": "migrationBuilder.DropIndex(\n                name: \"ix_account_transaction_account_id_transaction_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "ix_account_transaction_account_id_transaction_id",
+          "transaction",
+          "account_transaction"
+        ]
+      },
+      {
+        "operation": "DropColumn",
+        "expression": "migrationBuilder.DropColumn(\n                name: \"transaction_code\",\n                schema: \"transaction\",\n                table: \"account_transaction\")",
+        "source_line": 20,
+        "literal_arguments": [
+          "transaction_code",
+          "transaction",
+          "account_transaction"
+        ]
+      },
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"transaction_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                newName: \"payment_id\")",
+        "source_line": 25,
+        "literal_arguments": [
+          "transaction_id",
+          "transaction",
+          "account_transaction",
+          "payment_id"
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 31,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "account_transaction",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(\"ALTER TABLE transaction.account_transaction ALTER COLUMN financial_transaction_amount TYPE numeric USING financial_transaction_amount::numeric;\")",
+        "source_line": 42,
+        "literal_arguments": [
+          "ALTER TABLE transaction.account_transaction ALTER COLUMN financial_transaction_amount TYPE numeric USING financial_transaction_amount::numeric;"
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 44,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "account_transaction",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(\"ALTER TABLE transaction.account_transaction ALTER COLUMN account_balance_interim_booked_amount TYPE numeric USING account_balance_interim_booked_amount::numeric;\")",
+        "source_line": 55,
+        "literal_arguments": [
+          "ALTER TABLE transaction.account_transaction ALTER COLUMN account_balance_interim_booked_amount TYPE numeric USING account_balance_interim_booked_amount::numeric;"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"iso_transaction_code\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"jsonb\",\n                nullable: false,\n                defaultValue: \"{}\")",
+        "source_line": 57,
+        "literal_arguments": [
+          "iso_transaction_code",
+          "transaction",
+          "account_transaction",
+          "jsonb",
+          null,
+          "{}"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250630001506_AddedProcessedSuccessfullyToPostingInstructionBatch.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<bool>(\n                name: \"processed_successfully\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"boolean\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "processed_successfully",
+          "transaction",
+          "posting_instruction_batch",
+          "boolean",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250709235101_MadePaymentIdOptionalInAccountTransaction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<string>(\n                name: \"payment_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(40)\",\n                maxLength: 40,\n                nullable: true,\n                oldClrType: typeof(string),\n                oldType: \"character varying(40)\",\n                oldMaxLength: 40)",
+        "source_line": 13,
+        "literal_arguments": [
+          "payment_id",
+          "transaction",
+          "account_transaction",
+          "character varying(40)",
+          null,
+          null,
+          null,
+          "character varying(40)",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250716222045_AddPaymentInstructionCategoryAndTransactionCodeToAccountTransaction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"payment_instruction_category\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "payment_instruction_category",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"transaction_code\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 20,
+        "literal_arguments": [
+          "transaction_code",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20250909225619_AddOutboxItemIndex.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"idx_outbox_retry_last_retry\",\n                table: \"outbox\",\n                columns: new[] { \"retry_count\", \"last_retry\", \"id\" })",
+        "source_line": 13,
+        "literal_arguments": [
+          "idx_outbox_retry_last_retry",
+          "outbox",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251001024411_TaxDeduction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"domestic_tax_type\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "domestic_tax_type",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"nominated_tax_party_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 20,
+        "literal_arguments": [
+          "nominated_tax_party_id",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"non_resident_withholding_tax_country_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 27,
+        "literal_arguments": [
+          "non_resident_withholding_tax_country_id",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"tax_rate_value\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 34,
+        "literal_arguments": [
+          "tax_rate_value",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251002023647_RenameTaxCountryCode.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"non_resident_withholding_tax_country_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                newName: \"non_resident_withholding_tax_country_alpha_3_code\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "non_resident_withholding_tax_country_id",
+          "transaction",
+          "account_transaction",
+          "non_resident_withholding_tax_country_alpha_3_code"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251005215028_MissingBalanceSpecificationDataIssue.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(\n                $@\"INSERT INTO transaction.balance_specification (balance_specification_id, created, payload, version)\n    SELECT '8027b9f2-8487-3f98-df2e-436741f2139e', NOW(), '{{\"\"balance_spec\"\": {{\"\"id\"\": \"\"8027b9f2-8487-3f98-df2e-436741f2139e\"\", \"\"balances\"\": {{\"\"accruedCreditInterest\"\": {{\"\"phase\"\": {{\"\"committed\"\": [\"\"INTEREST_EXPENSE_ACCRUED\"\"]}}, \"\"rounding\"\": {{\"\"mode\"\": \"\"ROUND_HALF_UP\"\", \"\"places\"\": 3}}, \"\"asset\"\": \"\"COMMERCIAL_BANK_MONEY\"\"}}, \"\"interimAvailable\"\": {{\"\"phase\"\": {{\"\"committed\"\": [\"\"DEFAULT\"\"]}}, \"\"rounding\"\": {{\"\"mode\"\": \"\"ROUND_HALF_UP\"\", \"\"places\"\": 2}}, \"\"asset\"\": \"\"COMMERCIAL_BANK_MONEY\"\"}}, \"\"interimBooked\"\": {{\"\"phase\"\": {{\"\"committed\"\": [\"\"DEFAULT\"\"]}}, \"\"rounding\"\": {{\"\"mode\"\": \"\"ROUND_HALF_UP\"\", \"\"places\"\": 2}}, \"\"asset\"\": \"\"COMMERCIAL_BANK_MONEY\"\"}}}}}}, \"\"version\"\": \"\"2.2\"\"}}', '2.2'\n    WHERE NOT EXISTS (SELECT 1 FROM transaction.balance_specification WHERE balance_specification_id = '{balance_specification_id}');\")",
+        "source_line": 52,
+        "literal_arguments": [
+          null
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql($@\"INSERT INTO transaction.account_balance_specification_lookup (account_id, balance_specification_id, created)\nSELECT v.account_id, v.balance_specification_id, v.created\nFROM (VALUES {values}) AS v(account_id, balance_specification_id, created)\n      WHERE NOT EXISTS (SELECT 1 FROM transaction.account_balance_specification_lookup absl WHERE absl.account_id = v.account_id and absl.balance_specification_id = v.balance_specification_id);\")",
+        "source_line": 62,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251005233842_DropDuplicateTransaction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DeleteData",
+        "expression": "migrationBuilder.DeleteData(\"account_transaction\", new[] { \"id\", \"account_id\" }, new object[,] {\n                    { new Guid(\"0199a1e2-f270-79bb-b350-a1384af23098\"), \"263a4079-3594-4e8b-a5f3-c2418d06b387\" },\n                    { new Guid(\"0199a1e2-f271-7d1e-954a-c02b577d5012\"), \"1851ee55-c937-4acb-a09d-21f004954586\" }\n                },\n                \"transaction\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "account_transaction",
+          null,
+          null,
+          "transaction"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251006211335_INC0330741_DropPibForRecalc.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DeleteData",
+        "expression": "migrationBuilder.DeleteData(\"posting_instruction_batch\", \"batch_id\", batchId, \"transaction\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "posting_instruction_batch",
+          "batch_id",
+          null,
+          "transaction"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007080900_MakeCreatedAtRequiredInAccountTransaction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true,\n                oldDefaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "account_transaction",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007082123_AddBaseColumnsToPostingInstructionBatch.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "posting_instruction_batch",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"id\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"uuid\",\n                nullable: false,\n                defaultValue: new Guid(\"00000000-0000-0000-0000-000000000000\"))",
+        "source_line": 23,
+        "literal_arguments": [
+          "id",
+          "transaction",
+          "posting_instruction_batch",
+          "uuid",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 31,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "posting_instruction_batch",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_posting_instruction_batch_batch_id\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                column: \"batch_id\")",
+        "source_line": 39,
+        "literal_arguments": [
+          "ix_posting_instruction_batch_batch_id",
+          "transaction",
+          "posting_instruction_batch",
+          "batch_id"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007083301_ChangeDefaultValueForBaseColumns.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true,\n                oldDefaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "posting_instruction_batch",
+          "timestamp with time zone",
+          null,
+          null,
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<Guid>(\n                name: \"id\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"uuid\",\n                nullable: false,\n                defaultValueSql: \"gen_random_uuid()\",\n                oldClrType: typeof(Guid),\n                oldType: \"uuid\")",
+        "source_line": 26,
+        "literal_arguments": [
+          "id",
+          "transaction",
+          "posting_instruction_batch",
+          "uuid",
+          null,
+          "gen_random_uuid()",
+          null,
+          "uuid"
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true,\n                oldDefaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 36,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "account_transaction",
+          "timestamp with time zone",
+          null,
+          null,
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007084125_AddBaseColumnsToAccountBalance.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"account_balance\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "account_balance",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"account_balance\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 23,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "account_balance",
+          "timestamp with time zone",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007085128_AddBaseColumnsToEoDJobTable.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"internal_account_eod_balance_job\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "internal_account_eod_balance_job",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"internal_account_eod_balance_job\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 23,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "internal_account_eod_balance_job",
+          "timestamp with time zone",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007090310_AddBaseColumnsToBalanceSpecLookup.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "RenameColumn",
+        "expression": "migrationBuilder.RenameColumn(\n                name: \"created\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                newName: \"created_at\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "created",
+          "transaction",
+          "account_balance_specification_lookup",
+          "created_at"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"id\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                type: \"uuid\",\n                nullable: false,\n                defaultValueSql: \"gen_random_uuid()\")",
+        "source_line": 21,
+        "literal_arguments": [
+          "id",
+          "transaction",
+          "account_balance_specification_lookup",
+          "uuid",
+          null,
+          "gen_random_uuid()"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 29,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "account_balance_specification_lookup",
+          "timestamp with time zone",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007091501_AddBaseColumnsToBalanceSpec.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropForeignKey",
+        "expression": "migrationBuilder.DropForeignKey(\n                name: \"fk_account_balance_specification_lookup_balance_specifications\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "fk_account_balance_specification_lookup_balance_specifications",
+          "transaction",
+          "account_balance_specification_lookup"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"balance_specification\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)))",
+        "source_line": 20,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "balance_specification",
+          "timestamp with time zone",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql($@\"\n                UPDATE transaction.balance_specification\n                SET created_at = created\n                WHERE created IS NOT NULL;\")",
+        "source_line": 29,
+        "literal_arguments": [
+          null
+        ]
+      },
+      {
+        "operation": "DropColumn",
+        "expression": "migrationBuilder.DropColumn(\n                name: \"created\",\n                schema: \"transaction\",\n                table: \"balance_specification\")",
+        "source_line": 34,
+        "literal_arguments": [
+          "created",
+          "transaction",
+          "balance_specification"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<Guid>(\n                name: \"id\",\n                schema: \"transaction\",\n                table: \"balance_specification\",\n                type: \"uuid\",\n                nullable: false,\n                defaultValueSql: \"gen_random_uuid()\")",
+        "source_line": 39,
+        "literal_arguments": [
+          "id",
+          "transaction",
+          "balance_specification",
+          "uuid",
+          null,
+          "gen_random_uuid()"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"balance_specification\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 47,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "balance_specification",
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AddForeignKey",
+        "expression": "migrationBuilder.AddForeignKey(\n                name: \"fk_account_balance_specification_lookup_balance_specification_\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                column: \"balance_specification_id\",\n                principalSchema: \"transaction\",\n                principalTable: \"balance_specification\",\n                principalColumn: \"balance_specification_id\",\n                onDelete: ReferentialAction.Cascade)",
+        "source_line": 54,
+        "literal_arguments": [
+          "fk_account_balance_specification_lookup_balance_specification_",
+          "transaction",
+          "account_balance_specification_lookup",
+          "balance_specification_id",
+          "transaction",
+          "balance_specification",
+          "balance_specification_id",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007092750_ChangeDefaultCreateAtValue.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldDefaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 15,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "posting_instruction_batch",
+          "timestamp with time zone",
+          null,
+          null,
+          null,
+          "timestamp with time zone",
+          "CURRENT_TIMESTAMP"
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"internal_account_eod_balance_job\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldDefaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 26,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "internal_account_eod_balance_job",
+          "timestamp with time zone",
+          null,
+          null,
+          null,
+          "timestamp with time zone",
+          "CURRENT_TIMESTAMP"
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"account_balance\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldDefaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 37,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "account_balance",
+          "timestamp with time zone",
+          null,
+          null,
+          null,
+          "timestamp with time zone",
+          "CURRENT_TIMESTAMP"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007103522_UpdateDefaultValuesForCreatedAtModifiedAt.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "posting_instruction_batch",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldDefaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)))",
+        "source_line": 26,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "posting_instruction_batch",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"internal_account_eod_balance_job\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 37,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "internal_account_eod_balance_job",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"internal_account_eod_balance_job\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldDefaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)))",
+        "source_line": 48,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "internal_account_eod_balance_job",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"balance_specification\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 59,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "balance_specification",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"balance_specification\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldDefaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)))",
+        "source_line": 70,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "balance_specification",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 81,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "account_transaction",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 92,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "account_balance_specification_lookup",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldDefaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)))",
+        "source_line": 103,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "account_balance_specification_lookup",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"modified_at\",\n                schema: \"transaction\",\n                table: \"account_balance\",\n                type: \"timestamp with time zone\",\n                nullable: true,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 114,
+        "literal_arguments": [
+          "modified_at",
+          "transaction",
+          "account_balance",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"created_at\",\n                schema: \"transaction\",\n                table: \"account_balance\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\",\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldDefaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)))",
+        "source_line": 125,
+        "literal_arguments": [
+          "created_at",
+          "transaction",
+          "account_balance",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP",
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251007222741_FixTaxCountryCodeFieldNameCasing.cs",
+    "direction": "Up",
+    "operations": [],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20251117023053_AddBatchInstructionIndexToAccountTransaction.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "DropIndex",
+        "expression": "migrationBuilder.DropIndex(\n                name: \"ix_account_transaction_account_id_value_date_time_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\")",
+        "source_line": 13,
+        "literal_arguments": [
+          "ix_account_transaction_account_id_value_date_time_id",
+          "transaction",
+          "account_transaction"
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<int>(\n                name: \"batch_instruction_index\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"integer\",\n                nullable: false,\n                defaultValue: 0)",
+        "source_line": 18,
+        "literal_arguments": [
+          "batch_instruction_index",
+          "transaction",
+          "account_transaction",
+          "integer",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_transaction_account_id_value_date_time_batch_instru\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                columns: new[] { \"account_id\", \"value_date_time\", \"batch_instruction_index\", \"id\" },\n                descending: new[] { false, true, true, false })",
+        "source_line": 26,
+        "literal_arguments": [
+          "ix_account_transaction_account_id_value_date_time_batch_instru",
+          "transaction",
+          "account_transaction",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260112202053_AddInsertionDateTimeToAccountBalance.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"insertion_date_time\",\n                schema: \"transaction\",\n                table: \"account_balance\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)))",
+        "source_line": 15,
+        "literal_arguments": [
+          "insertion_date_time",
+          "transaction",
+          "account_balance",
+          "timestamp with time zone",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                UPDATE transaction.account_balance\n                SET insertion_date_time = created_at\n                WHERE insertion_date_time = '0001-01-01 00:00:00+00';\n            \")",
+        "source_line": 23,
+        "literal_arguments": [
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_balance_insertion_date_time\",\n                schema: \"transaction\",\n                table: \"account_balance\",\n                column: \"insertion_date_time\")",
+        "source_line": 29,
+        "literal_arguments": [
+          "ix_account_balance_insertion_date_time",
+          "transaction",
+          "account_balance",
+          "insertion_date_time"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260114004236_FixInsertionDateTimeInAccountBalance.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                UPDATE transaction.account_balance\n                SET insertion_date_time = created_at\n                WHERE insertion_date_time = '-infinity';\n            \")",
+        "source_line": 14,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260319233723_sbi_payment_and_staff_initiated_and_migration_attributes.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"authorisation_code\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(4)\",\n                maxLength: 4,\n                nullable: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "authorisation_code",
+          "transaction",
+          "account_transaction",
+          "character varying(4)",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"batch_number\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(4)\",\n                maxLength: 4,\n                nullable: true)",
+        "source_line": 23,
+        "literal_arguments": [
+          "batch_number",
+          "transaction",
+          "account_transaction",
+          "character varying(4)",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"branch\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 31,
+        "literal_arguments": [
+          "branch",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"industry_transaction_code\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(2)\",\n                maxLength: 2,\n                nullable: true)",
+        "source_line": 38,
+        "literal_arguments": [
+          "industry_transaction_code",
+          "transaction",
+          "account_transaction",
+          "character varying(2)",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"input_source_code\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(2)\",\n                maxLength: 2,\n                nullable: true)",
+        "source_line": 46,
+        "literal_arguments": [
+          "input_source_code",
+          "transaction",
+          "account_transaction",
+          "character varying(2)",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"insertion_date_time\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 54,
+        "literal_arguments": [
+          "insertion_date_time",
+          "transaction",
+          "account_transaction",
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"legacy_core_transaction_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(36)\",\n                maxLength: 36,\n                nullable: true)",
+        "source_line": 61,
+        "literal_arguments": [
+          "legacy_core_transaction_id",
+          "transaction",
+          "account_transaction",
+          "character varying(36)",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"operator\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 69,
+        "literal_arguments": [
+          "operator",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"originating_bank\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(2)\",\n                maxLength: 2,\n                nullable: true)",
+        "source_line": 76,
+        "literal_arguments": [
+          "originating_bank",
+          "transaction",
+          "account_transaction",
+          "character varying(2)",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"originating_branch\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(4)\",\n                maxLength: 4,\n                nullable: true)",
+        "source_line": 84,
+        "literal_arguments": [
+          "originating_branch",
+          "transaction",
+          "account_transaction",
+          "character varying(4)",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260409230737_UpdateMaxLengthsForSbiFields.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<string>(\n                name: \"batch_number\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(12)\",\n                maxLength: 12,\n                nullable: true,\n                oldClrType: typeof(string),\n                oldType: \"character varying(4)\",\n                oldMaxLength: 4,\n                oldNullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "batch_number",
+          "transaction",
+          "account_transaction",
+          "character varying(12)",
+          null,
+          null,
+          null,
+          "character varying(4)",
+          null,
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<string>(\n                name: \"authorisation_code\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"character varying(7)\",\n                maxLength: 7,\n                nullable: true,\n                oldClrType: typeof(string),\n                oldType: \"character varying(4)\",\n                oldMaxLength: 4,\n                oldNullable: true)",
+        "source_line": 25,
+        "literal_arguments": [
+          "authorisation_code",
+          "transaction",
+          "account_transaction",
+          "character varying(7)",
+          null,
+          null,
+          null,
+          "character varying(4)",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260507231232_Remove12CharacterLimit.cs",
+    "direction": "Up",
+    "operations": [],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260514233429_AddPostingInstructionIds.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"posting_instruction_batch_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "posting_instruction_batch_id",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"posting_instruction_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 20,
+        "literal_arguments": [
+          "posting_instruction_id",
+          "transaction",
+          "account_transaction",
+          "text",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260525031801_AddEffectiveAtToAccountBalanceSpecificationLookup.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTime>(\n                name: \"effective_at\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 15,
+        "literal_arguments": [
+          "effective_at",
+          "transaction",
+          "account_balance_specification_lookup",
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n               UPDATE transaction.account_balance_specification_lookup\n               SET effective_at = created_at\n               WHERE effective_at IS NULL;\n           \")",
+        "source_line": 22,
+        "literal_arguments": [
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTime>(\n                name: \"effective_at\",\n                schema: \"transaction\",\n                table: \"account_balance_specification_lookup\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                defaultValueSql: \"CURRENT_TIMESTAMP\")",
+        "source_line": 28,
+        "literal_arguments": [
+          "effective_at",
+          "transaction",
+          "account_balance_specification_lookup",
+          "timestamp with time zone",
+          null,
+          "CURRENT_TIMESTAMP"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260611052124_MakeInsertionDateTimeSortColumn.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                UPDATE transaction.account_transaction\n                SET insertion_date_time = value_date_time\n                WHERE insertion_date_time = '0001-01-01 00:00:00+00'\n                OR insertion_date_time = '-infinity'\n                OR insertion_date_time is null;\n            \")",
+        "source_line": 15,
+        "literal_arguments": [
+          null
+        ]
+      },
+      {
+        "operation": "AlterColumn",
+        "expression": "migrationBuilder.AlterColumn<DateTimeOffset>(\n                name: \"insertion_date_time\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                type: \"timestamp with time zone\",\n                nullable: false,\n                //defaultValue: new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),\n                oldClrType: typeof(DateTimeOffset),\n                oldType: \"timestamp with time zone\",\n                oldNullable: true)",
+        "source_line": 22,
+        "literal_arguments": [
+          "insertion_date_time",
+          "transaction",
+          "account_transaction",
+          "timestamp with time zone",
+          null,
+          null,
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_account_transaction_insertion_date_time\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                column: \"insertion_date_time\")",
+        "source_line": 32,
+        "literal_arguments": [
+          "ix_account_transaction_insertion_date_time",
+          "transaction",
+          "account_transaction",
+          "insertion_date_time"
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260616005513_DropDefaultInsertionDateTimeOnAccountBalance.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                ALTER TABLE transaction.account_balance\n                ALTER COLUMN insertion_date_time DROP DEFAULT;\n            \")",
+        "source_line": 13,
+        "literal_arguments": [
+          null
+        ]
+      },
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                UPDATE transaction.account_balance\n                SET insertion_date_time = created_at\n                WHERE insertion_date_time = '-infinity';\n            \")",
+        "source_line": 19,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260630073816_AddPayloadToPostingInstructionBatch.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<byte[]>(\n                name: \"posting_batch_event_payload\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"bytea\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "posting_batch_event_payload",
+          "transaction",
+          "posting_instruction_batch",
+          "bytea",
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260715060534_CleanupOutboxRecords.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "Sql",
+        "expression": "migrationBuilder.Sql(@\"\n                DO $$\n                DECLARE\n                    deleted_count INT;\n                BEGIN\n                    IF current_database() <> 'perf0_account_v2_transaction' THEN\n                        RAISE NOTICE 'Skipping delete migration. Current DB: %', current_database();\n                        RETURN;\n                    END IF;\n\n                    RAISE LOG 'CleanupOutboxRecords executing against database [%]', current_database();\n\n                    DELETE FROM public.outbox\n                    WHERE id IN (\n                        '4d0f1672-1b13-44e2-889c-65970809b091',\n                        '5ea9e3ad-81d8-417a-a4e2-403ab562ff07',\n                        '78fc2e45-698a-4ecb-9a55-ecfdd2632b89',\n                        '85482b94-45a5-42ff-bea5-94ec51d1dbca',\n                        'ce58e8da-b6cf-4cee-bc9e-239b086fcccd',\n                        'd9335165-a5ac-4076-9e42-cff179e24c10',\n                        '85a63ed6-6526-4f92-b9cc-90eea7d28ae8'\n                    );\n\n                    GET DIAGNOSTICS deleted_count = ROW_COUNT;\n                    RAISE LOG 'CleanupOutboxRecords: deleted % rows from public.outbox', deleted_count;\n                END $$;\")",
+        "source_line": 13,
+        "literal_arguments": [
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260727005905_AddIsCachedBalanceToAccountBalance.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<bool>(\n                name: \"is_cached_balance\",\n                schema: \"transaction\",\n                table: \"account_balance\",\n                type: \"boolean\",\n                nullable: false,\n                defaultValue: false)",
+        "source_line": 13,
+        "literal_arguments": [
+          "is_cached_balance",
+          "transaction",
+          "account_balance",
+          "boolean",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260911033404_AddUniqueAccountTransactionPostingInstructionAccount.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ux_account_transaction_posting_instruction_id_account_id\",\n                schema: \"transaction\",\n                table: \"account_transaction\",\n                columns: new[] { \"posting_instruction_id\", \"account_id\" },\n                unique: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "ux_account_transaction_posting_instruction_id_account_id",
+          "transaction",
+          "account_transaction",
+          null,
+          null
+        ]
+      }
+    ],
+    "executed": false
+  },
+  {
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/20260921050554_AddPIBStatusInsertionTimestampAndAmount.cs",
+    "direction": "Up",
+    "operations": [
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<DateTimeOffset>(\n                name: \"insertion_timestamp\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"timestamp with time zone\",\n                nullable: true)",
+        "source_line": 13,
+        "literal_arguments": [
+          "insertion_timestamp",
+          "transaction",
+          "posting_instruction_batch",
+          "timestamp with time zone",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<string>(\n                name: \"status\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"text\",\n                nullable: true)",
+        "source_line": 20,
+        "literal_arguments": [
+          "status",
+          "transaction",
+          "posting_instruction_batch",
+          "text",
+          null
+        ]
+      },
+      {
+        "operation": "AddColumn",
+        "expression": "migrationBuilder.AddColumn<decimal>(\n                name: \"total_amount\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                type: \"numeric\",\n                nullable: true)",
+        "source_line": 27,
+        "literal_arguments": [
+          "total_amount",
+          "transaction",
+          "posting_instruction_batch",
+          "numeric",
+          null
+        ]
+      },
+      {
+        "operation": "CreateIndex",
+        "expression": "migrationBuilder.CreateIndex(\n                name: \"ix_posting_instruction_batch_insertion_timestamp\",\n                schema: \"transaction\",\n                table: \"posting_instruction_batch\",\n                column: \"insertion_timestamp\")",
+        "source_line": 34,
+        "literal_arguments": [
+          "ix_posting_instruction_batch_insertion_timestamp",
+          "transaction",
+          "posting_instruction_batch",
+          "insertion_timestamp"
+        ]
+      }
+    ],
+    "executed": false
+  }
+]

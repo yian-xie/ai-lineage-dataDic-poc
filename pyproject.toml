@@ -11,6 +11,9 @@ requires-python = ">=3.10"
 dependencies = [
     "PyYAML>=6.0.2",
     "Markdown>=3.5,<4",
+    "sqlglot>=30,<31",
+    "tree-sitter>=0.25,<0.26",
+    "tree-sitter-c-sharp>=0.23,<0.24",
 ]
 
 [project.optional-dependencies]

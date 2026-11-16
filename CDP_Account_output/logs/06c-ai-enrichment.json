@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "run_id": "current",
+  "stage": "06c-ai-enrichment",
+  "attempt": "attempt-001",
+  "attempt_number": 1,
+  "status": "passed",
+  "started_at": "2026-11-13T00:40:09.434426+00:00",
+  "package_version": "0.1.0",
+  "runtime": {
+    "python": "3.13.14",
+    "platform": "win32"
+  },
+  "parameters": {},
+  "record": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\logs\\06c-ai-enrichment.json",
+  "log": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\logs\\06c-ai-enrichment.log",
+  "output_root": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output",
+  "data_directory": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\06c-ai-enrichment",
+  "inputs": [
+    {
+      "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\05-baseline-dictionary",
+      "kind": "directory",
+      "files": [
+        {
+          "path": "asset_registry.csv",
+          "bytes": 163575,
+          "sha256": "957530ba207e41fa8065e9c350a5884e15a9879f25c96be737907e12b137cee7"
+        },
+        {
+          "path": "data_dictionary.csv",
+          "bytes": 2172352,
+          "sha256": "330cbebc587885e0b541865ecb54e1b99671d5c95236d9ab971d9eb21cd0adb0"
+        },
+        {
+          "path": "field_catalog.csv",
+          "bytes": 6858955,
+          "sha256": "c8dcd36ccd8b2c1512982cb6968a4ff6917c269f16b322ac6d12924285eb5eef"
+        },
+        {
+          "path": "field_evidence.json",
+          "bytes": 2976314,
+          "sha256": "9344c131edf2dce7ef182fd0accd6676675dbc25574fba637ef7379c926ab11c"
+        },
+        {
+          "path": "manifest.json",
+          "bytes": 2177,
+          "sha256": "0ad129346e653dde1f624a0d129fcff5e70d1f08066630062168d8fd889f45ed"
+        },
+        {
+          "path": "original_records.json",
+          "bytes": 5199669,
+          "sha256": "7419540c89948c42e80c2de7266772a3cdad13dcc024bb86719e624313bf3ccf"
+        }
+      ],
+      "sha256": "0104c43f98e1161fa92b79d997c17a27f38ee2b9ed977f7cd02c8238eb1ef507"
+    },
+    {
+      "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\06b-ai-drafts\\drafts.json",
+      "kind": "file",
+      "bytes": 1587336,
+      "sha256": "0da0ee14c24fcc2e29a14fc7b449a086a820c97d4ef07ae17cae303cc3ae2995"
+    }
+  ],
+  "implementation": {
+    "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\src\\lineage_poc",
+    "kind": "directory",
+    "sha256": "e98112b2c75d82ac7a897eaf7dfabf0571efe3babb103adee7b3ace9bbedb085",
+    "file_count": 98
+  },
+  "summary": {
+    "status": "passed",
+    "dictionary_contract": "tmv-dictionary-v1",
+    "assets": 193,
+    "fields": 5871,
+    "mappings": 3332,
+    "eligible_missing_descriptions": 0,
+    "existing_descriptions": 3203,
+    "ai_draft_descriptions": 228,
+    "nonempty_descriptions": 3431,
+    "missing_out_of_scope_descriptions": 2440,
+    "maximum_cell_characters": {
+      "asset_registry.csv": 793,
+      "field_catalog.csv": 14853,
+      "data_dictionary.csv": 895
+    },
+    "scope": "TMV repository-static dictionary; not the legacy Ultracs V3 contract or live verification",
+    "drafts_applied": 228,
+    "needs_evidence": 0
+  },
+  "outputs": {
+    "path": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\06c-ai-enrichment",
+    "kind": "directory",
+    "files": [
+      {
+        "path": "asset_registry.csv",
+        "bytes": 163575,
+        "sha256": "957530ba207e41fa8065e9c350a5884e15a9879f25c96be737907e12b137cee7"
+      },
+      {
+        "path": "data_dictionary.csv",
+        "bytes": 2212807,
+        "sha256": "01d67607fb34ef4f5f0220a06307a59574d0a85a2140fded83ba967dcbcc4206"
+      },
+      {
+        "path": "field_catalog.csv",
+        "bytes": 10819431,
+        "sha256": "b687d229842ce4559a14831e420555de098780560ce9c8f72fe7816962891587"
+      },
+      {
+        "path": "field_evidence.json",
+        "bytes": 2976314,
+        "sha256": "9344c131edf2dce7ef182fd0accd6676675dbc25574fba637ef7379c926ab11c"
+      },
+      {
+        "path": "manifest.json",
+        "bytes": 2177,
+        "sha256": "0ad129346e653dde1f624a0d129fcff5e70d1f08066630062168d8fd889f45ed"
+      },
+      {
+        "path": "original_records.json",
+        "bytes": 5199669,
+        "sha256": "7419540c89948c42e80c2de7266772a3cdad13dcc024bb86719e624313bf3ccf"
+      }
+    ],
+    "sha256": "771e90a584cd78b5cb9e4c94c97e127526e69a1563d895882bda0db9522f5c47"
+  },
+  "completed_at": "2026-11-13T00:40:43.996094+00:00",
+  "duration_seconds": 34.529
+}

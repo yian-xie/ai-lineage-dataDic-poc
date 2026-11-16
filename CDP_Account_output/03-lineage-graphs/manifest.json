@@ -1,0 +1,35 @@
+{
+  "stage": "build-graphs",
+  "destination": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\03-lineage-graphs",
+  "outputs": {
+    "account_tenant_lineage": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\03-lineage-graphs\\account_tenant_lineage.json",
+    "kb_accounts_project_lineage": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\03-lineage-graphs\\kb_accounts_project_lineage.json",
+    "kb_accounts_data_lineage": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\03-lineage-graphs\\kb_accounts_data_lineage.json",
+    "table_lineage": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\03-lineage-graphs\\table_lineage.json",
+    "all_repositories_lineage": "C:\\Users\\yxie0002\\OneDrive - Kiwibank\\Desktop\\new\\ai-lineage-dataDic-poc\\CDP_Account_output\\03-lineage-graphs\\all_repositories_lineage.json"
+  },
+  "scope": "cdp-account",
+  "parse_manifest_sha256": "ada9864a6c04e443638e256b55f28a741d24f3835cd8927a6fb891b97371d53a",
+  "counts": {
+    "account_tenant_lineage": {
+      "nodes": 1028,
+      "edges": 1221
+    },
+    "kb_accounts_project_lineage": {
+      "nodes": 60,
+      "edges": 65
+    },
+    "kb_accounts_data_lineage": {
+      "nodes": 75,
+      "edges": 51
+    },
+    "table_lineage": {
+      "nodes": 1103,
+      "edges": 1272
+    },
+    "all_repositories_lineage": {
+      "nodes": 1163,
+      "edges": 1337
+    }
+  }
+}

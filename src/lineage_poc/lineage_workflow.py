@@ -14,10 +14,17 @@ from .columns.serialization import write_inventory
 from .graph.account import build_account_graph, _related_columns
 from .graph.enterprise import PRODUCTS, _build_extension
 from .graph.pilot import compose_graphs
-from .parsers import parse_dbt_project, parse_landing_tenant
+from .graph.tmv import compose_tmv_graphs
+from .parsers import (
+    parse_dbt_project,
+    parse_kb_accounts,
+    parse_landing_repo,
+    parse_protect_downstream,
+)
 from .parsers.full import GraphAccumulator, parse_core_graph
 from .parsers.snapshot import (
     ACCOUNT_PRODUCTS,
+    ACCOUNT_DOMAIN_PRODUCTS,
     ENTERPRISE_PRODUCTS,
     capture_sources,
     graph_document,
@@ -77,6 +84,17 @@ def parse_sources(source_root: Path, destination: Path, parser: str = "all") -> 
         ],
         "counts": {"source_files": len(manifest["files"]), **counts},
     })
+    if parser == "tmv-account":
+        from .parsers.tmv_account import account_scope
+        manifest["account_scope"] = account_scope()
+    elif parser == "account-domain":
+        from .parsers.tmv_account import domain_scope
+        manifest["account_scope"] = domain_scope()
+    elif parser == "cdp-account":
+        from .parsers.tmv_account import cdp_account_scope
+        tenant = read_json(destination / "fragments/cdp_account.json")
+        products = tenant["account_scope"]["account_products"]
+        manifest["account_scope"] = cdp_account_scope(products)
     write_json(destination / "manifest.json", manifest)
     return {
         "stage": "parse",
@@ -90,6 +108,59 @@ def parse_sources(source_root: Path, destination: Path, parser: str = "all") -> 
 
 
 def _parse_snapshot(evidence_root: Path, destination: Path, parser: str) -> tuple[dict, dict]:
+    if parser == "cdp-account":
+        from .parsers.tmv_account import cdp_account_scope
+        outputs, counts = {}, {}
+        account_root = evidence_root / "kb-cdp-tenant-account"
+        product_names = sorted(path.name for path in (account_root / "products").iterdir() if path.is_dir())
+        nodes, edges = parse_protect_downstream(account_root, products=product_names, namespace="account")
+        tenant = {"nodes": nodes, "edges": edges, "account_scope": cdp_account_scope(product_names)}
+        tenant_path = destination / "fragments/cdp_account.json"
+        write_json(tenant_path, tenant)
+        outputs["kb_cdp_tenant_account"] = tenant_path
+        counts["kb_cdp_tenant_account"] = {"nodes": len(nodes), "edges": len(edges)}
+        graph = parse_kb_accounts(evidence_root / "kb-accounts")
+        project_path = destination / "fragments/kb_accounts.json"
+        write_json(project_path, graph)
+        outputs["kb_accounts"] = project_path
+        counts["kb_accounts"] = {"nodes": len(graph["nodes"]), "edges": len(graph["edges"])}
+        from .parsers.dotnet_data import parse_ef_snapshots
+        data = parse_ef_snapshots(evidence_root / "kb-accounts")
+        data_path = destination / "fragments/kb_accounts_data.json"
+        write_json(data_path, data)
+        outputs["kb_accounts_data"] = data_path
+        counts["kb_accounts_data"] = {"nodes": len(data["nodes"]), "edges": len(data["edges"]),
+            "field_bindings": len(data["mappings"]), "event_bindings": len(data["event_mappings"]), "gaps": len(data["unresolved"])}
+        return outputs, counts
+    if parser == "account-domain":
+        from .parsers.tmv_account import PROTECT_ACCOUNT_PRODUCTS, slice_protect_account, domain_scope
+        outputs = {}
+        counts = {}
+        for repository, products, namespace in (
+            ("kb-cdp-tenant-account", ACCOUNT_DOMAIN_PRODUCTS, "account"),
+            ("kb-cdp-tenant-enterprise", ENTERPRISE_PRODUCTS, "enterprise"),
+            ("kb-cdp-tenant-protect-downstream", PROTECT_ACCOUNT_PRODUCTS, "protect"),
+        ):
+            nodes, edges = parse_protect_downstream(evidence_root / repository, products=products, namespace=namespace)
+            graph = slice_protect_account({"nodes": nodes, "edges": edges})
+            graph["account_scope"] = domain_scope()
+            path = destination / "fragments" / (namespace + ".json")
+            write_json(path, graph)
+            outputs[namespace] = path
+            counts[namespace] = {"nodes": len(graph["nodes"]), "edges": len(graph["edges"])}
+        path = destination / "fragments/kb_accounts.json"
+        graph = parse_kb_accounts(evidence_root / "kb-accounts")
+        write_json(path, graph)
+        outputs["kb_accounts"] = path
+        counts["kb_accounts"] = {"nodes": len(graph["nodes"]), "edges": len(graph["edges"])}
+        from .parsers.dotnet_data import parse_ef_snapshots
+        data = parse_ef_snapshots(evidence_root / "kb-accounts")
+        path = destination / "fragments/kb_accounts_data.json"
+        write_json(path, data)
+        outputs["kb_accounts_data"] = path
+        counts["kb_accounts_data"] = {"nodes": len(data["nodes"]), "edges": len(data["edges"]),
+                         "field_bindings": len(data["mappings"]), "gaps": len(data["unresolved"])}
+        return outputs, counts
     core = parse_core_graph(evidence_root, parser)
     core_path = destination / "fragments" / "table_inputs.json"
     write_json(core_path, normalize_evidence(core, evidence_root))
@@ -119,10 +190,33 @@ def _parse_snapshot(evidence_root: Path, destination: Path, parser: str) -> tupl
         write_json(output, parameters)
         outputs["hvr_parameters"] = output
     landing_root = evidence_root / "kb-cdp-tenant-landing"
-    if parser in {"all", "landing"} and landing_root.is_dir():
+    if parser in {"all", "landing", "tmv", "tmv-account"} and landing_root.is_dir():
+        if parser == "tmv-account":
+            from .parsers.tmv_account import landing_account_graph
+            landing_graph = landing_account_graph(landing_root)
+        else:
+            nodes, edges = parse_landing_repo(landing_root)
+            landing_graph = {"nodes": nodes, "edges": edges}
         output = destination / "fragments" / "landing.json"
-        write_json(output, graph_document(parse_landing_tenant(landing_root), evidence_root))
+        write_json(output, landing_graph)
         outputs["landing"] = output
+    protect_root = evidence_root / "kb-cdp-tenant-protect-downstream"
+    if parser in {"all", "protect_downstream", "tmv", "tmv-account"} and protect_root.is_dir():
+        if parser == "tmv-account":
+            from .parsers.tmv_account import PROTECT_ACCOUNT_PRODUCTS, slice_protect_account
+            nodes, edges = parse_protect_downstream(protect_root, products=PROTECT_ACCOUNT_PRODUCTS)
+            scoped = slice_protect_account({"nodes": nodes, "edges": edges})
+            nodes, edges = scoped["nodes"], scoped["edges"]
+        else:
+            nodes, edges = parse_protect_downstream(protect_root)
+        output = destination / "fragments" / "protect_downstream.json"
+        write_json(output, {"nodes": nodes, "edges": edges})
+        outputs["protect_downstream"] = output
+    accounts_root = evidence_root / "kb-accounts"
+    if parser in {"all", "accounts", "tmv", "tmv-account"} and accounts_root.is_dir():
+        output = destination / "fragments" / "kb_accounts.json"
+        write_json(output, parse_kb_accounts(accounts_root))
+        outputs["kb_accounts"] = output
     return outputs, {"nodes": len(core["nodes"]), "edges": len(core["edges"]), "dbt_projects": len(projects)}
 
 
@@ -133,7 +227,10 @@ def build_graphs(parsed_dir: Path, destination: Path, scope: str = "all") -> dic
     scope = scope.lower()
     aliases = {"dwacc": "account", "table": "full", "pilot": "full"}
     scope = aliases.get(scope, scope)
-    if scope not in {"all", "full", "account", "enterprise", "dwrel", "landing"}:
+    if scope not in {
+        "all", "full", "account", "enterprise", "dwrel", "landing",
+        "protect_downstream", "accounts", "tmv", "account-domain", "cdp-account",
+    }:
         raise ValueError(f"Unknown graph scope: {scope!r}")
     with load_snapshot(parsed_dir, workspace=destination) as (parse_manifest, evidence_root):
         outputs, counts = _build_graph_snapshots(parsed_dir, destination, scope, parse_manifest, evidence_root)
@@ -145,6 +242,49 @@ def build_graphs(parsed_dir: Path, destination: Path, scope: str = "all") -> dic
 
 
 def _build_graph_snapshots(parsed_dir: Path, destination: Path, scope: str, parse_manifest: dict, evidence_root: Path) -> tuple[dict, dict]:
+    if scope == "account-domain":
+        from .graph.tmv import compose_account_domain_graphs
+        from .parsers.snapshot import ACCOUNT_DOMAIN_REPOSITORIES
+        if parse_manifest["parser"] != "account-domain" or set(parse_manifest["repositories"]) != set(ACCOUNT_DOMAIN_REPOSITORIES):
+            raise ValueError("Account-domain graphs require the exact four-repository Account snapshot.")
+        names = {"kb-cdp-tenant-account": ("account", "account_domain_lineage"),
+                 "kb-cdp-tenant-enterprise": ("enterprise", "enterprise_account_lineage"),
+                 "kb-cdp-tenant-protect-downstream": ("protect", "protect_downstream_lineage"),
+                 "kb-accounts": ("kb_accounts", "kb_accounts_project_lineage")}
+        components = {repository: read_json(parsed_dir / "fragments" / (fragment + ".json")) for repository, (fragment, _) in names.items()}
+        graphs = {name: components[repository] for repository, (_, name) in names.items()}
+        data = read_json(parsed_dir / "fragments/kb_accounts_data.json")
+        graphs["kb_accounts_data_lineage"] = {key: value for key, value in data.items() if key not in {"mappings", "schema_inventory", "migration_evidence", "assignment_evidence", "event_mappings", "field_relationship_assessments"}}
+        data_components = {key: value for key, value in components.items() if key != "kb-accounts"}
+        data_components["kb-accounts:data"] = graphs["kb_accounts_data_lineage"]
+        graphs["table_lineage"] = compose_account_domain_graphs(data_components)
+        graphs["all_repositories_lineage"] = compose_account_domain_graphs({**data_components, "kb-accounts": components["kb-accounts"]})
+        outputs, counts = {}, {}
+        for name, graph in graphs.items():
+            outputs[name] = destination / (name + ".json")
+            write_json(outputs[name], normalize_evidence(graph, evidence_root))
+            counts[name] = {"nodes": len(graph["nodes"]), "edges": len(graph["edges"])}
+        return outputs, counts
+    if scope == "cdp-account":
+        from .graph.tmv import compose_account_domain_graphs
+        from .parsers.snapshot import CDP_ACCOUNT_REPOSITORIES
+        if parse_manifest["parser"] != "cdp-account" or set(parse_manifest["repositories"]) != set(CDP_ACCOUNT_REPOSITORIES):
+            raise ValueError("CDP Account graphs require exactly kb-accounts and kb-cdp-tenant-account.")
+        tenant = read_json(parsed_dir / "fragments/cdp_account.json")
+        software = read_json(parsed_dir / "fragments/kb_accounts.json")
+        data = read_json(parsed_dir / "fragments/kb_accounts_data.json")
+        data_graph = {key: value for key, value in data.items() if key not in {"mappings", "schema_inventory", "migration_evidence", "assignment_evidence", "event_mappings", "field_relationship_assessments"}}
+        graphs = {"account_tenant_lineage": tenant, "kb_accounts_project_lineage": software,
+                  "kb_accounts_data_lineage": data_graph}
+        data_components = {"kb-cdp-tenant-account": tenant, "kb-accounts:data": data_graph}
+        graphs["table_lineage"] = compose_account_domain_graphs(data_components)
+        graphs["all_repositories_lineage"] = compose_account_domain_graphs({**data_components, "kb-accounts": software})
+        outputs, counts = {}, {}
+        for name, graph in graphs.items():
+            outputs[name] = destination / (name + ".json")
+            write_json(outputs[name], normalize_evidence(graph, evidence_root))
+            counts[name] = {"nodes": len(graph["nodes"]), "edges": len(graph["edges"])}
+        return outputs, counts
     full = read_json(parsed_dir / "fragments" / "table_inputs.json")
     graphs = {}
     counts = {}
@@ -172,7 +312,8 @@ def _build_graph_snapshots(parsed_dir: Path, destination: Path, scope: str, pars
                 graphs["account_enterprise_lineage"] = enterprise
         if scope != "full":
             graphs["account_table_lineage"] = account
-    graphs["table_lineage"] = full
+    if scope in {"all", "full", "account", "enterprise", "dwrel"}:
+        graphs["table_lineage"] = full
     if can_slice and scope in {"all", "dwrel"}:
         dag_path = evidence_root / dwrel.DAG_PATH
         dbt_path = evidence_root / dwrel.PRODUCT_PATH / "dbt"
@@ -189,14 +330,29 @@ def _build_graph_snapshots(parsed_dir: Path, destination: Path, scope: str, pars
             }
         else:
             graphs["dwrel_table_lineage"] = dwrel.build_graph(full_graph=full, source_root=evidence_root)
-    landing_fragment = parsed_dir / "fragments" / "landing.json"
-    if scope == "landing" and not landing_fragment.is_file():
-        raise FileNotFoundError("The optional kb-cdp-tenant-landing repository was not captured in this parse snapshot.")
-    if scope in {"all", "landing"} and landing_fragment.is_file():
-        parsed_landing = graph_payload(read_json(landing_fragment))
-        accumulator = GraphAccumulator(source_root=evidence_root)
-        accumulator.add_graph(parsed_landing)
-        graphs["landing_tenant_lineage"] = accumulator.payload()
+    supplemental = (
+        ("landing", "landing.json", "landing_tenant_lineage"),
+        ("protect_downstream", "protect_downstream.json", "protect_downstream_lineage"),
+        ("accounts", "kb_accounts.json", "kb_accounts_project_lineage"),
+    )
+    for selected_scope, fragment_name, graph_name in supplemental:
+        if scope not in {"all", "tmv", selected_scope}:
+            continue
+        fragment = parsed_dir / "fragments" / fragment_name
+        if scope == selected_scope and not fragment.is_file():
+            raise FileNotFoundError(
+                f"The {selected_scope} repository was not captured in this parse snapshot."
+            )
+        if fragment.is_file():
+            graphs[graph_name] = read_json(fragment)
+    if scope == "tmv":
+        landing = graphs.get("landing_tenant_lineage")
+        protect = graphs.get("protect_downstream_lineage")
+        accounts = graphs.get("kb_accounts_project_lineage")
+        if landing is None or protect is None or accounts is None:
+            raise FileNotFoundError("The TMV graph scope requires all three selected repository fragments.")
+        graphs["table_lineage"] = compose_tmv_graphs(landing, protect)
+        graphs["all_repositories_lineage"] = compose_tmv_graphs(landing, protect, accounts)
     outputs = {}
     for name, graph in graphs.items():
         output = destination / f"{name}.json"
@@ -225,23 +381,48 @@ def build_columns(parsed_dir: Path, graphs_dir: Path, destination: Path, feed: s
             raise ValueError("The graph and parse snapshots belong to different runs.")
     feed = feed.upper()
     available = ("DWACC", "DWREL", *account_outputs.FEEDS)
-    if feed != "ALL" and feed not in available:
-        raise ValueError(f"Unknown feed {feed!r}; choose from {', '.join(available)} or all.")
+    if feed != "ALL" and feed not in {*available, "TMV"}:
+        raise ValueError(f"Unknown feed {feed!r}; choose from {', '.join(available)}, TMV, or all.")
     feeds = available if feed == "ALL" else (feed,)
-    with load_snapshot(parsed_dir, workspace=destination) as (_, evidence_root):
-        inventories, outputs = _build_column_snapshots(parsed_dir, graphs_dir, destination, feeds, evidence_root)
+    with load_snapshot(parsed_dir, workspace=destination) as (parse_manifest, evidence_root):
+        if feed == "TMV" and parse_manifest.get("parser") not in {"tmv", "tmv-account", "account-domain", "cdp-account"}:
+            raise ValueError("TMV column lineage requires an accepted account or TMV parse snapshot.")
+        inventories, outputs = _build_column_snapshots(
+            parsed_dir, graphs_dir, destination, feeds, evidence_root, parse_manifest
+        )
     if feed == "ALL":
         summary_path = destination / "account_column_inventory_summary.json"
         write_inventory(summary_path, account_outputs.build_summary(inventories, existing_inventories={}))
         outputs["inventory_summary"] = summary_path
+    counts = {
+        name: {
+            "records": len(records),
+            "dbt_targets": sum(len(record.get("dbt_targets", [])) for record in records),
+        }
+        for name, records in inventories.items()
+    }
+    if feed == "TMV":
+        gaps = read_json(destination / "column_lineage_gaps.json")
+        counts["TMV"] = {
+            "records": len(inventories["TMV"]),
+            "resolved_column_mappings": len(inventories["TMV"]),
+            "unresolved_gaps": len(gaps),
+        }
     return _record_stage(
         destination, "build-columns", outputs, feed=feed,
         parse_manifest_sha256=_fingerprint(parsed_dir / "manifest.json"),
-        counts={name: {"records": len(records), "dbt_targets": sum(len(record.get("dbt_targets", [])) for record in records)} for name, records in inventories.items()},
+        counts=counts,
     )
 
 
-def _build_column_snapshots(parsed_dir: Path, graphs_dir: Path, destination: Path, feeds: tuple, evidence_root: Path) -> tuple[dict, dict]:
+def _build_column_snapshots(
+    parsed_dir: Path,
+    graphs_dir: Path,
+    destination: Path,
+    feeds: tuple,
+    evidence_root: Path,
+    parse_manifest: dict | None = None,
+) -> tuple[dict, dict]:
     inventories = {}
     outputs = {}
     for selected in feeds:
@@ -259,6 +440,55 @@ def _build_column_snapshots(parsed_dir: Path, graphs_dir: Path, destination: Pat
                 source_root=evidence_root,
             )
             filename = "dwrel_column_lineage.json"
+        elif selected == "TMV":
+            from .columns.tmv import build_column_inventory
+
+            if parse_manifest and parse_manifest.get("parser") == "cdp-account":
+                graphs = {"cdp_account": _require_graph(graphs_dir, "account_tenant_lineage")}
+            else:
+                graphs = {"protect_downstream": _require_graph(graphs_dir, "protect_downstream_lineage")}
+            if parse_manifest and parse_manifest.get("parser") == "cdp-account":
+                pass
+            elif parse_manifest and parse_manifest.get("parser") == "account-domain":
+                graphs["account"] = _require_graph(graphs_dir, "account_domain_lineage")
+                graphs["enterprise"] = _require_graph(graphs_dir, "enterprise_account_lineage")
+            else:
+                graphs["landing"] = _require_graph(graphs_dir, "landing_tenant_lineage")
+            if parse_manifest is None:
+                raise ValueError("TMV column lineage requires a recorded parse manifest.")
+            snapshot_id = "sha256:" + parse_manifest["snapshot_archive"]["sha256"]
+            records, gaps = build_column_inventory(graphs, evidence_root, snapshot_id)
+            if parse_manifest.get("parser") in {"account-domain", "cdp-account"}:
+                data = read_json(parsed_dir / "fragments/kb_accounts_data.json")
+                for mapping in data["mappings"] + data["event_mappings"]:
+                    records.append({**mapping, "snapshot_id": snapshot_id})
+                gaps.extend(data["unresolved"])
+                for assessment in data["field_relationship_assessments"]:
+                    gaps.append({"repository": "kb-accounts", "source_path": assessment["source_path"],
+                        "model_id": assessment["entity_id"], "source_column": assessment["property"],
+                        "target_column": assessment["database_column"],
+                        "reason": "kb_accounts_field_relationship_unresolved" if assessment["status"] == "unresolved" else "kb_accounts_event_transport_unresolved",
+                        "detail": assessment["reason"], "related_mapping_ids": assessment["related_mapping_ids"]})
+                for limitation in data["coverage"]["limitations"]:
+                    gaps.append({"repository": "kb-accounts", "source_path": "src/", "reason": "dotnet_data_coverage_boundary", "detail": limitation})
+                schema_path = destination / "kb_accounts_schema_inventory.json"
+                write_json(schema_path, data["schema_inventory"])
+                outputs["kb_accounts_schema_inventory"] = schema_path
+                for key in ("migration_evidence", "assignment_evidence", "field_relationship_assessments"):
+                    path = destination / ("kb_accounts_" + key + ".json")
+                    write_json(path, data[key])
+                    outputs["kb_accounts_" + key] = path
+                if parse_manifest.get("parser") == "cdp-account":
+                    from .cross_repository import build_cdp_account_crosswalk
+                    crosswalk = build_cdp_account_crosswalk(data, records, evidence_root)
+                    cross_path = destination / "cross_repository_field_lineage.json"
+                    write_json(cross_path, normalize_evidence(crosswalk, evidence_root))
+                    outputs["cross_repository_field_lineage"] = cross_path
+                    gaps.extend(crosswalk["unresolved"])
+            gap_path = destination / "column_lineage_gaps.json"
+            write_json(gap_path, gaps)
+            outputs["TMV_gaps"] = gap_path
+            filename = "column_lineage.json"
         else:
             records = account_outputs.build_feed_records(selected, source_root=evidence_root)
             filename = f"{selected.rstrip('_').lower()}_column_lineage.json"

@@ -140,6 +140,86 @@ def test_selected_basic_parser_does_not_require_other_repositories(tmp_path):
     assert set(built["outputs"]) == {"table_lineage"}
 
 
+def test_accounts_project_graph_runs_from_its_recorded_parse(source_factory, tmp_path):
+    source = source_factory()
+    accounts = source / "kb-accounts"
+    shared = accounts / "src" / "Shared" / "Shared.csproj"
+    app = accounts / "src" / "App" / "App.csproj"
+    shared.parent.mkdir(parents=True)
+    app.parent.mkdir(parents=True)
+    shared.write_text("<Project />", encoding="utf-8")
+    app.write_text(
+        "<Project><ItemGroup><ProjectReference Include='..\\Shared\\Shared.csproj' />"
+        "</ItemGroup></Project>",
+        encoding="utf-8",
+    )
+    parsed, graphs = tmp_path / "parsed", tmp_path / "graphs"
+
+    parse_result = parse_sources(source, parsed, parser="accounts")
+    graph_result = build_graphs(parsed, graphs, scope="accounts")
+
+    assert parse_result["counts"]["source_files"] == 2
+    assert set(graph_result["outputs"]) == {"kb_accounts_project_lineage"}
+    graph = read_json(graphs / "kb_accounts_project_lineage.json")
+    assert len(graph["nodes"]) == 2
+    assert len(graph["edges"]) == 1
+    assert not (graphs / "table_lineage.json").exists()
+
+
+def test_tmv_parse_and_graph_outputs_are_limited_to_selected_repositories(tmp_path):
+    from lineage_poc.parsers.snapshot import TMV_REPOSITORIES
+
+    source = tmp_path / "source-repos"
+    landing = source / "kb-cdp-tenant-landing" / "products" / "ultracs-v1" / "dbt"
+    protect = source / "kb-cdp-tenant-protect-downstream" / "products" / "protect-v1" / "dbt"
+    accounts = source / "kb-accounts" / "src"
+    for project_root, product in ((landing, "ultracs_fixture"), (protect, "protect_fixture")):
+        (project_root / "models").mkdir(parents=True)
+        (project_root / "dbt_project.yml").write_text(
+            f"name: {product}\nversion: '1.0'\nconfig-version: 2\nprofile: fixture\n",
+            encoding="utf-8",
+        )
+        (project_root / "models" / f"{product}.sql").write_text("select 1 as fixture_id\n", encoding="utf-8")
+        (project_root / "models" / "schema.yml").write_text(
+            f"version: 2\nmodels:\n  - name: {product}\n    config:\n      materialized: view\n",
+            encoding="utf-8",
+        )
+    shared = accounts / "Shared" / "Shared.csproj"
+    app = accounts / "App" / "App.csproj"
+    shared.parent.mkdir(parents=True)
+    app.parent.mkdir(parents=True)
+    shared.write_text("<Project />", encoding="utf-8")
+    app.write_text(
+        "<Project><ItemGroup><ProjectReference Include='..\\Shared\\Shared.csproj' />"
+        "</ItemGroup></Project>",
+        encoding="utf-8",
+    )
+    parsed, graphs = tmp_path / "parsed", tmp_path / "graphs"
+
+    parse_result = parse_sources(source, parsed, parser="tmv")
+    graph_result = build_graphs(parsed, graphs, scope="tmv")
+
+    manifest = read_json(parsed / "manifest.json")
+    source_repositories = {entry["path"].split("/")[0] for entry in manifest["files"]}
+    assert source_repositories == set(TMV_REPOSITORIES)
+    assert set(manifest["repositories"]) == set(TMV_REPOSITORIES)
+    assert set(parse_result["outputs"]) >= {"landing", "protect_downstream", "kb_accounts"}
+    assert set(graph_result["outputs"]) == {
+        "landing_tenant_lineage", "protect_downstream_lineage", "kb_accounts_project_lineage",
+        "table_lineage", "all_repositories_lineage",
+    }
+    table_graph = read_json(graphs / "table_lineage.json")
+    all_repositories = read_json(graphs / "all_repositories_lineage.json")
+    assert not any(node["type"] == "DOTNET_PROJECT" for node in table_graph["nodes"])
+    assert any(node["type"] == "DOTNET_PROJECT" for node in all_repositories["nodes"])
+
+    columns = tmp_path / "columns"
+    column_result = build_columns(parsed, graphs, columns, feed="TMV")
+    assert set(column_result["outputs"]) == {"TMV", "TMV_gaps"}
+    assert (columns / "column_lineage.json").is_file()
+    assert (columns / "column_lineage_gaps.json").is_file()
+
+
 def test_dwrel_scope_reports_missing_product_inputs(source_factory, tmp_path):
     parsed = tmp_path / "parsed"
     parse_sources(source_factory(), parsed)

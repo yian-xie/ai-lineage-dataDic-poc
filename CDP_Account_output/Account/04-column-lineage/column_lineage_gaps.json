@@ -1,0 +1,755 @@
+[
+  {
+    "repository": "kb-cdp-tenant-account",
+    "project": "account-profile-topic-v1",
+    "model_id": "dbt:model:account:account-profile-topic-v1:v_account_profile_topic_v1__productFacility_v1",
+    "source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+    "target_column": "INTERESTARRANGEMENTSRATE",
+    "reason": "constant_or_unresolved_expression_has_no_source_column",
+    "expression": "NULL AS INTERESTARRANGEMENTSRATE"
+  },
+  {
+    "repository": "kb-cdp-tenant-account",
+    "project": "account-profile-topic-v1",
+    "model_id": "dbt:model:account:account-profile-topic-v1:v_account_profile_topic_v1__productFacility_v1",
+    "source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+    "target_column": "INTERESTARRANGEMENTSVALIDFROM",
+    "reason": "constant_or_unresolved_expression_has_no_source_column",
+    "expression": "NULL AS INTERESTARRANGEMENTSVALIDFROM"
+  },
+  {
+    "repository": "kb-cdp-tenant-account",
+    "project": "account-profile-topic-v1",
+    "model_id": "dbt:model:account:account-profile-topic-v1:v_account_profile_topic_v1__productFacility_v1",
+    "source_path": "products/account-profile-topic-v1/dbt/models/internal/v_account_profile_topic_v1__productFacility_v1/v_account_profile_topic_v1__productFacility_v1.sql",
+    "target_column": "INTERESTARRANGEMENTSVALIDTO",
+    "reason": "constant_or_unresolved_expression_has_no_source_column",
+    "expression": "NULL AS INTERESTARRANGEMENTSVALIDTO"
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "source_column": "RowId",
+    "target_column": "row_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "source_column": "Currency",
+    "target_column": "currency",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:fa2b0b1a13739b534fbbe52b",
+      "csharp-event:fd6973d0d21f10e002f8c17d"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "source_column": "CurrencyType",
+    "target_column": "currency_type",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:599184a12245f2d258a6885b",
+      "csharp-event:bb4656cd6d8a0b9d91a7da5d"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "source_column": "ProfileAccountId",
+    "target_column": "profile_account_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+    "source_column": "Version",
+    "target_column": "xmin",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountId",
+    "target_column": "account_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:ee152ccaa4b63df6a7dbc6b0"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountClosureReason",
+    "target_column": "account_closure_reason",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:0ce2e472fcb39aa219c13c7f"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountCreatedUserId",
+    "target_column": "account_created_user_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:4733e4698fb9ce73601224f1"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountOrganisationUnitId",
+    "target_column": "account_organisation_unit_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:cebe0e3f1ba180c87ecbb86f"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AlternateName",
+    "target_column": "alternate_name",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:ea1522497677e2b999cfc1cb"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "ChangeId",
+    "target_column": "change_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "Closed",
+    "target_column": "closed",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:9dc2a9810c4659adf16caca8"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "CorrelationId",
+    "target_column": "correlation_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:6979e259492fdb825e84c09a",
+      "csharp-event:fce1845a03f76f7f94bd64e4"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "Created",
+    "target_column": "created",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:d562bdf384b7624d29beeb47"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "MinimumNumberOfAuthoriser",
+    "target_column": "minimum_number_of_authoriser",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:d99b8c0efbfb67ab92fa18f1"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "Name",
+    "target_column": "name",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:9a8ccff0d324e4cb528488ed"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "Opened",
+    "target_column": "opened",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:d081dd6c27001496ed4736ce"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "Status",
+    "target_column": "status",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:24e7d23b36699b714509b32b"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "TSide",
+    "target_column": "t_side",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:d86673fb79e8fd30f5ff2589"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "TmvStatus",
+    "target_column": "tmv_status",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "Version",
+    "target_column": "xmin",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountFreezeDetails.ChangeId",
+    "target_column": "account_freeze_details_change_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountFreezeDetails.Effective",
+    "target_column": "account_freeze_details_effective",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:1675ff912bdc514baf3d229d"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountFreezeDetails.Expiration",
+    "target_column": "account_freeze_details_expiration",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountFreezeDetails.FreezeDescription",
+    "target_column": "account_freeze_details_freeze_description",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:5a398ae27398819ec5932c2b"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountFreezeDetails.FreezeType",
+    "target_column": "account_freeze_details_freeze_type",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:1445273a4d8fb6eff226cccd"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "AccountFreezeDetails.RestrictionSetId",
+    "target_column": "account_freeze_details_restriction_set_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "BankingRelationship.BankingRelationshipId",
+    "target_column": "banking_relationship_banking_relationship_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:242fd776c2e35cf91159e655",
+      "csharp-event:61dae1b683aeb673648d5d3d"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "BankingRelationship.BankingRelationshipType",
+    "target_column": "banking_relationship_banking_relationship_type",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "BankingRelationship.NominatedTaxPartyId",
+    "target_column": "banking_relationship_nominated_tax_party_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:65ad0034f5469a6bc1c61ddf",
+      "csharp-event:cfd77f09300f5b790590f4c2"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "BankingRelationship.PartyIds",
+    "target_column": "banking_relationship_party_ids",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:16330ee2933a2a6cb0a998e6",
+      "csharp-event:2fd3d9c59c4640f6e60fe7e0"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "DomesticTaxRate.CountryAlpha3Code",
+    "target_column": "domestic_tax_rate_country_alpha3code",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:42a9b5600cf5fa9c9510800f",
+      "csharp-event:d9bdda11dd255d02b6976f54"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "DomesticTaxRate.DomesticTaxType",
+    "target_column": "domestic_tax_rate_domestic_tax_type",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:49012d02d3f3069aa00d3c7c",
+      "csharp-event:51cab37f4dfddc92d3de959b"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "DomesticTaxRate.RateValue",
+    "target_column": "domestic_tax_rate_rate_value",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:4211ffedcad02e8367a9dc06",
+      "csharp-event:d41bac7c46e86331eb7c88d3"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "ProductFacility.BankingProductCode",
+    "target_column": "product_facility_banking_product_code",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:05d313778f8416694b722d8c",
+      "csharp-event:accb51199d076c1e297491a9"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "ProductFacility.BankingProductId",
+    "target_column": "product_facility_banking_product_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:7d359e3df21fef9360679970",
+      "csharp-event:a5548e165f5f0277d88293b0"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "ProductFacility.BankingProductVersionId",
+    "target_column": "product_facility_banking_product_version_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:4c71b5be91b53169e36cfed0",
+      "csharp-event:58b84beba9c970850750bf60"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "ProductFacility.InterestRate",
+    "target_column": "product_facility_interest_rate",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:3cdd1d8d0e7c281f73448bf3",
+      "csharp-event:6e2fb7e72c0350e0f5c29142",
+      "csharp-event:ba71296ba5f08dac57e7072c"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "ProductFacility.InterestRatePlanChangeId",
+    "target_column": "product_facility_interest_rate_plan_change_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:6bddd96be06e06bb632bcc04",
+      "csharp-event:716594021f89d532d331c22e",
+      "csharp-event:aa0750f60efd7f2702119bd7"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "ProductFacility.InterestRateValidFrom",
+    "target_column": "product_facility_interest_rate_valid_from",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:039e9ba64c13ea0aa8c21a45",
+      "csharp-event:3846fdded131dde03c7001b1",
+      "csharp-event:a0dca4ca4f581830e723305b"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+    "source_column": "ProductFacility.ProductFacilityId",
+    "target_column": "product_facility_product_facility_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:25c5c1e13aecb7282cf2126d",
+      "csharp-event:cfd367ffe74d42004fbc9f46"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "source_column": "RowId",
+    "target_column": "row_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "source_column": "AccountIdentification",
+    "target_column": "account_identification",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:008e7c9e96df47511bc7bdc9",
+      "csharp-event:da2fdbae072b736f93dd3a3b"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "source_column": "AccountIdentificationType",
+    "target_column": "account_identification_type",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:b782b26f88df65f0ea021988",
+      "csharp-event:effc655b344bee252aead01e"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "source_column": "ProfileAccountId",
+    "target_column": "profile_account_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+    "source_column": "Version",
+    "target_column": "xmin",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "Id",
+    "target_column": "id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "AccountId",
+    "target_column": "account_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "Amount",
+    "target_column": "amount",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:05926837e45ac6559aaa367c",
+      "csharp-event:5ccc4d88931f55323ddd7e0f"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "Asset",
+    "target_column": "asset",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "BalanceDateTime",
+    "target_column": "balance_date_time",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "BalanceSpecificationId",
+    "target_column": "balance_specification_id",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "BalanceType",
+    "target_column": "balance_type",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:9b4296f89e1e14207c96cc0a"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "BatchId",
+    "target_column": "batch_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:321787a6788f3b2a547116d2",
+      "csharp-event:fc855eba17261cb107fa74d6"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "BatchInstructionIndex",
+    "target_column": "batch_instruction_index",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:100adc46e8d91b6bfeae19b7",
+      "csharp-event:5dbbaaa2bf351821ca66b369"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "CreatedAt",
+    "target_column": "created_at",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "Currency",
+    "target_column": "currency",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:3784433b328406f4b9ef9e16",
+      "csharp-event:ea2a9df47c3595f39a8738aa"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "InsertionDateTime",
+    "target_column": "insertion_date_time",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:271b2121818c1f4f2a5d0510"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "IsCachedBalance",
+    "target_column": "is_cached_balance",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "ModifiedAt",
+    "target_column": "modified_at",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "PostingInstructionId",
+    "target_column": "posting_instruction_id",
+    "reason": "kb_accounts_event_transport_unresolved",
+    "detail": "Explicit source references found; event serialization and publisher-to-consumer topic continuity still unverified.",
+    "related_mapping_ids": [
+      "csharp-event:6b5b1b7896c309879a54087e",
+      "csharp-event:969ff9ad3e8554025c79f5ef"
+    ]
+  },
+  {
+    "repository": "kb-accounts",
+    "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+    "model_id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+    "source_column": "PreviousAmount",
+    "target_column": "previous_amount",
+    "reason": "kb_accounts_field_relationship_unresolved",
+    "detail": "No unambiguous typed entity-to-event assignment found for this extracted property; no relationship inferred from its name.",
+    "related_mapping_ids": []
+  }
+]

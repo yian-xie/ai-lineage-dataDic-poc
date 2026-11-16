@@ -1,0 +1,2060 @@
+{
+  "nodes": [
+    {
+      "id": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+        "project": "OriginationDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Origination.Shared.Entities.AccountOpening",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+        "project": "OriginationDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "origination.account_opening",
+        "table": "account_opening",
+        "schema": "origination",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+        "project": "OriginationDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Enterprise.Shared.Kafka.Outbox.OutboxItem",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+        "project": "OriginationDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "<schema-unspecified>.outbox",
+        "table": "outbox",
+        "schema": null,
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "paymentinstruction.payment_instruction",
+        "table": "payment_instruction",
+        "schema": "paymentinstruction",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "paymentinstruction.payment_instruction_status",
+        "table": "payment_instruction_status",
+        "schema": "paymentinstruction",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Enterprise.Shared.Kafka.Outbox.OutboxItem",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "<schema-unspecified>.outbox",
+        "table": "outbox",
+        "schema": null,
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Account.Posting.Shared.Entities.TmvPostingBatch",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+        "project": "AccountPostingDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Posting.Shared.Entities.TmvPostingBatch",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountPostingDbContext:posting.tmv_positing_batch",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+        "project": "AccountPostingDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "posting.tmv_positing_batch",
+        "table": "tmv_positing_batch",
+        "schema": "posting",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+        "project": "AccountPostingDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Enterprise.Shared.Kafka.Outbox.OutboxItem",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+        "project": "AccountPostingDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "<schema-unspecified>.outbox",
+        "table": "outbox",
+        "schema": null,
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Profile.Shared.Entities.AccountCurrency",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "profile.account_currency",
+        "table": "account_currency",
+        "schema": "profile",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Profile.Shared.Entities.AccountProfile",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "profile.account_profile",
+        "table": "account_profile",
+        "schema": "profile",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Profile.Shared.Entities.AccountProfileIdentifier",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "profile.account_profile_identifier",
+        "table": "account_profile_identifier",
+        "schema": "profile",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Profile.Shared.Entities.AccountRestriction",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "profile.account_restriction",
+        "table": "account_restriction",
+        "schema": "profile",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Enterprise.Shared.Kafka.Outbox.OutboxItem",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "<schema-unspecified>.outbox",
+        "table": "outbox",
+        "schema": null,
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Transaction.Shared.Entities.AccountBalance",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "transaction.account_balance",
+        "table": "account_balance",
+        "schema": "transaction",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance_specification_lookup",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "transaction.account_balance_specification_lookup",
+        "table": "account_balance_specification_lookup",
+        "schema": "transaction",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Transaction.Shared.Entities.AccountTransaction",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "transaction.account_transaction",
+        "table": "account_transaction",
+        "schema": "transaction",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.BalanceSpecification",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Transaction.Shared.Entities.BalanceSpecification",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.balance_specification",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "transaction.balance_specification",
+        "table": "balance_specification",
+        "schema": "transaction",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "transaction.internal_account_eod_balance_job",
+        "table": "internal_account_eod_balance_job",
+        "schema": "transaction",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Account.Transaction.Shared.Entities.PostingInstructionBatch",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "transaction.posting_instruction_batch",
+        "table": "posting_instruction_batch",
+        "schema": "transaction",
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "type": "DOTNET_ENTITY",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Enterprise.Shared.Kafka.Outbox.OutboxItem",
+        "kind": "CLR_ENTITY",
+        "layer": "application"
+      }
+    },
+    {
+      "id": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+      "type": "POSTGRES_RELATION",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "<schema-unspecified>.outbox",
+        "table": "outbox",
+        "schema": null,
+        "database": null,
+        "kind": "TABLE",
+        "layer": "application_database",
+        "physical_binding_status": "repository_declared_not_runtime_verified"
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountProfileEvent",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 47,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountProfileEvent",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 144,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Metadata",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 52,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Metadata",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountTSide",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountTSide",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentifications",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 94,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentifications",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentificationsAccountIdentificationType",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentificationsAccountIdentificationType",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.BankingRelationship",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 113,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.BankingRelationship",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 122,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.InterestArrangement",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 126,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.InterestArrangement",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.DomesticTaxRate",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 133,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.DomesticTaxRate",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrencies",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 139,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrencies",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrenciesAccountCurrency",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrenciesAccountCurrency",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrenciesAccountCurrencyType",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrenciesAccountCurrencyType",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "event:publisher:kb-accounts:src/profile/Account.Profile.Processor/Publishers/AccountProfileEventPublisher.cs:publisher",
+      "type": "EVENT_PUBLISHER",
+      "properties": {
+        "name": "Outbox publication boundary",
+        "repository": "kb-accounts",
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventPublisher.cs",
+        "confidence": "explicit",
+        "is_boundary_node": true,
+        "topic": null,
+        "runtime_verified": false,
+        "reason": "Typed outbox publication call; concrete topic and publisher-to-consumer continuity unresolved."
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalanceAccountBalance",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Balance.Api/Services/AccountBalanceAction.cs",
+        "source_line": 158,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalanceAccountBalance",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalancePostingInstruction",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Balance.Api/Services/AccountBalanceAction.cs",
+        "source_line": 162,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalancePostingInstruction",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalanceEndOfDayCustomerAccountEvent",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalanceEndOfDayCustomerAccountEvent",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.Data",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.Data",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AfterState",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AfterState",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalances",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+        "source_line": 87,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalances",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "event:publisher:kb-accounts:src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountEventConsumptionEventOutboxPublisher.cs:publisher",
+      "type": "EVENT_PUBLISHER",
+      "properties": {
+        "name": "Outbox publication boundary",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountEventConsumptionEventOutboxPublisher.cs",
+        "confidence": "explicit",
+        "is_boundary_node": true,
+        "topic": null,
+        "runtime_verified": false,
+        "reason": "Typed outbox publication call; concrete topic and publisher-to-consumer continuity unresolved."
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountEventConsumption.AccountEventConsumptionEvent",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountEventConsumption.AccountEventConsumptionEvent",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountEventConsumptionEventOutboxPublisher.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountTransaction",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 124,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountTransaction",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.IsoTransactionCode",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 45,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.IsoTransactionCode",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.FinancialTransactionAmount",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 60,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.FinancialTransactionAmount",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.ThisPartyReference",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 68,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.ThisPartyReference",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountIdentification",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 76,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountIdentification",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.OtherPartyReference",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 92,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.OtherPartyReference",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountBalanceInterimBooked",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 101,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountBalanceInterimBooked",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.TaxDeduction",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 111,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.TaxDeduction",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.TaxDeductionDomesticTaxType?",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.TaxDeductionDomesticTaxType?",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountTransactionEvent",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountTransactionEvent",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.Data",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.Data",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AfterState",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AfterState",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "id": "event:publisher:kb-accounts:src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventOutboxOutboxPublisher.cs:publisher",
+      "type": "EVENT_PUBLISHER",
+      "properties": {
+        "name": "Outbox publication boundary",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventOutboxOutboxPublisher.cs",
+        "confidence": "explicit",
+        "is_boundary_node": true,
+        "topic": null,
+        "runtime_verified": false,
+        "reason": "Typed outbox publication call; concrete topic and publisher-to-consumer continuity unresolved."
+      }
+    },
+    {
+      "id": "event:publisher:kb-accounts:src/transaction/Account.Transaction.Tmv.Processor/Publishers/TransactionHistoryEventOutboxPublisher.cs:publisher",
+      "type": "EVENT_PUBLISHER",
+      "properties": {
+        "name": "Outbox publication boundary",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/TransactionHistoryEventOutboxPublisher.cs",
+        "confidence": "explicit",
+        "is_boundary_node": true,
+        "topic": null,
+        "runtime_verified": false,
+        "reason": "Typed outbox publication call; concrete topic and publisher-to-consumer continuity unresolved."
+      }
+    },
+    {
+      "id": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.MigrateTransactionHistoryResponse.MigrateTransactionHistoryResponseEvent",
+      "type": "DOTNET_EVENT",
+      "properties": {
+        "name": "Api.Shared.Clients.Events.Kiwibank.V1.MigrateTransactionHistoryResponse.MigrateTransactionHistoryResponseEvent",
+        "kind": "CLR_EVENT_CONTRACT",
+        "layer": "event_contract",
+        "repository": "kb-accounts",
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/TransactionHistoryEventOutboxPublisher.cs",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "wire_serialization_verified": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "dotnet:entity:kb-accounts:OriginationDbContext:Account.Origination.Shared.Entities.AccountOpening",
+      "target": "postgres:relation:kb-accounts:OriginationDbContext:origination.account_opening",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+        "project": "OriginationDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Origination.Shared.Entities.AccountOpening\", b =>\r\n                {\r\n                    b.Property<string>(\"AccountId\")\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"account_id\");\r\n\r\n                    b.Property<string>(\"AccountName\")\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"account_name\");\r\n\r\n                    b.Property<string>(\"AccountNumber\")\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"account_number\");\r\n\r\n                    b.Property<string>(\"AlternateAccountName\")\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"alternate_account_name\");\r\n\r\n                    b.Property<Guid?>(\"BankingProductId\")\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"banking_product_id\");\r\n\r\n                    b.Property<Guid?>(\"BankingProductVersionId\")\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"banking_product_version_id\");\r\n\r\n                    b.Property<Guid?>(\"BankingRelationshipId\")\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"banking_relationship_id\");\r\n\r\n                    b.Property<Guid>(\"CorrelationId\")\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"correlation_id\");\r\n\r\n                    b.Property<DateTimeOffset?>(\"Created\")\r\n                        .HasColumnType(\"timestamp with time zone\")\r\n                        .HasColumnName(\"created\");\r\n\r\n                    b.Property<Guid>(\"EventId\")\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"event_id\");\r\n\r\n                    b.Property<DateTimeOffset?>(\"Failed\")\r\n                        .HasColumnType(\"timestamp with time zone\")\r\n                        .HasColumnName(\"failed\");\r\n\r\n                    b.Property<DateTimeOffset?>(\"LastRetry\")\r\n                        .HasColumnType(\"timestamp with time zone\")\r\n                        .HasColumnName(\"last_retry\");\r\n\r\n                    b.Property<DateTimeOffset?>(\"Opened\")\r\n                        .HasColumnType(\"timestamp with time zone\")\r\n                        .HasColumnName(\"opened\");\r\n\r\n                    b.Property<Guid?>(\"PartyId\")\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"party_id\");\r\n\r\n                    b.PrimitiveCollection<string[]>(\"PartyRoleIds\")\r\n                        .IsRequired()\r\n                        .HasColumnType(\"text[]\")\r\n                        .HasColumnName(\"party_role_ids\");\r\n\r\n                    b.Property<string>(\"ProductCode\")\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"product_code\");\r\n\r\n                    b.Property<Guid?>(\"ProductFacilityId\")\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"product_facility_id\");\r\n\r\n                    b.Property<Guid?>(\"ProductPropositionId\")\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"product_proposition_id\");\r\n\r\n                    b.Property<int>(\"RetryCount\")\r\n                        .HasColumnType(\"integer\")\r\n                        .HasColumnName(\"retry_count\");\r\n\r\n                    b.Property<DateTimeOffset>(\"ScheduledOpen\")\r\n                        .HasColumnType(\"timestamp with time zone\")\r\n                        .HasColumnName(\"scheduled_open\");\r\n\r\n                    b.Property<string>(\"State\")\r\n                        .IsRequired()\r\n                        .HasColumnType(\"varchar(50)\")\r\n                        .HasColumnName(\"state\");\r\n\r\n                    b.Property<string>(\"TraceContext\")\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"trace_context\");\r\n\r\n                    b.Property<DateTimeOffset>(\"ValidUntil\")\r\n                        .HasColumnType(\"timestamp with time zone\")\r\n                        .HasColumnName(\"valid_until\");\r\n\r\n                    b.HasKey(\"AccountId\")\r\n                        .HasName(\"pk_account_opening\");\r\n\r\n                    b.HasIndex(\"ProductCode\")\r\n                        .HasDatabaseName(\"ix_account_opening_product_code\");\r\n\r\n                    b.HasIndex(\"State\", \"RetryCount\", \"LastRetry\")\r\n                        .HasDatabaseName(\"ix_account_opening_state\");\r\n\r\n                    b.ToTable(\"account_opening\", \"origination\");\r\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:OriginationDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "target": "postgres:relation:kb-accounts:OriginationDbContext:<schema-unspecified>.outbox",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/origination/Account.Origination.Shared/Infrastructure/Migrations/OriginationDbContextModelSnapshot.cs",
+        "project": "OriginationDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Enterprise.Shared.Kafka.Outbox.OutboxItem\", b =>\r\n                {\r\n                    b.Property<Guid>(\"Id\")\r\n                        .ValueGeneratedOnAdd()\r\n                        .HasColumnType(\"uuid\")\r\n                        .HasColumnName(\"id\")\r\n                        .HasDefaultValueSql(\"uuid_generate_v4()\");\r\n\r\n                    b.Property<string>(\"Headers\")\r\n                        .IsRequired()\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"headers\");\r\n\r\n                    b.Property<string>(\"Key\")\r\n                        .IsRequired()\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"key\");\r\n\r\n                    b.Property<DateTimeOffset?>(\"LastRetry\")\r\n                        .HasColumnType(\"timestamp with time zone\")\r\n                        .HasColumnName(\"last_retry\");\r\n\r\n                    b.Property<byte[]>(\"Payload\")\r\n                        .IsRequired()\r\n                        .HasColumnType(\"bytea\")\r\n                        .HasColumnName(\"payload\");\r\n\r\n                    b.Property<int>(\"RetryCount\")\r\n                        .HasColumnType(\"integer\")\r\n                        .HasColumnName(\"retry_count\");\r\n\r\n                    b.Property<DateTimeOffset>(\"Timestamp\")\r\n                        .HasColumnType(\"timestamp with time zone\")\r\n                        .HasColumnName(\"timestamp\");\r\n\r\n                    b.Property<string>(\"Topic\")\r\n                        .IsRequired()\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"topic\");\r\n\r\n                    b.Property<string>(\"Type\")\r\n                        .IsRequired()\r\n                        .HasColumnType(\"text\")\r\n                        .HasColumnName(\"type\");\r\n\r\n                    b.HasKey(\"Id\")\r\n                        .HasName(\"pk_outbox\");\r\n\r\n                    b.HasIndex(\"RetryCount\", \"LastRetry\", \"Id\")\r\n                        .HasDatabaseName(\"idx_outbox_retry_last_retry\");\r\n\r\n                    b.ToTable(\"outbox\", (string)null);\r\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstruction",
+      "target": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.PaymentInstruction.Shared.Entities.PaymentInstruction\", b =>\n                {\n                    b.Property<string>(\"ClientId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"client_id\");\n\n                    b.Property<string>(\"ClientBatchId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"client_batch_id\");\n\n                    b.Property<string>(\"AdditionalInformation\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"additional_information\");\n\n                    b.Property<string>(\"Description\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"description\");\n\n                    b.Property<string>(\"Lifecycle\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"lifecycle\");\n\n                    b.Property<DateTimeOffset>(\"RequestDate\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"request_date\");\n\n                    b.Property<string>(\"RequestId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"request_id\");\n\n                    b.Property<string>(\"TransactionId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"transaction_id\");\n\n                    b.Property<string>(\"Type\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"type\");\n\n                    b.Property<DateTimeOffset?>(\"ValueDate\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"value_date\");\n\n                    b.HasKey(\"ClientId\", \"ClientBatchId\")\n                        .HasName(\"pk_payment_instruction\");\n\n                    b.ToTable(\"payment_instruction\", \"paymentinstruction\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus",
+      "target": "postgres:relation:kb-accounts:PaymentInstructionDbContext:paymentinstruction.payment_instruction_status",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.PaymentInstruction.Shared.Entities.PaymentInstructionStatus\", b =>\n                {\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\");\n\n                    b.Property<string>(\"BatchId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"batch_id\");\n\n                    b.Property<string>(\"ClientBatchId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"client_batch_id\");\n\n                    b.Property<string>(\"ClientId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"client_id\");\n\n                    b.Property<DateTimeOffset>(\"Date\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"date\");\n\n                    b.Property<string>(\"State\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"state\");\n\n                    b.Property<string>(\"TraceContext\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"trace_context\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_payment_instruction_status\");\n\n                    b.ToTable(\"payment_instruction_status\", \"paymentinstruction\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:PaymentInstructionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "target": "postgres:relation:kb-accounts:PaymentInstructionDbContext:<schema-unspecified>.outbox",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/paymentinstruction/Account.PaymentInstruction.Shared/Infrastructure/Migrations/PaymentInstructionDbContextModelSnapshot.cs",
+        "project": "PaymentInstructionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Enterprise.Shared.Kafka.Outbox.OutboxItem\", b =>\n                {\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")\n                        .HasDefaultValueSql(\"uuid_generate_v4()\");\n\n                    b.Property<string>(\"Headers\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"headers\");\n\n                    b.Property<string>(\"Key\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"key\");\n\n                    b.Property<DateTimeOffset?>(\"LastRetry\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"last_retry\");\n\n                    b.Property<byte[]>(\"Payload\")\n                        .IsRequired()\n                        .HasColumnType(\"bytea\")\n                        .HasColumnName(\"payload\");\n\n                    b.Property<int>(\"RetryCount\")\n                        .HasColumnType(\"integer\")\n                        .HasColumnName(\"retry_count\");\n\n                    b.Property<DateTimeOffset>(\"Timestamp\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"timestamp\");\n\n                    b.Property<string>(\"Topic\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"topic\");\n\n                    b.Property<string>(\"Type\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"type\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_outbox\");\n\n                    b.HasIndex(\"RetryCount\", \"LastRetry\", \"Id\")\n                        .HasDatabaseName(\"idx_outbox_retry_last_retry\");\n\n                    b.ToTable(\"outbox\", (string)null);\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountPostingDbContext:Account.Posting.Shared.Entities.TmvPostingBatch",
+      "target": "postgres:relation:kb-accounts:AccountPostingDbContext:posting.tmv_positing_batch",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+        "project": "AccountPostingDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Posting.Shared.Entities.TmvPostingBatch\", b =>\n                {\n                    b.Property<string>(\"Id\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"id\");\n\n                    b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<byte[]>(\"PostingBatchEventPayload\")\n                        .IsRequired()\n                        .HasColumnType(\"bytea\")\n                        .HasColumnName(\"posting_batch_event_payload\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_tmv_positing_batch\");\n\n                    b.ToTable(\"tmv_positing_batch\", \"posting\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountPostingDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "target": "postgres:relation:kb-accounts:AccountPostingDbContext:<schema-unspecified>.outbox",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/posting/Account.Posting.Shared/Infrastructure/Migrations/AccountPostingDbContextModelSnapshot.cs",
+        "project": "AccountPostingDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Enterprise.Shared.Kafka.Outbox.OutboxItem\", b =>\n                {\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")\n                        .HasDefaultValueSql(\"uuid_generate_v4()\");\n\n                    b.Property<string>(\"Headers\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"headers\");\n\n                    b.Property<string>(\"Key\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"key\");\n\n                    b.Property<DateTimeOffset?>(\"LastRetry\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"last_retry\");\n\n                    b.Property<byte[]>(\"Payload\")\n                        .IsRequired()\n                        .HasColumnType(\"bytea\")\n                        .HasColumnName(\"payload\");\n\n                    b.Property<int>(\"RetryCount\")\n                        .HasColumnType(\"integer\")\n                        .HasColumnName(\"retry_count\");\n\n                    b.Property<DateTimeOffset>(\"Timestamp\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"timestamp\");\n\n                    b.Property<string>(\"Topic\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"topic\");\n\n                    b.Property<string>(\"Type\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"type\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_outbox\");\n\n                    b.HasIndex(\"RetryCount\", \"LastRetry\", \"Id\")\n                        .HasDatabaseName(\"idx_outbox_retry_last_retry\");\n\n                    b.ToTable(\"outbox\", (string)null);\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+      "target": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_currency",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Profile.Shared.Entities.AccountCurrency\", b =>\n                {\n                    b.Property<Guid>(\"RowId\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"row_id\");\n\n                    b.Property<string>(\"Currency\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"currency\");\n\n                    b.Property<string>(\"CurrencyType\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"currency_type\");\n\n                    b.Property<string>(\"ProfileAccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"profile_account_id\");\n\n                    b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\");\n\n                    b.HasKey(\"RowId\")\n                        .HasName(\"pk_account_currency\");\n\n                    b.HasIndex(\"ProfileAccountId\")\n                        .HasDatabaseName(\"ix_account_currency_profile_account_id\");\n\n                    b.ToTable(\"account_currency\", \"profile\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "target": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Profile.Shared.Entities.AccountProfile\", b =>\n                {\n                    b.Property<string>(\"AccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_id\");\n\n                    b.Property<string>(\"AccountClosureReason\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_closure_reason\");\n\n                    b.Property<string>(\"AccountCreatedUserId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_created_user_id\");\n\n                    b.Property<string>(\"AccountOrganisationUnitId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_organisation_unit_id\");\n\n                    b.Property<string>(\"AlternateName\")\n                        .HasMaxLength(130)\n                        .HasColumnType(\"character varying(130)\")\n                        .HasColumnName(\"alternate_name\");\n\n                    b.Property<long>(\"ChangeId\")\n                        .HasColumnType(\"bigint\")\n                        .HasColumnName(\"change_id\");\n\n                    b.Property<DateTimeOffset?>(\"Closed\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"closed\");\n\n                    b.Property<Guid>(\"CorrelationId\")\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"correlation_id\");\n\n                    b.Property<DateTimeOffset?>(\"Created\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created\");\n\n                    b.Property<string>(\"MinimumNumberOfAuthoriser\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"minimum_number_of_authoriser\");\n\n                    b.Property<string>(\"Name\")\n                        .IsRequired()\n                        .HasMaxLength(130)\n                        .HasColumnType(\"character varying(130)\")\n                        .HasColumnName(\"name\");\n\n                    b.Property<DateTimeOffset?>(\"Opened\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"opened\");\n\n                    b.Property<string>(\"Status\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"status\");\n\n                    b.Property<string>(\"TSide\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"t_side\");\n\n                    b.Property<string>(\"TmvStatus\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"tmv_status\");\n\n                    b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\");\n\n                    b.ComplexProperty<Dictionary<string, object>>(\"AccountFreezeDetails\", \"Account.Profile.Shared.Entities.AccountProfile.AccountFreezeDetails#AccountFreezeDetails\", b1 =>\n                        {\n                            b1.IsRequired();\n\n                            b1.Property<long?>(\"ChangeId\")\n                                .HasColumnType(\"bigint\")\n                                .HasColumnName(\"account_freeze_details_change_id\");\n\n                            b1.Property<DateTimeOffset?>(\"Effective\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"account_freeze_details_effective\");\n\n                            b1.Property<DateTimeOffset?>(\"Expiration\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"account_freeze_details_expiration\");\n\n                            b1.Property<string>(\"FreezeDescription\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_freeze_description\");\n\n                            b1.Property<string>(\"FreezeType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_freeze_type\");\n\n                            b1.Property<string>(\"RestrictionSetId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"account_freeze_details_restriction_set_id\");\n                        });\n\n                    b.ComplexProperty<Dictionary<string, object>>(\"BankingRelationship\", \"Account.Profile.Shared.Entities.AccountProfile.BankingRelationship#AccountBankingRelationship\", b1 =>\n                        {\n                            b1.IsRequired();\n\n                            b1.Property<string>(\"BankingRelationshipId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_banking_relationship_id\");\n\n                            b1.Property<string>(\"BankingRelationshipType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_banking_relationship_type\");\n\n                            b1.Property<string>(\"NominatedTaxPartyId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"banking_relationship_nominated_tax_party_id\");\n\n                            b1.PrimitiveCollection<string[]>(\"PartyIds\")\n                                .HasColumnType(\"text[]\")\n                                .HasColumnName(\"banking_relationship_party_ids\");\n                        });\n\n                    b.ComplexProperty<Dictionary<string, object>>(\"DomesticTaxRate\", \"Account.Profile.Shared.Entities.AccountProfile.DomesticTaxRate#DomesticTaxRate\", b1 =>\n                        {\n                            b1.IsRequired();\n\n                            b1.Property<string>(\"CountryAlpha3Code\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_country_alpha3code\");\n\n                            b1.Property<string>(\"DomesticTaxType\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_domestic_tax_type\");\n\n                            b1.Property<string>(\"RateValue\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"domestic_tax_rate_rate_value\");\n                        });\n\n                    b.ComplexProperty<Dictionary<string, object>>(\"ProductFacility\", \"Account.Profile.Shared.Entities.AccountProfile.ProductFacility#AccountProfileProductFacility\", b1 =>\n                        {\n                            b1.IsRequired();\n\n                            b1.Property<string>(\"BankingProductCode\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_code\");\n\n                            b1.Property<string>(\"BankingProductId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_id\");\n\n                            b1.Property<string>(\"BankingProductVersionId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_banking_product_version_id\");\n\n                            b1.Property<string>(\"InterestRate\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_interest_rate\");\n\n                            b1.Property<string>(\"InterestRatePlanChangeId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_interest_rate_plan_change_id\");\n\n                            b1.Property<DateTimeOffset?>(\"InterestRateValidFrom\")\n                                .HasColumnType(\"timestamp with time zone\")\n                                .HasColumnName(\"product_facility_interest_rate_valid_from\");\n\n                            b1.Property<string>(\"ProductFacilityId\")\n                                .HasColumnType(\"text\")\n                                .HasColumnName(\"product_facility_product_facility_id\");\n                        });\n\n                    b.HasKey(\"AccountId\")\n                        .HasName(\"pk_account_profile\");\n\n                    b.ToTable(\"account_profile\", \"profile\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+      "target": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_profile_identifier",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Profile.Shared.Entities.AccountProfileIdentifier\", b =>\n                {\n                    b.Property<Guid>(\"RowId\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"row_id\");\n\n                    b.Property<string>(\"AccountIdentification\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_identification\");\n\n                    b.Property<string>(\"AccountIdentificationType\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_identification_type\");\n\n                    b.Property<string>(\"ProfileAccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"profile_account_id\");\n\n                    b.Property<uint>(\"Version\")\n                        .IsConcurrencyToken()\n                        .ValueGeneratedOnAddOrUpdate()\n                        .HasColumnType(\"xid\")\n                        .HasColumnName(\"xmin\");\n\n                    b.HasKey(\"RowId\")\n                        .HasName(\"pk_account_profile_identifier\");\n\n                    b.HasIndex(\"ProfileAccountId\")\n                        .HasDatabaseName(\"ix_account_profile_identifier_profile_account_id\");\n\n                    b.ToTable(\"account_profile_identifier\", \"profile\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountRestriction",
+      "target": "postgres:relation:kb-accounts:AccountProfileDbContext:profile.account_restriction",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Profile.Shared.Entities.AccountRestriction\", b =>\n                {\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\");\n\n                    b.Property<long?>(\"ChangeId\")\n                        .HasColumnType(\"bigint\")\n                        .HasColumnName(\"change_id\");\n\n                    b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<string>(\"Description\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"description\");\n\n                    b.Property<DateTimeOffset?>(\"EffectiveAt\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"effective_at\");\n\n                    b.Property<string>(\"EventId\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"event_id\");\n\n                    b.Property<DateTimeOffset?>(\"ExpiryAt\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"expiry_at\");\n\n                    b.Property<bool>(\"IsActive\")\n                        .HasColumnType(\"boolean\")\n                        .HasColumnName(\"is_active\");\n\n                    b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\");\n\n                    b.Property<DateTimeOffset>(\"ProcessingAt\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"processing_at\");\n\n                    b.Property<string>(\"ProfileAccountId\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"profile_account_id\");\n\n                    b.Property<byte[]>(\"RestrictionSetEventPayload\")\n                        .HasColumnType(\"bytea\")\n                        .HasColumnName(\"restriction_set_event_payload\");\n\n                    b.Property<string>(\"RestrictionSetId\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"restriction_set_id\");\n\n                    b.Property<string>(\"Type\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"type\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_account_restriction\");\n\n                    b.HasIndex(\"EventId\")\n                        .IsUnique()\n                        .HasDatabaseName(\"ix_account_restriction_event_id\");\n\n                    b.HasIndex(\"ProfileAccountId\")\n                        .HasDatabaseName(\"ix_account_restriction_profile_account_id\");\n\n                    b.HasIndex(\"EffectiveAt\", \"ChangeId\", \"ProcessingAt\")\n                        .IsDescending()\n                        .HasDatabaseName(\"ix_account_restriction_effective_at_change_id_processing_at\");\n\n                    b.ToTable(\"account_restriction\", \"profile\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "target": "postgres:relation:kb-accounts:AccountProfileDbContext:<schema-unspecified>.outbox",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Shared/Infrastructure/Migrations/AccountProfileDbContextModelSnapshot.cs",
+        "project": "AccountProfileDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Enterprise.Shared.Kafka.Outbox.OutboxItem\", b =>\n                {\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")\n                        .HasDefaultValueSql(\"uuid_generate_v4()\");\n\n                    b.Property<string>(\"Headers\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"headers\");\n\n                    b.Property<string>(\"Key\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"key\");\n\n                    b.Property<DateTimeOffset?>(\"LastRetry\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"last_retry\");\n\n                    b.Property<byte[]>(\"Payload\")\n                        .IsRequired()\n                        .HasColumnType(\"bytea\")\n                        .HasColumnName(\"payload\");\n\n                    b.Property<int>(\"RetryCount\")\n                        .HasColumnType(\"integer\")\n                        .HasColumnName(\"retry_count\");\n\n                    b.Property<DateTimeOffset>(\"Timestamp\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"timestamp\");\n\n                    b.Property<string>(\"Topic\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"topic\");\n\n                    b.Property<string>(\"Type\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"type\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_outbox\");\n\n                    b.HasIndex(\"RetryCount\", \"LastRetry\", \"Id\")\n                        .HasDatabaseName(\"idx_outbox_retry_last_retry\");\n\n                    b.ToTable(\"outbox\", (string)null);\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+      "target": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Transaction.Shared.Entities.AccountBalance\", b =>\n                {\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\");\n\n                    b.Property<string>(\"AccountId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"account_id\");\n\n                    b.Property<decimal>(\"Amount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"amount\");\n\n                    b.Property<string>(\"Asset\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"asset\");\n\n                    b.Property<DateTimeOffset>(\"BalanceDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"balance_date_time\");\n\n                    b.Property<string>(\"BalanceSpecificationId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"balance_specification_id\");\n\n                    b.Property<string>(\"BalanceType\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"balance_type\");\n\n                    b.Property<string>(\"BatchId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"batch_id\");\n\n                    b.Property<int>(\"BatchInstructionIndex\")\n                        .HasColumnType(\"integer\")\n                        .HasColumnName(\"batch_instruction_index\");\n\n                    b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<string>(\"Currency\")\n                        .IsRequired()\n                        .HasMaxLength(3)\n                        .HasColumnType(\"character varying(3)\")\n                        .HasColumnName(\"currency\");\n\n                    b.Property<DateTimeOffset>(\"InsertionDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"insertion_date_time\");\n\n                    b.Property<bool>(\"IsCachedBalance\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"boolean\")\n                        .HasDefaultValue(false)\n                        .HasColumnName(\"is_cached_balance\");\n\n                    b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<string>(\"PostingInstructionId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"posting_instruction_id\");\n\n                    b.Property<decimal>(\"PreviousAmount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"previous_amount\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_account_balance\");\n\n                    b.HasIndex(\"InsertionDateTime\")\n                        .HasDatabaseName(\"ix_account_balance_insertion_date_time\");\n\n                    b.HasIndex(new[] { \"AccountId\" }, \"IX_Account_Id_Ascending\")\n                        .HasDatabaseName(\"ix_account_balance_account_id\");\n\n                    b.HasIndex(new[] { \"BalanceDateTime\" }, \"IX_Balance_Date_Time_Ascending\")\n                        .HasDatabaseName(\"ix_account_balance_balance_date_time\");\n\n                    b.ToTable(\"account_balance\", \"transaction\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup",
+      "target": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_balance_specification_lookup",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Transaction.Shared.Entities.AccountBalanceSpecificationLookup\", b =>\n                {\n                    b.Property<string>(\"AccountId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_id\");\n\n                    b.Property<string>(\"BalanceSpecificationId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"balance_specification_id\");\n\n                    b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<DateTimeOffset>(\"EffectiveAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"effective_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")\n                        .HasDefaultValueSql(\"gen_random_uuid()\");\n\n                    b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.HasKey(\"AccountId\", \"BalanceSpecificationId\")\n                        .HasName(\"pk_account_balance_specification_lookup\");\n\n                    b.HasIndex(\"BalanceSpecificationId\")\n                        .HasDatabaseName(\"ix_account_balance_specification_lookup_balance_specification_\");\n\n                    b.ToTable(\"account_balance_specification_lookup\", \"transaction\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.account_transaction",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Transaction.Shared.Entities.AccountTransaction\", b =>\n                {\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\");\n\n                    b.Property<decimal?>(\"AccountBalanceInterimBookedAmount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"account_balance_interim_booked_amount\");\n\n                    b.Property<string>(\"AccountBalanceInterimBookedCurrencyCode\")\n                        .HasMaxLength(3)\n                        .HasColumnType(\"character varying(3)\")\n                        .HasColumnName(\"account_balance_interim_booked_currency_code\");\n\n                    b.Property<string>(\"AccountId\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"account_id\");\n\n                    b.Property<string>(\"AccountNumber\")\n                        .IsRequired()\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"account_number\");\n\n                    b.Property<string>(\"AuthorisationCode\")\n                        .HasMaxLength(7)\n                        .HasColumnType(\"character varying(7)\")\n                        .HasColumnName(\"authorisation_code\");\n\n                    b.Property<int>(\"BatchInstructionIndex\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"integer\")\n                        .HasDefaultValue(0)\n                        .HasColumnName(\"batch_instruction_index\");\n\n                    b.Property<string>(\"BatchNumber\")\n                        .HasMaxLength(12)\n                        .HasColumnType(\"character varying(12)\")\n                        .HasColumnName(\"batch_number\");\n\n                    b.Property<DateTimeOffset>(\"BookingDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"booking_date_time\");\n\n                    b.Property<string>(\"Branch\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"branch\");\n\n                    b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<string>(\"CreditDebitIndicator\")\n                        .IsRequired()\n                        .HasMaxLength(10)\n                        .HasColumnType(\"character varying(10)\")\n                        .HasColumnName(\"credit_debit_indicator\");\n\n                    b.Property<decimal>(\"FinancialTransactionAmount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"financial_transaction_amount\");\n\n                    b.Property<string>(\"FinancialTransactionCurrencyCode\")\n                        .IsRequired()\n                        .HasMaxLength(3)\n                        .HasColumnType(\"character varying(3)\")\n                        .HasColumnName(\"financial_transaction_currency_code\");\n\n                    b.Property<string>(\"IndustryTransactionCode\")\n                        .HasMaxLength(2)\n                        .HasColumnType(\"character varying(2)\")\n                        .HasColumnName(\"industry_transaction_code\");\n\n                    b.Property<string>(\"InitiationInstructionId\")\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"initiation_instruction_id\");\n\n                    b.Property<string>(\"InputSourceCode\")\n                        .HasMaxLength(2)\n                        .HasColumnType(\"character varying(2)\")\n                        .HasColumnName(\"input_source_code\");\n\n                    b.Property<DateTimeOffset>(\"InsertionDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"insertion_date_time\");\n\n                    b.Property<string>(\"LegacyCoreTransactionId\")\n                        .HasMaxLength(36)\n                        .HasColumnType(\"character varying(36)\")\n                        .HasColumnName(\"legacy_core_transaction_id\");\n\n                    b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<string>(\"Operator\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"operator\");\n\n                    b.Property<string>(\"OriginatingBank\")\n                        .HasMaxLength(2)\n                        .HasColumnType(\"character varying(2)\")\n                        .HasColumnName(\"originating_bank\");\n\n                    b.Property<string>(\"OriginatingBranch\")\n                        .HasMaxLength(4)\n                        .HasColumnType(\"character varying(4)\")\n                        .HasColumnName(\"originating_branch\");\n\n                    b.Property<string>(\"OtherPartyName\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"other_party_name\");\n\n                    b.Property<string>(\"PaymentId\")\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"payment_id\");\n\n                    b.Property<string>(\"PaymentInstructionCategory\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"payment_instruction_category\");\n\n                    b.Property<string>(\"PostingInstructionBatchId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"posting_instruction_batch_id\");\n\n                    b.Property<string>(\"PostingInstructionId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"posting_instruction_id\");\n\n                    b.Property<string>(\"Status\")\n                        .IsRequired()\n                        .HasMaxLength(20)\n                        .HasColumnType(\"character varying(20)\")\n                        .HasColumnName(\"status\");\n\n                    b.Property<string>(\"TransactionCode\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"transaction_code\");\n\n                    b.Property<string>(\"TransactionDescription\")\n                        .IsRequired()\n                        .HasMaxLength(255)\n                        .HasColumnType(\"character varying(255)\")\n                        .HasColumnName(\"transaction_description\");\n\n                    b.Property<DateTimeOffset>(\"ValueDateTime\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"value_date_time\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_account_transaction\");\n\n                    b.HasIndex(\"AccountId\")\n                        .HasDatabaseName(\"ix_account_transaction_account_id\");\n\n                    b.HasIndex(\"BookingDateTime\")\n                        .HasDatabaseName(\"ix_account_transaction_booking_date_time\");\n\n                    b.HasIndex(\"ValueDateTime\")\n                        .HasDatabaseName(\"ix_account_transaction_value_date_time\");\n\n                    b.HasIndex(\"PostingInstructionId\", \"AccountId\")\n                        .IsUnique()\n                        .HasDatabaseName(\"ux_account_transaction_posting_instruction_id_account_id\");\n\n                    b.HasIndex(\"AccountId\", \"ValueDateTime\", \"BatchInstructionIndex\", \"Id\")\n                        .IsDescending(false, true, true, false)\n                        .HasDatabaseName(\"ix_account_transaction_account_id_value_date_time_batch_instru\");\n\n                    b.ToTable(\"account_transaction\", \"transaction\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.BalanceSpecification",
+      "target": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.balance_specification",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Transaction.Shared.Entities.BalanceSpecification\", b =>\n                {\n                    b.Property<string>(\"BalanceSpecificationId\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"balance_specification_id\");\n\n                    b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")\n                        .HasDefaultValueSql(\"gen_random_uuid()\");\n\n                    b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<string>(\"Payload\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"payload\");\n\n                    b.Property<string>(\"Version\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"version\");\n\n                    b.HasKey(\"BalanceSpecificationId\")\n                        .HasName(\"pk_balance_specification\");\n\n                    b.ToTable(\"balance_specification\", \"transaction\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob",
+      "target": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.internal_account_eod_balance_job",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Transaction.Shared.Entities.InternalAccountEodBalanceJob\", b =>\n                {\n                    b.Property<string>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"id\");\n\n                    b.Property<string>(\"AccountId\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"account_id\");\n\n                    b.Property<bool>(\"Alive\")\n                        .HasColumnType(\"boolean\")\n                        .HasColumnName(\"alive\");\n\n                    b.Property<DateTimeOffset?>(\"ApiFailureReportedAt\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"api_failure_reported_at\");\n\n                    b.Property<DateTimeOffset>(\"CompletedRunTimestamp\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"completed_run_timestamp\");\n\n                    b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<DateTimeOffset?>(\"FailedAt\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"failed_at\");\n\n                    b.Property<DateTimeOffset?>(\"LastRetry\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"last_retry\");\n\n                    b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<int>(\"RetryCount\")\n                        .HasColumnType(\"integer\")\n                        .HasColumnName(\"retry_count\");\n\n                    b.Property<DateTimeOffset>(\"ScheduledAt\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"scheduled_at\");\n\n                    b.Property<string>(\"TSide\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"t_side\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_internal_account_eod_balance_job\");\n\n                    b.HasIndex(\"LastRetry\")\n                        .HasDatabaseName(\"ix_internal_account_eod_balance_job_last_retry\");\n\n                    b.HasIndex(\"ScheduledAt\")\n                        .HasDatabaseName(\"ix_internal_account_eod_balance_job_scheduled_at\");\n\n                    b.ToTable(\"internal_account_eod_balance_job\", \"transaction\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.PostingInstructionBatch",
+      "target": "postgres:relation:kb-accounts:AccountTransactionDbContext:transaction.posting_instruction_batch",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Account.Transaction.Shared.Entities.PostingInstructionBatch\", b =>\n                {\n                    b.Property<string>(\"BatchId\")\n                        .HasMaxLength(40)\n                        .HasColumnType(\"character varying(40)\")\n                        .HasColumnName(\"batch_id\");\n\n                    b.Property<DateTimeOffset>(\"CreatedAt\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"created_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")\n                        .HasDefaultValueSql(\"gen_random_uuid()\");\n\n                    b.Property<DateTimeOffset?>(\"InsertionTimestamp\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"insertion_timestamp\");\n\n                    b.Property<DateTimeOffset?>(\"LastAlertRaisedAt\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"last_alert_raised_at\");\n\n                    b.Property<DateTimeOffset?>(\"ModifiedAt\")\n                        .ValueGeneratedOnUpdate()\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"modified_at\")\n                        .HasDefaultValueSql(\"CURRENT_TIMESTAMP\");\n\n                    b.Property<byte[]>(\"PostingBatchEventPayload\")\n                        .HasColumnType(\"bytea\")\n                        .HasColumnName(\"posting_batch_event_payload\");\n\n                    b.Property<bool?>(\"ProcessedSuccessfully\")\n                        .HasColumnType(\"boolean\")\n                        .HasColumnName(\"processed_successfully\");\n\n                    b.Property<string>(\"Status\")\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"status\");\n\n                    b.Property<decimal?>(\"TotalAmount\")\n                        .HasColumnType(\"numeric\")\n                        .HasColumnName(\"total_amount\");\n\n                    b.HasKey(\"BatchId\")\n                        .HasName(\"pk_posting_instruction_batch\");\n\n                    b.HasIndex(\"BatchId\")\n                        .HasDatabaseName(\"ix_posting_instruction_batch_batch_id\");\n\n                    b.HasIndex(\"InsertionTimestamp\")\n                        .HasDatabaseName(\"ix_posting_instruction_batch_insertion_timestamp\");\n\n                    b.ToTable(\"posting_instruction_batch\", \"transaction\");\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Enterprise.Shared.Kafka.Outbox.OutboxItem",
+      "target": "postgres:relation:kb-accounts:AccountTransactionDbContext:<schema-unspecified>.outbox",
+      "type": "MAPS_TO",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Shared/Infrastructure/Migrations/AccountTransactionDbContextModelSnapshot.cs",
+        "project": "AccountTransactionDbContext",
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "evidence": "modelBuilder.Entity(\"Enterprise.Shared.Kafka.Outbox.OutboxItem\", b =>\n                {\n                    b.Property<Guid>(\"Id\")\n                        .ValueGeneratedOnAdd()\n                        .HasColumnType(\"uuid\")\n                        .HasColumnName(\"id\")\n                        .HasDefaultValueSql(\"uuid_generate_v4()\");\n\n                    b.Property<string>(\"Headers\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"headers\");\n\n                    b.Property<string>(\"Key\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"key\");\n\n                    b.Property<DateTimeOffset?>(\"LastRetry\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"last_retry\");\n\n                    b.Property<byte[]>(\"Payload\")\n                        .IsRequired()\n                        .HasColumnType(\"bytea\")\n                        .HasColumnName(\"payload\");\n\n                    b.Property<int>(\"RetryCount\")\n                        .HasColumnType(\"integer\")\n                        .HasColumnName(\"retry_count\");\n\n                    b.Property<DateTimeOffset>(\"Timestamp\")\n                        .HasColumnType(\"timestamp with time zone\")\n                        .HasColumnName(\"timestamp\");\n\n                    b.Property<string>(\"Topic\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"topic\");\n\n                    b.Property<string>(\"Type\")\n                        .IsRequired()\n                        .HasColumnType(\"text\")\n                        .HasColumnName(\"type\");\n\n                    b.HasKey(\"Id\")\n                        .HasName(\"pk_outbox\");\n\n                    b.HasIndex(\"RetryCount\", \"LastRetry\", \"Id\")\n                        .HasDatabaseName(\"idx_outbox_retry_last_retry\");\n\n                    b.ToTable(\"outbox\", (string)null);\n                })",
+        "binding_scope": "EF model snapshot declaration"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountProfileEvent",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 47,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:fce1845a03f76f7f94bd64e4"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountProfileEvent",
+      "type": "WRAPPED_IN_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "property": "AfterState",
+        "evidence": "AfterState = CreateAccountProfileEventData(accountProfile, accountStatusTimestamp)",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Metadata",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 52,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:6979e259492fdb825e84c09a"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 79,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:ee152ccaa4b63df6a7dbc6b0",
+          "csharp-event:4733e4698fb9ce73601224f1",
+          "csharp-event:cebe0e3f1ba180c87ecbb86f",
+          "csharp-event:9a8ccff0d324e4cb528488ed",
+          "csharp-event:ea1522497677e2b999cfc1cb",
+          "csharp-event:24e7d23b36699b714509b32b",
+          "csharp-event:d86673fb79e8fd30f5ff2589",
+          "csharp-event:d99b8c0efbfb67ab92fa18f1",
+          "csharp-event:d562bdf384b7624d29beeb47",
+          "csharp-event:d081dd6c27001496ed4736ce",
+          "csharp-event:9dc2a9810c4659adf16caca8",
+          "csharp-event:0ce2e472fcb39aa219c13c7f",
+          "csharp-event:61dae1b683aeb673648d5d3d",
+          "csharp-event:cfd77f09300f5b790590f4c2",
+          "csharp-event:16330ee2933a2a6cb0a998e6",
+          "csharp-event:25c5c1e13aecb7282cf2126d",
+          "csharp-event:7d359e3df21fef9360679970",
+          "csharp-event:58b84beba9c970850750bf60",
+          "csharp-event:05d313778f8416694b722d8c",
+          "csharp-event:3cdd1d8d0e7c281f73448bf3",
+          "csharp-event:a0dca4ca4f581830e723305b",
+          "csharp-event:aa0750f60efd7f2702119bd7",
+          "csharp-event:51cab37f4dfddc92d3de959b",
+          "csharp-event:4211ffedcad02e8367a9dc06",
+          "csharp-event:d9bdda11dd255d02b6976f54",
+          "csharp-event:5a398ae27398819ec5932c2b",
+          "csharp-event:1445273a4d8fb6eff226cccd",
+          "csharp-event:1675ff912bdc514baf3d229d"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 85,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:b782b26f88df65f0ea021988",
+          "csharp-event:008e7c9e96df47511bc7bdc9"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountTSide",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "type": "WRAPPED_IN_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "property": "AccountTSide",
+        "evidence": "AccountTSide = GetAccountTSide(accountProfile.TSide)",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.Account",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 135,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:fd6973d0d21f10e002f8c17d",
+          "csharp-event:bb4656cd6d8a0b9d91a7da5d"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentificationsAccountIdentificationType",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentifications",
+      "type": "WRAPPED_IN_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "property": "AccountIdentificationType",
+        "evidence": "AccountIdentificationType =\n                            GetAccountIdentificationType(identifier.AccountIdentificationType)",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfileIdentifier",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountIdentifications",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 92,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:effc655b344bee252aead01e",
+          "csharp-event:da2fdbae072b736f93dd3a3b"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.BankingRelationship",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 108,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:242fd776c2e35cf91159e655",
+          "csharp-event:65ad0034f5469a6bc1c61ddf",
+          "csharp-event:2fd3d9c59c4640f6e60fe7e0"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.ProductFacility",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 117,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:cfd367ffe74d42004fbc9f46",
+          "csharp-event:a5548e165f5f0277d88293b0",
+          "csharp-event:4c71b5be91b53169e36cfed0",
+          "csharp-event:accb51199d076c1e297491a9",
+          "csharp-event:ba71296ba5f08dac57e7072c",
+          "csharp-event:039e9ba64c13ea0aa8c21a45",
+          "csharp-event:716594021f89d532d331c22e"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.InterestArrangement",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 124,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:6e2fb7e72c0350e0f5c29142",
+          "csharp-event:3846fdded131dde03c7001b1",
+          "csharp-event:6bddd96be06e06bb632bcc04"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountProfile",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.DomesticTaxRate",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 131,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:49012d02d3f3069aa00d3c7c",
+          "csharp-event:d41bac7c46e86331eb7c88d3",
+          "csharp-event:42a9b5600cf5fa9c9510800f"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrenciesAccountCurrency",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrencies",
+      "type": "WRAPPED_IN_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "property": "AccountCurrency",
+        "evidence": "AccountCurrency = GetAccountCurrency(accountCurrency.Currency)",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountProfileDbContext:Account.Profile.Shared.Entities.AccountCurrency",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrencies",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "source_line": 138,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:fa2b0b1a13739b534fbbe52b",
+          "csharp-event:599184a12245f2d258a6885b"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrenciesAccountCurrencyType",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountCurrencies",
+      "type": "WRAPPED_IN_EVENT",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventBuilder.cs",
+        "confidence": "explicit",
+        "property": "AccountCurrencyType",
+        "evidence": "AccountCurrencyType = GetAccountCurrencyType(accountCurrency.CurrencyType)",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountProfile.AccountProfileEvent",
+      "target": "event:publisher:kb-accounts:src/profile/Account.Profile.Processor/Publishers/AccountProfileEventPublisher.cs:publisher",
+      "type": "PUBLISHED_VIA",
+      "properties": {
+        "source_path": "src/profile/Account.Profile.Processor/Publishers/AccountProfileEventPublisher.cs",
+        "confidence": "explicit",
+        "evidence": "publisher.PublishAsync(\n            accountProfile.AccountId,\n            accountProfileEvent,\n            unitOfWork,\n            cancellationToken)"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalanceAccountBalance",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Balance.Api/Services/AccountBalanceAction.cs",
+        "source_line": 152,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:3784433b328406f4b9ef9e16",
+          "csharp-event:05926837e45ac6559aaa367c",
+          "csharp-event:9b4296f89e1e14207c96cc0a",
+          "csharp-event:271b2121818c1f4f2a5d0510",
+          "csharp-event:969ff9ad3e8554025c79f5ef",
+          "csharp-event:5dbbaaa2bf351821ca66b369",
+          "csharp-event:fc855eba17261cb107fa74d6"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalancePostingInstruction",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Balance.Api/Services/AccountBalanceAction.cs",
+        "source_line": 160,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:6b5b1b7896c309879a54087e",
+          "csharp-event:100adc46e8d91b6bfeae19b7",
+          "csharp-event:321787a6788f3b2a547116d2"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountBalance",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountBalanceEndOfDayCustomerAccount.AccountBalances",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.CustomerAccount.Processor/Publishers/AccountBalanceEndOfDayCustomerAccountEventBuilder.cs",
+        "source_line": 86,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:5ccc4d88931f55323ddd7e0f",
+          "csharp-event:ea2a9df47c3595f39a8738aa"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountEventConsumption.AccountEventConsumptionEvent",
+      "target": "event:publisher:kb-accounts:src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountEventConsumptionEventOutboxPublisher.cs:publisher",
+      "type": "PUBLISHED_VIA",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountEventConsumptionEventOutboxPublisher.cs",
+        "confidence": "explicit",
+        "evidence": "publisher.PublishAsync(\n            eventBuilder.BuildEvent(eventConsumption),\n            unitOfWork,\n            cancellationToken)"
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountTransaction",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 30,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:78d6d73a9c8c8efb77c54b0f",
+          "csharp-event:a98620ff4212e41f0b075ad6",
+          "csharp-event:060ed76f263c643559aa0acd",
+          "csharp-event:7f39cdee258e6253ec7f68cf",
+          "csharp-event:9b2cf1c7fd1511ef9b523f7a",
+          "csharp-event:d2df261b48a7ac588d207a14",
+          "csharp-event:8a17b5e55a1892ab743112e4",
+          "csharp-event:a280ab5fb7cdfdee6073741d",
+          "csharp-event:c2682dca0a7bfc43a3f1b569",
+          "csharp-event:f3e66c91c5b250f8853e4aea",
+          "csharp-event:84daea101d1799d88a2df686",
+          "csharp-event:bcb6414bf015ebdd5cc936ec",
+          "csharp-event:d4418d75e19e04aea253e78a",
+          "csharp-event:3c437778634c7303f563c828",
+          "csharp-event:fdd9032bcfea23fe93a542bb",
+          "csharp-event:0492a87b4f6774eb827a8ddc",
+          "csharp-event:d394cbf3ec0b5a475808513d",
+          "csharp-event:258c2dcc9a1247dfa3a581d5",
+          "csharp-event:0e317b84b819b2d91e47f356",
+          "csharp-event:d3d1e9a1de4ce70bf94d7ae6",
+          "csharp-event:3bbc530201486d1b7f072964",
+          "csharp-event:72f1226eb28f82f0ca870942",
+          "csharp-event:12c58a909712d2da353a9c17",
+          "csharp-event:b40e666eaff020a6442fbb0f",
+          "csharp-event:c8f21e957da6988e10a9c9b2",
+          "csharp-event:60208bb1e24c1747f9fb4ee7",
+          "csharp-event:22a8c4a982201a1e32564f22",
+          "csharp-event:485928add722034fab27b7bb",
+          "csharp-event:b7580949234c86154fe9fcc8",
+          "csharp-event:e787d0562857874ef37acdfb",
+          "csharp-event:b2aca1c531aed28aae200d70",
+          "csharp-event:f8ca00096b208ef156902518",
+          "csharp-event:472122080dc0b0af254ce138",
+          "csharp-event:424a3ad47c4b0ce4789eac81",
+          "csharp-event:e0cfd2fc63d5300887c2fb77",
+          "csharp-event:a2edc23f9b16ff6bbfdc1fbe"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.IsoTransactionCode",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 43,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:109988a027adbd6af1373550",
+          "csharp-event:2cd5772bafc624598576ae94",
+          "csharp-event:a58a17baa95e93cafd962173"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.FinancialTransactionAmount",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 58,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:4dfb7c2effe4f00ddc579e8d",
+          "csharp-event:9c6719c9113c5ecb839fb247"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.ThisPartyReference",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 66,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:95bc9e61620be649137a96e8",
+          "csharp-event:e1ce744998dbfc66de35cc21",
+          "csharp-event:1f9c5ee6bd988785901611d6"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountIdentification",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 74,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:d23e255729bcab8a62f8df20",
+          "csharp-event:dbf4a88baaac2dce63570ed4"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.OtherPartyReference",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 90,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:09e0b5c6a9c7df4a9ec12e7d",
+          "csharp-event:c09eb314f1743d85d222c14c",
+          "csharp-event:d3927e3f66cb72fab523cd86"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountBalanceInterimBooked",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 101,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:df300e9e30a3def114ef2aab"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.TaxDeductionDomesticTaxType?",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.TaxDeduction",
+      "type": "WRAPPED_IN_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "confidence": "explicit",
+        "property": "DomesticTaxType",
+        "evidence": "DomesticTaxType = GetDomesticTaxType(accountTransaction.TaxDeduction.DomesticTaxType)",
+        "wire_serialization_verified": false
+      }
+    },
+    {
+      "source": "dotnet:entity:kb-accounts:AccountTransactionDbContext:Account.Transaction.Shared.Entities.AccountTransaction",
+      "target": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.TaxDeduction",
+      "type": "ASSIGNS_TO_EVENT",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventBuilder.cs",
+        "source_line": 108,
+        "repository": "kb-accounts",
+        "confidence": "explicit",
+        "runtime_verified": false,
+        "related_field_mappings": [
+          "csharp-event:ebfbb95a9d051348646c7010",
+          "csharp-event:7b8d8163f3b3a0a04435cb54",
+          "csharp-event:54e9467cd2e58286f33d3b07",
+          "csharp-event:ff3738555f12fb7ea582fa54"
+        ],
+        "binding_scope": "Explicit C# source property references; wire serialization and runtime transport unverified."
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.AccountTransaction.AccountTransactionEvent",
+      "target": "event:publisher:kb-accounts:src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventOutboxOutboxPublisher.cs:publisher",
+      "type": "PUBLISHED_VIA",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/AccountTransactionEventOutboxOutboxPublisher.cs",
+        "confidence": "explicit",
+        "evidence": "publisher.PublishAsync(\n                outgoingEvent,\n                unitOfWork,\n                cancellationToken)"
+      }
+    },
+    {
+      "source": "dotnet:event:kb-accounts:Api.Shared.Clients.Events.Kiwibank.V1.MigrateTransactionHistoryResponse.MigrateTransactionHistoryResponseEvent",
+      "target": "event:publisher:kb-accounts:src/transaction/Account.Transaction.Tmv.Processor/Publishers/TransactionHistoryEventOutboxPublisher.cs:publisher",
+      "type": "PUBLISHED_VIA",
+      "properties": {
+        "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Publishers/TransactionHistoryEventOutboxPublisher.cs",
+        "confidence": "explicit",
+        "evidence": "publisher.PublishAsync(\n           eventBuilder.BuildEvent(transactionHistoryResponse),\n           unitOfWork,\n           cancellationToken)"
+      }
+    }
+  ],
+  "unresolved": [
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/paymentinstruction/Account.PaymentInstruction.Api/Infrastructure/PaymentInstructionMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 21
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/shared/Account.Shared/Authorisation/AccountMiddleware.cs",
+      "reason": "csharp_syntax_requires_additional_parser_support"
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.Api/Queries/Mapping/CreditCardTransactionMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 16
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.Api/Queries/Mapping/TmvTransactionMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 53
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.Api/Queries/Mapping/UltracsAuthorisationTransactionMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 26
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.Api/Queries/Mapping/UltracsTransactionMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 41
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.Balance.Api/Mappers/PostingInstructionBatchMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 59
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.EndOfDay.Balance.Tmv.InternalAccount.Worker/Mappers/AfterStateMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 11
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.Shared/BalanceCalculation/Mappers/AccountBalanceMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 13
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.Shared/Mappers/AccountTransactionMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 48
+    },
+    {
+      "repository": "kb-accounts",
+      "source_path": "src/transaction/Account.Transaction.Tmv.Processor/Mappers/TransactionHistoryMapper.cs",
+      "reason": "csharp_mapper_assignments_require_semantic_field_binding",
+      "assignment_count": 1
+    }
+  ],
+  "coverage": {
+    "snapshot_count": 5,
+    "binding_count": 240,
+    "runtime_verified": false,
+    "business_transformations_verified": false,
+    "migration_files": 106,
+    "mapper_files_with_unbound_assignments": 10,
+    "limitations": [
+      "C# runtime transformations and service-to-dbt bridges are not inferred from property bindings.",
+      "Model snapshots report schemas; historical migrations are separate evidence, not additional current tables.",
+      "Database identities, imported mappings and conditional runtime configuration remain unverified."
+    ]
+  }
+}
