@@ -11,9 +11,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OLD_LINEAGE = ROOT / "output/04-column-lineage/column_lineage.json"
-NEW_ROOT = ROOT / "CDP_Account_output/Account"
-NEW_CROSSWALK = NEW_ROOT / "04-column-lineage/cross_repository_field_lineage.json"
-NEW_FIELDS = NEW_ROOT / "06c-ai-enrichment/field_catalog.csv"
+NEW_ROOT = ROOT / "CDP_Account_output"
+NEW_TMV_LINEAGE = NEW_ROOT / "04-column-lineage/column_lineage.json"
+NEW_FIELDS = NEW_ROOT / "05-baseline-dictionary/field_catalog.csv"
+NEW_DETAIL = "accounts_v1__ultracs_accounts_detail"
+NEW_EOD = "accounts_v1__ultracs_accounts_eod_balances"
+LEGACY_TO_NEW_MODEL = {
+    "accounts_v1__ultracs_accounts_detail": NEW_DETAIL,
+    "accounts_v1__ultracs_accounts_detail_v2": NEW_DETAIL,
+    "accounts_v1__ultracs_accounts_eod_balances": NEW_EOD,
+}
 DESTINATION = Path(__file__).resolve().parent / "account-savings-field-mapping.html"
 
 SPECS = {
@@ -136,6 +143,10 @@ def text(value: object) -> str:
     return html.escape("" if value is None else str(value), quote=True)
 
 
+def norm(value: object) -> str:
+    return "".join(character for character in str(value or "").upper() if character.isalnum())
+
+
 def old_meaning(record: dict) -> str:
     cdp = str(record.get("cdp", {}).get("description") or "").strip()
     ultracs = str(record.get("ultracs", {}).get("description") or "").strip()
@@ -156,13 +167,19 @@ def source_property_label(record: dict) -> str:
 
 def main() -> None:
     old_records = json.loads(OLD_LINEAGE.read_text(encoding="utf-8"))
-    crosswalk = json.loads(NEW_CROSSWALK.read_text(encoding="utf-8"))
-    new_mappings = crosswalk["mappings"]
+    all_new_records = json.loads(NEW_TMV_LINEAGE.read_text(encoding="utf-8"))
+    new_mappings = [row for row in all_new_records
+                    if row.get("project") == "accounts-v1"
+                    and row.get("target_model") in {NEW_DETAIL, NEW_EOD}
+                    and str(row.get("target_relation", "")).startswith("PUBLIC.")]
     with NEW_FIELDS.open(encoding="utf-8-sig", newline="") as handle:
         field_rows = list(csv.DictReader(handle))
-    catalog = defaultdict(list)
+    catalog = {}
     for row in field_rows:
-        catalog[(row["relation_id"], row["field_name"].upper())].append(row)
+        catalog[(row["relation_id"], norm(row["field_name"]))] = row
+    new_by_target = defaultdict(list)
+    for row in new_mappings:
+        new_by_target[(row["target_model"], norm(row["target_column"]))].append(row)
 
     legacy_rows = []
     paired_new_targets = set()
@@ -172,22 +189,53 @@ def main() -> None:
         if field_id in seen_legacy_ids:
             raise ValueError("Duplicate legacy field ID: " + field_id)
         seen_legacy_ids.add(field_id)
-        key = (record.get("business_field", ""), record.get("param_column", ""))
-        spec = SPECS.get(key)
         program = str(record.get("ultracs_program", record.get("ultracs", {}).get("program", "")))
         if program.startswith("kb-ultracs-datawarehouse/"):
             program = program.split("/", 1)[1]
         legacy_public_targets = sorted({target.get("relation", "") + "." + target.get("column", "")
                                         for target in record.get("dbt_targets", [])
                                         if target.get("stage") == "public" and target.get("relation")})
-        mapped = []
-        if spec:
-            mapped = [item for item in new_mappings
-                      if item.get("source_property") == spec["source_property"]
-                      and item.get("event_property") == spec["event_property"]]
-            if not mapped:
-                raise ValueError("Curated candidate has no new evidence: " + repr(key))
-            paired_new_targets.update((item["raw_relation_id"], item["raw_column"].upper()) for item in mapped)
+        new_model = LEGACY_TO_NEW_MODEL.get(record.get("cdp", {}).get("model", ""))
+        mapped = new_by_target.get((new_model, norm(record.get("cdp", {}).get("column"))), []) if new_model else []
+        if mapped:
+            paired_new_targets.update((item["target_model"], norm(item["target_column"])) for item in mapped)
+        new_candidates = []
+        for item in mapped:
+            new_description = catalog.get((item.get("target_relation_id", ""), norm(item.get("target_column"))), {}).get("description", "")
+            old_description = str(record.get("cdp", {}).get("description", "")).strip()
+            same_meaning = bool(old_description and new_description and norm(old_description) == norm(new_description))
+            model_unchanged = record.get("cdp", {}).get("model") == item.get("target_model")
+            new_candidates.append({
+                "source": item.get("source_column", ""),
+                "source_repository": "kb-cdp-tenant-account",
+                "source_table": "accounts-v1 source",
+                "source_column": item.get("source_column", ""),
+                "target_model": item.get("target_model", ""),
+                "target_column": item.get("target_column", ""),
+                "target_relation": item.get("target_relation", ""),
+                "tmv_field_id": item.get("field_id", ""),
+                "target": item.get("target_relation", "") + "." + item.get("target_column", ""),
+                "consumer_repository": "kb-cdp-tenant-account",
+                "consumer_product": item.get("project", "accounts-v1"),
+                "expression": item.get("transformation_expression", ""),
+                "downstream_targets": [],
+                "meaning": new_description,
+                "sql_source_path": item.get("source_path", ""),
+                "transport_status": "static_dbT_projection_not_runtime_verified",
+                "source_column_same": norm(record.get("param_column")) == norm(item.get("source_column")),
+                "output_model_unchanged": model_unchanged,
+            })
+            if same_meaning:
+                business_assessment = "Equivalent"
+                assessment_reason = ("Old and new dictionaries use the same field description. "
+                                     + ("The public output model and field are the same." if model_unchanged else
+                                        "The field moved from the legacy V2 target to the new public detail output."))
+            else:
+                business_assessment = "To be confirmed"
+                assessment_reason = "The field name matches the mapped target, but dictionary descriptions differ or are missing; confirm meaning."
+        if not mapped:
+            business_assessment = ""
+            assessment_reason = "No corresponding field is defined in the selected new accounts-v1 public outputs; keep Pending while the new workflow is in development."
         legacy_rows.append({
             "legacy_id": field_id,
             "business_field": record.get("business_field", ""),
@@ -202,84 +250,51 @@ def main() -> None:
             "legacy_public_targets": legacy_public_targets,
             "old_description": record.get("cdp", {}).get("description", ""),
             "confidence": record.get("confidence", ""),
-            "coverage": "Mapped candidate" if spec else "Pending",
-            "new_fields": [{
-                "source": source_property_label(item),
-                "source_repository": item.get("source_repository", "kb-accounts"),
-                "source_table": item.get("source_database_relation", ""),
-                "source_column": item.get("source_database_column", ""),
-                "event": str(item.get("event_contract", "")).split(".")[-1] + "." + str(item.get("event_property", "")),
-                "json_path": item.get("event_json_path", ""),
-                "target": "; ".join(target.get("relation_id", "") + "." + target.get("column", "")
-                                     for target in item.get("downstream_targets", [])) or "No final public CDP output identified",
-                "consumer_repository": item.get("consumer_repository", "kb-cdp-tenant-account"),
-                "consumer_product": item.get("consumer_product", ""),
-                "expression": item.get("raw_sql_expression", ""),
-                "downstream_targets": item.get("downstream_targets", []),
-                "meaning": (catalog.get((item["raw_relation_id"], item["raw_column"].upper()), [{}])[0].get("description", "")),
-                "sql_source_path": item.get("raw_sql_source_path", ""),
-                "transport_status": item.get("transport_status", ""),
-            } for item in mapped],
-            "business_assessment": spec["meaning"] if spec else "",
-            "derivation_assessment": spec["derivation"] if spec else "",
-            "assessment_reason": spec["reason"] if spec else "The new workflow is still in development; no corresponding field has been established or its absence confirmed.",
+            "coverage": "Mapped candidate" if mapped else "Pending",
+            "new_fields": new_candidates,
+            "business_assessment": business_assessment,
+            "derivation_assessment": "Different" if mapped else "",
+            "assessment_reason": assessment_reason,
         })
 
     if len(seen_legacy_ids) != len(old_records):
         raise ValueError("Legacy reconciliation must count each field ID exactly once")
 
-    raw_fields = {}
+    new_targets = {}
     for item in new_mappings:
-        key = (item["raw_relation_id"], item["raw_column"].upper())
-        if key in raw_fields:
+        key = (item["target_model"], norm(item["target_column"]))
+        new_targets.setdefault(key, item)
+    new_unmapped = []
+    for key, item in new_targets.items():
+        if key in paired_new_targets:
             continue
-        raw_fields[key] = {
-            "field": item["raw_column"],
-            "source": "{} / {}.{}".format(item.get("source_repository", "kb-accounts"), item.get("source_database_relation", ""), item.get("source_database_column", "")),
-            "target": "{} / {} / {}".format(item.get("consumer_repository", "kb-cdp-tenant-account"), item.get("consumer_product", ""),
-                                                "; ".join(target.get("relation_id", "") + "." + target.get("column", "")
-                                                           for target in item.get("downstream_targets", []))
-                                                or "No final public CDP output identified"),
-            "event": str(item.get("event_contract", "")).split(".")[-1] + "." + str(item.get("event_property", "")),
-            "json_path": item.get("event_json_path", ""),
-            "meaning": (catalog.get(key, [{}])[0].get("description", "")
-                        or "Defined as a selected Account-topic raw field; see event property and JSON path."),
-            "expression": item.get("raw_sql_expression", ""),
-            "legacy_counterpart": "Identified candidate" if key in paired_new_targets else "None identified; pending new-workflow review",
-            "state": "Mapped candidate" if key in paired_new_targets else "Pending",
-        }
-    new_unmapped = [row for key, row in raw_fields.items() if key not in paired_new_targets]
-
-    unresolved_events = {}
-    for item in crosswalk.get("unresolved", []):
-        key = (item.get("event_contract", ""), item.get("event_property", ""), item.get("reason", ""))
-        details = unresolved_events.setdefault(key, {"occurrences": 0, "sample": item})
-        details["occurrences"] += 1
-    mapped_event_keys = {(item.get("event_contract", ""), item.get("event_property", "")) for item in new_mappings}
-    for (contract, prop, reason), details in unresolved_events.items():
-        if (contract, prop) in mapped_event_keys:
-            continue
-        unresolved = details["sample"]
+        description = catalog.get((item.get("target_relation_id", ""), norm(item["target_column"])), {}).get("description", "")
         new_unmapped.append({
-            "field": contract.split(".")[-1] + "." + prop,
-            "source": "kb-accounts / {}".format(unresolved.get("source_entity") or unresolved.get("schema_path") or "event contract"),
-            "target": "kb-cdp-tenant-account / {} / unresolved raw table".format(unresolved.get("consumer_product") or "tenant event consumer"),
-            "event": contract.split(".")[-1] + "." + prop,
-            "json_path": "Not resolved to a raw SQL path",
-            "meaning": "Declared event property/object; downstream tenant field is not established by the current SQL inventory.",
-            "expression": reason + " (" + str(details["occurrences"]) + " source assignments)",
-            "legacy_counterpart": "None identified; pending new-workflow review",
-            "state": "Pending",
+            "field": item.get("target_column", ""),
+            "source": "kb-cdp-tenant-account / accounts-v1 source column {}".format(item.get("source_column", "")),
+            "target": "kb-cdp-tenant-account / {}.{}".format(item.get("target_relation", ""), item.get("target_column", "")),
+            "event": "TMV source column {}".format(item.get("source_column", "")),
+            "json_path": item.get("source_path", ""),
+            "meaning": description,
+            "expression": item.get("transformation_expression", ""),
+            "legacy_counterpart": "No legacy DWACC output field identified",
+            "state": "New only",
+            "workflow": "tmv",
+            "repository": "kb-cdp-tenant-account",
+            "project": "accounts-v1",
+            "source_column": item.get("source_column", ""),
+            "source_path": item.get("source_path", ""),
+            "target_model": item.get("target_model", ""),
+            "target_relation": item.get("target_relation", ""),
+            "tmv_field_id": item.get("field_id", ""),
         })
 
     legacy_table_counts = Counter()
     for row in old_records:
-        public_relations = {target.get("relation", "") for target in row.get("dbt_targets", [])
-                            if target.get("stage") == "public" and target.get("relation")}
-        for relation in public_relations:
-            legacy_table_counts[relation] += 1
-    new_table_counts = Counter(target.get("relation_id", "") for item in new_mappings
-                               for target in item.get("downstream_targets", []) if target.get("relation_id"))
+        legacy_model = LEGACY_TO_NEW_MODEL.get(row.get("cdp", {}).get("model", ""))
+        if legacy_model:
+            legacy_table_counts[legacy_model] += 1
+    new_table_counts = Counter(item["target_relation"] for item in new_targets.values())
     legacy_tables = "".join("<li><code>{}</code>: {} lineage fields</li>".format(text(name), count)
                             for name, count in sorted(legacy_table_counts.items()))
     new_tables = "".join("<li><code>{}</code>: {} mapped field paths</li>".format(text(name), count)
@@ -290,10 +305,13 @@ def main() -> None:
     no_match = 0
     if legacy_mapped + legacy_pending + no_match != len(old_records):
         raise ValueError("Legacy count equation failed")
-    old_target_names = {str(row.get("cdp", {}).get("column", "")).casefold() for row in old_records}
-    new_target_names = {str(item.get("raw_column", "")).casefold() for item in new_mappings}
-    exact_target_name_matches = len(old_target_names.intersection(new_target_names))
+    exact_target_name_matches = legacy_mapped
     meaning_counts = Counter(row["business_assessment"] for row in legacy_rows if row["business_assessment"])
+    same_model_matches = sum(item.get("output_model_unchanged", False)
+                             for row in legacy_rows for item in row["new_fields"])
+    moved_model_matches = legacy_mapped - same_model_matches
+    same_source_column_matches = sum(item.get("source_column_same", False)
+                                     for row in legacy_rows for item in row["new_fields"])
     old_target_table_count = len(legacy_table_counts)
     new_table_pair_count = len(new_table_counts)
 
@@ -313,20 +331,23 @@ def main() -> None:
         candidate = row["new_fields"][0]
         legacy_source = "<strong>kb-ultracs-datawarehouse</strong><br>Program: <code>{}</code><br>Locator: <code>{}</code><br>HVR: <code>kb-cdp-hvr / {}.param / {}</code>".format(
             text(row["program"]), text(row["source_locator"]), text(row["extract_file"]), text(row["hvr_column"]))
-        legacy_output = "<strong>kb-cdp-tenant-account</strong><br><code>{}</code>".format(text(row["old_target"]))
-        new_source = "<strong>{}</strong><br>Table.field: <code>{}.{}</code><br>Entity property: <code>{}</code><br>Event field: <code>{}</code>".format(
-            text(candidate["source_repository"]), text(candidate["source_table"]), text(candidate["source_column"]),
-            text(candidate["source"]), text(candidate["event"]))
+        legacy_output = ("<strong>kb-cdp-tenant-account</strong><br><code>{}</code>".format(text(row["old_target"]))
+                         if row["legacy_public_targets"] else
+                         "<strong>Legacy DWACC field</strong><br><code>{}</code><br><span class=\"muted\">No public legacy projection listed</span>".format(
+                             text(row["business_field"])))
+        new_source = "<strong>kb-cdp-tenant-account / accounts-v1</strong><br>Source column: <code>{}</code>".format(
+            text(candidate["source_column"]))
         new_output = "<strong>{}</strong><br>Product: <code>{}</code><br><code>{}</code>".format(
             text(candidate["consumer_repository"]), text(candidate["consumer_product"]), text(candidate["target"]))
         business_assessment = """<span class="grade {}">{}</span><p><strong>Legacy:</strong> {}</p><p><strong>New:</strong> {}</p>""".format(
             "equivalent" if row["business_assessment"] == "Equivalent" else "confirm",
             text(row["business_assessment"]), text(row["meaning"]), text(candidate["meaning"]))
         derivation_assessment = """<span class="grade different">Different</span><details><summary>Derivation evidence</summary>
-<p><strong>Legacy BASIC:</strong> <code>{}</code></p><p><strong>New JSON path:</strong> <code>{}</code></p>
-<p><strong>New SQL:</strong> <code>{}</code></p><p>{}</p></details>""".format(
-            text(row["basic_expression"]), text(candidate["json_path"]), text(candidate["expression"]),
-            text(row["assessment_reason"]))
+    <p><strong>Legacy BASIC / HVR:</strong> <code>{}</code> / <code>{}</code></p>
+    <p><strong>TMV SQL expression:</strong> <code>{}</code></p><p><strong>TMV source file:</strong> <code>{}</code></p>
+    <p>{}</p></details>""".format(
+            text(row["basic_expression"]), text(row["hvr_column"]), text(candidate["expression"]),
+            text(candidate["sql_source_path"]), text(row["assessment_reason"]))
         mapped_html.append("""<tr data-search="{search}">
 <td><strong>{business}</strong><br><code>{legacy_id}</code></td><td>{legacy_source}</td><td>{legacy_output}</td>
 <td>{new_source}</td><td>{new_output}</td><td>{business_assessment}</td><td>{derivation_assessment}</td></tr>""".format(
@@ -337,7 +358,7 @@ def main() -> None:
 
     new_html = []
     for row in new_unmapped:
-        new_html.append("""<tr data-state="{state}" data-workflow="kb-accounts" data-search="{search}"><td>New kb-accounts</td><td><code>{field}</code></td>
+        new_html.append("""<tr data-state="{state}" data-workflow="tmv" data-search="{search}"><td>New TMV accounts-v1</td><td><code>{field}</code></td>
     <td>{meaning}</td><td><code>{source}</code></td><td><code>{target}</code></td>
     <td><code>{event}</code><br><span class="muted">JSON: {json_path}<br>{expression}</span></td><td>{counterpart}<br>{state}</td></tr>""".format(
             state=text(row["state"]), search=text(" ".join(str(v) for v in row.values())),
@@ -352,21 +373,22 @@ def main() -> None:
     if not example_row or not example_row["new_fields"]:
         raise ValueError("The Account Name overlap example is missing from the field evidence")
     example_candidate = next((item for item in example_row["new_fields"]
-                              if item["source"] == "AccountProfile.Name"), example_row["new_fields"][0])
+                              if item["target_column"].casefold() == "accountname"), example_row["new_fields"][0])
     legacy_example_target = "; ".join(example_row["legacy_public_targets"]) or "No public target identified"
     example_html = """<section class="example" aria-label="Example mapped field">
 <h2>Example overlap: Account Name</h2><p>Both workflows map an account-name field to a public CDP output. The meaning is classified Equivalent; the recorded derivation paths are Different.</p>
 <div class="example-grid"><div class="example-step"><strong>Legacy source</strong><span>kb-ultracs-datawarehouse / {program}</span><span>HVR: kb-cdp-hvr / {extract}.param / {hvr}</span><span>BASIC: <code>{basic}</code></span></div>
 <div class="example-step"><strong>Legacy CDP output</strong><span>{legacy_target}</span></div>
-<div class="example-step"><strong>New source</strong><span>{new_repository} / {source_table}.{source_column}</span><span>kb-accounts field: {source_property}</span><span>Event: {event}</span><span>JSON: <code>{json_path}</code></span></div>
+<div class="example-step"><strong>New TMV source</strong><span>{new_repository} / accounts-v1</span><span>Source column: <code>{source_column}</code></span><span>SQL: <code>{new_expression}</code></span></div>
 <div class="example-step"><strong>New CDP output</strong><span>{consumer_repository} / {product} / {new_target}</span></div></div>
 <p class="example-grade"><span class="grade equivalent">Business meaning: Equivalent</span><span class="grade different">Derivation: Different</span></p>
 </section>""".format(
         program=text(example_row["program"]), extract=text(example_row["extract_file"]), hvr=text(example_row["hvr_column"]),
         basic=text(example_row["basic_expression"]), legacy_target=text(legacy_example_target),
         new_repository=text(example_candidate["source_repository"]), source_table=text(example_candidate["source_table"]),
-        source_column=text(example_candidate["source_column"]), source_property=text(example_candidate["source"]),
-        event=text(example_candidate["event"]), json_path=text(example_candidate["json_path"]),
+        source_column=text(example_candidate["source_column"]), source_property=text(""),
+        event=text(""), json_path=text(""),
+        new_expression=text(example_candidate["expression"]),
         consumer_repository=text(example_candidate["consumer_repository"]), product=text(example_candidate["consumer_product"]),
         new_target=text(example_candidate["target"]))
 
@@ -388,27 +410,27 @@ section{margin-top:24px}h2{font-size:19px;margin:0 0 10px}.tables{display:grid;g
 .state,.grade{display:inline-block;padding:3px 8px;border-radius:3px;font-size:11px;font-weight:700;white-space:nowrap}.mapped-state,.equivalent{background:#d9eeea;color:#075b50}.pending-state,.confirm{background:#fff0d6;color:#805000}.different{background:#e8eaf0;color:#43516b}.candidate{padding:7px 0;border-bottom:1px solid #e6eded}.candidate:last-child{border-bottom:0}.candidate strong,.candidate span{display:block}.candidate span{font-size:11px;color:var(--muted)}.candidate details{margin-top:4px}.candidate pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f2f6f5;padding:8px;margin:5px 0}.comparison-cell p{margin:7px 0 0}.note{background:#fff;border:1px solid var(--line);padding:13px 15px;color:var(--muted)}details{margin-top:8px}summary{cursor:pointer;font-weight:600;color:#28575a}footer{margin-top:24px;color:var(--muted);font-size:12px}
 @media(max-width:700px){header h1{font-size:22px}.wrap{max-height:65vh}td{max-width:280px}}
 </style></head><body>
-<header><h1>Account Savings Field Reconciliation</h1><p>Legacy DWACC/HVR output compared with the developing Account Profile and End-of-Day Account workflow. This is a static evidence comparison, not runtime value validation.</p></header>
+<header><h1>Ultracs DWACC vs TMV Account Fields</h1><p>Legacy DWACC/HVR fields reconciled against the new accounts-v1 public Account Detail and EOD Balance outputs. This is static mapping evidence, not runtime value validation.</p></header>
 <main>
-<div class="scope"><strong>How to read this:</strong> “Mapped candidate” means there is a source-backed field to compare, not that the values are proven equal. The new workflow is still in development, so unmatched legacy fields are Pending unless a No match is confirmed.</div>
+<div class="scope"><strong>How to read this:</strong> Field matches use the final public table and column. Thirty-six legacy fields formerly targeted an internal V2 model and now appear under the public Account Detail model. Identical dictionary descriptions indicate equivalent documented meaning; derivation paths differ, and runtime values are not compared.</div>
 <section class="workflow-overview" aria-label="Workflow sizes">
-<article class="workflow-card"><h2>Legacy: Ultracs / HVR → CDP</h2><p><strong>__TOTAL__ field links</strong> from DWACC across <strong>__OLDTABLESCOUNT__ output models</strong>.</p><p>Source evidence: KWDW_ACC BASIC expression and HVR parameter column.</p></article>
-<article class="workflow-card"><h2>New: kb-accounts → tenant CDP</h2><p><strong>__NEWLINKS__ mapped field links</strong> across <strong>__NEWTABLESCOUNT__ final public output views</strong>.</p><p>Source evidence: EF binding or C# event → JSON path → tenant CDP output.</p></article>
+<article class="workflow-card"><h2>Legacy: Ultracs / HVR → CDP</h2><p><strong>__TOTAL__ DWACC fields</strong> across <strong>__OLDTABLESCOUNT__ public output tables</strong>.</p><p>Source evidence: KWDW_ACC BASIC expression and HVR parameter column.</p></article>
+<article class="workflow-card"><h2>New: TMV accounts-v1 → tenant CDP</h2><p><strong>__NEWLINKS__ unique public fields</strong> across <strong>__NEWTABLESCOUNT__ output tables</strong>.</p><p>Comparison is restricted to public Account Detail and EOD Balance outputs.</p></article>
 </section>
 <section class="comparison-summary" aria-label="Comparison summary">
-<article><h2>Overlap</h2><p><strong>__EXACTNAMES__ exact target-column name matches.</strong> __MAPPED__ legacy fields have candidate mappings. Of those, <strong>__EQUIVALENT__ business meanings are Equivalent</strong> and <strong>__TBC__ are To be confirmed.</strong> Their derivation paths are <strong>Different</strong>.</p></article>
-<article><h2>Remaining</h2><p><strong>__PENDING__ legacy fields are Pending.</strong> __NEWUNMAPPED__ new fields have no identified legacy counterpart. <strong>__NOMATCH__ confirmed No match.</strong></p></article>
+<article><h2>Overlap</h2><p><strong>__MAPPED__ of 95 legacy fields have matching TMV public output fields.</strong> __SAME_MODEL__ match the same public model; __MOVED_MODEL__ moved from a legacy V2 target to public Account Detail. <strong>__SOURCE_MATCHES__ source-column names match; __SOURCE_ALIASES__ use different source-column names.</strong> All mapped dictionary meanings are Equivalent; derivations are Different.</p><p class="muted">The earlier 35 count covered only the 59 fields whose model names stayed the same; including 36 fields promoted from legacy V2 brings the source-column matches to 62 and output-field matches to 95.</p></article>
+<article><h2>Remaining</h2><p><strong>__PENDING__ legacy fields are Pending.</strong> __NEWUNMAPPED__ TMV public fields have no identified legacy counterpart. <strong>__NOMATCH__ confirmed No match.</strong></p></article>
 </section>
 __EXAMPLE__
 <p class="count-check">Legacy field count: __MAPPED__ mapped candidates + __PENDING__ Pending + __NOMATCH__ confirmed No match = __TOTAL__ total legacy fields.</p>
-<section><h2>Mapped fields across workflows</h2><p class="note">__MAPPED__ legacy fields have candidate mappings. Read the source and public-output columns from left to right; business meaning and derivation are assessed separately.</p>
+<section><h2>Mapped fields across workflows</h2><p class="note">__MAPPED__ fields match by destination column in the selected public Account Detail/EOD models. __SAME_MODEL__ have the same model name; __MOVED_MODEL__ target fields moved from legacy detail_v2 to the new public detail model.</p>
 <div class="wrap"><table><thead><tr><th>Legacy field</th><th>Legacy source</th><th>Legacy CDP output</th><th>New source</th><th>New CDP output</th><th>Business meaning</th><th>Derivation</th></tr></thead><tbody id="mappedRows">__MAPPED_ROWS__</tbody></table></div></section>
 <section><h2>Unmapped fields</h2><p class="note">Includes __PENDING__ legacy fields pending new-workflow completion and __NEWUNMAPPED__ new fields without an identified legacy counterpart. No confirmed No match is claimed.</p>
-<div class="tools"><input id="unmappedSearch" type="search" placeholder="Search field, source, table, or meaning"><select id="unmappedWorkflow"><option value="">All workflows</option><option value="ultracs">Legacy Ultracs / HVR</option><option value="kb-accounts">New kb-accounts</option></select><span class="count" id="unmappedCount"></span></div>
+<div class="tools"><input id="unmappedSearch" type="search" placeholder="Search field, source, table, or meaning"><select id="unmappedWorkflow"><option value="">All workflows</option><option value="ultracs">Legacy Ultracs / HVR</option><option value="tmv">New TMV accounts-v1</option></select><span class="count" id="unmappedCount"></span></div>
 <div class="wrap"><table><thead><tr><th>Workflow</th><th>Field</th><th>Business meaning</th><th>Data source / source table</th><th>Public CDP output</th><th>Derivation / event evidence</th><th>Status / notes</th></tr></thead><tbody id="unmappedRows">__UNMAPPED_ROWS__</tbody></table></div></section>
 <section><h2>Evidence and limitations</h2><div class="note">
-Business meaning uses the old DWACC/tenant dictionary descriptions and new Account field catalog descriptions where available. Derivation evidence is the old BASIC expression plus HVR parameter column versus the new C# property assignment, event JSON path, and SQL expression. “Different” derivation means the recorded pipelines differ; it does not prove that runtime values differ. All 16 candidate links require value-level or business-owner validation before they can be treated as approved equivalents. No confirmed No match is assigned because the new workflow is still under development.
-<br><br>Legacy mapping confidence: 87 explicit, 5 confirmed, 1 confirmed-calculated, 2 inferred. New Kafka topic continuity is not runtime verified.
+Business meaning uses the old DWACC and new TMV data-dictionary descriptions. A mapped field has the same output field name in the mapped Account Detail/EOD model; identical descriptions are classified Equivalent. Legacy BASIC/HVR and new TMV SQL derivations differ, so this is not runtime value verification.
+<br><br>All 95 legacy fields have matching TMV public target fields in this selected table scope. Thirty-six fields move from the legacy V2 target to public Account Detail. Fifteen additional TMV public fields have no legacy DWACC counterpart. Legacy mapping confidence: 87 explicit, 5 confirmed, 1 confirmed-calculated, 2 inferred.
 </div></section>
 <footer>Generated from the accepted workflow artifacts in output/ and CDP_Account_output/Account/. Use the linked source artifacts for full provenance.</footer>
 </main>
@@ -423,30 +445,69 @@ document.getElementById('unmappedSearch').addEventListener('input',filterUnmappe
                      .replace("__PENDING__", str(legacy_pending))
                      .replace("__NOMATCH__", str(no_match))
                      .replace("__NEWUNMAPPED__", str(len(new_unmapped)))
-                     .replace("__NEWLINKS__", str(len(new_mappings)))
+                     .replace("__NEWLINKS__", str(len(new_targets)))
                      .replace("__OLDTABLESCOUNT__", str(old_target_table_count))
                      .replace("__NEWTABLESCOUNT__", str(new_table_pair_count))
                      .replace("__EXACTNAMES__", str(exact_target_name_matches))
                      .replace("__EQUIVALENT__", str(meaning_counts.get("Equivalent", 0)))
                      .replace("__TBC__", str(meaning_counts.get("To be confirmed", 0)))
-                     .replace("__UNRESOLVED__", str(len(crosswalk.get("unresolved", []))))
+                     .replace("__SAME_MODEL__", str(same_model_matches))
+                     .replace("__MOVED_MODEL__", str(moved_model_matches))
+                     .replace("__SOURCE_MATCHES__", str(same_source_column_matches))
+                     .replace("__SOURCE_ALIASES__", str(legacy_mapped - same_source_column_matches))
                      .replace("__EXAMPLE__", example_html)
                      .replace("__OLD_TABLES__", legacy_tables)
                      .replace("__NEW_TABLES__", new_tables)
                      .replace("__MAPPED_ROWS__", "\n".join(mapped_html))
                      .replace("__UNMAPPED_ROWS__", "\n".join(unmapped_html)))
     DESTINATION.write_text(html_document, encoding="utf-8", newline="\n")
+    alignment_path = DESTINATION.with_name("field-alignment.csv")
+    alignment_headers = [
+        "record_type", "status", "legacy_field_id", "legacy_business_field", "legacy_hvr_column",
+        "legacy_basic_expression", "legacy_source_file", "legacy_output_table_field", "legacy_confidence",
+        "new_tmv_field_id", "new_source_repository", "new_source_column", "new_public_output_table",
+        "new_sql_expression", "business_meaning_assessment", "derivation_assessment",
+        "source_column_name_match", "public_model_unchanged", "assessment_notes",
+    ]
+    with alignment_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=alignment_headers)
+        writer.writeheader()
+        for row in legacy_rows:
+            candidate = row["new_fields"][0] if row["new_fields"] else {}
+            writer.writerow({
+                "record_type": "legacy_mapping", "status": row["coverage"],
+                "legacy_field_id": row["legacy_id"], "legacy_business_field": row["business_field"],
+                "legacy_hvr_column": row["hvr_column"], "legacy_basic_expression": row["basic_expression"],
+                "legacy_source_file": row["source_path"], "legacy_output_table_field": row["old_target"],
+                "legacy_confidence": row["confidence"], "new_tmv_field_id": candidate.get("tmv_field_id", ""),
+                "new_source_repository": candidate.get("source_repository", ""),
+                "new_source_column": candidate.get("source_column", ""),
+                "new_public_output_table": candidate.get("target", ""),
+                "new_sql_expression": candidate.get("expression", ""),
+                "business_meaning_assessment": row["business_assessment"],
+                "derivation_assessment": row["derivation_assessment"],
+                "source_column_name_match": candidate.get("source_column_same", ""),
+                "public_model_unchanged": candidate.get("output_model_unchanged", ""),
+                "assessment_notes": row["assessment_reason"],
+            })
+        for row in new_unmapped:
+            writer.writerow({
+                "record_type": "new_only", "status": row["state"], "new_tmv_field_id": row.get("tmv_field_id", ""),
+                "new_source_repository": row.get("repository", ""), "new_source_column": row.get("source_column", ""),
+                "new_public_output_table": row.get("target", ""), "new_sql_expression": row.get("expression", ""),
+                "assessment_notes": row.get("legacy_counterpart", ""),
+            })
     print(json.dumps({
-        "html": str(DESTINATION), "legacy_total": len(old_records),
+        "html": str(DESTINATION), "alignment_csv": str(alignment_path), "legacy_total": len(old_records),
         "mapped_candidates": legacy_mapped, "pending_legacy": legacy_pending,
         "confirmed_no_match": no_match, "legacy_equation": legacy_mapped + legacy_pending + no_match,
-        "new_field_links": len(new_mappings), "old_target_models": old_target_table_count,
+        "tmv_lineage_records": len(new_mappings), "new_unique_public_fields": len(new_targets), "old_target_models": old_target_table_count,
         "new_table_pairs": new_table_pair_count, "exact_target_name_overlaps": exact_target_name_matches,
         "equivalent_business_meanings": meaning_counts.get("Equivalent", 0),
         "to_be_confirmed_business_meanings": meaning_counts.get("To be confirmed", 0),
-        "unresolved_new_links": len(crosswalk.get("unresolved", [])),
-        "unmapped_new_fields": len(new_unmapped), "unique_new_raw_fields": len(raw_fields),
-        "unresolved_new_event_fields": len(unresolved_events),
+        "unmapped_new_fields": len(new_unmapped), "unique_new_public_fields": len(new_targets),
+        "same_model_fields": same_model_matches, "moved_model_fields": moved_model_matches,
+        "source_column_name_matches": same_source_column_matches,
     }, indent=2))
 
 

@@ -1,29 +1,26 @@
-# Old DWACC vs New Account Workflow
+# Ultracs DWACC vs TMV Accounts-v1
 
-## Compared Inputs
+## Compared Scope
 
-- Old workflow: [`output/04-column-lineage/column_lineage.json`](../output/04-column-lineage/column_lineage.json), generated from DWACC/HVR and legacy BASIC evidence.
-- New workflow: [`CDP_Account_output/Account/04-column-lineage/column_lineage.json`](../CDP_Account_output/Account/04-column-lineage/column_lineage.json) and [`cross_repository_field_lineage.json`](../CDP_Account_output/Account/04-column-lineage/cross_repository_field_lineage.json), generated from Account EF bindings, C# event assignments, event schemas, and tenant-account SQL.
+- Legacy: 95 distinct DWACC field IDs from `kb-ultracs-datawarehouse` / `KWDW_ACC`, with HVR parameters in `kb-cdp-hvr`.
+- New: the `accounts-v1` public TMV Account Detail and End-of-Day Balance models in the full `CDP_Account_output` lineage inventory. Intermediate internal relations and the separate Account Profile event crosswalk are not counted in this comparison.
 
-## Result
+## Corrected Result
 
-The workflows are **partially aligned, not record-for-record equivalent**.
+- **95 of 95 legacy fields** have the same destination column in the corresponding new public Account Detail or EOD Balance output.
+- **59** are in the same public model; **36** were targeted to a legacy `detail_v2` model and now appear in public Account Detail.
+- **62** fields also have the same normalized HVR parameter and TMV source-column name. The remaining **33** use a different source-column name or alias, but still map to the same output field.
+- The old and new dictionary descriptions are identical for all **95** matched output fields: business meaning is classified Equivalent. Derivation is Different because the legacy BASIC/HVR path and new TMV SQL path differ; no runtime value equality was tested.
+- The new public Account Detail/EOD inventory has **108 unique fields** (110 lineage records, including two duplicate target-field records). **13** public fields have no legacy DWACC counterpart.
+- Legacy equation: **95 mapped + 0 Pending + 0 confirmed No match = 95**.
 
-- Old inventory: 95 DWACC field mappings, all from the `DWACC` extract. Targets are `accounts_v1__ultracs_accounts_detail` (37 rows), `accounts_v1__ultracs_accounts_eod_balances` (22), and `accounts_v1__ultracs_accounts_detail_v2` (36).
-- New cross-repository inventory: 38 field mappings across Account Profile and End-of-Day Account Balance products, 9 table mappings, and 21 unresolved fields. Its 154 column records additionally include 62 EF bindings and 54 event assignments.
-- Six old-to-new pairs have the same normalized target column name: `ACCOUNTNAME`, `ACCOUNTSTATUS`, `ALTERNATEACCOUNTNAME`, `ACCOUNTFREEZETYPE`, `BANKINGPRODUCTCODE`, and `MINIMUMNUMBEROFAUTHORISER`.
-- One additional pair is conceptually related but has different target names: old `Balance` to `ACCOUNTBALANCE`; new `AccountBalance.Amount` to `ACCOUNTBALANCEVALUE`.
-- `Account_ID` and new `AccountProfile.AccountId` have similar labels but different CDP targets: `KIWIBANKACCOUNTNUMBER` versus `ACCOUNTID`. They are not treated as an equivalent mapping.
-- Table paths differ. The old flow maps DWACC/HVR fields to Ultracs account detail and EOD balance models. The new flow maps Account Profile or Account Balance database fields through C# event contracts and JSON paths into Account Profile / EOD topic models.
+The earlier “35” figure counted source-column-name agreement only within the 59 fields whose public model names were unchanged. It omitted the 36 fields that moved from legacy V2 targets to public Account Detail. The earlier 16-candidate comparison also used the narrower Account Profile/EOD event crosswalk instead of the accounts-v1 TMV field inventory.
 
-## Field Checks
+## Artifacts
 
-The six exact target-column name overlaps are useful candidates for business validation, not proof of equivalent source semantics. In particular, the old `BANKINGPRODUCTCODE` target comes from `Account_Index_ID` / HVR `Prod` and is marked inferred; the old `ACCOUNTFREEZETYPE` target comes from `SPFreezeCode`, while the new field is `AccountFreezeDetails.FreezeType`. The source value sets and business definitions should be checked before declaring these pairs equivalent.
+- [HTML reconciliation](account-savings-field-mapping.html)
+- [Row-level field alignment](field-alignment.csv)
+- Legacy source: [output/04-column-lineage/column_lineage.json](../output/04-column-lineage/column_lineage.json)
+- New source: [CDP_Account_output/04-column-lineage/column_lineage.json](../CDP_Account_output/04-column-lineage/column_lineage.json)
 
-The old mapping confidence distribution is 87 explicit, 5 confirmed, 1 confirmed-calculated, and 2 inferred. The new field links are based on static source declarations; Kafka topic continuity is not runtime verified.
-
-## Validation Conclusion
-
-The new workflow reproduces several core Account attributes and a related balance concept, so its mapping is directionally similar. It is not a replacement for the 95-field DWACC mapping: most legacy loan, arrears, statement, and balance fields have no direct counterpart in the current Account Profile/EOD event crosswalk. Keep the unmatched fields and 21 new unresolved fields visible until their intended scope is confirmed.
-
-See [`field-alignment.csv`](field-alignment.csv) for the row-level candidate pairs.
+This is static mapping and dictionary validation. Matching target fields and descriptions do not establish row-level or runtime value equality.
